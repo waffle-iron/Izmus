@@ -1,0 +1,59 @@
+<style>
+.role-management-toolbar {
+	width: inherit !important;
+}
+.role-management-navbar {
+	z-index: 60;
+}
+</style>
+<md-content flex layout="row"
+	class="md-whiteframe-7dp user-management-section">
+	<md-content flex layout="column"> 
+		<md-toolbar
+			layout="column" class="md-whiteframe-5dp md-accent role-management-toolbar">
+			<div class="md-toolbar-tools">
+				<md-button hide-gt-md ng-click="toggleSidenav()"
+						class="md-icon-button toolbar-icons"> 
+						<md-icon aria-label="Menu" class="material-icons">menu</md-icon> 
+				</md-button>
+				{{rolesManagement}}
+			</div>
+		</md-toolbar>
+		<md-content layout="row" flex>
+			<md-sidenav md-component-id="rolesListSidenav"
+				layout="column"
+				class="md-sidenav-left role-management-navbar md-whiteframe-5dp"
+				md-is-locked-open="$mdMedia('gt-md')"> 
+				<md-content flex layout="column" role="navigation">
+					<div layout="row">
+						<md-toolbar flex layout="row"
+							class="md-accent md-hue-1">
+							<div flex layout="row" layout-align="start center" class="md-toolbar-tools">
+								{{rolesList}}
+								<span flex></span>
+								<md-button aria-label="Twitter" class="md-fab md-raised md-mini" ng-click="showRoleDialog($event)">
+									<md-icon class="material-icons">add</md-icon>
+								</md-button> 
+							</div>
+						</md-toolbar>
+					</div>
+					<div ng-if='progressMode != ""' layout="row" layout-sm="column" layout-align="space-around">
+    					<md-progress-circular class="md-hue-3" md-mode="{{progressMode}}" md-diameter="70">
+		  			</div>
+					<investit-roles-table 
+						flex
+						roles-data-list='rolesDataList'>
+					</investit-user-table>
+				</md-content> 
+			</md-sidenav>
+			<investit-roles-preview 
+					flex layout="column"
+					selected-role="selectedRole"
+					ok='{{ok}}'
+					cancel='{{cancel}}'
+					available-permissions='{{availablePermissions}}'
+					user-roles='{{userRoles}}'	>
+			</investit-roles-preview>
+		</md-content>
+	</md-content>
+</md-content>

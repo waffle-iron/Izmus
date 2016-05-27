@@ -1,0 +1,19 @@
+<style>
+.user-management-toolbar {
+	width: inherit !important;
+}
+</style>
+<md-content flex layout="row"
+	class="md-whiteframe-7dp user-management-section">
+	<md-content flex layout="column"> 
+		<md-toolbar
+			layout="column" class="md-whiteframe-5dp md-accent user-management-toolbar">
+			<div class="md-toolbar-tools">
+				{{anErrorOccurred}}
+			</div>
+		</md-toolbar>
+		<md-content layout="row" flex>
+			{{errorMessage}}
+		</md-content>
+	</md-content>
+</md-content>

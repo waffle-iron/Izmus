@@ -1,0 +1,6 @@
+@CHARSET "UTF-8";
+
+/* Always float the navbar header */
+.navbar-header {
+  float: left;
+}

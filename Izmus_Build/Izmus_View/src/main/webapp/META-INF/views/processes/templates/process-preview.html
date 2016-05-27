@@ -1,0 +1,31 @@
+<style>
+.dialog-process-img{
+	min-width: 800px;
+}
+.dialog-process-img-whiteframe {
+	width: 900px;
+}
+</style>
+<section layout="column"  dir="{{parentScope.globalAttr.direction}}">
+	<md-toolbar flex="none" layout="column"
+		class="md-whiteframe-1dp md-accent">
+		<div class="md-toolbar-tools">
+			<md-button ng-click="cancel()"
+				class="md-icon-button toolbar-icons"> <md-icon
+				aria-label="Menu" class="material-icons">clear</md-icon> 
+			</md-button>
+			{{process.name}}
+		</div>
+	</md-toolbar>
+	<md-content layout-padding>
+		<md-whiteframe class="md-whiteframe-1dp dialog-process-img-whiteframe"
+				layout-padding layout="column" flex="auto">
+				<img class="dialog-process-img" ng-src="{{process.base64Image}}"></img>
+		</md-whiteframe>
+	</md-content>
+	<md-dialog-actions flex="none" layout="row">
+	      <md-button ng-click="cancel()">
+	       	{{parentScope.globalAttr.ok}}
+	      </md-button>
+	</md-dialog-actions>
+</section>

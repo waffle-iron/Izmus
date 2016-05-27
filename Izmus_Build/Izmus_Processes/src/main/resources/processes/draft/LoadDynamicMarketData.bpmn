@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://investit.no-ip.org/LoadDynamicMarketData">
+  <collaboration id="Collaboration">
+    <participant id="LoadDynamicMarketData" name="Load Dynamic Market Data" processRef="LoadDynamicMarketDataProcessId"></participant>
+  </collaboration>
+  <process id="LoadDynamicMarketDataProcessId" name="Load Dynamic Market Data Process" isExecutable="true">
+    <laneSet id="laneSet_LoadDynamicMarketDataProcessId">
+      <lane id="SystemLane" name="System">
+        <flowNodeRef>LoadDataStart</flowNodeRef>
+        <flowNodeRef>LoadDynamicMarketDataTask</flowNodeRef>
+      </lane>
+      <lane id="UserLane" name="User"></lane>
+    </laneSet>
+    <startEvent id="LoadDataStart" name="Load Data Start">
+      <timerEventDefinition>
+        <timeDuration>PT165S</timeDuration>
+      </timerEventDefinition>
+    </startEvent>
+    <serviceTask id="LoadDynamicMarketDataTask" name="Load Dynamic Market Data" activiti:expression="#{LoadDynamicMarketData.execute(execution)}"></serviceTask>
+    <sequenceFlow id="flow1" sourceRef="LoadDataStart" targetRef="LoadDynamicMarketDataTask"></sequenceFlow>
+    <textAnnotation id="textannotation1">
+      <text>Starts Every 1 Minute, Resting Between 11PM and 2AM</text>
+    </textAnnotation>
+    <association id="association1" sourceRef="textannotation1" targetRef="LoadDataStart"></association>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration">
+    <bpmndi:BPMNPlane bpmnElement="Collaboration" id="BPMNPlane_Collaboration">
+      <bpmndi:BPMNShape bpmnElement="LoadDynamicMarketData" id="BPMNShape_LoadDynamicMarketData">
+        <omgdc:Bounds height="442.0" width="681.0" x="20.0" y="20.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="SystemLane" id="BPMNShape_SystemLane">
+        <omgdc:Bounds height="221.0" width="661.0" x="40.0" y="20.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="UserLane" id="BPMNShape_UserLane">
+        <omgdc:Bounds height="221.0" width="661.0" x="40.0" y="241.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="LoadDataStart" id="BPMNShape_LoadDataStart">
+        <omgdc:Bounds height="35.0" width="35.0" x="70.0" y="100.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="LoadDynamicMarketDataTask" id="BPMNShape_LoadDynamicMarketDataTask">
+        <omgdc:Bounds height="55.0" width="151.0" x="140.0" y="90.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="textannotation1" id="BPMNShape_textannotation1">
+        <omgdc:Bounds height="50.0" width="161.0" x="50.0" y="30.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="105.0" y="117.0"></omgdi:waypoint>
+        <omgdi:waypoint x="140.0" y="117.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="association1" id="BPMNEdge_association1">
+        <omgdi:waypoint x="130.0" y="80.0"></omgdi:waypoint>
+        <omgdi:waypoint x="87.0" y="100.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

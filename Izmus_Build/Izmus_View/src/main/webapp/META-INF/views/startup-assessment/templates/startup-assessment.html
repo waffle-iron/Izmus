@@ -1,0 +1,20 @@
+<investit-main-window
+	flex
+	layout="column"
+	main-window-title='{{lang.startupAssessmentProcess}}'
+	sidenav-ctrl='sidenavCtrl'>
+	<sidenav-content>
+		<investit-startup-list
+			sidenav-ctrl='sidenavCtrl'>
+		</investit-startup-list>
+	</sidenav-content>
+	<main-content flex layout="column">
+		<investit-startup-detail
+			flex
+			layout="column"
+			startup-general-attributes='startupGeneralAttributes'
+			startup-general-financials='startupGeneralFinancials'
+			selected-startup='selectedStartup'>
+		</investit-startup-detail>
+	</main-content>
+</investit-main-window>

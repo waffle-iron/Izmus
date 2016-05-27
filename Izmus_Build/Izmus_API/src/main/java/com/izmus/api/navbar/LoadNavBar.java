@@ -1,0 +1,103 @@
+package com.izmus.api.navbar;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.izmus.data.api.navbar.NavbarItem;
+import com.izmus.security.permission.InvestITPermissionEvaluator;
+
+@RestController
+@RequestMapping("api/Navbar")
+public class LoadNavBar {
+	/*----------------------------------------------------------------------------------------------------*/
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoadNavBar.class);
+	@Autowired
+	private ApplicationContext context;
+	@Autowired
+	private InvestITPermissionEvaluator permissionEvaluator;
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/GetNavbar", method = RequestMethod.GET)
+	public List<NavbarItem> getNavBar() {
+		List<NavbarItem> navbar = null;
+		Authentication authentication = null;
+		try {
+			navbar = new ArrayList<>();
+			authentication = SecurityContextHolder.getContext().getAuthentication();
+			if (permissionEvaluator.hasPermission(authentication, "Startup Assessment", null)){
+				navbar.add(getStartupAssessmnetItem());
+			}
+			if (permissionEvaluator.hasPermission(authentication, "Admin Menu", null)){
+				navbar.add(getAdminMenu(authentication));
+			}
+		} catch (Exception e) {
+			LOGGER.error("Getting Navbar Failed For User: " + authentication);
+		}
+		return navbar;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private NavbarItem getAdminMenu(Authentication authentication) {
+		NavbarItem adminMenu = new NavbarItem();
+		adminMenu.setHref("");
+		adminMenu.setLabel(context.getMessage("navBar.menu.adminMenu",null, LocaleContextHolder.getLocale()));
+		adminMenu.setIcon("settings");
+		adminMenu.setType("toggle");
+		adminMenu.setSubItems(new ArrayList<NavbarItem>());
+		if (permissionEvaluator.hasPermission(authentication, "Admin Menu/Users", null)){
+			adminMenu.getSubItems().add(getUsersItem());
+		}
+		if (permissionEvaluator.hasPermission(authentication, "Admin Menu/Roles", null)){
+			adminMenu.getSubItems().add(getRolesItem());
+		}
+		if (permissionEvaluator.hasPermission(authentication, "Admin Menu/Processes", null)){
+			adminMenu.getSubItems().add(getProcessesItem());
+		}
+		return adminMenu;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private NavbarItem getProcessesItem() {
+		NavbarItem rolesItem = new NavbarItem();
+		rolesItem.setHref("/Processes");
+		rolesItem.setLabel(context.getMessage("navBar.menu.adminMenu.processes",null, LocaleContextHolder.getLocale()));
+		rolesItem.setIcon("/views/core/investit-nav-bar/images/flow-diagram.svg");
+		rolesItem.setType("link");
+		return rolesItem;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private NavbarItem getRolesItem() {
+		NavbarItem rolesItem = new NavbarItem();
+		rolesItem.setHref("/Roles");
+		rolesItem.setLabel(context.getMessage("navBar.menu.adminMenu.roles",null, LocaleContextHolder.getLocale()));
+		rolesItem.setIcon("vpn_key");
+		rolesItem.setType("link");
+		return rolesItem;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private NavbarItem getUsersItem() {
+		NavbarItem usersItem = new NavbarItem();
+		usersItem.setHref("/Users");
+		usersItem.setLabel(context.getMessage("navBar.menu.adminMenu.users",null, LocaleContextHolder.getLocale()));
+		usersItem.setIcon("/views/core/investit-nav-bar/images/users.svg");
+		usersItem.setType("link");
+		return usersItem;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private NavbarItem getStartupAssessmnetItem() {
+		NavbarItem proposalItem = new NavbarItem();
+		proposalItem.setHref("/StartupAssessment");
+		proposalItem.setLabel(context.getMessage("navBar.menu.startupAssessment",null, LocaleContextHolder.getLocale()));
+		proposalItem.setIcon("star_rate");
+		proposalItem.setType("link");
+		return proposalItem;
+	}
+}

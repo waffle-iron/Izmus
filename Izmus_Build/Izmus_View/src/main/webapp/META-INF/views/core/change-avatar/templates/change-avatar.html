@@ -1,0 +1,69 @@
+<style>
+img-crop {
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: relative;
+  	overflow: hidden;
+}
+/* line 7, ../../source/scss/ng-img-crop.scss */
+img-crop canvas {
+	display: block;
+  	position: absolute;
+	top: 50%;
+	left: 50%;
+	outline: none;
+  	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  /* mobile webkit */
+}
+.cropArea {
+   	background: #E4E4E4;
+   	overflow: hidden;
+   	height: 300px;
+}
+.cropped-image{
+	border-radius: 50px;
+	width: 100px;
+	height: 100px;
+}
+</style>
+<section layout="column"  dir="{{globalAttr.direction}}">
+	<md-toolbar flex="none" layout="column"
+		class="md-whiteframe-1dp md-accent">
+		<div class="md-toolbar-tools">
+			<md-button ng-click="cancel()"
+				class="md-icon-button toolbar-icons"> <md-icon
+				aria-label="Menu" class="material-icons">clear</md-icon> </md-button>
+		</div>
+	</md-toolbar>
+	<md-content layout-padding>
+		<md-whiteframe class="md-whiteframe-1dp"
+				layout-padding layout="column">
+				<div layout="row" layout-padding layout-align="space-between center">
+					{{globalAttr.selectAnImage}}
+					<input type="file" onchange="angular.element(this).scope().handleFileSelect(event)" />
+				</div>
+				<div class="cropArea">
+					<img-crop 
+						image="originalImage" 
+						result-image="croppedImage"
+						change-on-fly="true"
+						area-min-size="10">
+					</img-crop>
+				</div>
+				<div>{{globalAttr.croppedImage}}</div>
+				<div layout="row" layout-padding layout-align="center center">
+					<img class="cropped-image" ng-src="{{croppedImage}}" />
+				</div>
+		</md-whiteframe>
+	</md-content>
+	<md-dialog-actions flex="none" layout="row">
+	      <md-button ng-click="cancel()">
+	       	{{globalAttr.cancel}}
+	      </md-button>
+	      <span flex></span>
+	      <md-button ng-click="ok()">
+	        {{globalAttr.ok}}
+	      </md-button>
+	</md-dialog-actions>
+</section>

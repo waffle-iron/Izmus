@@ -1,0 +1,33 @@
+<section layout="column">
+	<md-toolbar layout="column" dir="{{parentScope.globalAttr.direction}}"
+		class="md-whiteframe-1dp md-accent">
+		<div class="md-toolbar-tools">
+			<md-button ng-click="cancel()"
+				class="md-icon-button toolbar-icons"> <md-icon
+				aria-label="Menu" class="material-icons">clear</md-icon> </md-button>
+		</div>
+	</md-toolbar>
+	<md-content layout-padding dir="{{parentScope.globalAttr.direction}}">
+		</md-whiteframe>
+			<md-whiteframe class="md-whiteframe-1dp user-detail-section"
+				flex="none" layout-padding layout="column"> 
+				<div class="md-headline" layout="row" layout-align="start center">
+					{{parentScope.newRole}}
+				</div>
+				<md-input-container class="user-info-input"> 
+					<label>{{parentScope.roleName}}</label>
+					<md-icon class="material-icons">vpn_key</md-icon> 
+					<input ng-model="roleName"> 
+				</md-input-container>
+			</md-whiteframe>
+	</md-content>
+	<md-dialog-actions layout="row">
+	      <md-button ng-click="cancel()">
+	       	{{parentScope.cancel}}
+	      </md-button>
+	      <span flex></span>
+	      <md-button ng-click="ok()">
+	        {{parentScope.ok}}
+	      </md-button>
+	</md-dialog-actions>
+</section>

@@ -1,0 +1,53 @@
+<style>
+.registration-section {
+	background-image: url('/views-public/landing-page/images/registration-background.jpg');
+  	background-position: center;
+   	background-size: cover;
+   	background-repeat: no-repeat;
+}
+.user-name-password{
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.registration-whiteframe{
+	background-color: white;
+	opacity: 0.9;
+}
+</style>
+<md-whiteframe flex="none" class="registration-section md-whiteframe-10dp" layout="row" layout-xs="column" layout-padding layout-align="space-around center">
+	<div class="registration-section-text" layout="column">
+		<div class="registration-section-text-header" layout="row">
+			<p>{{lang.registrationSectionHeader}}</p>
+		</div>
+		<div class="registration-section-text-content" layout="row">
+			<p>{{lang.registrationSectionContent}}</p>
+		</div>
+	</div>
+	<div layout="row" flex="none" ng-if="(globalAttr.user == null)">
+		<md-whiteframe class="md-whiteframe-5dp registration-whiteframe" layout-padding layout="column" layout-align="center stretch">
+			<div style="text-align: center;">
+				<h1>{{lang.registration}}</h1>
+			</div>
+			<div layout="column" layout-align="center center" class="user-name-password">
+				<form name="registrationForm" layout="column">
+					<md-input-container>
+						<label>{{lang.userName}}</label> 
+						<input required name="userName" ng-model="$parent.userName">
+						<div ng-messages="registrationForm.userName.$error" multiple md-auto-hide="false">
+							<div ng-message="required">{{lang.userNameRequired}}</div>
+						</div> 
+					</md-input-container>
+					<md-input-container>
+						<label>{{lang.email}}</label> 
+						<input required name="email" type="email" ng-model="$parent.email">
+						<div ng-messages="registrationForm.email.$error" multiple md-auto-hide="false">
+							<div ng-message="required">{{lang.emailRequired}}</div>
+							<div ng-message="email">{{lang.enterValidEmailAddress}}</div>
+						</div>
+					</md-input-container>
+				</form> 
+			</div>
+			<md-button class="md-raised" ng-click="register()">{{lang.go}}</md-button>
+		</md-whiteframe>
+	</div>
+</md-whiteframe>

@@ -1,0 +1,54 @@
+<div dir='{{dir}}'>
+	<div class="modal-header">
+		<input type="text" ng-model="item.name" class="form-control input-sm">
+	</div>
+	<div class="modal-body"
+		ng-class="{'account-body': item.type === 'account','real-estate-body': item.type === 'realEstate'}">
+		<div ng-if='item.type == "account"' class='row edit-assetclasses'>
+			<div class="col-lg-5 col-md-5">
+				<div class="btn-group pull-left"
+					uib-dropdown uib-keyboard-nav auto-close='disabled'
+					is-open="assetClassDropdown.isEditOpen"
+					style="margin-right: 6px;">
+					<a href="#" dnd-type="'asset'"
+						class="btn btn-xs dropdown-toggle btn-default" uib-dropdown-toggle><i
+						class="fa fa-pie-chart fa-fw handle" draggable='true'></i><span
+						class="caret"></span></a>
+					<ul class="uib-dropdown-menu" role="menu"
+						aria-labelledby="split-button">
+						<li ng-repeat="assetClass in assetClasses" role="menuitem">
+							<button dnd-draggable="assetClass" href="#"
+								class="btn btn-default btn-xs handle" draggable='true'
+								dnd-effect-allowed="move"
+								dnd-dragstart="buttonDragStart(assetClass)"
+								dnd-dragend="saveProposal(tempProposalName)" dnd-type="'asset'">
+								<i class="fa fa-pie-chart fa-fw handle" draggable='true'
+									style="color: {{assetClass.color}}"></i> {{assetClass.name}}
+							</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-5 col-md-5 account">
+				<nvd3 dir='ltr' dnd-list="item.values"
+					dnd-allowed-types="['asset']" dnd-external-sources="true"
+					dnd-drop="handleAssetDrop(item)" options="options" data="data"></nvd3>
+			</div>
+			<div class="col-lg-7 col-md-7">
+				<div ng-repeat="proposalType in item.children">
+					<p>{{proposalType.name}}</p>
+					<input type="text" ng-model="proposalType.value"
+						class="form-control input-sm"
+						fcsa-number="{ preventInvalidInput: true,prepend: '$' }">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary" ng-click="saveButton()">{{$parent.saveButton}}</button>
+		<button type="button" class="btn btn-default"
+			ng-click="cancelButton()">{{$parent.cancelButton}}</button>
+	</div>
+</div>

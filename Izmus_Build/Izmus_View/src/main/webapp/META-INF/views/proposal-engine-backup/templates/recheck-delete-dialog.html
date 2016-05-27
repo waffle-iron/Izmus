@@ -1,0 +1,15 @@
+<div dir='{{dir}}'>
+	<div class="modal-header warning">
+		<h4 class="modal-title" id="recheckDeleteLabel">
+			{{$parent.deleteConfirmationTitle}}</h4>
+	</div>
+	<div class="modal-body">
+		<p>{{$parent.deleteConfirmationMessage}}
+			{{name}}</p>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-danger" ng-click="deleteButton()">{{$parent.deleteButton}}</button>
+		<button type="button" class="btn btn-default"
+			ng-click="cancelButton()">{{$parent.cancelButton}}</button>
+	</div>
+</div>

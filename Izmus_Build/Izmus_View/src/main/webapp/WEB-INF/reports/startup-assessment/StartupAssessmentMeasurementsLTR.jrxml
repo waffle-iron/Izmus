@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.1.final using JasperReports Library version 6.2.1  -->
+<!-- 2016-05-12T20:37:24 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StartupAssessmentfirstMeasurementsLTR" pageWidth="555" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c7f43391-1862-4602-8d92-baa97fda4afb">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="firstMeasurement" class="com.investit.data.domain.startups.Measurement"/>
+	<field name="secondMeasurement" class="com.investit.data.domain.startups.Measurement"/>
+	<detail>
+		<band height="174" splitType="Stretch">
+			<frame>
+				<reportElement x="5" y="2" width="270" height="170" uuid="738c41c1-4ea7-4670-a0f7-995ae8d2f57b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<rectangle radius="5">
+					<reportElement x="0" y="0" width="270" height="170" uuid="6c99ed1e-fe1a-4263-9cbe-567d79d6439d">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.5" lineColor="#888888"/>
+					</graphicElement>
+				</rectangle>
+				<meterChart>
+					<chart isShowLegend="false" customizerClass="com.investit.reports.startups.StartupReportMeterCustomizer" renderType="svg">
+						<reportElement x="140" y="110" width="130" height="60" uuid="a5ad2d70-0af9-4d14-8b8d-05c44271ce83">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						</reportElement>
+						<chartTitle>
+							<titleExpression><![CDATA[$F{firstMeasurement}.getFinalScore().toString()]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<valueDataset>
+						<dataset resetType="Report"/>
+						<valueExpression><![CDATA[$F{firstMeasurement}.getFinalScore()]]></valueExpression>
+					</valueDataset>
+					<meterPlot shape="pie" tickInterval="10.0" meterColor="#FFFFFF" needleColor="#000000" tickColor="#FFFFFF">
+						<plot orientation="Horizontal"/>
+						<valueDisplay/>
+						<dataRange>
+							<lowExpression><![CDATA[1]]></lowExpression>
+							<highExpression><![CDATA[100]]></highExpression>
+						</dataRange>
+						<meterInterval color="#E53935" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[0]]></lowExpression>
+								<highExpression><![CDATA[10]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#EB6562" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[10]]></lowExpression>
+								<highExpression><![CDATA[20]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#EB6562" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[20]]></lowExpression>
+								<highExpression><![CDATA[30]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#F19290" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[30]]></lowExpression>
+								<highExpression><![CDATA[40]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#F7BEBD" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[40]]></lowExpression>
+								<highExpression><![CDATA[50]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#B1D2C5" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[50]]></lowExpression>
+								<highExpression><![CDATA[60]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#90BFAE" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[60]]></lowExpression>
+								<highExpression><![CDATA[70]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#70AC96" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[70]]></lowExpression>
+								<highExpression><![CDATA[80]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#56947D" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[80]]></lowExpression>
+								<highExpression><![CDATA[90]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#00CC6E" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[90]]></lowExpression>
+								<highExpression><![CDATA[100]]></highExpression>
+							</dataRange>
+						</meterInterval>
+					</meterPlot>
+				</meterChart>
+				<textField isBlankWhenNull="false">
+					<reportElement x="0" y="5" width="230" height="25" forecolor="#888888" uuid="efbe8fe1-5847-46c0-8a3f-4a2f9aab3228">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font size="12"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{firstMeasurement}.getTitle()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="30" width="270" height="80" uuid="16c0e724-d174-4ead-a899-b930cf8f8b04">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font size="9"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($F{firstMeasurement}.getAssessment() == null ? "" : $F{firstMeasurement}.getAssessment())]]></textFieldExpression>
+				</textField>
+				<ellipse>
+					<reportElement x="240" y="2" width="28" height="28" uuid="e43dccbe-434d-4466-8fb3-64cab10df041">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.5" lineColor="rgba(136, 136, 136, 0.7647059)"/>
+					</graphicElement>
+				</ellipse>
+				<textField>
+					<reportElement positionType="Float" x="240" y="2" width="28" height="28" uuid="ccbb68bf-2681-46a5-93ab-24afac235324">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{firstMeasurement}.getFinalScore().toString()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement isPrintRepeatedValues="false" x="280" y="2" width="270" height="170" uuid="ac01f1a1-b978-4bdc-8e73-f751ebedfda3">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<rectangle radius="5">
+					<reportElement x="0" y="0" width="270" height="170" uuid="8f843cf8-9eb4-4143-a680-b08b88da0c22">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.5" lineColor="#888888"/>
+					</graphicElement>
+				</rectangle>
+				<meterChart>
+					<chart isShowLegend="false" customizerClass="com.investit.reports.startups.StartupReportMeterCustomizer" renderType="svg">
+						<reportElement stretchType="RelativeToBandHeight" x="140" y="110" width="130" height="60" uuid="b6a49469-fdd3-481c-988d-253b77d3162a">
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						</reportElement>
+						<chartTitle>
+							<titleExpression><![CDATA[$F{secondMeasurement}.getFinalScore().toString()]]></titleExpression>
+						</chartTitle>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<valueDataset>
+						<dataset resetType="Report"/>
+						<valueExpression><![CDATA[$F{secondMeasurement}.getFinalScore()]]></valueExpression>
+					</valueDataset>
+					<meterPlot shape="pie" tickInterval="10.0" meterColor="#FFFFFF" needleColor="#000000" tickColor="#FFFFFF">
+						<plot orientation="Horizontal"/>
+						<valueDisplay color="rgba(255, 255, 255, 0.0)"/>
+						<dataRange>
+							<lowExpression><![CDATA[1]]></lowExpression>
+							<highExpression><![CDATA[100]]></highExpression>
+						</dataRange>
+						<meterInterval color="#E53935" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[0]]></lowExpression>
+								<highExpression><![CDATA[10]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#EB6562" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[10]]></lowExpression>
+								<highExpression><![CDATA[20]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#EB6562" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[20]]></lowExpression>
+								<highExpression><![CDATA[30]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#F19290" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[30]]></lowExpression>
+								<highExpression><![CDATA[40]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#F7BEBD" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[40]]></lowExpression>
+								<highExpression><![CDATA[50]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#B1D2C5" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[50]]></lowExpression>
+								<highExpression><![CDATA[60]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#90BFAE" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[60]]></lowExpression>
+								<highExpression><![CDATA[70]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#70AC96" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[70]]></lowExpression>
+								<highExpression><![CDATA[80]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#56947D" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[80]]></lowExpression>
+								<highExpression><![CDATA[90]]></highExpression>
+							</dataRange>
+						</meterInterval>
+						<meterInterval color="#00CC6E" alpha="1.0">
+							<dataRange>
+								<lowExpression><![CDATA[90]]></lowExpression>
+								<highExpression><![CDATA[100]]></highExpression>
+							</dataRange>
+						</meterInterval>
+					</meterPlot>
+				</meterChart>
+				<textField isBlankWhenNull="false">
+					<reportElement x="0" y="5" width="230" height="25" forecolor="#888888" uuid="71c47e62-f9be-4f78-aa79-57459f4439ac">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font size="12"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{secondMeasurement}.getTitle()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="30" width="270" height="80" uuid="3270a7f8-499d-403f-b3c8-c832a1c0654e">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font size="9"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($F{secondMeasurement}.getAssessment() == null ? "" : $F{secondMeasurement}.getAssessment())]]></textFieldExpression>
+				</textField>
+				<ellipse>
+					<reportElement x="240" y="2" width="28" height="28" uuid="74ccfeaf-448d-478a-9003-37659f1dc515">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.5" lineColor="rgba(136, 136, 136, 0.7647059)"/>
+					</graphicElement>
+				</ellipse>
+				<textField>
+					<reportElement positionType="Float" x="240" y="2" width="28" height="28" uuid="1012119f-c9c5-4ed9-b212-e9e549a82d8f">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{secondMeasurement}.getFinalScore().toString()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

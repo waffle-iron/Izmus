@@ -1,0 +1,74 @@
+<style>
+.registration-section {
+	background-image: url('/views-public/landing-page/images/registration-background.jpg');
+  	background-position: center;
+   	background-size: cover;
+   	background-repeat: no-repeat;
+   	width: 500px;
+}
+.user-name-password{
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.registration-whiteframe{
+	background-color: white;
+	opacity: 0.9;
+}
+.user-type-input>label {
+	left: auto !important;
+	right: auto !important;
+}
+</style>
+<section layout="column" id="user-dialog">
+	<section flex="30" class="flex-section"></section>
+	<md-whiteframe flex="none" class="registration-section md-whiteframe-10dp" 
+		layout="row" layout-xs="column" layout-padding layout-align="space-around center">
+		<div layout="row" flex="none">
+			<md-whiteframe class="md-whiteframe-5dp registration-whiteframe" layout-padding layout="column" layout-align="center stretch">
+				<div style="text-align: center;">
+					<h1>{{lang.registration}}</h1>
+				</div>
+				<div layout="column" layout-align="center center" class="user-name-password">
+					<form name="registrationForm" layout="column">
+						<md-input-container>
+							<label>{{lang.userName}}</label> 
+							<input required name="userName" ng-model="userName">
+							<div ng-messages="registrationForm.userName.$error" multiple md-auto-hide="false">
+								<div ng-message="required">{{lang.userNameRequired}}</div>
+							</div> 
+						</md-input-container>
+						<md-input-container>
+							<label>{{lang.email}}</label> 
+							<input required name="email" type="email" ng-model="email">
+							<div ng-messages="registrationForm.email.$error" multiple md-auto-hide="false">
+								<div ng-message="required">{{lang.emailRequired}}</div>
+								<div ng-message="email">{{lang.enterValidEmailAddress}}</div>
+							</div>
+						</md-input-container>
+						<md-input-container class="user-type-input"> 
+							<label> User Type </label>
+							<md-select ng-model="userType" required name="userType"> 
+								<md-option value="Izmus Finder"> Izmus Finder </md-option>
+								<md-option value="Izmus Investor"> Izmus Investor </md-option>
+								<md-option value="Izmus Assessor"> Izmus Assessor </md-option> 
+							</md-select>
+							<div ng-messages="registrationForm.userType.$error" multiple md-auto-hide="false">
+								<div ng-message="required">{{lang.userTypeRequired}}</div>
+							</div>
+						</md-input-container>
+					</form>
+				</div>
+			</md-whiteframe>
+		</div>
+	</md-whiteframe>
+	<section flex="30" class="flex-section"></section>
+	<md-dialog-actions layout="row">
+		<md-button ng-click="cancel()">
+	       	{{parentScope.cancel}}
+	    </md-button>
+	    <span flex></span>
+	    <md-button ng-click="ok($element)">
+	    	{{parentScope.ok}}
+	    </md-button>
+	</md-dialog-actions>
+</section>

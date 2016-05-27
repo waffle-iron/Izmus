@@ -1,0 +1,74 @@
+<style>
+.main-window-toolbar {
+	width: inherit !important;
+	-webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+	-moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+	transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+}
+.main-window-sidenav{
+	z-index: 60;
+}
+.window-expand-icon.toggled{
+    transform: rotateZ(180deg) !important;
+  	-webkit-transform: rotateZ(180deg) !important;
+}
+.window-expand-icon{
+	transition: transform .3s ease-in-out !important;
+  	-webkit-transition: -webkit-transform .3s ease-in-out;
+}
+</style>
+<section 
+	flex 
+	layout="column"
+	class="md-whiteframe-7dp">
+		<md-toolbar ng-if="(sidenavCtrl) || (mainWindowTitle)" flex="none"
+			layout="column" class="md-whiteframe-5dp md-accent main-window-toolbar"
+			ng-style="(isWindowTopBarMinimized()) ? {'height': '15px','min-height': '15px'} : {'height': '64px','min-height': '64px'}">
+			<div class="md-toolbar-tools">
+				<md-button ng-click="toggleWindowTopBar()" class="md-icon-button toolbar-icons">
+					<md-icon
+						class="material-icons window-expand-icon"
+						ng-class="(isWindowTopBarMinimized()) ? '' : 'toggled'" 
+						aria-label="expand">
+						expand_more
+					</md-icon>
+				</md-button>
+				<md-button ng-hide="isWindowTopBarMinimized()" ng-if="(sidenavCtrl)" hide-gt-md ng-click="sidenavCtrl.toggleSidenav()"
+						class="md-icon-button toolbar-icons"> 
+						<md-icon aria-label="Menu" class="material-icons">menu</md-icon> 
+				</md-button>
+				<p ng-hide="isWindowTopBarMinimized()">
+					{{mainWindowTitle}}
+				</p>
+			</div>
+		</md-toolbar>
+		<md-content layout="row" flex>
+			<md-sidenav 
+				ng-if="(sidenavCtrl)" 
+				md-component-id="mainWidowSidenav"
+				layout="column"
+				flex="none"
+				class="md-sidenav-left main-window-sidenav md-whiteframe-5dp"
+				md-is-locked-open="$mdMedia('gt-md')"> 
+				<md-content flex layout="column" role="navigation">
+					<div layout="row">
+						<md-toolbar flex layout="row"
+							class="md-accent md-hue-1">
+							<div flex layout="row" layout-align="start center" class="md-toolbar-tools">
+								{{sidenavCtrl.sidenavTitle}}
+								<span flex></span>
+								<md-button ng-if="(sidenavCtrl.showAddDialog)"aria-label="Twitter" class="md-fab md-raised md-mini" ng-click="sidenavCtrl.showAddDialog($event)">
+									<md-icon class="material-icons">add</md-icon>
+								</md-button> 
+							</div>
+						</md-toolbar>
+					</div>
+					<div ng-if='sidenavCtrl.progressMode && sidenavCtrl.progressMode != ""' layout="row" layout-sm="column" layout-align="space-around">
+			   			<md-progress-circular class="md-hue-3" md-mode="{{sidenavCtrl.progressMode}}" md-diameter="70">
+			 		</div>
+			 		<md-content ng-transclude="sidenavContent"></md-content>
+				</md-content>
+			</md-sidenav>
+			<section flex layout="row" ng-transclude="mainContent"></section>
+		</md-content>
+</section>

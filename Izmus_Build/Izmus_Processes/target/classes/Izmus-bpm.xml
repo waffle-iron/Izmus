@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+       					http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.izmus.processes" />
+
+	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+		<property name="dataSource" ref="IzmusActivitiDS"></property>
+		<property name="transactionManager" ref="bpmTransactionManager" />
+		<property name="databaseSchemaUpdate" value="true" />
+		<property name="jobExecutorActivate" value="false" />
+		<property name="createDiagramOnDeploy" value="true" />
+		<property name="asyncExecutorEnabled" value="true" />
+		<property name="asyncExecutorActivate" value="true" />
+		<property name="asyncExecutor" ref="asyncExecutor" />
+		<property name="deploymentResources" value="classpath*:/processes/*.bpmn"></property>
+	</bean>
+	
+	<bean id="asyncExecutor"
+		class="org.activiti.engine.impl.asyncexecutor.DefaultAsyncJobExecutor">
+		<property name="corePoolSize" value="10" />
+		<property name="maxPoolSize" value="50" />
+		<property name="keepAliveTime" value="3000" />
+		<property name="queueSize" value="200" />
+		<property name="maxTimerJobsPerAcquisition" value="2" />
+		<property name="maxAsyncJobsDuePerAcquisition" value="2" />
+		<property name="defaultAsyncJobAcquireWaitTimeInMillis"
+			value="3000" />
+		<property name="defaultTimerJobAcquireWaitTimeInMillis"
+			value="3000" />
+		<property name="timerLockTimeInMillis" value="900000" />
+		<property name="asyncJobLockTimeInMillis" value="900000" />
+	</bean>
+	
+	<bean id="IzmusActivitiDS" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/IzmusActivitiDS" />
+	</bean>
+
+	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
+	</bean>
+
+	<bean id="bpmTransactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="IzmusActivitiDS" />
+	</bean>
+
+	<bean id="repositoryService" factory-bean="processEngine"
+		factory-method="getRepositoryService" />
+	<bean id="runtimeService" factory-bean="processEngine"
+		factory-method="getRuntimeService" />
+	<bean id="taskService" factory-bean="processEngine"
+		factory-method="getTaskService" />
+	<bean id="historyService" factory-bean="processEngine"
+		factory-method="getHistoryService" />
+	<bean id="managementService" factory-bean="processEngine"
+		factory-method="getManagementService" />
+</beans>

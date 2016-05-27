@@ -1,0 +1,28 @@
+<style>
+.active {
+	opacity: 0.4;
+}
+</style>
+<md-button 
+	aria-controls="side-menu-{{item.label}}" 
+	aria-expanded="item"
+	ng-class='(item.selected) ? "active" : ""'
+	href="{{item.href}}">
+	<div layout="row">
+		<md-icon
+			ng-if='item.icon.indexOf("/") < 0' 
+			ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+			class="material-icons" 
+			aria-label="expand">
+			{{item.icon}}
+		</md-icon>
+		<md-icon
+			ng-if='item.icon.indexOf("/") >= 0' 
+			ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+			class="material-icons" 
+			aria-label="expand"
+			md-svg-src="{{item.icon}}">
+		</md-icon>
+		{{item.label}}
+	</div>
+</md-button>

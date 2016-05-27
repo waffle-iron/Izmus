@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://investit.no-ip.org/ClientRegistrationProcess">
+  <collaboration id="Collaboration">
+    <participant id="ClientRegistrationPoolId" name="Client Registration" processRef="ClientRegistrationProcessId"></participant>
+  </collaboration>
+  <process id="ClientRegistrationProcessId" name="Client Registration Process" isExecutable="true">
+    <laneSet id="laneSet_ClientRegistrationProcessId">
+      <lane id="SystemLaneId" name="System">
+        <flowNodeRef>CreateProspectUserId</flowNodeRef>
+        <flowNodeRef>parallelgateway1</flowNodeRef>
+        <flowNodeRef>endevent1</flowNodeRef>
+        <flowNodeRef>exclusivegateway1</flowNodeRef>
+        <flowNodeRef>ConfirmationEmailId</flowNodeRef>
+      </lane>
+      <lane id="UserLaneId" name="User">
+        <flowNodeRef>startevent1</flowNodeRef>
+        <flowNodeRef>FillQuestionnaireId</flowNodeRef>
+      </lane>
+    </laneSet>
+    <serviceTask id="CreateProspectUserId" name="Create Prospect User" activiti:expression="#{CreateProspectUser.execute(execution)}"></serviceTask>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="CreateProspectUserId"></sequenceFlow>
+    <parallelGateway id="parallelgateway1" name="Parallel Gateway"></parallelGateway>
+    <serviceTask id="ConfirmationEmailId" name="Send Confirmation Email To Prospect" activiti:expression="#{ConfirmationEmail.execute(execution)}"></serviceTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow2" sourceRef="CreateProspectUserId" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="flow3" name="The User is a SuperUser" sourceRef="exclusivegateway1" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isSuperUser}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow4" name="Prospect User" sourceRef="exclusivegateway1" targetRef="parallelgateway1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${!isSuperUser}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="parallelgateway1" targetRef="ConfirmationEmailId"></sequenceFlow>
+    <userTask id="FillQuestionnaireId" name="Prospect Fills Questionnaire" activiti:assignee="${user.getUserName()}">
+      <extensionElements>
+        <activiti:taskListener event="create" expression="#{FillQuestionnaire.execute(task)}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow6" sourceRef="parallelgateway1" targetRef="FillQuestionnaireId"></sequenceFlow>
+    <textAnnotation id="textannotation1">
+      <text>Once a client "Join's", the system starts the "Client Registration" process</text>
+    </textAnnotation>
+    <association id="association1" sourceRef="textannotation1" targetRef="startevent1"></association>
+    <textAnnotation id="textannotation2">
+      <text>Checks if this is a SuperUser. If not then creates a Prospect User. Logs the user in anyway.</text>
+    </textAnnotation>
+    <association id="association2" sourceRef="textannotation2" targetRef="CreateProspectUserId"></association>
+    <textAnnotation id="textannotation3">
+      <text>Send out a confirmation E-Mail to the Prospect stating his new user credentials</text>
+    </textAnnotation>
+    <association id="association3" sourceRef="textannotation3" targetRef="ConfirmationEmailId"></association>
+    <textAnnotation id="textannotation4">
+      <text>Prospect now needs to fill out his Client Questionnaire ("KYC")</text>
+    </textAnnotation>
+    <association id="association4" sourceRef="textannotation4" targetRef="FillQuestionnaireId"></association>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration">
+    <bpmndi:BPMNPlane bpmnElement="Collaboration" id="BPMNPlane_Collaboration">
+      <bpmndi:BPMNShape bpmnElement="ClientRegistrationPoolId" id="BPMNShape_ClientRegistrationPoolId">
+        <omgdc:Bounds height="571.0" width="941.0" x="20.0" y="20.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="SystemLaneId" id="BPMNShape_SystemLaneId">
+        <omgdc:Bounds height="285.0" width="921.0" x="40.0" y="20.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="UserLaneId" id="BPMNShape_UserLaneId">
+        <omgdc:Bounds height="285.0" width="921.0" x="40.0" y="305.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="CreateProspectUserId" id="BPMNShape_CreateProspectUserId">
+        <omgdc:Bounds height="55.0" width="125.0" x="150.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="110.0" y="430.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="parallelgateway1" id="BPMNShape_parallelgateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="370.0" y="147.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ConfirmationEmailId" id="BPMNShape_ConfirmationEmailId">
+        <omgdc:Bounds height="71.0" width="121.0" x="440.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="293.0" y="50.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="290.0" y="147.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="FillQuestionnaireId" id="BPMNShape_FillQuestionnaireId">
+        <omgdc:Bounds height="71.0" width="131.0" x="320.0" y="412.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="textannotation1" id="BPMNShape_textannotation1">
+        <omgdc:Bounds height="50.0" width="170.0" x="51.0" y="490.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="textannotation2" id="BPMNShape_textannotation2">
+        <omgdc:Bounds height="61.0" width="160.0" x="60.0" y="50.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="textannotation3" id="BPMNShape_textannotation3">
+        <omgdc:Bounds height="58.0" width="201.0" x="400.0" y="43.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="textannotation4" id="BPMNShape_textannotation4">
+        <omgdc:Bounds height="51.0" width="181.0" x="280.0" y="510.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="127.0" y="430.0"></omgdi:waypoint>
+        <omgdi:waypoint x="127.0" y="168.0"></omgdi:waypoint>
+        <omgdi:waypoint x="150.0" y="167.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="275.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="290.0" y="167.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="310.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="310.0" y="85.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="30.0" width="100.0" x="221.0" y="85.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="330.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="370.0" y="167.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="10.0" width="60.0" x="320.0" y="184.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="410.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="440.0" y="165.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="390.0" y="187.0"></omgdi:waypoint>
+        <omgdi:waypoint x="390.0" y="305.0"></omgdi:waypoint>
+        <omgdi:waypoint x="385.0" y="412.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="association1" id="BPMNEdge_association1">
+        <omgdi:waypoint x="136.0" y="490.0"></omgdi:waypoint>
+        <omgdi:waypoint x="127.0" y="465.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="association2" id="BPMNEdge_association2">
+        <omgdi:waypoint x="140.0" y="111.0"></omgdi:waypoint>
+        <omgdi:waypoint x="212.0" y="140.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="association3" id="BPMNEdge_association3">
+        <omgdi:waypoint x="500.0" y="101.0"></omgdi:waypoint>
+        <omgdi:waypoint x="500.0" y="130.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="association4" id="BPMNEdge_association4">
+        <omgdi:waypoint x="370.0" y="510.0"></omgdi:waypoint>
+        <omgdi:waypoint x="385.0" y="483.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

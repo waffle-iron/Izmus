@@ -1,0 +1,71 @@
+<style>
+.user-management-toolbar {
+	width: inherit !important;
+}
+.user-management-navbar {
+	z-index: 60;
+}
+</style>
+<md-content flex layout="row"
+	class="md-whiteframe-7dp user-management-section">
+	<md-content flex layout="column"> 
+		<md-toolbar
+			layout="column" class="md-whiteframe-5dp md-accent user-management-toolbar">
+			<div class="md-toolbar-tools">
+				<md-button hide-gt-md ng-click="toggleSidenav()"
+						class="md-icon-button toolbar-icons"> 
+						<md-icon aria-label="Menu" class="material-icons">menu</md-icon> 
+				</md-button>
+				{{userManagementText}}
+			</div>
+		</md-toolbar>
+		<md-content layout="row" flex>
+			<md-sidenav md-component-id="userListSidenav"
+				layout="column"
+				class="md-sidenav-left user-management-navbar md-whiteframe-5dp"
+				md-is-locked-open="$mdMedia('gt-md')"> 
+				<md-content flex layout="column" role="navigation">
+					<div layout="row">
+						<md-toolbar flex layout="row"
+							class="md-accent md-hue-1" layout-align="center center">
+							<div flex class="md-toolbar-tools">
+								{{userListText}}
+							</div>
+							<span flex></span>
+							<md-button class="md-fab md-raised md-mini" ng-click="addNewUser($event)">
+								<md-icon class="material-icons">add</md-icon>
+							</md-button> 
+						</md-toolbar>
+					</div>
+					<div ng-if='progressMode != ""' layout="row" layout-sm="column" layout-align="space-around">
+    					<md-progress-circular class="md-hue-3" md-mode="{{progressMode}}" md-diameter="70">
+		  			</div>
+					<investit-user-table 
+						flex
+						male="{{male}}"
+						user-type-tabs='userTypeTabs'>
+					</investit-user-table>
+				</md-content> 
+			</md-sidenav>
+			<investit-user-preview 
+					flex layout="column"
+					selected-user="selectedUser"
+					user-roles="{{userRoles}}"
+					last-seen="{{lastSeen}}"
+					user-id="{{userId}}"
+					user-name="{{userName}}"
+					user-info="{{userInfo}}"
+					user-email="{{userEmail}}"
+					user-enabled="{{userEnabled}}"
+					male="{{male}}"
+					female="{{female}}"
+					gender="{{gender}}"
+					created="{{created}}"
+					cancel="{{cancel}}"
+					ok="{{ok}}"
+					created="{{created}}"
+					available-roles="{{availableRoles}}">
+			</investit-user-preview>
+		</md-content>
+	</md-content>
+</md-content>

@@ -1,0 +1,33 @@
+<section layout="column"  dir="{{parentScope.globalAttr.direction}}">
+	<md-toolbar flex="none" layout="column"
+		class="md-whiteframe-1dp md-accent">
+		<div class="md-toolbar-tools">
+			<md-button ng-click="cancel()"
+				class="md-icon-button toolbar-icons"> <md-icon
+				aria-label="Menu" class="material-icons">clear</md-icon> </md-button>
+		</div>
+	</md-toolbar>
+	<md-content layout-padding>
+		<md-whiteframe class="md-whiteframe-1dp"
+				layout-padding layout="column">
+				<md-content class="md-padding" layout="column">
+					<md-chips
+						ng-pattern="/^.+@.+\..+$/"
+      					ng-model="emails"
+      					placeholder="{{parentScope.lang.enterEmails}}"
+      					secondary-placeholder="{{parentScope.lang.onlyEmails}}"
+      					md-transform-chip="newChip($chip)"
+      					md-separator-keys="customKeys"></md-chips>
+				</md-content>
+		</md-whiteframe>
+	</md-content>
+	<md-dialog-actions flex="none" layout="row">
+	      <md-button ng-click="cancel()">
+	       	{{parentScope.globalAttr.cancel}}
+	      </md-button>
+	      <span flex></span>
+	      <md-button ng-click="ok()">
+	        {{parentScope.globalAttr.ok}}
+	      </md-button>
+	</md-dialog-actions>
+</section>

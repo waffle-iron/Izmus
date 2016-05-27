@@ -1,0 +1,48 @@
+<style>
+.checkbox-hebrew>.md-container {
+	left: auto;
+	right: 8;
+}
+
+.checkbox-hebrew>.md-label>span {
+	margin-left: 0px;
+	margin-right: 40px;
+}
+</style>
+<section layout="column">
+	<md-toolbar layout="column" dir="{{parentScope.globalAttr.direction}}"
+		class="md-whiteframe-1dp md-accent">
+		<div class="md-toolbar-tools">
+			<md-button ng-click="cancel()"
+				class="md-icon-button toolbar-icons"> <md-icon
+				aria-label="Menu" class="material-icons">clear</md-icon> </md-button>
+		</div>
+	</md-toolbar>
+	<md-content layout-padding dir="{{parentScope.globalAttr.direction}}">
+		</md-whiteframe>
+			<md-whiteframe class="md-whiteframe-1dp user-detail-section"
+				flex="none" layout-padding layout="column"> 
+				<div class="md-headline" layout="row" layout-align="start center">
+					{{parentScope.availablePermissions}}
+				</div>
+				<md-whiteframe
+				flex="none"
+				ng-repeat="permission in availablePermissions"
+				layout="column"
+				class="md-whiteframe-1dp user-detail-section"> 
+					<md-checkbox ng-class="(parentScope.globalAttr.direction == 'rtl') ? 'checkbox-hebrew' : ''"
+								ng-model="permission.selected" aria-label="enabled-checkbox" layout="row">
+							{{permission.permissionName}} </md-checkbox> 
+				</md-whiteframe> 
+			</md-whiteframe>
+	</md-content>
+	<md-dialog-actions layout="row">
+	      <md-button ng-click="cancel()">
+	       	{{parentScope.cancel}}
+	      </md-button>
+	      <span flex></span>
+	      <md-button ng-click="ok()">
+	        {{parentScope.ok}}
+	      </md-button>
+	</md-dialog-actions>
+</section>

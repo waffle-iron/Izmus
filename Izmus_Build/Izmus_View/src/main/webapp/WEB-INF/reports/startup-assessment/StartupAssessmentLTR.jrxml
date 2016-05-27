@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.1.final using JasperReports Library version 6.2.1  -->
+<!-- 2016-05-12T22:19:43 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StartupAssessmentEnglish" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a619498a-562a-46e4-8840-1b8587b66bd2">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="startup" class="com.investit.data.domain.startups.Startup"/>
+	<parameter name="scoreCard" class="com.investit.data.domain.startups.StartupScoreCard"/>
+	<parameter name="startupLogo" class="java.awt.Image"/>
+	<parameter name="sector" class="java.lang.String"/>
+	<parameter name="address" class="java.lang.String"/>
+	<parameter name="officePhone" class="java.lang.String"/>
+	<parameter name="measurementsDatasource" class="net.sf.jasperreports.engine.data.JRTableModelDataSource">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="measurementSubreportPath" class="java.lang.String"/>
+	<parameter name="site" class="java.lang.String"/>
+	<parameter name="contactsDatasource" class="net.sf.jasperreports.engine.data.JRTableModelDataSource"/>
+	<parameter name="contactsSubreportPath" class="java.lang.String"/>
+	<parameter name="misc" class="java.lang.String"/>
+	<parameter name="miscSubreportPath" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Prevent">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="50" y="0" width="230" height="50" uuid="2a558d60-3cc2-449a-ae77-4b12938b75f0"/>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<font size="14"/>
+					<paragraph leftIndent="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{startup}.getStartupName() + (($P{startup}.getSector() == null && $P{startup}.getAddress() == null && $P{startup}.getOfficePhone() == null) ? "" : "<br/>")
++ ($P{startup}.getSector() == null ? "" : ("<style size='8' forecolor='#888888'>" + $P{sector} + ": " + $P{startup}.getSector() + "</style>" + "<br/>"))
++ ($P{startup}.getAddress() == null ? "" : ("<style size='8' forecolor='#888888'>" + $P{address} + ": " + $P{startup}.getAddress() + "</style>" + "<br/>"))
++ ($P{startup}.getOfficePhone() == null ? "" : ("<style size='8' forecolor='#888888'>" + $P{officePhone} + ": " + $P{startup}.getOfficePhone() + "</style>" + "<br/>"))
++ ($P{startup}.getSite() == null ? "" : ("<style size='8' forecolor='#888888'>" + $P{site} + ": " + $P{startup}.getSite() + "</style>"))]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement positionType="Float" x="5" y="5" width="40" height="40" uuid="eb1a9052-b791-47e3-b970-3b95d8464313">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{startupLogo}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="0" y="59" width="555" height="1" forecolor="#888888" uuid="32972509-772a-41a3-843a-57b80e6c64a8">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+			<ellipse>
+				<reportElement x="510" y="5" width="40" height="40" uuid="6a7d4e44-ece6-4458-975c-b79dec38b64c">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#A0C3D7"/>
+				</graphicElement>
+			</ellipse>
+			<textField>
+				<reportElement positionType="Float" x="510" y="5" width="40" height="40" uuid="158db677-1534-41bd-9bf3-600807e0afba">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{scoreCard}.getFinalScore()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<summary>
+		<band height="3" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="1" uuid="77b4ab54-a629-48d3-b398-c38f83855975">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<subreportParameter name="misc">
+					<subreportParameterExpression><![CDATA[$P{misc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{miscSubreportPath}]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="1" width="555" height="1" uuid="be224b65-b58a-4fcb-bc86-97004e34657a">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[$P{contactsDatasource}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{contactsSubreportPath}]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="2" width="555" height="1" uuid="29c90f72-b87d-4573-b64c-fd66f45a2964">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[$P{measurementsDatasource}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{measurementSubreportPath}]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

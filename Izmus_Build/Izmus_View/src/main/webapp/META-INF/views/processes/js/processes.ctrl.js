@@ -1,0 +1,1 @@
+angular.module('processesApp', ['investitNavBarApp', 'investitMainWindowApp', 'investitDragModule']);

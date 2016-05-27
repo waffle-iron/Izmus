@@ -1,0 +1,320 @@
+<!-- Markup for lists inside the dropzone. It's inside a seperate template
+     because it will be used recursively. The dnd-list directive enables
+     to drop elements into the referenced array. The dnd-draggable directive
+     makes an element draggable and will transfer the object that was
+     assigned to it. If an element was dragged away, you have to remove
+     it from the original list yourself using the dnd-moved attribute -->
+<script type="text/ng-template" id="list.html">
+    <ul class="{{list.type}}"
+		dnd-list="list.children" 
+		dnd-allowed-types="[{{list.allowedChildren}}]"
+		dnd-external-sources="true"
+		dnd-drop="handleDrop(item)"
+		dnd-horizontal-list="true">
+        <li ng-repeat="item in list.children"
+			draggable='true'
+            dnd-draggable="item"
+            dnd-effect-allowed="move"
+            dnd-dragstart="handleDragStart(item)"
+            dnd-dragend="handleDragEnd(list.children, $index, item)"
+            ng-include="item.type + '.html'"
+			dnd-type="'{{item.type}}'"
+			dnd-selected="models.selected = item"
+			ng-class="{'selected': models.selected === item}">
+        </li>
+    </ul>
+	</script>
+<!-- This template is responsible for rendering a container element. It uses
+     the above list template to render each container column -->
+<script type="text/ng-template" id="portfolio.html">
+	<div class="panel-group" style="margin: 0px;">
+		<div class="panel panel-primary">
+			<div ng-if="dir != 'rtl'" class="panel-heading" style="height: 50px;">
+				<div class="handle" style="margin-right: 18px;margin-top: 3px;float: left;">:::</div>
+				<div style="float: left; max-width: 145px;" dnd-nodrag>
+					<input type="text" ng-model="item.name" class="form-control input-sm">
+				</div>
+				<a ng-click="item.isCollapsed = !item.isCollapsed"
+						href="#" aria-expanded="true"><i
+						class="fa fa-compress fa-fw" style="float: right;margin-left:10px;margin-top: 7px;color: white;"></i></a>
+			</div>
+			<!-- Hebrew Double -->
+			<div ng-if="dir == 'rtl'" class="panel-heading" style="height: 50px;">
+				<div class="handle" style="margin-left: 18px;margin-top: 3px;float: right;">:::</div>
+				<div style="float: right; max-width: 145px;" dnd-nodrag>
+					<input type="text" ng-model="item.name" class="form-control input-sm">
+				</div>
+				<a ng-click="item.isCollapsed = !item.isCollapsed"
+						href="#" aria-expanded="true"><i
+						class="fa fa-compress fa-fw" style="float: left;margin-right:10px;margin-top: 7px;color: white;"></i></a>
+			</div>
+			<!-- Hebrew Double -->
+			<div id="{{item.type + item.id}}"
+				uib-collapse="item.isCollapsed" aria-expanded="true">
+				<div class="panel-body portfolio-body">
+					<div ng-repeat="list in [item]" ng-include="'list.html'"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</script>
+<!-- This template is responsible for rendering a container element. It uses
+     the above list template to render each container column -->
+<script type="text/ng-template" id="account.html">
+    <investit-account item='item'></investit-account>
+	</script>
+<script type="text/ng-template" id="realEstate.html">
+    <div class="panel-group" style="margin: 0px;">
+		<div class="panel panel-green">
+			<div ng-if="dir != 'rtl'" class="panel-heading" style="height: 50px;">
+				<div class="handle" style="margin-right: 18px;margin-top: 3px;float: left;color: white;">:::</div>
+				<div style="float: left; max-width: 145px;" dnd-nodrag>
+					<input type="text" ng-model="item.name" class="form-control input-sm">
+				</div>
+				<a ng-click="item.isCollapsed = !item.isCollapsed"
+						href="#" aria-expanded="true"><i
+						class="fa fa-compress fa-fw" style="float: right;margin-left:10px;margin-top: 7px;color: white;"></i></a>
+			</div>
+			<!-- Hebrew Double -->
+			<div ng-if="dir == 'rtl'" class="panel-heading" style="height: 50px;">
+				<div class="handle" style="margin-left: 18px;margin-top: 3px;float: right;color: white;">:::</div>
+				<div style="float: right; max-width: 145px;" dnd-nodrag>
+					<input type="text" ng-model="item.name" class="form-control input-sm">
+				</div>
+				<a ng-click="item.isCollapsed = !item.isCollapsed"
+						href="#" aria-expanded="true"><i
+						class="fa fa-compress fa-fw" style="float: left;margin-right:10px;margin-top: 7px;color: white;"></i></a>
+			</div>
+			<!-- Hebrew Double -->
+			<div id="{{item.type + item.id}}"
+				uib-collapse="item.isCollapsed" aria-expanded="true">
+				<div class="panel-body real-estate-body">
+					<div style='text-align: center;'>
+						<img src="/views/proposal-engine/images/building.png">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</script>
+<!-- Template for a normal list item -->
+<script type="text/ng-template" id="asset.html">
+    <div class="item handle" style='background-color: {{item.color}}'>{{item.name}}</div>
+	</script>
+<!-- Main area with dropzones and source code -->
+<div class="col-lg-12">
+	<div class="row">
+		<div ng-repeat="(zone, list) in models.dropzones" class="col-lg-12">
+			<div class="dropzone box panel-group" id="allocationAccordion">
+				<div class="panel panel-default" dir='{{dir}}'>
+					<div ng-if="dir != 'rtl'" class="panel-heading">
+						{{name[$index]}} <a data-toggle="collapse"
+							data-parent="#allocationAccordion" href="#collapse{{zone}}"
+							aria-expanded="true" style="float: right; margin-top: 3px;"><i
+							class="fa fa-compress fa-fw" style="color: rbg(60, 90, 120);"></i></a>
+						<div class="btn-group pull-right" uib-dropdown uib-keyboard-nav
+							auto-close='disabled' is-open="assetClassDropdown.is{{zone}}Open"
+							style="margin-right: 6px;">
+							<a 	href="#"
+								dnd-type="'asset'"
+								class="btn btn-xs dropdown-toggle btn-default"
+								tooltip-placement="bottom" 
+								uib-tooltip="{{asset}}"
+								tooltip-enable='tooltipEnable'
+								uib-dropdown-toggle><i class="fa fa-pie-chart fa-fw handle"
+								draggable='true'></i><span class="caret"></span></a>
+							<ul class="uib-dropdown-menu" role="menu"
+								aria-labelledby="split-button">
+								<li ng-repeat="assetClass in assetClasses" role="menuitem">
+									<button dnd-draggable="assetClass" href="#"
+										class="btn btn-default btn-xs handle" draggable='true'
+										dnd-effect-allowed="move"
+										dnd-dragstart="buttonDragStart(assetClass)" 
+										dnd-dragend="saveProposal(tempProposalName)"
+										dnd-type="'asset'">
+										<i class="fa fa-pie-chart fa-fw handle" draggable='true'
+											style="color: {{assetClass.color}}"></i>
+										{{assetClass.name}}
+									</button>
+								</li>
+							</ul>
+						</div>
+						<div ng-mousemove='mouseMoved($event)' class="btn-group pull-right" style="margin-right: 6px">
+							<a dnd-draggable="models.templates[1]" href="#"
+								class="btn btn-default btn-xs handle" draggable='true'
+								dnd-effect-allowed="move"
+								dnd-dragstart="buttonDragStart(models.templates[1])"
+								dnd-dragend="saveProposal(tempProposalName)"
+								dnd-type="'account'"
+								tooltip-placement="bottom" 
+								uib-tooltip="{{account}}"
+								tooltip-enable='tooltipEnable'><i
+								class="fa fa-shopping-basket fa-fw handle" draggable='true'></i></a>
+							<a dnd-draggable="models.templates[2]" href="#"
+								class="btn btn-default btn-xs handle" draggable='true'
+								dnd-effect-allowed="move"
+								dnd-dragstart="buttonDragStart(models.templates[2])"
+								dnd-dragend="saveProposal(tempProposalName)"
+								dnd-type="'realEstate'"
+								tooltip-placement="bottom" 
+								uib-tooltip="{{realEstate}}"
+								tooltip-enable='tooltipEnable'><i class="fa fa-home fa-fw handle"
+								draggable='true'></i></a> <a dnd-draggable="models.templates[3]"
+								href="#" class="btn btn-default btn-xs handle" draggable='true'
+								dnd-effect-allowed="move"
+								dnd-dragstart="buttonDragStart(models.templates[3])"
+								dnd-dragend="saveProposal(tempProposalName)"
+								dnd-type="'portfolio'"
+								tooltip-placement="bottom" 
+								uib-tooltip="{{portfolio}}"
+								tooltip-enable='tooltipEnable'><i
+								class="fa fa-briefcase fa-fw handle" draggable='true'></i></a>
+						</div>
+						<div ng-mousemove='mouseMoved($event)' class="toolbarIcons btn-group pull-right"
+							style="margin-right: 6px;">
+							<a dnd-list="[]" class="btn btn-default btn-xs"
+								dnd-drop="handleDrop(item, 'true')" dnd-external-sources="true"
+								ng-click='deleteSelectedItem()'
+								tooltip-placement="bottom" 
+								uib-tooltip="{{deleteText}}"
+								tooltip-enable='tooltipEnable'
+								dnd-allowed-types="['portfolio','account','asset','realEstate']"><i
+								class="fa fa-trash fa-fw"></i></a> <a class="btn btn-default btn-xs"
+								dnd-list="[]" dnd-drop="dropToEditItem(item)"
+								ng-click='editSelectedItem()'
+								tooltip-placement="bottom" 
+								uib-tooltip="{{editText}}"
+								tooltip-enable='tooltipEnable'><i class="fa fa-pencil fa-fw"></i></a>
+							<a class="btn btn-default btn-xs" dnd-list="[]"
+								dnd-drop="dropToCopyItem(item)" ng-click='copySelectedItem()'
+								tooltip-placement="bottom" 
+								uib-tooltip="{{copyText}}"
+								tooltip-enable='tooltipEnable'><i
+								class="fa fa-files-o fa-fw"></i></a>
+						</div>
+					</div>
+					<!-- Hebrew Double -->
+					<div ng-if="dir == 'rtl'" class="panel-heading">
+						{{name[$index]}} <a data-toggle="collapse"
+							data-parent="#allocationAccordion" href="#collapse{{zone}}"
+							aria-expanded="true" style="float: left; margin-top: 3px;"><i
+							class="fa fa-compress fa-fw" style="color: rbg(60, 90, 120);"></i></a>
+						<div class="btn-group pull-left" uib-dropdown uib-keyboard-nav
+							auto-close='disabled' is-open="assetClassDropdown.is{{zone}}Open"
+							style="margin-left: 6px;">
+							<a 	href="#"
+								dnd-type="'asset'"
+								class="btn btn-xs dropdown-toggle btn-default"
+								tooltip-placement="bottom" 
+								uib-tooltip="{{asset}}"
+								tooltip-enable='tooltipEnable'
+								uib-dropdown-toggle><i class="fa fa-pie-chart fa-fw handle"
+								draggable='true'></i><span class="caret"></span></a>
+							<ul class="uib-dropdown-menu" role="menu"
+								aria-labelledby="split-button">
+								<li ng-repeat="assetClass in assetClasses" role="menuitem">
+									<button dnd-draggable="assetClass" href="#"
+										class="btn btn-default btn-xs handle" draggable='true'
+										dnd-effect-allowed="move"
+										dnd-dragstart="buttonDragStart(assetClass)"
+										dnd-dragend="saveProposal(tempProposalName)" 
+										dnd-type="'asset'">
+										<i class="fa fa-pie-chart fa-fw handle" draggable='true'
+											style="color: {{assetClass.color}}"></i>
+										{{assetClass.name}}
+									</button>
+								</li>
+							</ul>
+						</div>
+						<div ng-mousemove='mouseMoved($event)' class="btn-group pull-left" style="margin-left: 6px">
+							<a dnd-draggable="models.templates[1]" href="#"
+								class="btn btn-default btn-xs handle" draggable='true'
+								dnd-effect-allowed="move"
+								dnd-dragstart="buttonDragStart(models.templates[1])"
+								dnd-dragend="saveProposal(tempProposalName)"
+								dnd-type="'account'"
+								tooltip-placement="bottom" 
+								uib-tooltip="{{account}}"
+								tooltip-enable='tooltipEnable'><i
+								class="fa fa-shopping-basket fa-fw handle" draggable='true'></i></a>
+							<a dnd-draggable="models.templates[2]" href="#"
+								class="btn btn-default btn-xs handle" draggable='true'
+								dnd-effect-allowed="move"
+								dnd-dragstart="buttonDragStart(models.templates[2])"
+								dnd-dragend="saveProposal(tempProposalName)"
+								dnd-type="'realEstate'"
+								tooltip-placement="bottom" 
+								uib-tooltip="{{realEstate}}"
+								tooltip-enable='tooltipEnable'><i class="fa fa-home fa-fw handle"
+								draggable='true'></i></a> <a dnd-draggable="models.templates[3]"
+								href="#" class="btn btn-default btn-xs handle" draggable='true'
+								dnd-effect-allowed="move"
+								dnd-dragstart="buttonDragStart(models.templates[3])"
+								dnd-dragend="saveProposal(tempProposalName)"
+								dnd-type="'portfolio'"
+								tooltip-placement="bottom" 
+								uib-tooltip="{{portfolio}}"
+								tooltip-enable='tooltipEnable'><i
+								class="fa fa-briefcase fa-fw handle" draggable='true'></i></a>
+						</div>
+						<div ng-mousemove='mouseMoved($event)' class="toolbarIcons btn-group pull-left"
+							style="margin-left: 6px;">
+							<a dnd-list="[]" class="btn btn-default btn-xs"
+								dnd-drop="handleDrop(item, 'true')" dnd-external-sources="true"
+								ng-click='deleteSelectedItem()'
+								tooltip-placement="bottom" 
+								uib-tooltip="{{deleteText}}"
+								tooltip-enable='tooltipEnable'
+								dnd-allowed-types="['portfolio','account','asset', 'realEstate']"><i
+								class="fa fa-trash fa-fw"></i></a> <a class="btn btn-default btn-xs"
+								dnd-list="[]" dnd-drop="dropToEditItem(item)"
+								ng-click='editSelectedItem()'
+								tooltip-placement="bottom" 
+								uib-tooltip="{{editText}}"
+								tooltip-enable='tooltipEnable'><i class="fa fa-pencil fa-fw"></i></a>
+							<a class="btn btn-default btn-xs" dnd-list="[]"
+								dnd-drop="dropToCopyItem(item)" ng-click='copySelectedItem()'
+								tooltip-placement="bottom" 
+								uib-tooltip="{{copyText}}"
+								tooltip-enable='tooltipEnable'><i
+								class="fa fa-files-o fa-fw"></i></a>
+						</div>
+					</div>
+					<!-- Hebrew Double -->
+					<div id="collapse{{zone}}" class="panel-collapse collapse in"
+						aria-expanded="true">
+						<div class="panel-body">
+							<div ng-include="'list.html'"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header bottom-margin">
+			</h1>
+		</div>
+	</div>
+	<footer>
+		<div class="navbar navbar-default navbar-fixed-bottom">
+			<div class="container-fluid">
+				<div class="btn-group pull-right" role="group" aria-label="...">
+					<button href="#" class="btn btn-default" ng-click=''>
+						<i class="fa fa-file-pdf-o fa-fw"></i>
+					</button>
+					<button href="#" class="btn btn-default" ng-click='saveProposalDialog()'>
+						<i class="fa fa-download fa-fw"></i>
+					</button>
+					<button href="#" class="btn btn-default" ng-click='loadProposalDialog()'>
+						<i class="fa fa-upload fa-fw"></i>
+					</button>
+					<button href="#" class="btn btn-default" ng-click='loadProposal("-")'>
+						<i class="fa fa-refresh fa-fw"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>

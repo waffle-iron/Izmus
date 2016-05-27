@@ -1,0 +1,1 @@
+angular.module('proposalEngineApp', ['investitNavBarApp', 'investitMainWindowApp', 'investitDragModule']);

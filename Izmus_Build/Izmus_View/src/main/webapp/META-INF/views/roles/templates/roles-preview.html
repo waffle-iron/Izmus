@@ -1,0 +1,86 @@
+<style>
+.fab-action-buttons {
+	max-height: 1300px;
+	overflow: hidden;
+	position: absolute;
+	z-index: 25;
+	-webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+	-webkit-transition-property: max-height;
+	-moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+	-moz-transition-property: max-height;
+	transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+	transition-property: max-height;
+}
+.fab-action-buttons.ng-hide{
+	max-height: 0px;
+}
+.fab-action-buttons-rtl {
+	left: 24px;
+}
+.fab-action-buttons-ltr {
+	right: 24px;
+}
+.role-card-head {
+	min-height: 60px;
+	padding: 8px;
+}
+</style>
+<section ng-if='progressMode != ""' flex layout="column" layout-align="center center">
+	<div>
+    	<md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120">
+	</div>
+</section>
+<section ng-if="selectedRole && progressMode == ''" layout="column" layout-padding>
+	<section flex="none">
+		<div layout="row" class="role-card-head" layout-align="start center">
+			<div layout="column" layout-align="center start">
+				<span class="md-title">{{selectedRole.roleName}}</span> 
+			</div>
+			<span flex></span>
+			<div>
+				<div layout="column" layout-align="center center">
+					<md-button
+						ng-blur="toggleMainFab($event, true)" 
+						aria-label="menu" class="md-fab md-mini" ng-click="toggleMainFab($event)">
+						<md-icon aria-label="Menu" class="material-icons">more_vert</md-icon> 
+					</md-button>
+					<div class="fab-action-buttons" ng-hide="!isMainFabOpen" layout="column" ng-class="(globalAttr.direction == 'rtl') ? 'fab-action-buttons-rtl': 'fab-action-buttons-ltr'" >
+						<md-button aria-label="Twitter" class="md-fab md-raised md-mini fab-top" ng-click="saveChanges()">
+							<md-icon class="material-icons">save</md-icon>
+						</md-button>
+						<md-button aria-label="Twitter" class="md-fab md-raised md-mini fab-top" ng-click="deleteRole()">
+							<md-icon class="material-icons">delete</md-icon>
+						</md-button>  
+					</div>
+				</div>
+			</div>
+		</div>
+		<md-divider></md-divider>
+	</section>
+	<md-content>
+		<section layout-padding layout="column">
+			<md-whiteframe class="md-whiteframe-1dp user-detail-section"
+				flex="none" layout-padding layout="column">
+				<div class="md-headline" layout="row" layout-align="start center">
+					{{userRoles}}
+					<span flex></span>
+					<md-button aria-label="Twitter" class="md-fab md-raised md-mini" ng-click="showPermissionsDialog($event)">
+						<md-icon class="material-icons">add</md-icon>
+					</md-button> 
+				</div>
+				<md-whiteframe
+					ng-repeat="permission in selectedRole.permissions"
+					class="md-whiteframe-1dp user-detail-section"> 
+					<md-header layout="row">
+						<p>{{permission.permissionName}}</p>
+						<span flex></span> 
+						<md-button class="md-fab md-mini"
+							aria-label="delete" ng-click="deletePermission($index)"> 
+							<md-icon class="material-icons">delete</md-icon>
+						</md-button> 
+					</md-header> 
+				</md-whiteframe>
+			</md-whiteframe>
+		</section>
+	</md-content>
+</section>

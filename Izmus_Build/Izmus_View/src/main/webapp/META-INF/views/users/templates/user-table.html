@@ -1,0 +1,21 @@
+<style>
+.user-avatar-icon {
+	height: 32px;
+	width: 32px;
+	border-radius: 16px;
+	border-width: 1px;
+    border-style: solid;
+    border-color: rgb(160,195,215);;
+}
+</style>
+<md-tabs md-dynamic-height md-border-bottom> 
+	<md-tab ng-repeat="userType in userTypeTabs" label="{{userType.title}}">
+		<md-content class="md-padding">
+			<md-list-item ng-repeat="user in userType.users" ng-click="selectUser(user)">
+	            <img class="user-avatar-icon" ng-src="{{getUserAvatar(user)}}"/>
+        		<span flex></span>
+	    		<p>{{ user.userName }}</p>
+	  		</md-list-item>
+		</md-content> 
+	</md-tab> 
+</md-tabs>

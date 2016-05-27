@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:data="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+       					http://www.springframework.org/schema/context/spring-context.xsd
+       					http://www.springframework.org/schema/tx 
+           				http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+           				http://www.springframework.org/schema/data/jpa
+    					http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+    
+   	<context:component-scan base-package="com.izmus.data.messages, com.izmus.data.mds" />
+    		
+	<bean id="izmusDatasource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/IzmusDS" />
+	</bean>
+
+	<bean id="jpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="showSql" value="false" />
+		<property name="generateDdl" value="true" />
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="izmusDatasource" />
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+		<property name="packagesToScan" value="com.izmus.data.domain" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+		p:entityManagerFactory-ref="entityManagerFactory" />
+
+	<data:repositories base-package="com.izmus.data.repository" />
+
+	<!-- Enable @Transactional support -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+		order="1" />
+</beans>

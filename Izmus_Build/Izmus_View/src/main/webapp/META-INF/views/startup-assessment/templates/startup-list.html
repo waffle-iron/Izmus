@@ -1,0 +1,66 @@
+<style>
+.startup-icon{
+	margin-top: 8px !important;
+	margin-bottom: 8px !important;
+	
+}
+.startup-avatar-icon {
+	height: 38px;
+	width: 38px;
+	border-radius: 20px;
+	border-width: 1px;
+    border-style: solid;
+    border-color: rgb(160,195,215);
+}
+.startup-search-input-rtl >label {
+	left: initial !important;
+	right: initial !important;
+	-webkit-transform-origin: right top !important;
+    transform-origin: right top !important;
+    padding-left: 0px !important;
+    padding-right: 3px !important;
+}
+.startup-search-input-ltr >label {
+	left: 2 !important;
+}
+.startup-name-text {
+	font-size: x-small;
+	line-height: initial;
+}
+.number-circle {
+	height: 40px;
+	width: 40px;
+	font-size: small;
+}
+</style>
+<md-content class="md-padding" layout='column'>
+	<md-input-container
+		ng-hide="!(sidenavCtrl.startupDataList != null && sidenavCtrl.startupDataList.length > 0)"
+		ng-class="(globalAttr.direction == 'rtl') ? 'startup-search-input-rtl' : 'startup-search-input-ltr'"> 
+		<label>{{lang.search}}</label>
+		<input ng-model="search.startupName"> 
+	</md-input-container>
+	<md-list-item layout="row" layout-align="space-between center" ng-repeat="startup in sidenavCtrl.startupDataList | filter:search:strict" ng-click="selectStartup(startup)">
+		<md-icon
+			ng-if="(startup.logo == null || statup.logo =='')"
+			ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+			class="material-icons startup-icon">
+			start_rate
+		</md-icon>
+		<img 
+			ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+			ng-if="(startup.logo != null && statup.logo !='')" class="startup-avatar-icon" ng-src="{{startup.logo}}"/>
+	    <p class="startup-name-text">{{ startup.startupName }}</p>
+	    <span flex></span>
+		<div
+			layout-align="center center"
+			layout="row"
+			ng-if="(getFinalScore(startup) != '')"
+			ng-style="(globalAttr.direction == 'rtl') ? 
+			{'margin-left': '15px', 'margin-right': '0px','background-color': getMeasurementColor(startup), 'border-width': '1px', 'border-style': 'solid', 'border-radius': '50%', 'padding': '7px', 'border-color': '#6792AB'}
+			: {'margin-right': '15px', 'margin-left': '0px','background-color': getMeasurementColor(startup), 'border-width': '1px', 'border-style': 'solid', 'border-radius': '50%', 'padding': '7px', 'border-color': '#6792AB'}"
+			class="number-circle">
+			{{getFinalScore(startup)}}
+		</div>
+	</md-list-item>
+</md-content>

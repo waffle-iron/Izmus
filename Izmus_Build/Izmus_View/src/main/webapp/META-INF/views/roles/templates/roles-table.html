@@ -1,0 +1,16 @@
+<style>
+.role-icon{
+	margin-top: 8px !important;
+	margin-bottom: 8px !important;
+}
+</style>
+<md-content class="md-padding">
+	<md-list-item ng-repeat="role in rolesDataList" ng-click="selectRole(role)">
+		<md-icon
+			ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+			class="material-icons role-icon">
+			vpn_key
+		</md-icon>
+	    <p>{{ role.roleName }}</p>
+	</md-list-item>
+</md-content>

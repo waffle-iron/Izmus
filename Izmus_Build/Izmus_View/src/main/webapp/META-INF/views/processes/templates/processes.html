@@ -1,0 +1,25 @@
+<style>
+.process-def{
+	margin: 5px;
+	max-width: 350px;
+}
+.process-def:HOVER{
+	cursor: pointer; 
+}
+.process-img{
+	max-height: 250px;
+}
+</style>
+<investit-main-window
+	flex
+	layout="column">
+	<main-content flex layout="column">
+		<section layout="row" layout-padding layout-wrap layout-align="center stretch">
+			<md-whiteframe class="md-whiteframe-1dp process-def"
+				flex="nogrow" layout-padding layout="column" ng-repeat="process in processes" ng-click="loadPreview($event, process)"> 
+				<span class="md-subheader">{{process.name}}</span>
+				<img class="process-img" ng-src="{{process.base64Image}}">
+			</md-whiteframe>
+		</section>
+	</main-content>
+</investit-main-window>

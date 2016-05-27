@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+       	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       	http://www.springframework.org/schema/context
+       	http://www.springframework.org/schema/context/spring-context.xsd
+       	http://www.springframework.org/schema/mvc
+ 		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+ 		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+	
+	<import resource="classpath:/Izmus-api.xml"/>
+	
+	<sec:global-method-security
+		pre-post-annotations="enabled">
+		<sec:expression-handler ref="izmusPermissionExpressionHandler" />
+	</sec:global-method-security>
+	
+	<context:component-scan base-package="com.izmus.view.controllers" />
+
+	<mvc:resources mapping="/views/**" location="/META-INF/views/" />
+	<mvc:resources mapping="/views-public/**" location="/META-INF/views-public/" />
+	<mvc:resources mapping="/favicon.ico" location="/META-INF/views-public/core/logo/favicon.ico" />
+
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler/>
+	
+	<mvc:interceptors>
+		<ref bean="localeChangeInterceptor" />
+	</mvc:interceptors>
+	
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+	</bean>
+	
+	<bean id="localeChangeInterceptor"
+		class="com.izmus.view.locale.LocaleChangeInterceptor">
+		<property name="paramName" value="language" />
+		<property name="defaultLocale" value="en" />
+		<property name="acceptedLocales">
+			<list>
+				<value>en</value>
+				<value>he</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" >
+		<property name="interceptors">
+		   <list>
+			<ref bean="localeChangeInterceptor" />
+		   </list>
+		</property>
+	</bean>
+	
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		id="viewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+		<property name="requestContextAttribute" value="requestContext" />
+	</bean>
+</beans>

@@ -1,0 +1,35 @@
+<section layout="column"  dir="{{parentScope.globalAttr.direction}}">
+	<md-toolbar flex="none" layout="column"
+		class="md-whiteframe-1dp md-accent">
+		<div class="md-toolbar-tools">
+			<md-button ng-click="cancel()"
+				class="md-icon-button toolbar-icons"> <md-icon
+				aria-label="Menu" class="material-icons">clear</md-icon> </md-button>
+		</div>
+	</md-toolbar>
+	<md-content layout-padding>
+		<md-whiteframe class="md-whiteframe-1dp"
+				layout-padding layout="column">
+				<div layout-padding layout="column">
+					<span>{{parentScope.lang.selectAScoreCard}}</span>
+					<md-radio-group ng-model="selectedScoreCard">
+	      				<md-radio-button 
+	      					ng-repeat="scoreCard in parentScope.selectedStartup.scoreCards"
+	      					ng-value="scoreCard">
+	      					{{parentScope.lang.finalScore + ': ' + scoreCard.finalScore + ', ' 
+	      					+ parentScope.lang.date + ': (' + (scoreCard.scoreCardDate | date:'dd/MM/yy') + ')'}}
+	      				</md-radio-button>
+	    			</md-radio-group>
+				</div>
+		</md-whiteframe>
+	</md-content>
+	<md-dialog-actions flex="none" layout="row">
+	      <md-button ng-click="cancel()">
+	       	{{parentScope.globalAttr.cancel}}
+	      </md-button>
+	      <span flex></span>
+	      <md-button ng-click="ok()">
+	        {{parentScope.globalAttr.ok}}
+	      </md-button>
+	</md-dialog-actions>
+</section>

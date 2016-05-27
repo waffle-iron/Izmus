@@ -1,0 +1,1 @@
+angular.module('startupAssessmentApp', ['investitNavBarApp', 'investitMainWindowApp', 'ngAnimate']);
