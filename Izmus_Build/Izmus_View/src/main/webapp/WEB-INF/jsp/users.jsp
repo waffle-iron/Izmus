@@ -1,7 +1,7 @@
 <%@ include file="fragments/frame.jsp"%>
-<investit-nav-bar ng-app="userManagementApp"
+<izmus-nav-bar ng-app="userManagementApp"
 	initial-selected-item=' <spring:message code="navBar.menu.adminMenu.users" />'>
-	<investit-user-management
+	<izmus-user-management
 				flex
 				layout="column" 
 				user-id=' <spring:message code="navBar.menu.adminMenu.users.userId" />'
@@ -21,8 +21,8 @@
 				available-roles=' <spring:message code="navBar.menu.adminMenu.users.availableRoles" />'
 				cancel=' <spring:message code="navBar.menu.adminMenu.users.cancel" />'
 				ok=' <spring:message code="navBar.menu.adminMenu.users.ok" />'>
-	</investit-user-management>
-</investit-nav-bar>
+	</izmus-user-management>
+</izmus-nav-bar>
 <script src="<c:url value="/views/users/js/users.ctrl.js" />"></script>
 <script src="<c:url value="/views/users/js/user-management.dir.js" />"></script>
 <script

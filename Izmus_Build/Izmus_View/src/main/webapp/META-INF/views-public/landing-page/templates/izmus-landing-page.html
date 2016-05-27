@@ -1,0 +1,81 @@
+<style>
+.toolbar-icons {
+	margin-right: 3px !important;
+	margin-left: 3px !important;
+}
+.logo-text {
+	text-transform: none !important;
+	font-size: 20px !important;
+	font-weight: bolder;
+}
+.logo-button{
+	width: 156px !important;
+	height: 66px !important;
+}
+.logo-icon{
+	width: 140px !important;
+	height: 50px !important;
+}
+.IT{
+	color: #E0E5E8;
+	font-family: sans-serif;
+}
+.Invest{
+	font-style: italic;
+	margin: 4px;
+	font-family: sans-serif;
+}
+.ng-hide {
+  	opacity: 0;
+}
+.screen.ng-hide-remove,
+.screen.ng-hide-add {
+  	display: block !important;
+}
+.screen.ng-hide-remove {
+  	-webkit-transition: 1.75s cubic-bezier(0.35, 0, 0.25, 1);
+	-moz-transition: 1.75s cubic-bezier(0.35, 0, 0.25, 1);
+	transition: 1.75s cubic-bezier(0.35, 0, 0.25, 1);
+	overflow: hidden;
+}
+.screen.ng-hide-add {
+	overflow: hidden;
+	height: 0px;
+}
+</style>
+<title>Izmus</title>
+<div dir='{{globalAttr.direction}}' ng-cloak layout="column" flex class="background">
+	<md-toolbar flex="none" class="md-whiteframe-10dp">
+		<div class="md-toolbar-tools">
+			<md-button ng-hide="isTopBarMinimized()" class="md-icon-button toolbar-icons logo-button" href='/'>
+				<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/core/logo/izmus-logo.svg"></md-icon>
+			</md-button>
+	        <span flex></span>
+	        <div hide-sm hide-xs>
+	        	<md-button class="md-raised" aria-label="Learn More">
+	          		{{lang.about}}
+	        	</md-button>
+	        	<md-button ng-if="(globalAttr.user == null)" class="md-raised">
+	          		{{lang.contactUs}}
+	        	</md-button>
+	        	<md-button ng-if="(globalAttr.user != null)" class="md-raised">
+	          		{{lang.homePage}}
+	        	</md-button>
+	        	<md-button ng-hide="(screenShowing.register)" ng-if="(globalAttr.user == null)" class="md-raised" ng-click="register($event)">
+	          		{{lang.register}}
+	        	</md-button>
+	        	<md-button ng-hide="(screenShowing.login)" ng-if="(globalAttr.user == null)" class="md-raised" ng-click="login($event)">
+	          		{{lang.loginTitle}}
+	        	</md-button>
+	        </div>
+		</div>
+	</md-toolbar>
+	<md-content flex layout="column">
+		<section flex="30" class="flex-section"></section>
+			<izmus-login-page flex="none" ng-show="(screenShowing.login)" class="screen">
+			</izmus-login-page>
+			<izmus-registration-page flex="none" ng-show="(screenShowing.register)" class="screen">
+			</izmus-registration-page>
+		<section flex="30" class="flex-section"></section>
+	</md-content>
+</div>

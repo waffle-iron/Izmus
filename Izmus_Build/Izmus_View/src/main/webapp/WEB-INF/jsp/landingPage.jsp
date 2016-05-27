@@ -22,11 +22,11 @@
 	rel="stylesheet" />
 </head>
 <body layout="colum">
-	<investit-landing-page 
-		ng-app="investitLandingPageApp"
+	<izmus-landing-page 
+		ng-app="izmusLandingPageApp"
 		flex
 		layout="column">
-	</investit-landing-page>
+	</izmus-landing-page>
 	<!-- Angular Material requires Angular.js Libraries -->
 	<script
 		src="<c:url value="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js" />"></script>
@@ -42,11 +42,11 @@
 		src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.6/angular-material.min.js" />"></script>
 	<!-- Landing Page -->
 	<script
-		src="<c:url value="/views-public/landing-page/js/investit-landing-page.dir.js" />"></script>
+		src="<c:url value="/views-public/landing-page/js/izmus-landing-page.dir.js" />"></script>
 	<script
-		src="<c:url value="/views-public/landing-page/js/investit-login-page.dir.js" />"></script>
+		src="<c:url value="/views-public/landing-page/js/izmus-login-page.dir.js" />"></script>
 	<script
-		src="<c:url value="/views-public/landing-page/js/investit-registration-page.dir.js" />"></script>
+		src="<c:url value="/views-public/landing-page/js/izmus-registration-page.dir.js" />"></script>
 	<script type="text/javascript">
 		var globalAttr = {
 			direction: '${dir}',

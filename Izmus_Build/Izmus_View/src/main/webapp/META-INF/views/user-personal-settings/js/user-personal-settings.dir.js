@@ -1,4 +1,4 @@
-angular.module('userPersonalSettingsApp').directive('investitUserPersonalSettings', ['getOwnUser', function(getOwnUser) {
+angular.module('userPersonalSettingsApp').directive('izmusUserPersonalSettings', ['getOwnUser', function(getOwnUser) {
 	return {
 		restrict : 'E',
 		templateUrl : '/views/user-personal-settings/templates/user-personal-settings.html',

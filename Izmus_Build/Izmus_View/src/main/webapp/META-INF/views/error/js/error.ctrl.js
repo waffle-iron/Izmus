@@ -1,1 +1,1 @@
-angular.module('errorApp', ['investitNavBarApp']);
+angular.module('errorApp', ['izmusNavBarApp']);

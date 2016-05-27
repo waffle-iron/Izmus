@@ -1,1 +1,1 @@
-angular.module('accessDeniedApp', ['investitNavBarApp']);
+angular.module('accessDeniedApp', ['izmusNavBarApp']);

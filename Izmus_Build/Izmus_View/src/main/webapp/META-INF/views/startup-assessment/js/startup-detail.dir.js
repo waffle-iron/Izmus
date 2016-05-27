@@ -1,9 +1,9 @@
-angular.module('startupAssessmentApp').directive('investitStartupDetail', ['saveStartupData','avatarDialog','$mdMedia', 
+angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveStartupData','avatarDialog','$mdMedia', 
                         'exportScoreCardReport', '$mdDialog', '$mdConstant','emailScoreCardReport',
                         function(saveStartupData, avatarDialog, $mdMedia, exportScoreCardReport, $mdDialog, $mdConstant, emailScoreCardReport) {
 	return {
 		restrict : 'E',
-		require: '^^investitStartupAssessment',
+		require: '^^izmusStartupAssessment',
 		templateUrl : '/views/startup-assessment/templates/startup-detail.html',
 		scope: {
 			selectedStartup: '=',

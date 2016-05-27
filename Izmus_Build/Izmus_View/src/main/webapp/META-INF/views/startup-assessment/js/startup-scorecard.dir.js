@@ -1,8 +1,8 @@
-angular.module('startupAssessmentApp').directive('investitStartupScorecard', ['loadDefaultScoreCard', 
+angular.module('startupAssessmentApp').directive('izmusStartupScorecard', ['loadDefaultScoreCard', 
                         function(loadDefaultScoreCard) {
 	return {
 		restrict : 'E',
-		require: '^^investitStartupDetail',
+		require: '^^izmusStartupDetail',
 		templateUrl : '/views/startup-assessment/templates/startup-scorecard.html',
 		scope: {
 			scoreCard: '=',

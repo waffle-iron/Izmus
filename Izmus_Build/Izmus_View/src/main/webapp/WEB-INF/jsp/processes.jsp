@@ -1,11 +1,11 @@
 <%@ include file="fragments/frame.jsp"%>
-<investit-nav-bar ng-app="processesApp"
+<izmus-nav-bar ng-app="processesApp"
 		initial-selected-item=' <spring:message code="navBar.menu.adminMenu.processes" />'>
-		<investit-processes
+		<izmus-processes
 			flex
 			layout="column">
-		</investit-processes>
-</investit-nav-bar>
+		</izmus-processes>
+</izmus-nav-bar>
 <script
 	src="<c:url value="/views/processes/js/processes.ctrl.js" />"></script>
 <script

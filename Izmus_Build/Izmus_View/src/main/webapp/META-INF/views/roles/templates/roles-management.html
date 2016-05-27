@@ -40,20 +40,20 @@
 					<div ng-if='progressMode != ""' layout="row" layout-sm="column" layout-align="space-around">
     					<md-progress-circular class="md-hue-3" md-mode="{{progressMode}}" md-diameter="70">
 		  			</div>
-					<investit-roles-table 
+					<izmus-roles-table 
 						flex
 						roles-data-list='rolesDataList'>
-					</investit-user-table>
+					</izmus-user-table>
 				</md-content> 
 			</md-sidenav>
-			<investit-roles-preview 
+			<izmus-roles-preview 
 					flex layout="column"
 					selected-role="selectedRole"
 					ok='{{ok}}'
 					cancel='{{cancel}}'
 					available-permissions='{{availablePermissions}}'
 					user-roles='{{userRoles}}'	>
-			</investit-roles-preview>
+			</izmus-roles-preview>
 		</md-content>
 	</md-content>
 </md-content>

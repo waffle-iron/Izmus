@@ -1,7 +1,7 @@
-angular.module('userManagementApp').directive('investitUserTable', ['$mdSidenav', function($mdSidenav) {
+angular.module('userManagementApp').directive('izmusUserTable', ['$mdSidenav', function($mdSidenav) {
 	return {
 		restrict : 'E',
-		require: '^^investitUserManagement',
+		require: '^^izmusUserManagement',
 		templateUrl : '/views/users/templates/user-table.html',
 		scope: {
 			userTypeTabs : '=',

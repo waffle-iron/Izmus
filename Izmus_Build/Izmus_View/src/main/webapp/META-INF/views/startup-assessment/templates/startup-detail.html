@@ -253,9 +253,9 @@ md-tab-item>span{
 				</section>
 		</md-tab>
 		<md-tab label="{{lang.contacts}}">
-			<investit-startup-contacts
+			<izmus-startup-contacts
 				selected-startup='selectedStartup'>
-			</investit-startup-contacts>
+			</izmus-startup-contacts>
 		</md-tab>
 		<md-tab ng-repeat="scoreCard in selectedStartup.scoreCards">
 			<md-tab-label>
@@ -265,10 +265,10 @@ md-tab-item>span{
 				</div>
   			</md-tab-label>
   			<md-tab-body>
-				<investit-startup-scorecard
+				<izmus-startup-scorecard
 					score-card='scoreCard'
 					selected-startup='selectedStartup'>
-				</investit-startup-scorecard>
+				</izmus-startup-scorecard>
 			</md-tab-body>
 		</md-tab>
 	</md-tabs>

@@ -1,1 +1,1 @@
-angular.module('rolesManagementApp', ['investitNavBarApp']);
+angular.module('rolesManagementApp', ['izmusNavBarApp']);

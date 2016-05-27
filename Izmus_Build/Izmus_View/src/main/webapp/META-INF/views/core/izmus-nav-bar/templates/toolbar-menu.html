@@ -1,0 +1,80 @@
+<style>
+.toolbar-menu-button-text{
+
+}
+.nav-bar-user-avatar{
+	max-height: 40px;
+	max-width: 40px;
+	border-radius: inherit;
+	border-width: 1px;
+    border-style: solid;
+    border-color: rgb(160,195,215);
+}
+.avatar-button{
+	width: 56px !important;
+	height: 56px !important;
+}
+.avatar-menu{
+	z-index: 70;
+}
+</style>
+<md-menu md-offset="0 70"
+	md-position-mode="{{(globalAttr.direction == 'rtl') ? '' : 'target-right target'}}">
+	<md-button class="md-icon-button toolbar-icons avatar-button"
+		ng-click="$mdOpenMenu($event)">
+		<md-tooltip md-direction="down" md-delay="1200">
+          {{globalAttr.user.userName}}
+    	</md-tooltip> 
+		<img class="nav-bar-user-avatar" ng-src="{{getUserAvatar()}}" />
+	</md-button> 
+	<md-menu-content width="3" dir='{{globalAttr.direction}}' class="avatar-menu">
+		<md-menu-item>
+				<md-button aria-label="hebrew" ng-href="?language=he">
+					<div flex layout="row">
+						<p class="toolbar-menu-button-text">{{globalAttr.hebrew}}</p>
+						<span flex></span>
+						<md-icon class="material-icons toolbar-icons"
+							md-svg-src="/views/core/izmus-nav-bar/images/israel.svg"></md-icon>
+					</div>
+				</md-button>
+		</md-menu-item> 
+		<md-menu-item>
+				<md-button aria-label="english" ng-href="?language=en">
+					<div flex layout="row">
+						<p class="toolbar-menu-button-text">{{globalAttr.english}}</p>
+						<span flex></span>
+						<md-icon class="material-icons toolbar-icons"
+							md-svg-src="/views/core/izmus-nav-bar/images/usa.svg"></md-icon>
+					</div>
+				</md-button>
+		</md-menu-item>
+		<md-menu-divider></md-menu-divider>
+		<md-menu-item>
+				<md-button aria-label="english" ng-click='changeAvatar($event)'>
+					<div flex layout="row">
+						<p class="toolbar-menu-button-text">{{globalAttr.changeAvatar}}</p>
+						<span flex></span>
+						<md-icon class="material-icons toolbar-icons">face</md-icon> 
+					</div>
+				</md-button>
+		</md-menu-item>
+		<md-menu-item>
+				<md-button aria-label="english" ng-click='userSettings()'>
+					<div flex layout="row">
+						<p class="toolbar-menu-button-text">{{globalAttr.userSettings}}</p>
+						<span flex></span>
+						<md-icon class="material-icons toolbar-icons">settings</md-icon> 
+					</div>
+				</md-button>
+		</md-menu-item>
+		<md-menu-item>
+				<md-button aria-label="logout" ng-click='izmusLogout()'>
+					<div flex layout="row">
+						<p class="toolbar-menu-button-text">{{globalAttr.logout}}</p>
+						<span flex></span>
+						<md-icon class="material-icons toolbar-icons">lock</md-icon> 
+					</div>
+				</md-button>
+		</md-menu-item>
+	</md-menu-content> 
+</md-menu>

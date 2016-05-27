@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.izmus.data.api.navbar.NavbarItem;
-import com.izmus.security.permission.InvestITPermissionEvaluator;
+import com.izmus.security.permission.IzmusPermissionEvaluator;
 
 @RestController
 @RequestMapping("api/Navbar")
@@ -25,7 +25,7 @@ public class LoadNavBar {
 	@Autowired
 	private ApplicationContext context;
 	@Autowired
-	private InvestITPermissionEvaluator permissionEvaluator;
+	private IzmusPermissionEvaluator permissionEvaluator;
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/GetNavbar", method = RequestMethod.GET)
 	public List<NavbarItem> getNavBar() {
@@ -69,7 +69,7 @@ public class LoadNavBar {
 		NavbarItem rolesItem = new NavbarItem();
 		rolesItem.setHref("/Processes");
 		rolesItem.setLabel(context.getMessage("navBar.menu.adminMenu.processes",null, LocaleContextHolder.getLocale()));
-		rolesItem.setIcon("/views/core/investit-nav-bar/images/flow-diagram.svg");
+		rolesItem.setIcon("/views/core/izmus-nav-bar/images/flow-diagram.svg");
 		rolesItem.setType("link");
 		return rolesItem;
 	}
@@ -87,7 +87,7 @@ public class LoadNavBar {
 		NavbarItem usersItem = new NavbarItem();
 		usersItem.setHref("/Users");
 		usersItem.setLabel(context.getMessage("navBar.menu.adminMenu.users",null, LocaleContextHolder.getLocale()));
-		usersItem.setIcon("/views/core/investit-nav-bar/images/users.svg");
+		usersItem.setIcon("/views/core/izmus-nav-bar/images/users.svg");
 		usersItem.setType("link");
 		return usersItem;
 	}

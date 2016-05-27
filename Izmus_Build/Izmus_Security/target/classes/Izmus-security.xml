@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/context
        	http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/security
-		http://www.springframework.org/schema/security/spring-security.xsd">
+		http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
 	<context:component-scan base-package="com.izmus.security.authentication" />
 	<context:component-scan base-package="com.izmus.security.permission" />
@@ -21,8 +21,7 @@
 		<sec:intercept-url pattern="/Login" access="permitAll"/><!-- requires-channel="https"/>-->
 		<sec:intercept-url pattern="/api/Users/CheckUserAndEmail" access="permitAll"/><!-- requires-channel="https"/>-->
 		<sec:intercept-url pattern="/api/Users/CheckUserCredentials" access="isAnonymous()"/><!-- requires-channel="https"/>-->
-		<sec:intercept-url pattern="/api/Clients/IsClientEmailExists" access="isAnonymous()"/><!-- requires-channel="https"/>-->
-		<sec:intercept-url pattern="/api/Clients/Register" access="isAnonymous()"/><!-- requires-channel="https"/>-->
+		<sec:intercept-url pattern="/api/Users/Register" access="isAnonymous()"/><!-- requires-channel="https"/>-->
 		<sec:intercept-url pattern="/**" access="hasRole('USER')"/><!-- requires-channel="https"/>-->
 		<sec:form-login login-page='/Login' default-target-url="/"
 			username-parameter="userName" password-parameter="password" />

@@ -1,8 +1,8 @@
-angular.module('startupAssessmentApp').directive('investitStartupContacts', ['avatarDialog',
+angular.module('startupAssessmentApp').directive('izmusStartupContacts', ['avatarDialog',
                         function(avatarDialog) {
 	return {
 		restrict : 'E',
-		require: '^^investitStartupAssessment',
+		require: '^^izmusStartupAssessment',
 		templateUrl : '/views/startup-assessment/templates/startup-contacts.html',
 		scope: {
 			selectedStartup: '='

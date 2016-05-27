@@ -1,4 +1,4 @@
-angular.module('processesApp').directive('investitProcesses', ['loadProcesses', '$mdMedia', '$mdDialog', function(loadProcesses, $mdMedia, $mdDialog) {
+angular.module('processesApp').directive('izmusProcesses', ['loadProcesses', '$mdMedia', '$mdDialog', function(loadProcesses, $mdMedia, $mdDialog) {
 	return {
 		restrict : 'E',
 		templateUrl : '/views/processes/templates/processes.html',

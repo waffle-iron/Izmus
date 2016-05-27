@@ -1,10 +1,10 @@
 <%@ include file="fragments/frame.jsp"%>
-<investit-nav-bar ng-app="userPersonalSettingsApp">
-		<investit-user-personal-settings
+<izmus-nav-bar ng-app="userPersonalSettingsApp">
+		<izmus-user-personal-settings
 			flex
 			layout="column">
-		</investit-user-personal-settings>
-</investit-nav-bar>
+		</izmus-user-personal-settings>
+</izmus-nav-bar>
 <script
 	src="<c:url value="/views/user-personal-settings/js/user-personal-settings.ctrl.js" />"></script>
 <script

@@ -1,4 +1,4 @@
-angular.module('startupAssessmentApp').directive('investitStartupAssessment', [ 
+angular.module('startupAssessmentApp').directive('izmusStartupAssessment', [ 
         '$mdSidenav', '$mdMedia','$mdDialog', 'loadStartupData', 'saveStartupData',
         function($mdSidenav, $mdMedia, $mdDialog, loadStartupData, saveStartupData) {
 	return {

@@ -1,11 +1,11 @@
 <%@ include file="fragments/frame.jsp"%>
-<investit-nav-bar ng-app="startupAssessmentApp"
+<izmus-nav-bar ng-app="startupAssessmentApp"
 		initial-selected-item=' <spring:message code="navBar.menu.startupAssessment" />'>
-		<investit-startup-assessment
+		<izmus-startup-assessment
 				flex
 				layout="column">
-		</investit-startup-assessment>
-</investit-nav-bar>
+		</izmus-startup-assessment>
+</izmus-nav-bar>
 <script
 	src="<c:url value="/views/startup-assessment/js/startup-assessment.ctrl.js" />"></script>
 <script

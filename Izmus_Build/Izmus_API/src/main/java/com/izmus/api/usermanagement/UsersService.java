@@ -36,7 +36,7 @@ import com.izmus.data.domain.users.UserRole;
 import com.izmus.data.repository.ISystemLogRepository;
 import com.izmus.data.repository.IUserRepository;
 import com.izmus.data.repository.IUserRoleRepository;
-import com.izmus.security.authentication.InvestITAuthenticationProvider;
+import com.izmus.security.authentication.IzmusAuthenticationProvider;
 
 @RestController
 @RequestMapping("api/Users")
@@ -44,6 +44,7 @@ public class UsersService {
 	/*----------------------------------------------------------------------------------------------------*/
 	private static final Logger LOGGER = LoggerFactory.getLogger(UsersService.class);
 	private static final String NEW_USER_PROCESS = "NewUserProcessId";
+	private static final String REGISTER_USER_PROCESS = "RegisterUserProcessId";
 	@Autowired
 	private IUserRepository userRepository;
 	@Autowired
@@ -268,7 +269,7 @@ public class UsersService {
 		}
 		try {
 			List<SystemLog> logEntries = systemLogRepository
-					.findByMessageIgnoreCaseContainingAndLogClassIgnoreCaseContainingOrderByLogTimeDesc(user.toString(), InvestITAuthenticationProvider.class.getName());
+					.findByMessageIgnoreCaseContainingAndLogClassIgnoreCaseContainingOrderByLogTimeDesc(user.toString(), IzmusAuthenticationProvider.class.getName());
 			newUserData.setLastLogin(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(logEntries.get(0).getLogTime()));
 		} catch (Exception e) {
 			newUserData.setLastLogin("Unknown");
@@ -328,5 +329,15 @@ public class UsersService {
 		String isUserExists = isUserExist(userName);
 		String isEmailExists = isEmailExist(email);
 		return "{\"isUserExists\":" + isUserExists + ", \"isEmailExists\":" + isEmailExists + "}";
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/Register", method = RequestMethod.POST)
+	public String registerUser(@RequestParam(value = "userName") String userName, 
+			@RequestParam(value = "email") String email) {
+		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("userName", userName);
+		variables.put("email", email);
+		runtimeService.startProcessInstanceByKey(REGISTER_USER_PROCESS, variables);
+		return "{\"result\": \"success\"}";
 	}
 }

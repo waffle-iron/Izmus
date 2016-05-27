@@ -1,7 +1,7 @@
-angular.module('startupAssessmentApp').directive('investitStartupList', [function() {
+angular.module('startupAssessmentApp').directive('izmusStartupList', [function() {
 	return {
 		restrict : 'E',
-		require: '^^investitStartupAssessment',
+		require: '^^izmusStartupAssessment',
 		templateUrl : '/views/startup-assessment/templates/startup-list.html',
 		scope: {
 			sidenavCtrl: '='

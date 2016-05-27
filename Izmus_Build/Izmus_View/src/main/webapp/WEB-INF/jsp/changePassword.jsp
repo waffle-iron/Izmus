@@ -1,10 +1,10 @@
 <%@ include file="fragments/frame.jsp"%>
-<investit-nav-bar ng-app="changePasswordApp">
-		<investit-change-password
+<izmus-nav-bar ng-app="changePasswordApp">
+		<izmus-change-password
 			flex
 			layout="column">
-		</investit-change-password>
-</investit-nav-bar>
+		</izmus-change-password>
+</izmus-nav-bar>
 <script
 	src="<c:url value="/views/change-password/js/change-password.ctrl.js" />"></script>
 <script

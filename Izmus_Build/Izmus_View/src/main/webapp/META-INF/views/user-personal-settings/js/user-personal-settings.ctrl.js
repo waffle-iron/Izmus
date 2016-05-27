@@ -1,1 +1,1 @@
-angular.module('userPersonalSettingsApp', ['investitNavBarApp', 'investitMainWindowApp']);
+angular.module('userPersonalSettingsApp', ['izmusNavBarApp', 'izmusMainWindowApp']);

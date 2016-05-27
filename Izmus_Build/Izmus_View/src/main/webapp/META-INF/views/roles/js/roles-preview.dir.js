@@ -1,9 +1,9 @@
 angular.module('rolesManagementApp')
-.directive('investitRolesPreview', ['saveRoleManagementData','$mdDialog', '$mdMedia','loadAvailablePermissions', 'deleteRole',
+.directive('izmusRolesPreview', ['saveRoleManagementData','$mdDialog', '$mdMedia','loadAvailablePermissions', 'deleteRole',
                   function(saveRoleManagementData, $mdDialog, $mdMedia, loadAvailablePermissions, deleteRole) {
 	return {
 		restrict : 'E',
-		require: '^^investitRolesManagement',
+		require: '^^izmusRolesManagement',
 		templateUrl : '/views/roles/templates/roles-preview.html',
 		scope: {
 			selectedRole : '=',

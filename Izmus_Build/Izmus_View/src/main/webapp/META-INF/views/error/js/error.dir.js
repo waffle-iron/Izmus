@@ -1,4 +1,4 @@
-angular.module('errorApp').directive('investitError',
+angular.module('errorApp').directive('izmusError',
 		[ function() {
 			return {
 				restrict : 'E',

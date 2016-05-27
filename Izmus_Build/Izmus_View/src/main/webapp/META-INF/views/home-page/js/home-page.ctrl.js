@@ -1,1 +1,1 @@
-angular.module('homeApp', ['investitNavBarApp']);
+angular.module('homeApp', ['izmusNavBarApp']);

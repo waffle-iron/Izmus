@@ -1,1 +1,1 @@
-angular.module('processesApp', ['investitNavBarApp', 'investitMainWindowApp', 'investitDragModule']);
+angular.module('processesApp', ['izmusNavBarApp', 'izmusMainWindowApp', 'izmusDragModule']);

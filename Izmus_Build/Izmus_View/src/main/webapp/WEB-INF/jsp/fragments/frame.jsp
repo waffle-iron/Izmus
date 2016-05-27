@@ -34,11 +34,11 @@
 	<script
 		src="<c:url value="/views/core/image-crop/js/image-crop.dir.js" />"></script>
 	<script
-		src="<c:url value="/views/core/investit-nav-bar/js/investit-nav-bar.dir.js" />"></script>
+		src="<c:url value="/views/core/izmus-nav-bar/js/izmus-nav-bar.dir.js" />"></script>
 	<script
-		src="<c:url value="/views/core/investit-main-window/js/investit-main-window.dir.js" />"></script>
+		src="<c:url value="/views/core/izmus-main-window/js/izmus-main-window.dir.js" />"></script>
 	<script
-		src="<c:url value="/views/core/drag/investit-drag.js" />"></script>
+		src="<c:url value="/views/core/drag/izmus-drag.js" />"></script>
 
 	<!-- Angular Material Library -->
 	<script

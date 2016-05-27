@@ -1,1 +1,1 @@
-angular.module('startupAssessmentApp', ['investitNavBarApp', 'investitMainWindowApp', 'ngAnimate']);
+angular.module('startupAssessmentApp', ['izmusNavBarApp', 'izmusMainWindowApp', 'ngAnimate']);

@@ -1,4 +1,4 @@
-angular.module('rolesManagementApp').directive('investitRolesManagement',
+angular.module('rolesManagementApp').directive('izmusRolesManagement',
 		[ 'loadRolesManagementData', '$mdSidenav', '$mdMedia','$mdDialog', function(loadRolesManagementData, $mdSidenav, $mdMedia, $mdDialog) {
 			return {
 				restrict : 'E',

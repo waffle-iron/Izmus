@@ -7,8 +7,8 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="firstMeasurement" class="com.investit.data.domain.startups.Measurement"/>
-	<field name="secondMeasurement" class="com.investit.data.domain.startups.Measurement"/>
+	<field name="firstMeasurement" class="com.izmus.data.domain.startups.Measurement"/>
+	<field name="secondMeasurement" class="com.izmus.data.domain.startups.Measurement"/>
 	<detail>
 		<band height="174" splitType="Stretch">
 			<frame>
@@ -33,7 +33,7 @@
 					</graphicElement>
 				</rectangle>
 				<meterChart>
-					<chart isShowLegend="false" customizerClass="com.investit.reports.startups.StartupReportMeterCustomizer" renderType="svg">
+					<chart isShowLegend="false" customizerClass="com.izmus.reports.startups.StartupReportMeterCustomizer" renderType="svg">
 						<reportElement x="140" y="110" width="130" height="60" uuid="a5ad2d70-0af9-4d14-8b8d-05c44271ce83">
 							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
@@ -188,7 +188,7 @@
 					</graphicElement>
 				</rectangle>
 				<meterChart>
-					<chart isShowLegend="false" customizerClass="com.investit.reports.startups.StartupReportMeterCustomizer" renderType="svg">
+					<chart isShowLegend="false" customizerClass="com.izmus.reports.startups.StartupReportMeterCustomizer" renderType="svg">
 						<reportElement stretchType="RelativeToBandHeight" x="140" y="110" width="130" height="60" uuid="b6a49469-fdd3-481c-988d-253b77d3162a">
 							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 							<property name="com.jaspersoft.studio.unit.x" value="pixel"/>

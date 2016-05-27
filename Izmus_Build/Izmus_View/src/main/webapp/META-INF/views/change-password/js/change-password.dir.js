@@ -1,4 +1,4 @@
-angular.module('changePasswordApp').directive('investitChangePassword', ['saveUserPassword','$mdToast','$timeout', function(saveUserPassword, $mdToast, $timeout) {
+angular.module('changePasswordApp').directive('izmusChangePassword', ['saveUserPassword','$mdToast','$timeout', function(saveUserPassword, $mdToast, $timeout) {
 	return {
 		restrict : 'E',
 		templateUrl : '/views/change-password/templates/change-password.html',

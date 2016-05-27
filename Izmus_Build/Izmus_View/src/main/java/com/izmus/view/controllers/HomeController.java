@@ -34,12 +34,6 @@ public class HomeController {
 		return new ModelAndView("accessDenied");
 	}
 	/*----------------------------------------------------------------------------------------------------*/
-	@RequestMapping(value = "/Game", method = RequestMethod.GET)
-	@PreAuthorize("hasPermission('Admin Menu/Game', '')")
-	public ModelAndView getGame() {
-		return new ModelAndView("game");
-	}
-	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/Processes", method = RequestMethod.GET)
 	@PreAuthorize("hasPermission('Admin Menu/Processes', '')")
 	public ModelAndView getProcesses() {
@@ -66,29 +60,5 @@ public class HomeController {
 	public ModelAndView getStartupAssessment() {
 		ModelAndView returnModel = new ModelAndView("startupAssessment");
 		return returnModel;
-	}
-	/*----------------------------------------------------------------------------------------------------*/
-	@RequestMapping(value = "/Dashboard", method = RequestMethod.GET)
-	@PreAuthorize("hasPermission('Admin Menu/Dashboard', '')")
-	public ModelAndView getDashboard() {
-		return new ModelAndView("dashboard");
-	}
-	/*----------------------------------------------------------------------------------------------------*/
-	@RequestMapping(value = "/MarketData", method = RequestMethod.GET)
-	@PreAuthorize("hasPermission('Admin Menu/Market Data', '')")
-	public ModelAndView getMarketData() {
-		return new ModelAndView("marketData");
-	}
-	/*----------------------------------------------------------------------------------------------------*/
-	@RequestMapping(value = "/TestPage", method = RequestMethod.GET)
-	@PreAuthorize("hasPermission('Admin Menu/Test Page', '')")
-	public ModelAndView getTestPage() {
-		return new ModelAndView("testPage");
-	}
-	/*----------------------------------------------------------------------------------------------------*/
-	@PreAuthorize("hasPermission('Proposal Engine', '')")
-	@RequestMapping(value = "/ProposalEngine", method = RequestMethod.GET)
-	public ModelAndView getProposalEngine() {
-		return new ModelAndView("proposalEngine");
 	}
 }

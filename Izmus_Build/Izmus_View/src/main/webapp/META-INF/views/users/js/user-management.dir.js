@@ -1,4 +1,4 @@
-angular.module('userManagementApp').directive('investitUserManagement',
+angular.module('userManagementApp').directive('izmusUserManagement',
 		[ 'loadUserManagementData', '$mdSidenav', '$mdMedia', '$mdDialog',function(loadUserManagementData, $mdSidenav, $mdMedia, $mdDialog) {
 			return {
 				restrict : 'E',

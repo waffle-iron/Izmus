@@ -40,14 +40,14 @@
 					<div ng-if='progressMode != ""' layout="row" layout-sm="column" layout-align="space-around">
     					<md-progress-circular class="md-hue-3" md-mode="{{progressMode}}" md-diameter="70">
 		  			</div>
-					<investit-user-table 
+					<izmus-user-table 
 						flex
 						male="{{male}}"
 						user-type-tabs='userTypeTabs'>
-					</investit-user-table>
+					</izmus-user-table>
 				</md-content> 
 			</md-sidenav>
-			<investit-user-preview 
+			<izmus-user-preview 
 					flex layout="column"
 					selected-user="selectedUser"
 					user-roles="{{userRoles}}"
@@ -65,7 +65,7 @@
 					ok="{{ok}}"
 					created="{{created}}"
 					available-roles="{{availableRoles}}">
-			</investit-user-preview>
+			</izmus-user-preview>
 		</md-content>
 	</md-content>
 </md-content>

@@ -1,0 +1,63 @@
+<style>
+.expand-icon.toggled{
+    transform: rotateZ(180deg) !important;
+  	-webkit-transform: rotateZ(180deg) !important;
+}
+.expand-icon{
+	transition: transform .3s ease-in-out !important;
+  	-webkit-transition: -webkit-transform .3s ease-in-out;
+}
+.menu-toggle-list {
+    max-height: 1300px;
+	overflow: hidden;
+	position: relative;
+	-webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+	-webkit-transition-property: max-height;
+	-moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+	-moz-transition-property: max-height;
+	transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+	transition-property: max-height;
+}
+.menu-toggle-list.ng-hide{
+	max-height: 0px;
+}
+</style>
+<md-button 
+	class="md-button-toggle" 
+	ng-click="click()" 
+	aria-controls="side-menu-{{item.label}}" 
+	aria-expanded="md-button-toggle">
+	<div layout="row">
+		<md-icon
+			ng-if='item.icon.indexOf("/") < 0' 
+			ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px'} : {'margin-right': '15px'}"
+			class="material-icons" 
+			aria-label="expand">
+			{{item.icon}}
+		</md-icon>
+		<md-icon
+			ng-if='item.icon.indexOf("/") >= 0' 
+			ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px'} : {'margin-right': '15px'}"
+			class="material-icons" 
+			aria-label="expand"
+			md-svg-src="{{item.icon}}">
+		</md-icon>
+		{{item.label}}
+		<span flex></span>
+		<md-icon
+			class="material-icons expand-icon"
+			ng-class="(isOpen()) ? 'toggled' : ''" 
+			aria-label="expand">
+			expand_more
+		</md-icon>
+	</div>
+</md-button>
+<ul ng-show="isOpen()"
+	id="side-menu-{{item.label}}-subItems" class="menu-toggle-list">
+	 <li ng-repeat="subItem in item.subItems">
+       	<izmus-navbar-menu-link 
+			item="subItem"
+			ng-if="subItem.type == 'link'">
+		</izmus-navbar-menu-link>
+    </li>
+</ul>

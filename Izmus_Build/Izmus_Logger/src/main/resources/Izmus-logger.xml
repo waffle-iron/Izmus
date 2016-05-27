@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+       					http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean class="ch.qos.logback.ext.spring.ApplicationContextHolder" />
+	
+	<bean id="writeToDatabase" class="com.izmus.logger.DatabaseLogger" init-method="start" destroy-method="stop">
+        <property name="context" value="#{ T(org.slf4j.LoggerFactory).getILoggerFactory() }"/>
+        <property name="encoder">
+            <bean class="ch.qos.logback.classic.encoder.PatternLayoutEncoder" init-method="start" destroy-method="stop">
+                <property name="context" value="#{ T(org.slf4j.LoggerFactory).getILoggerFactory() }"/>
+                <property name="pattern" value="%d{HH:mm:ss.SSS} |%-3.5p |%-40.40c{0} |%m |%X{userId} %n"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

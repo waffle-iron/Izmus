@@ -1,0 +1,147 @@
+<style>
+.toolbar-icons {
+	margin-right: 3px !important;
+	margin-left: 3px !important;
+}
+.logo-text {
+	text-transform: none !important;
+	font-size: 20px !important;
+	font-weight: bolder;
+}
+.logo-button{
+	width: 156px !important;
+	height: 66px !important;
+}
+.logo-icon{
+	width: 140px !important;
+	height: 50px !important;
+}
+.menu-button{
+	width: 56px !important;
+	height: 56px !important;
+}
+.menu-icon{
+	width: 40px !important;
+	height: 40px !important;
+}
+
+.side-menu-parent{
+	z-index: 65;
+}
+.side-menu{
+	margin: 0px 0px 0px 0px !important;
+	padding: 0px !important;
+}
+.side-menu .md-button {
+	border-radius: 0;
+	color: inherit;
+	cursor: pointer;
+	font-weight: 400;
+	line-height: 40px;
+	margin: 0;
+	max-height: 40px;
+	overflow: hidden;
+	padding: 0px 16px;
+	text-decoration: none;
+	white-space: normal;
+	width: 100%;
+	text-align: inherit;
+	text-transform: none;
+}
+.md-ripple-container {
+	border-radius: 0 !important;
+}
+.side-menu menu-toggle span{
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.main-content {
+	background-color: #b2cedf;
+}
+.IT{
+	color: #E0E5E8;
+	font-family: sans-serif;
+}
+.Invest{
+	font-style: italic;
+	margin: 4px;
+	font-family: sans-serif;
+}
+.expand-icon.toggled{
+    transform: rotateZ(180deg) !important;
+  	-webkit-transform: rotateZ(180deg) !important;
+}
+.expand-icon{
+	transition: transform .3s ease-in-out !important;
+  	-webkit-transition: -webkit-transform .3s ease-in-out;
+}
+.top-bar {
+	-webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+	-moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+	transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+}
+</style>
+<title>Izmus</title>
+<div dir='{{globalAttr.direction}}' ng-cloak layout="column" layout-fill>
+	<md-toolbar class="md-whiteframe-10dp top-bar" ng-style="(isTopBarMinimized()) ? {'height': '15px','min-height': '15px'} : {'height': '64px','min-height': '64px'}">
+	<div class="md-toolbar-tools">
+		<md-button ng-click="toggleTopBar()" class="md-icon-button toolbar-icons">
+			<md-icon
+				class="material-icons expand-icon"
+				ng-class="(isTopBarMinimized()) ? '' : 'toggled'" 
+				aria-label="expand">
+				expand_more
+			</md-icon>
+		</md-button>
+		<md-button ng-hide="isTopBarMinimized()" ng-click="toggleSidenav()" hide-gt-md class="md-icon-button toolbar-icons">
+			<md-icon aria-label="Menu" class="material-icons">menu</md-icon> 
+		</md-button>
+		<md-button ng-hide="isTopBarMinimized()" class="md-icon-button toolbar-icons logo-button" href='/'>
+			<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/core/logo/izmus-logo.svg"></md-icon>
+		</md-button>
+        <span flex></span>
+        <izmus-toolbar-menu ng-hide="isTopBarMinimized()" >
+        </izmus-toolbar-menu>
+	</div>
+	</md-toolbar>
+	<md-content flex layout="row">
+		<md-sidenav layout="column"
+			md-component-id="izmusSidenav"
+			class="md-whiteframe-10dp md-sidenav-left side-menu-parent" md-is-locked-open="$mdMedia('gt-md')">
+			<md-toolbar class="md-hue-1">
+				<div class="md-toolbar-tools" layout="row">
+					{{globalAttr.menu}}
+					<span flex></span>
+			    	<md-button class="md-icon-button toolbar-icons menu-button" href='/'>
+						<md-icon class="menu-icon" aria-label="Logo" md-svg-src="/views/core/izmus-nav-bar/images/network.svg"></md-icon>
+					</md-button>
+				</div>
+			</md-toolbar>
+			<div ng-if='progressMode != ""' layout="row" layout-sm="column" layout-align="space-around">
+    			<md-progress-circular class="md-hue-3" md-mode="{{progressMode}}" md-diameter="70">
+  			</div>
+			<md-content flex layout="column"> 
+				<ul class="side-menu">
+					<li
+						ng-repeat="item in list" 
+						class="pointer menu-item"
+						ng-href='{{item.href}}'
+						aria-label="{{item.label}}">
+						<izmus-navbar-menu-link 
+							item="item"
+							ng-if="item.type == 'link'">
+						</izmus-navbar-menu-link>
+	            		<izmus-navbar-menu-toggle
+	            			item="item"
+	            			ng-if="item.type == 'toggle'">
+	            		</izmus-navbar-menu-toggle>
+	            		<md-divider></md-divider>
+					</li> 
+				</ul>
+			</md-content> 
+		</md-sidenav>
+		<md-content flex layout="column" class="md-padding main-content"> 
+			<ng-transclude flex layout="column"></ng-transclude>
+		</md-content>
+	</md-content>
+</div>

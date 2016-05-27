@@ -1,9 +1,9 @@
 angular.module('userManagementApp')
-.directive('investitUserPreview', ['saveUserManagementData','$mdDialog','$mdMedia','loadAvailableRoles', 'avatarDialog',
+.directive('izmusUserPreview', ['saveUserManagementData','$mdDialog','$mdMedia','loadAvailableRoles', 'avatarDialog',
                                    function(saveUserManagementData, $mdDialog, $mdMedia, loadAvailableRoles, avatarDialog) {
 	return {
 		restrict : 'E',
-		require: '^^investitUserManagement',
+		require: '^^izmusUserManagement',
 		templateUrl : '/views/users/templates/user-preview.html',
 		scope: {
 			selectedUser : '=',

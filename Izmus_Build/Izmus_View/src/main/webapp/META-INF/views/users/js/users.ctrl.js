@@ -1,2 +1,2 @@
-angular.module('userManagementApp', ['investitNavBarApp', 'ngMessages']);
+angular.module('userManagementApp', ['izmusNavBarApp', 'ngMessages']);
 

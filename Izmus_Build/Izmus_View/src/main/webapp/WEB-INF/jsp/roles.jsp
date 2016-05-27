@@ -1,7 +1,7 @@
 <%@ include file="fragments/frame.jsp"%>
-<investit-nav-bar ng-app="rolesManagementApp"
+<izmus-nav-bar ng-app="rolesManagementApp"
 	initial-selected-item=' <spring:message code="navBar.menu.adminMenu.roles" />'>
-	<investit-roles-management
+	<izmus-roles-management
 				flex
 				layout="column" 
 				roles-management=' <spring:message code="navBar.menu.adminMenu.roles.rolesManagement" />'
@@ -12,8 +12,8 @@
 				user-roles=' <spring:message code="navBar.menu.adminMenu.roles.userRoles" />'
 				new-role=' <spring:message code="navBar.menu.adminMenu.roles.newRole" />'
 				role-name=' <spring:message code="navBar.menu.adminMenu.roles.roleName" />'	>
-	</investit-roles-management>
-</investit-nav-bar>
+	</izmus-roles-management>
+</izmus-nav-bar>
 <script
 	src="<c:url value="/views/roles/js/roles.ctrl.js" />"></script>
 <script

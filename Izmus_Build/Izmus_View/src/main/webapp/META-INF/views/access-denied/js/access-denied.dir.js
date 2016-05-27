@@ -1,4 +1,4 @@
-angular.module('accessDeniedApp').directive('investitAccessDenied',
+angular.module('accessDeniedApp').directive('izmusAccessDenied',
 		[ function() {
 			return {
 				restrict : 'E',

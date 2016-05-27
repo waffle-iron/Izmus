@@ -5,6 +5,16 @@
 	<artifactId>Izmus_Build</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<modules>
+		<module>Izmus_Processes</module>
+		<module>Izmus_View</module>
+		<module>Izmus_Data</module>
+		<module>Izmus_Mail</module>
+		<module>Izmus_API</module>
+		<module>Izmus_Security</module>
+		<module>Izmus_Logger</module>
+		<module>Izmus_Reports</module>
+	</modules>
 	<build>
 		<finalName>Izmus</finalName>
 		<plugins>

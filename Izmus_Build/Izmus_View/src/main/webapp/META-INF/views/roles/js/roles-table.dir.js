@@ -1,7 +1,7 @@
-angular.module('rolesManagementApp').directive('investitRolesTable', ['$mdSidenav', function($mdSidenav) {
+angular.module('rolesManagementApp').directive('izmusRolesTable', ['$mdSidenav', function($mdSidenav) {
 	return {
 		restrict : 'E',
-		require: '^^investitRolesManagement',
+		require: '^^izmusRolesManagement',
 		templateUrl : '/views/roles/templates/roles-table.html',
 		scope: {
 			rolesDataList : '=',

@@ -1,1 +1,1 @@
-angular.module('changePasswordApp', ['investitNavBarApp', 'investitMainWindowApp']);
+angular.module('changePasswordApp', ['izmusNavBarApp', 'izmusMainWindowApp']);

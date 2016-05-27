@@ -3,8 +3,8 @@
 <!-- 2016-05-12T22:19:43 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StartupAssessmentEnglish" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a619498a-562a-46e4-8840-1b8587b66bd2">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<parameter name="startup" class="com.investit.data.domain.startups.Startup"/>
-	<parameter name="scoreCard" class="com.investit.data.domain.startups.StartupScoreCard"/>
+	<parameter name="startup" class="com.izmus.data.domain.startups.Startup"/>
+	<parameter name="scoreCard" class="com.izmus.data.domain.startups.StartupScoreCard"/>
 	<parameter name="startupLogo" class="java.awt.Image"/>
 	<parameter name="sector" class="java.lang.String"/>
 	<parameter name="address" class="java.lang.String"/>
