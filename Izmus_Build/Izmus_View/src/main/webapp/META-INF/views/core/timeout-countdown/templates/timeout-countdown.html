@@ -1,0 +1,21 @@
+<style>
+h1 {
+	color: red;
+}
+</style>
+<section layout="column"  dir="{{globalAttr.direction}}">
+	<md-content layout-padding idle-countdown="countdown" ng-init="countdown = timeout">
+		<md-whiteframe class="md-whiteframe-1dp"
+				layout-padding layout="column" layout-align="center center">
+				<h3>{{globalAttr.timeout}}</h3>
+				<h1>{{countdown}}</h1>
+				<md-progress-linear md-mode="determinate" value="{{(countdown / timeout) * 100}}"></md-progress-linear>
+		</md-whiteframe>
+	</md-content>
+	<md-dialog-actions flex="none" layout="row">
+	      <span flex></span>
+	      <md-button class="md-primary md-button md-default-theme md-ink-ripple" ng-click="ok()">
+	        {{globalAttr.ok}}
+	      </md-button>
+	</md-dialog-actions>
+</section>

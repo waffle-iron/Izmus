@@ -39,6 +39,8 @@
 		src="<c:url value="/views/core/izmus-main-window/js/izmus-main-window.dir.js" />"></script>
 	<script
 		src="<c:url value="/views/core/drag/izmus-drag.js" />"></script>
+	<script
+		src="<c:url value="/views/core/idle/js/angular-idle.min.js" />"></script>
 
 	<!-- Angular Material Library -->
 	<script
@@ -57,7 +59,8 @@
 			cancel: ' <spring:message code="navBar.menu.user.cancel" />',
 			selectAnImage: ' <spring:message code="navBar.menu.user.selectAnImage" />',
 			croppedImage: ' <spring:message code="navBar.menu.user.croppedImage" />',
-			userSettings: ' <spring:message code="navBar.menu.user.settings" />'
+			userSettings: ' <spring:message code="navBar.menu.user.settings" />',
+			timeout: ' <spring:message code="navBar.timeout" />'
 		};
 		globalAttr.user.userAvatar = '${user.userAvatar}';
 		globalAttr.user.userRoles = '${user.userRoles}';

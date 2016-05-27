@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="izmus_UML" nsURI="http://izmus.no-ip.org/izmus_UML"
-    nsPrefix="izmus_UML">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="izmus_UML" nsURI="http://www.izmus.com/izmus_UML" nsPrefix="izmus_UML">
   <eSubpackages name="Users">
     <eClassifiers xsi:type="ecore:EClass" name="SystemEntity" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="entityId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
@@ -166,26 +165,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="groupId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
           iD="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="groupName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-  </eSubpackages>
-  <eSubpackages name="MarketData">
-    <eClassifiers xsi:type="ecore:EClass" name="Instrument">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="instrumentId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
-          iD="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="InstrumentField">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fieldId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
-          iD="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fieldType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dictionaryKey" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MarketDataDictionary">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="entryId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
-          iD="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="locale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

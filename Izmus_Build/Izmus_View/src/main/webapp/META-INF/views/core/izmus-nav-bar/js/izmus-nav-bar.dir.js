@@ -1,4 +1,8 @@
-angular.module('izmusNavBarApp', [ 'ngMaterial', 'ngImgCrop' ]);
+var idle = 5 * 60;
+var timeout = 15 * 60;
+var heartbeat = 3 * 60;
+var popupTimeout = 30;
+angular.module('izmusNavBarApp', [ 'ngMaterial', 'ngImgCrop', 'ngIdle' ]);
 /*----------------------------------------------------------------------------------------------------*/
 /**
  * Directive
@@ -9,8 +13,10 @@ angular
 				'izmusNavBar',
 				[
 						'loadNavbar',
-						'$timeout',
-						function(loadNavbar, $timeout) {
+						'Idle',
+						'timeoutCountdownDialog',
+						'heartbeat',
+						function(loadNavbar, Idle, timeoutCountdownDialog, heartbeat) {
 							return {
 								restrict : 'E',
 								templateUrl : '/views/core/izmus-nav-bar/templates/izmus-nav-bar.html',
@@ -22,9 +28,6 @@ angular
 										'$scope',
 										'$mdSidenav',
 										function($scope, $mdSidenav) {
-											$timeout(function() {
-												window.location = "/";
-										    },(15 * 60 * 1000));
 											$scope.globalAttr = globalAttr;
 											/*----------------------------------------------------------------------------------------------------*/
 											$scope.toggleSidenav = function() {
@@ -60,6 +63,24 @@ angular
 											$scope.isTopBarMinimized = function(){
 												return $scope.topBarMinimized;
 											}
+											/*----------------------------------------------------------------------------------------------------*/
+
+										    $scope.$on('IdleWarn', function(e, countdown) {
+										    	if (countdown == popupTimeout){
+										    		timeoutCountdownDialog();
+										    	}
+										    });
+											/*----------------------------------------------------------------------------------------------------*/
+
+										    $scope.$on('IdleTimeout', function() {
+										        window.location = "/";
+										    });
+
+											/*----------------------------------------------------------------------------------------------------*/
+
+										    $scope.$on('Keepalive', function() {
+										        heartbeat();
+										    });
 										} ],
 								link : function(scope, elem, attr) {
 									scope.progressMode = 'indeterminate';
@@ -193,6 +214,16 @@ angular.module('izmusNavBarApp').config(
 					       .warnPalette('customWarn')
 					       .backgroundPalette('customBackground')
 				} ]);
+angular.module('izmusNavBarApp').config(function(IdleProvider, KeepaliveProvider) {
+    // configure Idle settings
+    IdleProvider.idle(idle); // in seconds
+    IdleProvider.timeout(timeout); // in seconds
+    KeepaliveProvider.interval(heartbeat); // in seconds
+})
+.run(function(Idle){
+    // start watching when the app runs. also starts the Keepalive service by default.
+    Idle.watch();
+});
 /*----------------------------------------------------------------------------------------------------*/
 /**
  * Services
@@ -212,6 +243,28 @@ angular.module('izmusNavBarApp').factory('loadNavbar',
 						}
 					}, function errorCallback(response) {
 						reject();
+					});
+				})
+			}
+		} ]);
+angular.module('izmusNavBarApp').factory('heartbeat',
+		[ '$q', '$http', function($q, $http) {
+			return function(userAvatar) {
+				return $q(function(resolve, reject) {
+					$http({
+						method : 'POST',
+						url : '/api/Heartbeat',
+						headers: {
+					        'Content-Type': "application/x-www-form-urlencoded; charset=UTF-8",
+					        'Upgrade-Insecure-Requests': "1",
+					        'X-CSRF-TOKEN': globalAttr.sessionToken
+					    },
+					}).then(function successCallback(response) {
+						if (!response.data.result){
+							window.location = "/";
+						}
+					}, function errorCallback(response) {
+						window.location = "/";
 					});
 				})
 			}
@@ -299,6 +352,35 @@ angular.module('izmusNavBarApp').factory('avatarDialog',
 				    parent: angular.element(document.body),
 				    targetEvent: ev,
 				    clickOutsideToClose: true,
+				    fullscreen: useFullScreen
+				});
+			}
+		} ]);
+angular.module('izmusNavBarApp').factory('timeoutCountdownDialog',
+		[ '$mdMedia', '$mdDialog',function($mdMedia, $mdDialog) {
+			return function(ev) {
+				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
+			    /*----------------------------------------------------------------------------------------------------*/
+				var timeoutCountdownCtrl = function($scope, $mdDialog) {
+				    $scope.globalAttr = globalAttr;
+				    $scope.timeout = popupTimeout;
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.ok = function() {
+						$mdDialog.cancel();
+					};
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.$on('IdleEnd', function() {
+						$mdDialog.cancel();
+				    });
+				}
+			    /*----------------------------------------------------------------------------------------------------*/
+				$mdDialog.show({
+				    controller: timeoutCountdownCtrl,
+				    templateUrl: '/views/core/timeout-countdown/templates/timeout-countdown.html',
+				    parent: angular.element(document.body),
+				    targetEvent: ev,
+				    clickOutsideToClose: false,
 				    fullscreen: useFullScreen
 				});
 			}

@@ -32,8 +32,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class MailSenderTest {
 	/*----------------------------------------------------------------------------------------------------*/
 	private static final String INJECT_DIVEDER = "!";
-	private static final String TEMP_EMAIL_IMAGES_DIR = "email-images";
-	private static final String SENT_EMAIL_DIR = "sent-emails";
+	private static final String WEB_INF = "../Izmus_View/src/main/webapp/WEB-INF/";
+	private static final String EMAIL_IMAGES_DIR = WEB_INF + "email-images/";
+	private static final String SENT_EMAIL_DIR = WEB_INF + "sent-emails/";
 	@Autowired
 	private JavaMailSenderImpl mailSender;
 	/*----------------------------------------------------------------------------------------------------*/
@@ -41,11 +42,11 @@ public class MailSenderTest {
 	public void testSendEmail(){
 		try {
 			checkEmailDirectories();
-			InputStream inputStream = new FileInputStream("emails/welcome-email.html");
+			InputStream inputStream = new FileInputStream(WEB_INF + "emails/welcome-email-inline.html");
 			String emailString = IOUtils.toString(inputStream);
 			emailString = injectStringsToHTML(emailString);
 			HashMap<String, String> imageMap = getConfirmationEmailImageMap();
-			sendHTMLMail("nevo.lior@gmail.com", "test subject", emailString,
+			sendHTMLMail("nevo.lior@gmail.com", "Test Welcome Email", emailString,
 					imageMap);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -53,7 +54,7 @@ public class MailSenderTest {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	private void checkEmailDirectories() {
-		File emailImageDir = new File(TEMP_EMAIL_IMAGES_DIR);
+		File emailImageDir = new File(EMAIL_IMAGES_DIR);
 		if (!emailImageDir.exists()){
 			emailImageDir.mkdirs();
 		}
@@ -65,14 +66,27 @@ public class MailSenderTest {
 	/*----------------------------------------------------------------------------------------------------*/
 	private String injectStringsToHTML(String emailString) {
 		ArrayList<String> stringList = new ArrayList<String>();
+		stringList.add("emails.izmusWelcomeEmail.izmusWelcomeSubject");
+		stringList.add("emails.izmusWelcomeEmail.welcomeMessage");
+		stringList.add("emails.izmusWelcomeEmail.password");
+		stringList.add("emails.izmusWelcomeEmail.address");
+		stringList.add("emails.izmusWelcomeEmail.unsubscribeMessage");
+		stringList.add("emails.izmusWelcomeEmail.unsubscribe");
+		stringList.add("emails.izmusWelcomeEmail.dir");
+		stringList.add("temp password");
+		stringList.add("emails.izmusWelcomeEmail.izmusWelcomeSubject");
+		stringList.add("emails.izmusWelcomeEmail.logInNow");
+		stringList.add("emails.izmusWelcomeEmail.userNameIs");
+		stringList.add("emails.izmusWelcomeEmail.tempPassIs");
+		stringList.add("user name");
 		return injectStringListToEmail(emailString, stringList);
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 
 	private HashMap<String, String> getConfirmationEmailImageMap() {
 		HashMap<String, String> imageMap = new HashMap<>();
-		imageMap.put("<logo>", "logo/logo.png");
-		imageMap.put("<side-picture>", "welcome-email/startup-grow.jpg");
+		imageMap.put("<logo>", "welcome-email/izmus-logo.png");
+		imageMap.put("<side-picture>", "welcome-email/side-picture.png");
 		return imageMap;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
@@ -87,7 +101,7 @@ public class MailSenderTest {
 			multipart.addBodyPart(messageBodyPart);
 			addImagesToMultipart(multipart, imageMap);
 			mimeMessage.setContent(multipart);
-			mimeMessage.writeTo(new FileOutputStream(SENT_EMAIL_DIR + "/" + new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date()) + ".mht"));
+			mimeMessage.writeTo(new FileOutputStream(SENT_EMAIL_DIR + new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date()) + ".mht"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -100,7 +114,7 @@ public class MailSenderTest {
 			try {
 				BodyPart messageBodyPart = new MimeBodyPart();
 				DataSource fds = null;
-				File file = new File("email-images/" + entry.getValue());
+				File file = new File(EMAIL_IMAGES_DIR + entry.getValue());
 				fds = new FileDataSource(file);
 				messageBodyPart.setDataHandler(new DataHandler(fds));
 				messageBodyPart.addHeader("Content-ID", entry.getKey());
