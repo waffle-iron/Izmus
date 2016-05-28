@@ -3,27 +3,21 @@
 	margin-right: 3px !important;
 	margin-left: 3px !important;
 }
-.logo-text {
-	text-transform: none !important;
-	font-size: 20px !important;
-	font-weight: bolder;
-}
-.logo-button{
+.logo-button-words{
 	width: 156px !important;
 	height: 66px !important;
 }
-.logo-icon{
+.logo-words{
 	width: 140px !important;
 	height: 50px !important;
 }
-.IT{
-	color: #E0E5E8;
-	font-family: sans-serif;
+.logo-button-icon{
+	width: 56px !important;
+	height: 56px !important;
 }
-.Invest{
-	font-style: italic;
-	margin: 4px;
-	font-family: sans-serif;
+.logo-icon{
+	width: 40px !important;
+	height: 40px !important;
 }
 .ng-hide {
   	opacity: 0;
@@ -43,12 +37,15 @@
 	height: 0px;
 }
 </style>
-<title>Izmus</title>
+<title>IZMUS</title>
 <div dir='{{globalAttr.direction}}' ng-cloak layout="column" flex class="background">
 	<md-toolbar flex="none" class="md-whiteframe-10dp">
 		<div class="md-toolbar-tools">
-			<md-button ng-hide="isTopBarMinimized()" class="md-icon-button toolbar-icons logo-button" href='/'>
-				<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/core/logo/izmus-logo.svg"></md-icon>
+			<md-button hide-gt-sm ng-hide="isTopBarMinimized()" class="md-icon-button toolbar-icons logo-button-icon" href='/'>
+				<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/core/logo/logo32x32.svg"></md-icon>
+			</md-button>
+			<md-button hide-sm hide-xs ng-hide="isTopBarMinimized()" class="md-icon-button toolbar-icons logo-button-words" href='/'>
+				<md-icon class="logo-words" aria-label="Logo" md-svg-src="/views-public/core/logo/izmus-logo.svg"></md-icon>
 			</md-button>
 	        <span flex></span>
 	        <div hide-sm hide-xs>

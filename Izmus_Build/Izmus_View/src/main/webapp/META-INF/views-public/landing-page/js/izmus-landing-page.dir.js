@@ -171,20 +171,20 @@ angular.module('izmusLandingPageApp').config(
 				'$mdIconProvider',
 				function($mdThemingProvider, $mdIconProvider) {
 					var customPrimary = {
-					        '50': '#b9cdd8',
-					        '100': '#a9c1cf',
-					        '200': '#98b5c6',
-					        '300': '#88aabd',
-					        '400': '#779eb4',
-					        '500': '#6792AB',
-					        '600': '#5886a0',
-					        '700': '#4f7890',
-					        '800': '#466a7f',
-					        '900': '#3d5d6f',
-					        'A100': '#cad9e1',
-					        'A200': '#dae4eb',
-					        'A400': '#eaf0f4',
-					        'A700': '#344f5e'
+							'50': '#ccd8e3',
+					        '100': '#bccbda',
+					        '200': '#abbfd1',
+					        '300': '#9bb2c8',
+					        '400': '#246f9b',
+					        '500': '#1f6086',
+					        '600': '#1a5171',
+					        '700': '#15425d',
+					        '800': '#113348',
+					        '900': '#0c2533',
+					        'A100': '#63afdb',
+					        'A200': '#78b9e0',
+					        'A400': '#8cc4e5',
+					        'A700': '#07161e'
 					    };
 					    $mdThemingProvider
 					        .definePalette('customPrimary', 

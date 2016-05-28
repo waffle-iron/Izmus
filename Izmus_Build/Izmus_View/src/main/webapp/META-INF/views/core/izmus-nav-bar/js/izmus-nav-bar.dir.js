@@ -1,7 +1,7 @@
 var idle = 5 * 60;
 var timeout = 15 * 60;
-var heartbeat = 3 * 60;
-var popupTimeout = 30;
+var heartbeat = 5 * 60;
+var popupTimeout = 200;
 angular.module('izmusNavBarApp', [ 'ngMaterial', 'ngImgCrop', 'ngIdle' ]);
 /*----------------------------------------------------------------------------------------------------*/
 /**
@@ -129,40 +129,40 @@ angular.module('izmusNavBarApp').config(
 				'$mdIconProvider',
 				function($mdThemingProvider, $mdIconProvider) {
 					var customPrimary = {
-					        '50': '#b9cdd8',
-					        '100': '#a9c1cf',
-					        '200': '#98b5c6',
-					        '300': '#88aabd',
-					        '400': '#779eb4',
-					        '500': '#6792AB',
-					        '600': '#5886a0',
-					        '700': '#4f7890',
-					        '800': '#466a7f',
-					        '900': '#3d5d6f',
-					        'A100': '#cad9e1',
-					        'A200': '#dae4eb',
-					        'A400': '#eaf0f4',
-					        'A700': '#344f5e'
+							'50': '#ccd8e3',
+					        '100': '#bccbda',
+					        '200': '#abbfd1',
+					        '300': '#9bb2c8',
+					        '400': '#246f9b',
+					        '500': '#1f6086',
+					        '600': '#1a5171',
+					        '700': '#15425d',
+					        '800': '#113348',
+					        '900': '#0c2533',
+					        'A100': '#63afdb',
+					        'A200': '#78b9e0',
+					        'A400': '#8cc4e5',
+					        'A700': '#07161e'
 					    };
 					    $mdThemingProvider
 					        .definePalette('customPrimary', 
 					                        customPrimary);
 
 					    var customAccent = {
-					        '50': '#b2cedf',
-					        '100': '#a0c3d7',
-					        '200': '#8eb8d0',
-					        '300': '#7cadc8',
-					        '400': '#6aa1c1',
-					        '500': '#5896B9',
-					        '600': '#498aae',
-					        '700': '#427c9c',
-					        '800': '#3a6d8a',
-					        '900': '#325f78',
-					        'A100': '#c4dae6',
-					        'A200': '#d6e5ee',
-					        'A400': '#e8f0f5',
-					        'A700': '#2b5166'
+					    		'50': '#ccd8e3',
+					            '100': '#bccbda',
+					            '200': '#abbfd1',
+					            '300': '#9bb2c8',
+					            '400': '#8aa6bf',
+					            '500': '#7A99B6',
+					            '600': '#6a8cad',
+					            '700': '#5a80a3',
+					            '800': '#517393',
+					            '900': '#486682',
+					            'A100': '#dde5ec',
+					            'A200': '#edf1f5',
+					            'A400': '#fefefe',
+					            'A700': '#3f5972'
 					    };
 					    $mdThemingProvider
 					        .definePalette('customAccent', 
@@ -377,7 +377,28 @@ angular.module('izmusNavBarApp').factory('timeoutCountdownDialog',
 			    /*----------------------------------------------------------------------------------------------------*/
 				$mdDialog.show({
 				    controller: timeoutCountdownCtrl,
-				    templateUrl: '/views/core/timeout-countdown/templates/timeout-countdown.html',
+				    template: 
+				    '<style>' +
+				    	'h1 {' +
+				    	'color: red;' +
+				    '}' +
+				    '</style>' +
+				    '<section layout="column"  dir="{{globalAttr.direction}}">' +
+				    	'<md-content layout-padding idle-countdown="countdown" ng-init="countdown = timeout">' +
+				    		'<md-whiteframe class="md-whiteframe-1dp"' +
+				    				'layout-padding layout="column" layout-align="center center">' +
+				    				'<h3>{{globalAttr.timeout}}</h3>' +
+				    				'<h1>{{countdown}}</h1>' +
+				    				'<md-progress-linear md-mode="determinate" value="{{(countdown / timeout) * 100}}"></md-progress-linear>' +
+				    		'</md-whiteframe>' +
+				    	'</md-content>' +
+				    	'<md-dialog-actions flex="none" layout="row">' +
+				    	      '<span flex></span>' +
+				    	      '<md-button class="md-primary md-button md-default-theme md-ink-ripple" ng-click="ok()">' +
+				    	        '{{globalAttr.ok}}' +
+				    	      '</md-button>' +
+				    	'</md-dialog-actions>' +
+				    '</section>',
 				    parent: angular.element(document.body),
 				    targetEvent: ev,
 				    clickOutsideToClose: false,
