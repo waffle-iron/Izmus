@@ -47,6 +47,8 @@
 		src="<c:url value="/views-public/landing-page/js/izmus-login-page.dir.js" />"></script>
 	<script
 		src="<c:url value="/views-public/landing-page/js/izmus-registration-page.dir.js" />"></script>
+	<script
+		src="<c:url value="/views-public/landing-page/js/izmus-about-page.dir.js" />"></script>
 	<script type="text/javascript">
 		var globalAttr = {
 			direction: '${dir}',

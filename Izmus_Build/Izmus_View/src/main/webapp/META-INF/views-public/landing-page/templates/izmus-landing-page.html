@@ -41,37 +41,50 @@
 <div dir='{{globalAttr.direction}}' ng-cloak layout="column" flex class="background">
 	<md-toolbar flex="none" class="md-whiteframe-10dp">
 		<div class="md-toolbar-tools">
-			<md-button hide-gt-sm ng-hide="isTopBarMinimized()" class="md-icon-button toolbar-icons logo-button-icon" href='/'>
+			<md-button hide-gt-sm class="md-icon-button toolbar-icons logo-button-icon" href='/'>
 				<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/core/logo/logo32x32.svg"></md-icon>
 			</md-button>
-			<md-button hide-sm hide-xs ng-hide="isTopBarMinimized()" class="md-icon-button toolbar-icons logo-button-words" href='/'>
+			<md-button hide-sm hide-xs class="md-icon-button toolbar-icons logo-button-words" href='/'>
 				<md-icon class="logo-words" aria-label="Logo" md-svg-src="/views-public/core/logo/izmus-logo.svg"></md-icon>
 			</md-button>
 	        <span flex></span>
 	        <div hide-sm hide-xs>
-	        	<md-button class="md-raised" aria-label="Learn More">
+	        	<md-button ng-hide="(screenShowing == 'about')" class="md-raised" aria-label="about" ng-click="moveToPage('about')">
 	          		{{lang.about}}
 	        	</md-button>
 	        	<md-button ng-if="(globalAttr.user == null)" class="md-raised">
 	          		{{lang.contactUs}}
 	        	</md-button>
-	        	<md-button ng-if="(globalAttr.user != null)" class="md-raised">
+	        	<md-button ng-if="(globalAttr.user != null)" class="md-raised" href="/">
 	          		{{lang.homePage}}
 	        	</md-button>
-	        	<md-button ng-hide="(screenShowing.register)" ng-if="(globalAttr.user == null)" class="md-raised" ng-click="register($event)">
+	        	<md-button ng-hide="(screenShowing == 'register')" ng-if="(globalAttr.user == null)" class="md-raised" ng-click="moveToPage('register')">
 	          		{{lang.register}}
 	        	</md-button>
-	        	<md-button ng-hide="(screenShowing.login)" ng-if="(globalAttr.user == null)" class="md-raised" ng-click="login($event)">
+	        	<md-button ng-hide="(screenShowing == 'login')" ng-if="(globalAttr.user == null)" class="md-raised" ng-click="moveToPage('login')">
 	          		{{lang.loginTitle}}
 	        	</md-button>
+	        </div>
+	        <div hide-gt-sm>
+	        	<md-button ng-hide="(screenShowing == 'about')" class="md-icon-button toolbar-icons logo-button-icon" ng-click="moveToPage('about')">
+					<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/about128x128.svg"></md-icon>
+				</md-button>
+				<md-button ng-hide="(screenShowing == 'register')" ng-if="(globalAttr.user == null)"  class="md-icon-button toolbar-icons logo-button-icon" ng-click="moveToPage('register')">
+					<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/register128x128.svg"></md-icon>
+				</md-button>
+				<md-button ng-hide="(screenShowing == 'login')" ng-if="(globalAttr.user == null)" class="md-icon-button toolbar-icons logo-button-icon" ng-click="moveToPage('login')">
+					<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/login128x128.svg"></md-icon>
+				</md-button>
 	        </div>
 		</div>
 	</md-toolbar>
 	<md-content flex layout="column">
 		<section flex="30" class="flex-section"></section>
-			<izmus-login-page flex="none" ng-show="(screenShowing.login)" class="screen">
+			<izmus-about-page flex="none" ng-show="(screenShowing == 'about')" class="screen">
+			</izmus-about-page>
+			<izmus-login-page flex="none" ng-show="(screenShowing == 'login')" class="screen">
 			</izmus-login-page>
-			<izmus-registration-page flex="none" ng-show="(screenShowing.register)" class="screen">
+			<izmus-registration-page flex="none" ng-show="(screenShowing == 'register')" class="screen">
 			</izmus-registration-page>
 		<section flex="30" class="flex-section"></section>
 	</md-content>

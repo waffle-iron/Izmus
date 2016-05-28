@@ -17,32 +17,10 @@ angular
 								controller : ['$scope',function($scope) {
 									$scope.globalAttr = globalAttr;
 									$scope.lang = lang;
-									$scope.screenShowing = {
-											login: true,
-											register: false,
-											about: false,
-											contactUs: false
-									};
+									$scope.screenShowing = "about";
 									/*----------------------------------------------------------------------------------------------------*/
-									$scope.login = function(){
-										$scope.flipTo("login");
-									}
-									/*----------------------------------------------------------------------------------------------------*/
-									$scope.register = function(){
-										$scope.flipTo("register");
-									}
-									/*----------------------------------------------------------------------------------------------------*/
-									$scope.flipTo = function(valueShowing){
-										for (var screen in $scope.screenShowing) {
-										    if ($scope.screenShowing.hasOwnProperty(screen)) {
-										        if (screen == valueShowing){
-										        	$scope.screenShowing[screen] = true;
-										        }
-										        else {
-										        	$scope.screenShowing[screen] = false;
-										        }
-										    }
-										}
+									$scope.moveToPage = function(newPage){
+										$scope.screenShowing = newPage;
 									}
 								}],
 								link : function(scope, elem, attr) {
