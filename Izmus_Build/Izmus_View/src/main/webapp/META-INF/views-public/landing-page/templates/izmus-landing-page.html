@@ -52,15 +52,15 @@
 	        	<md-button ng-hide="(screenShowing == 'about')" class="md-raised" aria-label="about" ng-click="moveToPage('about')">
 	          		{{lang.about}}
 	        	</md-button>
-	        	<md-button ng-if="(globalAttr.user == null)" class="md-raised">
+	        	<md-button ng-if="(globalAttr.user == null)" class="md-raised" ng-click="contactDialog($event)">
 	          		{{lang.contactUs}}
 	        	</md-button>
 	        	<md-button ng-if="(globalAttr.user != null)" class="md-raised" href="/">
 	          		{{lang.homePage}}
 	        	</md-button>
-	        	<md-button ng-hide="(screenShowing == 'register')" ng-if="(globalAttr.user == null)" class="md-raised" ng-click="moveToPage('register')">
+	        	<!-- <md-button ng-hide="(screenShowing == 'register')" ng-if="(globalAttr.user == null)" class="md-raised" ng-click="moveToPage('register')">
 	          		{{lang.register}}
-	        	</md-button>
+	        	</md-button> -->
 	        	<md-button ng-hide="(screenShowing == 'login')" ng-if="(globalAttr.user == null)" class="md-raised" ng-click="moveToPage('login')">
 	          		{{lang.loginTitle}}
 	        	</md-button>
@@ -69,12 +69,15 @@
 	        	<md-button ng-hide="(screenShowing == 'about')" class="md-icon-button toolbar-icons logo-button-icon" ng-click="moveToPage('about')">
 					<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/about128x128.svg"></md-icon>
 				</md-button>
-				<md-button ng-hide="(screenShowing == 'register')" ng-if="(globalAttr.user == null)"  class="md-icon-button toolbar-icons logo-button-icon" ng-click="moveToPage('register')">
+				<!-- <md-button ng-hide="(screenShowing == 'register')" ng-if="(globalAttr.user == null)"  class="md-icon-button toolbar-icons logo-button-icon" ng-click="moveToPage('register')">
 					<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/register128x128.svg"></md-icon>
-				</md-button>
+				</md-button> -->
 				<md-button ng-hide="(screenShowing == 'login')" ng-if="(globalAttr.user == null)" class="md-icon-button toolbar-icons logo-button-icon" ng-click="moveToPage('login')">
 					<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/login128x128.svg"></md-icon>
 				</md-button>
+				<md-button ng-if="(globalAttr.user == null)" class="md-icon-button toolbar-icons logo-button-icon" ng-click="contactDialog($event)">
+                    <md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/contact128x128.svg"></md-icon>
+                </md-button>
 	        </div>
 		</div>
 	</md-toolbar>

@@ -58,8 +58,6 @@
 		var lang = {
 			loginSectionHeader: ' <spring:message code="landingPage.login.loginSectionHeader" />',
 			loginSectionContent: ' <spring:message code="landingPage.login.loginSectionContent" />',
-			aboutSectionHeader: ' <spring:message code="landingPage.about.aboutSectionHeader" />',
-			aboutSectionContent: ' <spring:message code="landingPage.about.aboutSectionContent" />',
 			about: ' <spring:message code="landingPage.about" />',
 			loginTitle: ' <spring:message code="landingPage.login.title" />',
 			contactUs: ' <spring:message code="landingPage.contactUs" />',
@@ -78,7 +76,14 @@
 			userAndEmailExists: ' <spring:message code="landingPage.register.userAndEmailExists" />',
 			enterValidEmailAddress: ' <spring:message code="landingPage.register.enterValidEmailAddress" />',
 			userNameRequired: ' <spring:message code="landingPage.register.userNameRequired" />',
-			emailRequired: ' <spring:message code="landingPage.register.emailRequired" />'
+			emailRequired: ' <spring:message code="landingPage.register.emailRequired" />',
+			aboutSectionHeaderText: ' <spring:message code="landingPage.about.aboutSectionHeaderText" />',
+			izmusSectionHeader: ' <spring:message code="landingPage.about.izmusSectionHeader" />',
+			izmusSectionContent: ' <spring:message code="landingPage.about.izmusSectionContent" />',
+			visionSectionHeader: ' <spring:message code="landingPage.about.visionSectionHeader" />',
+			visionSectionContent: ' <spring:message code="landingPage.about.visionSectionContent" />',
+			missionSectionHeader: ' <spring:message code="landingPage.about.missionSectionHeader" />',
+			missionSectionContent: ' <spring:message code="landingPage.about.missionSectionContent" />',
 		};
 		<% if (request.getUserPrincipal()!= null && !request.getUserPrincipal().equals("")){
 			%>

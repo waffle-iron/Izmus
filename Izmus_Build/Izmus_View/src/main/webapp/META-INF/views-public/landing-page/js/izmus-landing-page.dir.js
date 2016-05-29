@@ -22,6 +22,10 @@ angular
 									$scope.moveToPage = function(newPage){
 										$scope.screenShowing = newPage;
 									}
+									/*----------------------------------------------------------------------------------------------------*/
+									$scope.contactDialog = function(){
+										
+									}
 								}],
 								link : function(scope, elem, attr) {
 
