@@ -83,7 +83,19 @@
 			visionSectionHeader: ' <spring:message code="landingPage.about.visionSectionHeader" />',
 			visionSectionContent: ' <spring:message code="landingPage.about.visionSectionContent" />',
 			missionSectionHeader: ' <spring:message code="landingPage.about.missionSectionHeader" />',
-			missionSectionContent: ' <spring:message code="landingPage.about.missionSectionContent" />',
+			missionSectionContentOne: ' <spring:message code="landingPage.about.missionSectionContentOne" />',
+			missionSectionContentTwo: ' <spring:message code="landingPage.about.missionSectionContentTwo" />',
+			missionSectionContentThree: ' <spring:message code="landingPage.about.missionSectionContentThree" />',
+			aboutSectionTwoHeaderText: ' <spring:message code="landingPage.about.aboutSectionTwoHeaderText" />',
+			aboutSectionTwoHeaderContent: ' <spring:message code="landingPage.about.aboutSectionTwoHeaderContent" />',
+			singaporeLocation: ' <spring:message code="landingPage.about.singaporeLocation" />',
+			singaporeLocationContent: ' <spring:message code="landingPage.about.singaporeLocationContent" />',
+			singaporeBusiness: ' <spring:message code="landingPage.about.singaporeBusiness" />',
+			singaporeBusinessContent: ' <spring:message code="landingPage.about.singaporeBusinessContent" />',
+			singaporePopulation: ' <spring:message code="landingPage.about.singaporePopulation" />',
+			singaporePopulationContent: ' <spring:message code="landingPage.about.singaporePopulationContent" />',
+			smartNation: ' <spring:message code="landingPage.about.smartNation" />',
+			smartNationContent: ' <spring:message code="landingPage.about.smartNationContent" />',
 		};
 		<% if (request.getUserPrincipal()!= null && !request.getUserPrincipal().equals("")){
 			%>

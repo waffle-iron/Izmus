@@ -1,44 +1,41 @@
 <style>
-.login-section-text {
-	max-width: 400px;
-}
-.login-section-text-header{
-	text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-    font-size: 3em;
-    font-weight: 700;
-	color: white;
-	text-align: center;
-}
-.login-section-text-content{
-	text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-    font-family: monospace;
-    font-size: xx-large;
-    font-weight: 500;
-	color: white;
-	text-align: center;
-}
-.login-section {
-	background-image: url('/views-public/landing-page/images/login-background.jpg');
-  	background-position: center;
-   	background-size: cover;
-   	background-repeat: no-repeat;
-}
-.login {
-	background-color: white;
-	opacity: 0.9;
-}
-.user-name-password{
-	margin-left: 20px;
-	margin-right: 20px;
-}
+	.login-logo-words{
+        width: 280px !important;
+        height: 80px !important;
+    }
+	.login-section-text {
+		max-width: 400px;
+	}
+	.login-section-text-content {
+		text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+		font-family: monospace;
+		font-size: large;
+		font-weight: 300;
+		color: white;
+		text-align: center;
+	}
+	.login-section {
+		background-image: url('/views-public/landing-page/images/login-background.jpg');
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+	.login {
+		background-color: white;
+		opacity: 0.9;
+	}
+	.user-name-password {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
 </style>
 <md-whiteframe flex="none" class="login-section md-whiteframe-10dp" layout="row" layout-xs="column" layout-padding layout-align="space-around center">
 	<div class="login-section-text" layout="column" layout-align="center center">
-		<div class="login-section-text-header" layout="row">
-			<p>{{lang.loginSectionHeader}}</p>
-		</div>
+		<md-icon class="login-logo-words" aria-label="Logo" md-svg-src="/views-public/core/logo/izmus-logo.svg"></md-icon>
 		<div class="login-section-text-content" layout="row">
-			<p>{{lang.loginSectionContent}}</p>
+			<p>
+				{{lang.loginSectionContent}}
+			</p>
 		</div>
 	</div>
 	<div layout="row" flex="none" ng-if="(globalAttr.user == null)">
@@ -48,15 +45,17 @@
 			</div>
 			<div layout="column" layout-align="center center" class="user-name-password">
 				<md-input-container>
-					<label>{{lang.userName}}</label> 
-					<input required name="userName" ng-model="$parent.userName"> 
+					<label>{{lang.userName}}</label>
+					<input required name="userName" ng-model="$parent.userName">
 				</md-input-container>
 				<md-input-container>
-					<label>{{lang.password}}</label> 
+					<label>{{lang.password}}</label>
 					<input type="password" required name="password"	ng-model="$parent.password">
-				</md-input-container> 
+				</md-input-container>
 			</div>
-			<md-button class="md-raised" ng-click="login()">{{lang.go}}</md-button>
+			<md-button class="md-raised" ng-click="login()">
+				{{lang.go}}
+			</md-button>
 		</md-whiteframe>
 	</div>
 </md-whiteframe>
