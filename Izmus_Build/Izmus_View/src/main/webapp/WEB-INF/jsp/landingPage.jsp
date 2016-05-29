@@ -56,8 +56,10 @@
 			csrfParameterName: '${_csrf.parameterName}'
 		};
 		var lang = {
-			loginSectionHeader: ' <spring:message code="landingPage.loginSectionHeader" />',
-			loginSectionContent: ' <spring:message code="landingPage.loginSectionContent" />',
+			loginSectionHeader: ' <spring:message code="landingPage.login.loginSectionHeader" />',
+			loginSectionContent: ' <spring:message code="landingPage.login.loginSectionContent" />',
+			aboutSectionHeader: ' <spring:message code="landingPage.about.aboutSectionHeader" />',
+			aboutSectionContent: ' <spring:message code="landingPage.about.aboutSectionContent" />',
 			about: ' <spring:message code="landingPage.about" />',
 			loginTitle: ' <spring:message code="landingPage.login.title" />',
 			contactUs: ' <spring:message code="landingPage.contactUs" />',
