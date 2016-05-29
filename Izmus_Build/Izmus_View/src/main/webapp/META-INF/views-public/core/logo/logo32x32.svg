@@ -29,7 +29,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="15.839192"
-     inkscape:cx="10.305165"
+     inkscape:cx="8.6952344"
      inkscape:cy="20.414858"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -38,9 +38,9 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1868"
+     inkscape:window-width="1870"
      inkscape:window-height="1059"
-     inkscape:window-x="52"
+     inkscape:window-x="50"
      inkscape:window-y="21"
      inkscape:window-maximized="1" />
   <metadata
@@ -60,16 +60,16 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-46.8326,-76.360261)">
-    <ellipse
-       style="fill:#1f6086;fill-opacity:1;stroke:#ffffff;stroke-width:0.3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+    <circle
+       style="fill:#1f6086;fill-opacity:1;stroke:#ffffff;stroke-width:0.97453743;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path8279"
-       ry="15.878634"
-       rx="15.957554"
        cy="92.326096"
-       cx="62.877354" />
+       cx="62.877354"
+       r="15.512732" />
     <g
        id="g8265"
-       style="stroke:#000000;stroke-width:0.175;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
+       style="stroke:#000000;stroke-width:0.175;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       transform="matrix(0.95,0,0,0.95,3.1491816,4.6466481)">
       <path
          transform="translate(46.856965,76.362212)"
          inkscape:connector-curvature="0"
