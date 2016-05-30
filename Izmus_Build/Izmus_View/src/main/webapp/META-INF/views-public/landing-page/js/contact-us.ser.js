@@ -1,8 +1,6 @@
 angular.module('izmusLandingPageApp').factory('contactUsDialog',
 		[ '$mdMedia', '$mdDialog',function($mdMedia, $mdDialog) {
 			return function(ev) {
-				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
 			    /*----------------------------------------------------------------------------------------------------*/
 				var contactUsCtrl = function($scope, $mdDialog) {
 				    $scope.globalAttr = globalAttr;
@@ -23,7 +21,7 @@ angular.module('izmusLandingPageApp').factory('contactUsDialog',
 				    parent: angular.element(document.body),
 				    targetEvent: ev,
 				    clickOutsideToClose: true,
-				    fullscreen: useFullScreen
+				    fullscreen: false
 				});
 			}
 		} ]);

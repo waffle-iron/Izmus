@@ -20,6 +20,9 @@
 <link
 	href="<c:url value="https://fonts.googleapis.com/icon?family=Material+Icons" />"
 	rel="stylesheet" />
+<link
+	href="<c:url value="/views-public/core/leaflet/css/leaflet.css" />"
+	rel="stylesheet" />
 </head>
 <body layout="colum">
 	<izmus-landing-page 
@@ -51,6 +54,10 @@
 		src="<c:url value="/views-public/landing-page/js/izmus-about-page.dir.js" />"></script>
 	<script
 		src="<c:url value="/views-public/landing-page/js/contact-us.ser.js" />"></script>
+	<script
+		src="<c:url value="/views-public/core/leaflet/leaflet.js" />"></script>
+	<script
+		src="<c:url value="/views-public/landing-page/js/location-map.dir.js" />"></script>
 	<script type="text/javascript">
 		var globalAttr = {
 			direction: '${dir}',
@@ -99,6 +106,11 @@
 			singaporePopulationContent: ' <spring:message code="landingPage.about.singaporePopulationContent" />',
 			smartNation: ' <spring:message code="landingPage.about.smartNation" />',
 			smartNationContent: ' <spring:message code="landingPage.about.smartNationContent" />',
+			name: ' <spring:message code="landingPage.name" />',
+			nameRequired: ' <spring:message code="landingPage.nameRequired" />',
+			subject: ' <spring:message code="landingPage.subject" />',
+			message: ' <spring:message code="landingPage.message" />',
+			address: ' <spring:message code="landingPage.address" />'
 		};
 		<% if (request.getUserPrincipal()!= null && !request.getUserPrincipal().equals("")){
 			%>

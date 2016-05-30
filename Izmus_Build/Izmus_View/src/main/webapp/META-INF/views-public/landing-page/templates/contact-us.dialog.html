@@ -2,13 +2,84 @@
 	.send {
 		color: white !important;
 	}
+	.mail-section {
+		width: 320px;
+	}
+	.location-section {
+		width: 320px;
+	}
+	.message-content {
+		height: 240px !important;
+	}
+	.location-text{
+		font-family: monospace;
+		font-size: medium;
+		font-weight: 600;
+		color: #1F6086;
+		text-align: center;
+	}
+	.mail-input{
+		margin-top: 2px !important;
+		margin-bottom: 2px !important;
+	}
 </style>
 <section layout="column"  dir="{{globalAttr.direction}}">
-	<md-content layout-padding>
-		<md-whiteframe class="md-whiteframe-1dp"
-		layout-padding layout="column">
-			test
-		</md-whiteframe>
+	<md-content layout-padding layout="column" layout-align="center center">
+		<section
+		layout="row"
+		layout-xs="column"
+		layout-sm="column"
+		layout-padding
+		layout-align="space-around center">
+			<section layout="column" flex="none" class="location-section">
+				<div class="location-text" flex="none" layout="row">
+					<p>
+						{{lang.address}}
+					</p>
+				</div>
+				<location-map flex="none"></location-map>
+				<div class="location-text" flex="none" layout="row">
+					<p>
+						Joy@izmus.com
+					</p>
+				</div>
+			</section>
+			<section layout="column" class="mail-section">
+				<form name="contactUsForm" layout="column">
+					<md-input-container flex="none" class="mail-input">
+						<label>{{lang.name}}</label>
+						<input required name="name" ng-model="$parent.name">
+						<div ng-messages="contactUsForm.name.$error" multiple md-auto-hide="false">
+							<div ng-message="required">
+								{{lang.nameRequired}}
+							</div>
+						</div>
+					</md-input-container>
+					<md-input-container flex="none" class="mail-input">
+						<label>{{lang.email}}</label>
+						<input required name="email" type="email" ng-model="$parent.email">
+						<div ng-messages="contactUsForm.email.$error" multiple md-auto-hide="false">
+							<div ng-message="required">
+								{{lang.emailRequired}}
+							</div>
+							<div ng-message="email">
+								{{lang.enterValidEmailAddress}}
+							</div>
+						</div>
+					</md-input-container>
+					<md-input-container flex="none" class="mail-input">
+						<label>{{lang.subject}}</label>
+						<input name="subject" type="email" ng-model="$parent.subject">
+					</md-input-container>
+					<md-content flex="none" class="message-content md-whiteframe-1dp" layout-padding layout="column">
+						<md-input-container flex="none">
+							<label>{{lang.message}}</label>
+							<textarea ng-model="message"></textarea>
+						</md-input-container>
+					</md-content>
+				</form>
+			</section>
+		</section>
 	</md-content>
 	<md-dialog-actions flex="none" layout="row">
 		<md-button ng-click="cancel()">
