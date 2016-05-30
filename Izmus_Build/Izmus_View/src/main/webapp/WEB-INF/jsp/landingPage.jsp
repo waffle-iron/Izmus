@@ -49,6 +49,8 @@
 		src="<c:url value="/views-public/landing-page/js/izmus-registration-page.dir.js" />"></script>
 	<script
 		src="<c:url value="/views-public/landing-page/js/izmus-about-page.dir.js" />"></script>
+	<script
+		src="<c:url value="/views-public/landing-page/js/contact-us.ser.js" />"></script>
 	<script type="text/javascript">
 		var globalAttr = {
 			direction: '${dir}',
@@ -67,6 +69,7 @@
 			password: ' <spring:message code="landingPage.login.password" />',
 			go: ' <spring:message code="landingPage.login.go" />',
 			ok: ' <spring:message code="navBar.menu.user.ok" />',
+			send: ' <spring:message code="landingPage.send" />',
 			cancel: ' <spring:message code="navBar.menu.user.cancel" />',
 			registration: ' <spring:message code="landingPage.register" />',
 			email: ' <spring:message code="landingPage.register.eMail" />',

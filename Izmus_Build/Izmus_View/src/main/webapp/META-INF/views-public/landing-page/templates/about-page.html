@@ -6,7 +6,7 @@
 		width: 280px !important;
 		height: 80px !important;
 	}
-	.about-singapore-icon{
+	.about-singapore-icon {
 		width: 100px !important;
 		height: 100px !important;
 	}
@@ -40,21 +40,46 @@
 		text-align: center;
 	}
 	.about-section {
-		background-image: url('/views-public/landing-page/images/about-background.jpg');
+		transition: background ease-in-out 1s;
 		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat;
 	}
 	.about-section-two {
-		background-image: url('/views-public/landing-page/images/about-background-2.jpg');
+		transition: background ease-in-out 1s;
 		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat;
 	}
+	.bottom-bar {
+		background-color: #2F2E2E;
+		height: 103px;
+	}
+	.bottom-bar-text {
+		color: #FFFFFF;
+		font-size: small;
+	}
+	.bottom-bar-icon {
+		width: 32px !important;
+		height: 32px !important;
+	}
+	.bottom-bar-button {
+		width: 48px !important;
+		height: 48px !important;
+	}
+	.section-text-whiteframe{
+		background-color: rgba(31, 96, 134, 0.3);
+		border-radius: 1em;
+		margin: 5px;
+	}
 </style>
+<section style="height: 8px;"></section>
 <section layout="column">
-	<section flex="5" class="flex-section"></section>
-	<md-whiteframe flex="none" class="about-section md-whiteframe-10dp" layout="column">
+	<md-whiteframe
+	flex="none"
+	class="about-section md-whiteframe-10dp"
+	ng-style="{'background-image': getSectionBackgroundImage('one')}"
+	layout="column">
 		<section layout="column" layout-padding layout-align="space-around center">
 			<md-icon class="about-logo-words" aria-label="Logo" md-svg-src="/views-public/core/logo/izmus-logo.svg"></md-icon>
 			<div class="about-section-header-text" layout="row">
@@ -63,59 +88,74 @@
 				</p>
 			</div>
 		</section>
-		<section layout="row" layout-xs="column" layout-sm="column" layout-padding layout-align="space-around center">
-			<div class="about-section-text" layout="column" layout-align="center center">
-				<div class="about-section-text-header" layout="row">
-					<p>
-						{{lang.izmusSectionHeader}}
-					</p>
+		<section 
+			layout="row" 
+			layout-xs="column" 
+			layout-sm="column" 
+			layout-padding 
+			layout-align="space-around center">
+			<md-whiteframe class="md-whiteframe-1dp section-text-whiteframe">
+				<div class="about-section-text" layout="column" layout-align="center center">
+					<div class="about-section-text-header" layout="row">
+						<p>
+							{{lang.izmusSectionHeader}}
+						</p>
+					</div>
+					<div class="about-section-text-content" layout="row">
+						<p>
+							{{lang.izmusSectionContent}}
+						</p>
+					</div>
 				</div>
-				<div class="about-section-text-content" layout="row">
-					<p>
-						{{lang.izmusSectionContent}}
-					</p>
+			</md-whiteframe>
+			<md-whiteframe class="md-whiteframe-1dp section-text-whiteframe">
+				<div class="about-section-text" layout="column" layout-align="center center">
+					<div class="about-section-text-header" layout="row">
+						<p>
+							{{lang.missionSectionHeader}}
+						</p>
+					</div>
+					<div class="about-section-text-content" layout="row">
+						<p>
+							{{lang.missionSectionContentOne}}
+						</p>
+					</div>
+					<div class="about-section-text-content" layout="row">
+						<p>
+							{{lang.missionSectionContentTwo}}
+						</p>
+					</div>
+					<div class="about-section-text-content" layout="row">
+						<p>
+							{{lang.missionSectionContentThree}}
+						</p>
+					</div>
 				</div>
-			</div>
-			<div class="about-section-text" layout="column" layout-align="center center">
-				<div class="about-section-text-header" layout="row">
-					<p>
-						{{lang.missionSectionHeader}}
-					</p>
+			</md-whiteframe>
+			<md-whiteframe class="md-whiteframe-1dp section-text-whiteframe">
+				<div class="about-section-text" layout="column" layout-align="center center">
+					<div class="about-section-text-header" layout="row">
+						<p>
+							{{lang.visionSectionHeader}}
+						</p>
+					</div>
+					<div class="about-section-text-content" layout="row">
+						<p>
+							{{lang.visionSectionContent}}
+						</p>
+					</div>
 				</div>
-				<div class="about-section-text-content" layout="row">
-					<p>
-						{{lang.missionSectionContentOne}}
-					</p>
-				</div>
-				<div class="about-section-text-content" layout="row">
-					<p>
-						{{lang.missionSectionContentTwo}}
-					</p>
-				</div>
-				<div class="about-section-text-content" layout="row">
-					<p>
-						{{lang.missionSectionContentThree}}
-					</p>
-				</div>
-			</div>
-			<div class="about-section-text" layout="column" layout-align="center center">
-				<div class="about-section-text-header" layout="row">
-					<p>
-						{{lang.visionSectionHeader}}
-					</p>
-				</div>
-				<div class="about-section-text-content" layout="row">
-					<p>
-						{{lang.visionSectionContent}}
-					</p>
-				</div>
-			</div>
+			</md-whiteframe>
 		</section>
 	</md-whiteframe>
-	<section flex="5" class="flex-section"></section>
 </section>
+<section style="height: 8px;"></section>
 <section layout="column">
-	<md-whiteframe flex="none" class="about-section-two md-whiteframe-10dp" layout="column">
+	<md-whiteframe
+	flex="none"
+	class="about-section-two md-whiteframe-10dp"
+	ng-style="{'background-image': getSectionBackgroundImage('two')}"
+	layout="column">
 		<section layout="column" layout-align="center center">
 			<div class="about-section-two-header-text" layout="row">
 				<p>
@@ -128,14 +168,14 @@
 				</p>
 			</div>
 		</section>
-		<section 
-			layout="row" 
-			layout-xs="column" 
-			layout-sm="column" 
-			layout-padding 
-			layout-align="center start" 
-			layout-align-sm="center center"
-			layout-align-xs="center center">
+		<section
+		layout="row"
+		layout-xs="column"
+		layout-sm="column"
+		layout-padding
+		layout-align="center start"
+		layout-align-sm="center center"
+		layout-align-xs="center center">
 			<div class="about-section-text" layout="column" layout-align="start center">
 				<md-icon class="about-singapore-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/compass.svg"></md-icon>
 				<div class="about-section-text-header" layout="row">
@@ -190,7 +230,16 @@
 			</div>
 		</section>
 	</md-whiteframe>
-	<section flex="5" class="flex-section"></section>
 </section>
-
+<section style="height: 8px;"></section>
+<section class="bottom-bar" layout="column" layout-padding layout-align="center center">
+	<md-button class="md-icon-button bottom-bar-button" href='https://www.facebook.com/IZMUS-580954152052097/?fref=ts'>
+		<md-icon
+		class="bottom-bar-icon"
+		md-svg-src="/views-public/landing-page/images/about/facebook-icon.svg"></md-icon>
+	</md-button>
+	<div class="bottom-bar-text">
+		© 2016 Created by IZMUS.
+	</div>
+</section>
 

@@ -1,0 +1,22 @@
+<style>
+	.send {
+		color: white !important;
+	}
+</style>
+<section layout="column"  dir="{{globalAttr.direction}}">
+	<md-content layout-padding>
+		<md-whiteframe class="md-whiteframe-1dp"
+		layout-padding layout="column">
+			test
+		</md-whiteframe>
+	</md-content>
+	<md-dialog-actions flex="none" layout="row">
+		<md-button ng-click="cancel()">
+			{{lang.cancel}}
+		</md-button>
+		<span flex></span>
+		<md-button class="md-raised md-primary send" ng-click="send()">
+			{{lang.send}}
+		</md-button>
+	</md-dialog-actions>
+</section>

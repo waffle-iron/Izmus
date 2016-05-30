@@ -7,7 +7,7 @@ angular
 		.module('izmusLandingPageApp')
 		.directive(
 				'izmusLandingPage',
-				[function() {
+				['contactUsDialog', function(contactUsDialog) {
 							return {
 								restrict : 'E',
 								templateUrl : '/views-public/landing-page/templates/izmus-landing-page.html',
@@ -23,8 +23,8 @@ angular
 										$scope.screenShowing = newPage;
 									}
 									/*----------------------------------------------------------------------------------------------------*/
-									$scope.contactDialog = function(){
-										
+									$scope.contactDialog = function(ev){
+										contactUsDialog(ev);
 									}
 								}],
 								link : function(scope, elem, attr) {
