@@ -22,13 +22,12 @@ angular
 									$scope.moveToPage = function(newPage){
 										$scope.screenShowing = newPage;
 									}
-									/*----------------------------------------------------------------------------------------------------*/
-									$scope.contactDialog = function(ev){
-										contactUsDialog(ev);
-									}
 								}],
 								link : function(scope, elem, attr) {
-
+									/*----------------------------------------------------------------------------------------------------*/
+									scope.contactDialog = function(ev){
+										contactUsDialog(ev, elem);
+									}
 								}
 							}
 						} ]);

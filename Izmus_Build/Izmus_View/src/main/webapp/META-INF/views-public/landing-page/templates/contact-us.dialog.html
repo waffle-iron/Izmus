@@ -49,7 +49,7 @@
 				<form name="contactUsForm" layout="column">
 					<md-input-container flex="none" class="mail-input">
 						<label>{{lang.name}}</label>
-						<input required name="name" ng-model="$parent.name">
+						<input required name="name" ng-model="name">
 						<div ng-messages="contactUsForm.name.$error" multiple md-auto-hide="false">
 							<div ng-message="required">
 								{{lang.nameRequired}}
@@ -58,7 +58,7 @@
 					</md-input-container>
 					<md-input-container flex="none" class="mail-input">
 						<label>{{lang.email}}</label>
-						<input required name="email" type="email" ng-model="$parent.email">
+						<input required name="email" type="email" ng-model="email">
 						<div ng-messages="contactUsForm.email.$error" multiple md-auto-hide="false">
 							<div ng-message="required">
 								{{lang.emailRequired}}
@@ -70,7 +70,7 @@
 					</md-input-container>
 					<md-input-container flex="none" class="mail-input">
 						<label>{{lang.subject}}</label>
-						<input name="subject" type="email" ng-model="$parent.subject">
+						<input name="subject" type="email" ng-model="subject">
 					</md-input-container>
 					<md-content flex="none" class="message-content md-whiteframe-1dp" layout-padding layout="column">
 						<md-input-container flex="none">
@@ -87,7 +87,7 @@
 			{{lang.cancel}}
 		</md-button>
 		<span flex></span>
-		<md-button class="md-raised md-primary send" ng-click="send()">
+		<md-button class="md-raised md-primary send" ng-click="send($event)">
 			{{lang.send}}
 		</md-button>
 	</md-dialog-actions>

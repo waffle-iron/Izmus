@@ -22,16 +22,21 @@ angular
 											$scope.lang = lang;
 											/*----------------------------------------------------------------------------------------------------*/
 											$scope.login = function() {
-												checkUserCredentials($scope.userName,
-														$scope.password).then(function(response){
-															if (response == false){
-																$scope.showLoginFailure($scope.lang.badCredentials);
-															}
-															else {
-																izmusLogin($scope.userName,
-																		$scope.password);
-															}
-														});
+												if (!$scope.userName || !$scope.password){
+													$scope.showLoginFailure($scope.lang.badCredentials);
+												}
+												else {
+													checkUserCredentials($scope.userName,
+															$scope.password).then(function(response){
+																if (response == false){
+																	$scope.showLoginFailure($scope.lang.badCredentials);
+																}
+																else {
+																	izmusLogin($scope.userName,
+																			$scope.password);
+																}
+															});
+												}
 											}
 										} ],
 								link : function(scope, elem, attr) {

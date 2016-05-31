@@ -110,7 +110,8 @@
 			nameRequired: ' <spring:message code="landingPage.nameRequired" />',
 			subject: ' <spring:message code="landingPage.subject" />',
 			message: ' <spring:message code="landingPage.message" />',
-			address: ' <spring:message code="landingPage.address" />'
+			address: ' <spring:message code="landingPage.address" />',
+			badContactInfo: ' <spring:message code="landingPage.badContactInfo" />'
 		};
 		<% if (request.getUserPrincipal()!= null && !request.getUserPrincipal().equals("")){
 			%>
