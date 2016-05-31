@@ -1,5 +1,5 @@
 angular.module('izmusLandingPageApp').factory('contactUsDialog',
-		[ '$mdMedia', '$mdDialog', 'sendContactUs','$mdToast', function($mdMedia, $mdDialog, sendContactUs, $mdToast) {
+		[ '$mdMedia', '$mdDialog', 'sendContactUs','$mdToast','$timeout', function($mdMedia, $mdDialog, sendContactUs, $mdToast, $timeout) {
 			return function(ev, element) {
 			    /*----------------------------------------------------------------------------------------------------*/
 				var contactUsCtrl = function($scope, $mdDialog) {
@@ -24,12 +24,24 @@ angular.module('izmusLandingPageApp').factory('contactUsDialog',
 						      controller: 'contactUsFailCtrl',
 						      templateUrl: '/views-public/landing-page/templates/contact-us-fail.toast.html',
 						      parent : angular.element(element),
-						      hideDelay: 3000,
+						      hideDelay: 2000,
 						      position: 'top right',
 						      locals: {
 						    	  message: $scope.lang.badContactInfo
 						      }
 						    });
+						$timeout(function(){
+							$mdToast.show({
+							      controller: 'contactUsFailCtrl',
+							      templateUrl: '/views-public/landing-page/templates/contact-us-fail.toast.html',
+							      parent : angular.element(element),
+							      hideDelay: 2000,
+							      position: 'top right',
+							      locals: {
+							    	  message: $scope.lang.messageNotSent
+							      }
+							    });
+						}, 2000);
 					}
 				}
 			    /*----------------------------------------------------------------------------------------------------*/
