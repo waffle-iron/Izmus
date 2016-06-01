@@ -59,6 +59,9 @@ public class Startup implements Serializable, Comparable<Startup> {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.EAGER, orphanRemoval = true)
 	@Fetch(value = FetchMode.JOIN)
 	private Set<StartupScoreCard> scoreCards;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.EAGER, orphanRemoval = true)
+	@Fetch(value = FetchMode.JOIN)
+	private Set<StartupAdditionalDocument> additionalDocuments;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "GROUP_ID", nullable = true)
 	@Fetch(value = FetchMode.JOIN)
@@ -239,5 +242,12 @@ public class Startup implements Serializable, Comparable<Startup> {
 	public void setStartupGroup(StartupGroup startupGroup) {
 		this.startupGroup = startupGroup;
 	}
-	
+	/*----------------------------------------------------------------------------------------------------*/
+	public Set<StartupAdditionalDocument> getAdditionalDocuments() {
+		return additionalDocuments;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public void setAdditionalDocuments(Set<StartupAdditionalDocument> additionalDocuments) {
+		this.additionalDocuments = additionalDocuments;
+	}
 }

@@ -1,10 +1,7 @@
 package com.izmus.data.domain.startups;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,49 +10,44 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="STARTUP_SCORE_CARDS")
-public class StartupScoreCard implements Serializable, Comparable<StartupScoreCard> {
+@Table(name="STARTUP_ADDITIONAL_DOCUMENTS")
+public class StartupAdditionalDocument implements Serializable, Comparable<StartupAdditionalDocument> {
 	/*----------------------------------------------------------------------------------------------------*/
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "SCORE_CARD_ID")
-	private Integer scoreCardId;
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "SCORE_CARD_DATE", nullable=false)
-	private Date scoreCardDate;
-	@Column(name = "FINAL_SCORE")
-	private Integer finalScore;
+	@Column(name = "DOCUMENT_ID")
+	private Integer documentId;
+	@Column(name = "DOCUMENT_NAME")
+	private String documentName;
+	@Column(name = "DOCUMENT")
+	@JsonIgnore
+	private byte[] document;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "STARTUP_ID", nullable = false)
 	@Fetch(value = FetchMode.JOIN)
 	@JsonBackReference
 	private Startup startup;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "scoreCard", fetch = FetchType.EAGER, orphanRemoval = true)
-	@Fetch(value = FetchMode.JOIN)
-	private Set<Measurement> measurements;
 	/*----------------------------------------------------------------------------------------------------*/
 	public boolean equals(Object obj) {
-		if ((obj != null) && ((obj instanceof StartupScoreCard))) {
+		if ((obj != null) && ((obj instanceof StartupAdditionalDocument))) {
 			return obj.toString().equals(this.toString());
 		}
 		return false;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@Override
-	public int compareTo(StartupScoreCard otherScoreCard) {
-		return toString().compareTo(otherScoreCard.toString());
+	public int compareTo(StartupAdditionalDocument otherDocument) {
+		return toString().compareTo(otherDocument.toString());
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	public int hashCode() {
@@ -64,28 +56,38 @@ public class StartupScoreCard implements Serializable, Comparable<StartupScoreCa
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	public String toString() {
-		return "{\"scoreCardId\": " + getScoreCardId() + ", "
-				+ "\"scoreCardDate: \"" + getScoreCardDate() + "\"}";
+		return "{\"documentId\": " + getDocumentId() + ", "
+				+ "\"documentName: \"" + getDocumentName() + "\"}";
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	/*----------------------------------------------------------------------------------------------------*/
-	public Integer getScoreCardId() {
-		return scoreCardId;
-	}
-	/*----------------------------------------------------------------------------------------------------*/
-
-	public void setScoreCardId(Integer scoreCardId) {
-		this.scoreCardId = scoreCardId;
+	public Integer getDocumentId() {
+		return documentId;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 
-	public Date getScoreCardDate() {
-		return scoreCardDate;
+	public void setDocumentId(Integer documentId) {
+		this.documentId = documentId;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 
-	public void setScoreCardDate(Date scoreCardDate) {
-		this.scoreCardDate = scoreCardDate;
+	public String getDocumentName() {
+		return documentName;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+
+	public void setDocumentName(String documentName) {
+		this.documentName = documentName;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+
+	public byte[] getDocument() {
+		return document;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+
+	public void setDocument(byte[] document) {
+		this.document = document;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 
@@ -96,26 +98,6 @@ public class StartupScoreCard implements Serializable, Comparable<StartupScoreCa
 
 	public void setStartup(Startup startup) {
 		this.startup = startup;
-	}
-	/*----------------------------------------------------------------------------------------------------*/
-
-	public Set<Measurement> getMeasurements() {
-		return measurements;
-	}
-	/*----------------------------------------------------------------------------------------------------*/
-
-	public void setMeasurements(Set<Measurement> measurements) {
-		this.measurements = measurements;
-	}
-	/*----------------------------------------------------------------------------------------------------*/
-
-	public Integer getFinalScore() {
-		return finalScore;
-	}
-	/*----------------------------------------------------------------------------------------------------*/
-
-	public void setFinalScore(Integer finalScore) {
-		this.finalScore = finalScore;
 	}
 	
 }

@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.izmus.data.domain.startups.Measurement;
@@ -240,7 +241,12 @@ public class StartupAssessment {
 		saveDataThread.setName("STARTUP_SAVE_DATA_THREAD");
 		saveDataThread.start();
 	}
-
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/UploadAdditionalDocument", method = RequestMethod.POST)
+	@PreAuthorize("hasPermission('Startup Assessment+Edit', '')")
+	public void uploadAdditionalDocument(@RequestParam("file") MultipartFile file, @RequestParam("startupId") String startupId) {
+		int i = 1 + 2;
+	}
 	/*----------------------------------------------------------------------------------------------------*/
 	private void setContacts(Startup changedStartup, Startup startupObject) {
 		if (startupObject.getContacts() != null) {

@@ -257,6 +257,11 @@ md-tab-item>span{
 				selected-startup='selectedStartup'>
 			</izmus-startup-contacts>
 		</md-tab>
+		<md-tab label="{{lang.additionalDocuments}}">
+			<izmus-startup-additional-documents
+				selected-startup='selectedStartup'>
+			</izmus-startup-additional-documents>
+		</md-tab>
 		<md-tab ng-repeat="scoreCard in selectedStartup.scoreCards">
 			<md-tab-label>
     			<div flex layout-align="center center" layout="column">

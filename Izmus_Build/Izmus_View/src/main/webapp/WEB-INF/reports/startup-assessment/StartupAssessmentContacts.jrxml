@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.2.1.final using JasperReports Library version 6.2.1  -->
-<!-- 2016-05-12T22:09:50 -->
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-06-01T18:08:04 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StartupAssessmentContacts" pageWidth="555" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="76f04948-70e9-48c1-b531-11de538e39c0">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -31,22 +31,22 @@
 	</field>
 	<field name="thirdContactAvatar" class="java.awt.Image"/>
 	<detail>
-		<band height="70" splitType="Stretch">
+		<band height="60" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<frame>
-				<reportElement x="0" y="0" width="185" height="70" uuid="909c6b59-020e-4a13-b8a5-a5c1837e25b4">
+				<reportElement x="0" y="0" width="185" height="60" uuid="909c6b59-020e-4a13-b8a5-a5c1837e25b4">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} != null]]></printWhenExpression>
 				</reportElement>
 				<image>
-					<reportElement x="77" y="4" width="30" height="30" uuid="ed96d24a-718d-420d-8952-a8bc26447799">
+					<reportElement x="77" y="2" width="30" height="30" uuid="ed96d24a-718d-420d-8952-a8bc26447799">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} != null]]></printWhenExpression>
 					</reportElement>
 					<imageExpression><![CDATA[$F{firstContactAvatar}]]></imageExpression>
 				</image>
 				<textField>
-					<reportElement x="0" y="41" width="185" height="12" uuid="97f2c204-18d4-40e3-a0a2-1064d58451cb">
-						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<reportElement x="0" y="35" width="185" height="12" uuid="97f2c204-18d4-40e3-a0a2-1064d58451cb">
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} != null]]></printWhenExpression>
 					</reportElement>
 					<textElement textAlignment="Center">
@@ -55,7 +55,8 @@
 					<textFieldExpression><![CDATA[$F{firstContactName}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement positionType="Float" x="0" y="56" width="185" height="10" uuid="41eafc99-309f-42e0-8155-754076226888">
+					<reportElement positionType="Float" x="0" y="50" width="185" height="10" uuid="41eafc99-309f-42e0-8155-754076226888">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} != null]]></printWhenExpression>
 					</reportElement>
 					<textElement textAlignment="Center">
@@ -65,7 +66,7 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="185" y="0" width="185" height="70" uuid="1aa1acc0-20bd-4925-a4db-fd4a1ce450fd">
+				<reportElement x="185" y="0" width="185" height="60" uuid="1aa1acc0-20bd-4925-a4db-fd4a1ce450fd">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
@@ -73,14 +74,14 @@
 					<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} != null]]></printWhenExpression>
 				</reportElement>
 				<image>
-					<reportElement x="77" y="4" width="30" height="30" uuid="f0020211-5e21-47df-9b33-983ff37baf3b">
+					<reportElement x="77" y="2" width="30" height="30" uuid="f0020211-5e21-47df-9b33-983ff37baf3b">
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} != null]]></printWhenExpression>
 					</reportElement>
 					<imageExpression><![CDATA[$F{secondContactAvatar}]]></imageExpression>
 				</image>
 				<textField>
-					<reportElement x="0" y="41" width="185" height="12" uuid="ccc96b52-55b6-417a-a272-7ea690e688c8">
+					<reportElement x="0" y="35" width="185" height="12" uuid="ccc96b52-55b6-417a-a272-7ea690e688c8">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} != null]]></printWhenExpression>
 					</reportElement>
@@ -90,7 +91,7 @@
 					<textFieldExpression><![CDATA[$F{secondContactName}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement positionType="Float" x="0" y="56" width="185" height="10" uuid="24bbf832-2837-4c78-b242-d8c2d23eb7c5">
+					<reportElement positionType="Float" x="0" y="50" width="185" height="10" uuid="24bbf832-2837-4c78-b242-d8c2d23eb7c5">
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} != null]]></printWhenExpression>
 					</reportElement>
 					<textElement textAlignment="Center">
@@ -100,7 +101,7 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="370" y="0" width="185" height="70" uuid="cb70fe8d-a454-4195-8424-32bc91894439">
+				<reportElement x="370" y="0" width="185" height="60" uuid="cb70fe8d-a454-4195-8424-32bc91894439">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
@@ -108,14 +109,14 @@
 					<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} != null]]></printWhenExpression>
 				</reportElement>
 				<image>
-					<reportElement x="77" y="4" width="30" height="30" uuid="b6b98b1d-aac6-440f-baf4-24a7713f2b85">
+					<reportElement x="77" y="2" width="30" height="30" uuid="b6b98b1d-aac6-440f-baf4-24a7713f2b85">
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} != null]]></printWhenExpression>
 					</reportElement>
 					<imageExpression><![CDATA[$F{thirdContactAvatar}]]></imageExpression>
 				</image>
 				<textField>
-					<reportElement x="0" y="41" width="185" height="12" uuid="261f1532-d019-4f7c-9975-47db9e1ece7f">
+					<reportElement x="0" y="35" width="185" height="12" uuid="261f1532-d019-4f7c-9975-47db9e1ece7f">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} != null]]></printWhenExpression>
 					</reportElement>
@@ -125,7 +126,7 @@
 					<textFieldExpression><![CDATA[$F{thirdContactName}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement positionType="Float" x="0" y="56" width="185" height="10" uuid="b2ff8f2c-489e-4c45-9923-94788390b96a">
+					<reportElement positionType="Float" x="0" y="50" width="185" height="10" uuid="b2ff8f2c-489e-4c45-9923-94788390b96a">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} != null]]></printWhenExpression>
@@ -137,19 +138,19 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="92" y="0" width="185" height="70" uuid="e2395e71-51a8-4f1b-9c49-c828571a5e7c">
+				<reportElement x="92" y="0" width="185" height="60" uuid="e2395e71-51a8-4f1b-9c49-c828571a5e7c">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} == null]]></printWhenExpression>
 				</reportElement>
 				<image>
-					<reportElement x="77" y="4" width="30" height="30" uuid="fdf245ef-0aeb-41f9-9b16-7aa59d51692c">
+					<reportElement x="77" y="2" width="30" height="30" uuid="fdf245ef-0aeb-41f9-9b16-7aa59d51692c">
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} == null]]></printWhenExpression>
 					</reportElement>
 					<imageExpression><![CDATA[$F{firstContactAvatar}]]></imageExpression>
 				</image>
 				<textField>
-					<reportElement x="0" y="41" width="185" height="12" uuid="9a0a4202-4fb4-4282-a549-31c381cbf858">
+					<reportElement x="0" y="35" width="185" height="12" uuid="9a0a4202-4fb4-4282-a549-31c381cbf858">
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} == null]]></printWhenExpression>
 					</reportElement>
@@ -159,7 +160,7 @@
 					<textFieldExpression><![CDATA[$F{firstContactName}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement positionType="Float" x="0" y="56" width="185" height="10" uuid="503b226d-125f-4444-b1ca-8c2d655f6cb3">
+					<reportElement positionType="Float" x="0" y="50" width="185" height="10" uuid="503b226d-125f-4444-b1ca-8c2d655f6cb3">
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} == null]]></printWhenExpression>
 					</reportElement>
 					<textElement textAlignment="Center">
@@ -169,20 +170,20 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="278" y="0" width="185" height="70" uuid="65f3dad1-616f-4a33-9c87-fdcc7dce69e5">
+				<reportElement x="278" y="0" width="185" height="60" uuid="65f3dad1-616f-4a33-9c87-fdcc7dce69e5">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} == null]]></printWhenExpression>
 				</reportElement>
 				<image>
-					<reportElement x="77" y="4" width="30" height="30" uuid="1d187812-b84d-44eb-8b8d-7562f383be10">
+					<reportElement x="77" y="2" width="30" height="30" uuid="1d187812-b84d-44eb-8b8d-7562f383be10">
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} == null]]></printWhenExpression>
 					</reportElement>
 					<imageExpression><![CDATA[$F{secondContactAvatar}]]></imageExpression>
 				</image>
 				<textField>
-					<reportElement x="0" y="41" width="185" height="12" uuid="e9519001-7001-4f5a-a949-0f58a82ef148">
+					<reportElement x="0" y="35" width="185" height="12" uuid="e9519001-7001-4f5a-a949-0f58a82ef148">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} == null]]></printWhenExpression>
 					</reportElement>
@@ -192,7 +193,7 @@
 					<textFieldExpression><![CDATA[$F{secondContactName}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement positionType="Float" x="0" y="56" width="185" height="10" uuid="2ddbe582-9169-4d28-8347-370e300381d8">
+					<reportElement positionType="Float" x="0" y="50" width="185" height="10" uuid="2ddbe582-9169-4d28-8347-370e300381d8">
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} != null && $F{thirdContactName} == null]]></printWhenExpression>
 					</reportElement>
 					<textElement textAlignment="Center">
@@ -202,7 +203,7 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="185" y="0" width="185" height="70" uuid="a1bb3b33-9911-4c2a-8672-14517a641a74">
+				<reportElement x="185" y="0" width="185" height="60" uuid="a1bb3b33-9911-4c2a-8672-14517a641a74">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
@@ -210,13 +211,13 @@
 					<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} == null && $F{thirdContactName} == null]]></printWhenExpression>
 				</reportElement>
 				<image>
-					<reportElement x="77" y="4" width="30" height="30" uuid="319e29f6-db95-4a7e-ac56-a72a8f6447e7">
+					<reportElement x="77" y="2" width="30" height="30" uuid="319e29f6-db95-4a7e-ac56-a72a8f6447e7">
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} == null && $F{thirdContactName} == null]]></printWhenExpression>
 					</reportElement>
 					<imageExpression><![CDATA[$F{firstContactAvatar}]]></imageExpression>
 				</image>
 				<textField>
-					<reportElement x="0" y="41" width="185" height="12" uuid="da9a2f14-f15c-4b5c-9797-2069c7fce1ad">
+					<reportElement x="0" y="35" width="185" height="12" uuid="da9a2f14-f15c-4b5c-9797-2069c7fce1ad">
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} == null && $F{thirdContactName} == null]]></printWhenExpression>
 					</reportElement>
@@ -226,7 +227,7 @@
 					<textFieldExpression><![CDATA[$F{firstContactName}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement positionType="Float" x="0" y="56" width="185" height="10" uuid="af6c36ae-22dc-4cc1-b8fd-316cb6dd2b83">
+					<reportElement positionType="Float" x="0" y="50" width="185" height="10" uuid="af6c36ae-22dc-4cc1-b8fd-316cb6dd2b83">
 						<printWhenExpression><![CDATA[$F{firstContactName} != null && $F{secondContactName} == null && $F{thirdContactName} == null]]></printWhenExpression>
 					</reportElement>
 					<textElement textAlignment="Center">

@@ -85,7 +85,7 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 					scoreCardDate: new Date(),
 					measurements: []
 				});
-				$scope.tabs.selectedTab = $scope.selectedStartup.scoreCards.length + 1;
+				$scope.tabs.selectedTab = $scope.selectedStartup.scoreCards.length + 3;
 			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.isSmallDevice = function(){

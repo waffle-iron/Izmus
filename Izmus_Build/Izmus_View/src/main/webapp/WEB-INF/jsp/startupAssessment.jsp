@@ -20,6 +20,12 @@
 	src="<c:url value="/views/startup-assessment/js/startup-contacts.dir.js" />"></script>
 <script
 	src="<c:url value="/views/startup-assessment/js/startup-scorecard.dir.js" />"></script>
+<script
+	src="<c:url value="/views/startup-assessment/js/startup-additional-documents.dir.js" />"></script>
+<script
+	src="<c:url value="/views/core/file-upload/js/ng-file-upload-shim.js" />"></script>
+<script
+	src="<c:url value="/views/core/file-upload/js/ng-file-upload.js" />"></script>
 <script>
 	var lang = {
 			startupAssessmentProcess: ' <spring:message code="navBar.menu.startupAssessment.startupAssessmnetProcess" />',
@@ -68,6 +74,7 @@
 			date:' <spring:message code="navBar.menu.startupAssessment.date" />',
 			emailScoreCardReport:' <spring:message code="navBar.menu.startupAssessment.emailScoreCardReport" />',
 			enterEmails:' <spring:message code="navBar.menu.startupAssessment.enterEmails" />',
-			onlyEmails:' <spring:message code="navBar.menu.startupAssessment.onlyEmails" />'
+			onlyEmails:' <spring:message code="navBar.menu.startupAssessment.onlyEmails" />',
+			additionalDocuments:' <spring:message code="navBar.menu.startupAssessment.additionalDocuments" />'
 	};
 </script>

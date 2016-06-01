@@ -6,5 +6,10 @@
 						http://www.springframework.org/schema/context
        					http://www.springframework.org/schema/context/spring-context.xsd">
 	<context:component-scan base-package="com.izmus.api" />
+	
 	<bean id="JacksonObjectMapper" class="com.fasterxml.jackson.databind.ObjectMapper" />
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    	<property name="maxUploadSize" value="5000000"/>
+	</bean>
 </beans>
