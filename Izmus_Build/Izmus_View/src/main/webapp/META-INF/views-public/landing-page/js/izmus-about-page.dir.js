@@ -64,13 +64,13 @@ angular
 												}
 											}
 											/*----------------------------------------------------------------------------------------------------*/
-											$scope.backgroundLoop = function(){
-												$timeout(function(){
-													$scope.backgroundSwitch = !$scope.backgroundSwitch;
-													$scope.backgroundLoop();
-												}, 13000);
-											}
-											$scope.backgroundLoop();
+//											$scope.backgroundLoop = function(){
+//												$timeout(function(){
+//													$scope.backgroundSwitch = !$scope.backgroundSwitch;
+//													$scope.backgroundLoop();
+//												}, 13000);
+//											}
+//											$scope.backgroundLoop();
 										} ],
 								link : function(scope, elem, attr) {
 									

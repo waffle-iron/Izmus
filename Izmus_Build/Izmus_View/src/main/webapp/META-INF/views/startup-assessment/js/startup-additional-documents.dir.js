@@ -16,7 +16,7 @@ angular
 									$scope.globalAttr = globalAttr;
 									$scope.lang = lang;
 									/*----------------------------------------------------------------------------------------------------*/
-									$scope.uploadFiles = function(file, errFiles) {
+									$scope.uploadFile = function(file, errFiles) {
 								        $scope.f = file;
 								        $scope.errFile = errFiles && errFiles[0];
 								        if (file) {
@@ -27,7 +27,7 @@ angular
 											        'Upgrade-Insecure-Requests': "1",
 											        'X-CSRF-TOKEN': globalAttr.sessionToken
 											    },
-											    fields: {'startupId': '1234'}, 
+											    fields: {'startupId': $scope.selectedStartup.startupId}, 
 											    file: file
 								            }).progress(function (evt) {
 								                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);

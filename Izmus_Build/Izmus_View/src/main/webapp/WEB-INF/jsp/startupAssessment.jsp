@@ -75,6 +75,7 @@
 			emailScoreCardReport:' <spring:message code="navBar.menu.startupAssessment.emailScoreCardReport" />',
 			enterEmails:' <spring:message code="navBar.menu.startupAssessment.enterEmails" />',
 			onlyEmails:' <spring:message code="navBar.menu.startupAssessment.onlyEmails" />',
-			additionalDocuments:' <spring:message code="navBar.menu.startupAssessment.additionalDocuments" />'
+			additionalDocuments:' <spring:message code="navBar.menu.startupAssessment.additionalDocuments" />',
+			uploadFile:' <spring:message code="navBar.menu.startupAssessment.uploadFile" />'
 	};
 </script>

@@ -37,7 +37,7 @@ public class ExportController {
 	@RequestMapping(value = "/Export/StartupScoreCardReport/{reportId}", method = RequestMethod.GET)
 	@PreAuthorize("hasPermission('Export', '')")
 	public void exportStartupReport(@PathVariable("reportId") Integer reportId, HttpServletResponse response,
-			@RequestParam(value="additionaDocuments") String[] additionaDocuments) {
+			@RequestParam(value="additionalDocuments", required=false) String[] additionalDocuments) {
 		try {
 			ScoreCardReport scoreCardReport = scoreCardReportRepository.findOne(reportId);
 			// set headers for the response
@@ -46,7 +46,7 @@ public class ExportController {
 	                scoreCardReport.getReportName() + ".pdf");
 	        response.setHeader(headerKey, headerValue);
 	        response.setContentType("application/pdf");
-	        List<byte[]> fileList = getFileList(scoreCardReport, additionaDocuments);
+	        List<byte[]> fileList = getFileList(scoreCardReport, additionalDocuments);
 	        // step 1
 	        Document document = new Document();
 	        // step 2
@@ -79,11 +79,11 @@ public class ExportController {
 		}
 	}
 	/*----------------------------------------------------------------------------------------------------*/
-	private List<byte[]> getFileList(ScoreCardReport scoreCardReport, String[] additionaDocuments) throws Exception{
+	private List<byte[]> getFileList(ScoreCardReport scoreCardReport, String[] additionalDocuments) throws Exception{
 		List<byte[]> returnList = new ArrayList<>();
 		returnList.add(JasperExportManager.exportReportToPdf(scoreCardReport.getReport()));
-		for (int i = 0; i < additionaDocuments.length; i++){
-			StartupAdditionalDocument additionalDocument = startupAdditionalDocumentRepository.findOne(Integer.valueOf(additionaDocuments[i]));
+		if (additionalDocuments != null) for (int i = 0; i < additionalDocuments.length; i++){
+			StartupAdditionalDocument additionalDocument = startupAdditionalDocumentRepository.findOne(Integer.valueOf(additionalDocuments[i]));
 			returnList.add(additionalDocument.getDocument());
 		}
 		return returnList;

@@ -80,7 +80,7 @@ angular.module('startupAssessmentApp').factory('exportScoreCardReport',
 					    	startup: startup
 					    })
 					}).then(function successCallback(response) {
-						window.location = "/Export/StartupScoreCardReport/" + response.data;
+						window.location = "/Export/StartupScoreCardReport/" + response.data.parameters;
 						resolve();
 					}, function errorCallback(response) {
 						reject();

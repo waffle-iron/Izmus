@@ -1,5 +1,6 @@
 package com.izmus.api.startupassessment;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,6 +36,7 @@ import com.izmus.data.domain.startups.Measurement;
 import com.izmus.data.domain.startups.MeasurementQuestion;
 import com.izmus.data.domain.startups.ScoreCardReport;
 import com.izmus.data.domain.startups.Startup;
+import com.izmus.data.domain.startups.StartupAdditionalDocument;
 import com.izmus.data.domain.startups.StartupContact;
 import com.izmus.data.domain.startups.StartupScoreCard;
 import com.izmus.data.domain.users.User;
@@ -141,7 +143,8 @@ public class StartupAssessment {
 	@RequestMapping(value = "/ScoreCardReport", method = RequestMethod.POST)
 	@PreAuthorize("hasPermission('Startup Assessment', '')")
 	public String getScoreCardReport(@RequestParam(value = "scoreCard", required = true) String scoreCardString,
-			@RequestParam(value = "startup", required = true) String startupString) {
+			@RequestParam(value = "startup", required = true) String startupString,
+			@RequestParam(value = "additionalDocuments", required = false) String[] additionalDocuments) {
 		ScoreCardReport scoreCardReport = null;
 		try {
 			StartupScoreCard scoreCard = jacksonObjectMapper.readValue(scoreCardString, StartupScoreCard.class);
@@ -161,8 +164,22 @@ public class StartupAssessment {
 			LOGGER.error("Could Not Create Score Card Report For Score Card: " + scoreCardString + " With Error: "
 					+ e.getMessage());
 		}
-		return scoreCardReport.getReportId().toString();
+		return createScoreCardReportReturnString(additionalDocuments, scoreCardReport);
 	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private String createScoreCardReportReturnString(String[] additionalDocuments, ScoreCardReport scoreCardReport) {
+		String returnString = "{\"parameters\": \"" + scoreCardReport.getReportId().toString();
+		if (additionalDocuments != null) for (int i = 0; i < additionalDocuments.length; i++){
+			if (i==0){
+				returnString += "?additionalDocuments=" + additionalDocuments[i];
+			}
+			else {
+				returnString += "&additionalDocuments=" + additionalDocuments[i];
+			}
+		}
+		return returnString + "\"}";
+	}
+
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/EmailScoreCardReport", method = RequestMethod.POST)
 	@PreAuthorize("hasPermission('Startup Assessment', '')")
@@ -244,8 +261,22 @@ public class StartupAssessment {
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/UploadAdditionalDocument", method = RequestMethod.POST)
 	@PreAuthorize("hasPermission('Startup Assessment+Edit', '')")
-	public void uploadAdditionalDocument(@RequestParam("file") MultipartFile file, @RequestParam("startupId") String startupId) {
-		int i = 1 + 2;
+	public void uploadAdditionalDocument(@RequestParam("file") MultipartFile file, 
+			@RequestParam("startupId") Integer startupId) {
+		try {
+			Startup parentStartup = startupRepository.findOne(startupId);
+			StartupAdditionalDocument newDocument = new StartupAdditionalDocument();
+			newDocument.setDocument(file.getBytes());
+			newDocument.setDocumentName(file.getOriginalFilename());
+			newDocument.setStartup(parentStartup);
+			if (parentStartup.getAdditionalDocuments() == null){
+				parentStartup.setAdditionalDocuments(new HashSet<StartupAdditionalDocument>());
+			}
+			parentStartup.getAdditionalDocuments().add(newDocument);
+			startupRepository.save(parentStartup);
+		} catch (IOException e) {
+			LOGGER.error("Could Not Save Startup Additional Document: " + file.getName());
+		}
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	private void setContacts(Startup changedStartup, Startup startupObject) {
