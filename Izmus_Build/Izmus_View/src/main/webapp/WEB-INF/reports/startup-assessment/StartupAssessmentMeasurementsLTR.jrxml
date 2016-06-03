@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-01T18:40:31 -->
+<!-- 2016-06-03T14:30:12 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StartupAssessmentfirstMeasurementsLTR" pageWidth="555" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c7f43391-1862-4602-8d92-baa97fda4afb">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -145,27 +145,6 @@
 					</textElement>
 					<textFieldExpression><![CDATA[($F{firstMeasurement}.getAssessment() == null ? "" : $F{firstMeasurement}.getAssessment())]]></textFieldExpression>
 				</textField>
-				<ellipse>
-					<reportElement x="240" y="2" width="28" height="28" uuid="e43dccbe-434d-4466-8fb3-64cab10df041">
-						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
-						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-					</reportElement>
-					<graphicElement>
-						<pen lineWidth="0.5" lineColor="rgba(136, 136, 136, 0.7647059)"/>
-					</graphicElement>
-				</ellipse>
-				<textField>
-					<reportElement positionType="Float" x="240" y="2" width="28" height="28" uuid="ccbb68bf-2681-46a5-93ab-24afac235324">
-						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-					</reportElement>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="8" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{firstMeasurement}.getFinalScore().toString()]]></textFieldExpression>
-				</textField>
 			</frame>
 			<frame>
 				<reportElement isPrintRepeatedValues="false" x="280" y="2" width="270" height="180" uuid="ac01f1a1-b978-4bdc-8e73-f751ebedfda3">
@@ -299,27 +278,6 @@
 						<paragraph lineSpacing="Single" lineSpacingSize="0.3" leftIndent="5"/>
 					</textElement>
 					<textFieldExpression><![CDATA[($F{secondMeasurement}.getAssessment() == null ? "" : $F{secondMeasurement}.getAssessment())]]></textFieldExpression>
-				</textField>
-				<ellipse>
-					<reportElement x="240" y="2" width="28" height="28" uuid="74ccfeaf-448d-478a-9003-37659f1dc515">
-						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
-						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-					</reportElement>
-					<graphicElement>
-						<pen lineWidth="0.5" lineColor="rgba(136, 136, 136, 0.7647059)"/>
-					</graphicElement>
-				</ellipse>
-				<textField>
-					<reportElement positionType="Float" x="240" y="2" width="28" height="28" uuid="1012119f-c9c5-4ed9-b212-e9e549a82d8f">
-						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-					</reportElement>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="8" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{secondMeasurement}.getFinalScore().toString()]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
