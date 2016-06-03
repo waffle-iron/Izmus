@@ -53,13 +53,13 @@ public class Startup implements Serializable, Comparable<Startup> {
 	private String responsibleUser;
 	@Column(name = "LOGO", columnDefinition = "VARCHAR(5242880)")
 	private String logo;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.LAZY, orphanRemoval = true)
 	@Fetch(value = FetchMode.JOIN)
 	private Set<StartupContact> contacts;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.LAZY, orphanRemoval = true)
 	@Fetch(value = FetchMode.JOIN)
 	private Set<StartupScoreCard> scoreCards;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.LAZY, orphanRemoval = true)
 	@Fetch(value = FetchMode.JOIN)
 	private Set<StartupAdditionalDocument> additionalDocuments;
 	@ManyToOne(fetch = FetchType.EAGER)

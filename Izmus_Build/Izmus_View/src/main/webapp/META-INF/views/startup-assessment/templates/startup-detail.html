@@ -141,11 +141,11 @@ md-tab-item>span{
 			</md-button>
 			<div layout="column" layout-align="center start">
 				<span hide-xs hide-sm hide-md class="md-title">{{selectedStartup.startupName}}</span>
-				<span hide-gt-md class="md-subheader">{{selectedStartup.startupName}}</span>
+				<span hide-gt-md hide-xs class="md-subheader">{{selectedStartup.startupName}}</span>
 				<span hide-xs hide-sm hide-md class="md-subheader user-subheader">{{startupGeneralAttributes.sector + ': ' + (selectedStartup.sector == null ? '' : selectedStartup.sector)}}</span> 
 				<span hide-xs hide-sm hide-md class="md-subheader user-subheader">{{startupGeneralAttributes.address + ': ' + (selectedStartup.address == null ? '' : selectedStartup.address)}}</span>
 				<span hide-xs hide-sm hide-md class="md-subheader user-subheader">{{startupGeneralAttributes.officePhone + ': ' + (selectedStartup.officePhone == null ? '' : selectedStartup.officePhone)}}</span>
-				<span class="md-subheader user-subheader"><a href="{{selectedStartup.site}}">{{startupGeneralAttributes.site + ': ' + (selectedStartup.site == null ? '' : selectedStartup.site)}}</a></span>
+				<span hide-xs class="md-subheader user-subheader"><a href="{{selectedStartup.site}}">{{startupGeneralAttributes.site + ': ' + (selectedStartup.site == null ? '' : selectedStartup.site)}}</a></span>
 			</div>
 			<span flex></span>
 			<div

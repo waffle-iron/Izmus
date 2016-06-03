@@ -76,6 +76,7 @@
 			enterEmails:' <spring:message code="navBar.menu.startupAssessment.enterEmails" />',
 			onlyEmails:' <spring:message code="navBar.menu.startupAssessment.onlyEmails" />',
 			additionalDocuments:' <spring:message code="navBar.menu.startupAssessment.additionalDocuments" />',
-			uploadFile:' <spring:message code="navBar.menu.startupAssessment.uploadFile" />'
+			uploadFile:' <spring:message code="navBar.menu.startupAssessment.uploadFile" />',
+			dropPdf:' <spring:message code="navBar.menu.startupAssessment.dropPdf" />'
 	};
 </script>

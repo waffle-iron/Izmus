@@ -130,41 +130,42 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 		    
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.getMeasurementColor = function(startup){
-				var score = $scope.getFinalScore(startup);
-				if (score) {
-					var returnColor = '';
-					if (score < 50){
-						 var customWarn = {
-								 	10:'#f7bebd',
-							        9: '#f4a8a6',
-							        8: '#f19290',
-							        7: '#ee7b79',
-							        6: '#eb6562',
-							        5: '#e84f4c',
-							        4: '#eb6562',
-							        3: '#e84f4c',
-							        2: '#E53935',
-							        1: '#e2231e'
-							    };
-						 returnColor = customWarn[Math.ceil(score / 5)];
-					}
-					else {
-						var customAccent = {
-								1: '#b1d2c5',
-						        2: '#a1c8ba',
-						        3: '#90bfae',
-						        4: '#80b6a2',
-						        5: '#70ac96',
-						        6: '#60a38a',
-						        7: '#56947d',
-						        8: '#00b361',
-						        9: '#00cc6e',
-						        10:'#00e67c'
-						    };
-					 returnColor = customAccent[Math.ceil((score - 50) / 5)];
-					}
-					return returnColor;
-				}
+//				var score = $scope.getFinalScore(startup);
+//				if (score) {
+//					var returnColor = '';
+//					if (score < 50){
+//						 var customWarn = {
+//								 	10:'#f7bebd',
+//							        9: '#f4a8a6',
+//							        8: '#f19290',
+//							        7: '#ee7b79',
+//							        6: '#eb6562',
+//							        5: '#e84f4c',
+//							        4: '#eb6562',
+//							        3: '#e84f4c',
+//							        2: '#E53935',
+//							        1: '#e2231e'
+//							    };
+//						 returnColor = customWarn[Math.ceil(score / 5)];
+//					}
+//					else {
+//						var customAccent = {
+//								1: '#b1d2c5',
+//						        2: '#a1c8ba',
+//						        3: '#90bfae',
+//						        4: '#80b6a2',
+//						        5: '#70ac96',
+//						        6: '#60a38a',
+//						        7: '#56947d',
+//						        8: '#00b361',
+//						        9: '#00cc6e',
+//						        10:'#00e67c'
+//						    };
+//					 returnColor = customAccent[Math.ceil((score - 50) / 5)];
+//					}
+//					return returnColor;
+//				}
+				return '#FFFFFF';
 			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.getFinalScore = function(startup){
@@ -196,7 +197,7 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 				$scope.ok = function() {
 					if (type == 'pdf'){
 						scope.progressMode = 'indeterminate';
-						exportScoreCardReport($scope.selectedScoreCard, scope.selectedStartup).then(function(result){
+						exportScoreCardReport($scope.selectedScoreCard, scope.selectedStartup, $scope.additionalDocuments).then(function(result){
 							scope.isMainFabOpen = false;
 							scope.progressMode = '';
 						}, function(error){
@@ -212,7 +213,8 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 						    clickOutsideToClose: true,
 						    fullscreen: scope.useFullScreen,
 						    locals: {
-						    	selectedScoreCard: $scope.selectedScoreCard
+						    	selectedScoreCard: $scope.selectedScoreCard,
+						    	additionalDocuments: $scope.additionalDocuments
 						    }
 						});
 					}
@@ -220,7 +222,7 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 				};
 			}
 			 /*----------------------------------------------------------------------------------------------------*/
-			scope.emailScoreCardReportCtrl = function($scope, $mdDialog, selectedScoreCard) {
+			scope.emailScoreCardReportCtrl = function($scope, $mdDialog, selectedScoreCard, additionalDocuments) {
 				$scope.parentScope = scope;
 				$scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, $mdConstant.KEY_CODE.SPACE];
 				$scope.emails = [];
@@ -238,7 +240,7 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 				/*----------------------------------------------------------------------------------------------------*/
 				$scope.ok = function() {
 					scope.progressMode = 'indeterminate';
-					emailScoreCardReport(selectedScoreCard, scope.selectedStartup, $scope.emails).then(function(result){
+					emailScoreCardReport(selectedScoreCard, scope.selectedStartup, $scope.emails, additionalDocuments).then(function(result){
 						scope.isMainFabOpen = false;
 						scope.progressMode = '';
 					}, function(error){

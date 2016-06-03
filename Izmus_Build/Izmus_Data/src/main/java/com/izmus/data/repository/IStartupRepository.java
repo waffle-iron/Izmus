@@ -8,4 +8,5 @@ import com.izmus.data.domain.startups.Startup;
 @Repository
 public interface IStartupRepository extends JpaRepository<Startup, Integer> {
 	Startup findDistinctStartupByStartupName(String startupName);
+	Startup findDistinctStartupByStartupId(Integer startupId);
 }
