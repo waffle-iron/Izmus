@@ -33,7 +33,7 @@
 						expand_more
 					</md-icon>
 				</md-button>
-				<md-button ng-hide="isWindowTopBarMinimized()" ng-if="(sidenavCtrl)" hide-gt-md ng-click="sidenavCtrl.toggleSidenav()"
+				<md-button ng-hide="isWindowTopBarMinimized()" ng-if="(sidenavCtrl)" ng-click="sidenavCtrl.toggleSidenav()"
 						class="md-icon-button toolbar-icons"> 
 						<md-icon aria-label="Menu" class="material-icons">menu</md-icon> 
 				</md-button>
@@ -48,8 +48,7 @@
 				md-component-id="mainWidowSidenav"
 				layout="column"
 				flex="none"
-				class="md-sidenav-left main-window-sidenav md-whiteframe-5dp"
-				md-is-locked-open="$mdMedia('gt-md')"> 
+				class="md-sidenav-left main-window-sidenav md-whiteframe-5dp"> 
 				<md-content flex layout="column" role="navigation">
 					<div layout="row">
 						<md-toolbar flex layout="row"
