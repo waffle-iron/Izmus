@@ -23,6 +23,12 @@
 <link
 	href="<c:url value="/views-public/core/leaflet/css/leaflet.css" />"
 	rel="stylesheet" />
+<link
+	href="<c:url value="/views-public/core/fonts/css/angular-fontselect.css" />"
+	rel="stylesheet" />
+<link
+	href="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" />"
+	rel="stylesheet" />
 </head>
 <body layout="colum">
 	<izmus-landing-page 
@@ -39,7 +45,7 @@
 		src="<c:url value="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js" />"></script>
 	<script
 		src="<c:url value="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js" />"></script>
-
+	
 	<!-- Angular Material Library -->
 	<script
 		src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.6/angular-material.min.js" />"></script>
@@ -58,6 +64,10 @@
 		src="<c:url value="/views-public/core/leaflet/leaflet.js" />"></script>
 	<script
 		src="<c:url value="/views-public/landing-page/js/location-map.dir.js" />"></script>
+	<script
+		src="<c:url value="/views-public/core/fonts/js/webfontloader.js" />"></script>
+	<script
+		src="<c:url value="/views-public/core/fonts/js/angular-fontselect.js" />"></script>
 	<script type="text/javascript">
 		var globalAttr = {
 			direction: '${dir}',
