@@ -9,6 +9,12 @@ angular.module('izmusLandingPageApp').factory('contactUsDialog',
 					$scope.cancel = function() {
 						$mdDialog.cancel();
 					};
+					$scope.dialogClass = function(){
+						if ($mdMedia('xs') || $mdMedia('sm')){
+							return 'mobile-dialog';
+						}
+						return 'desktop-dialog';
+					}
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.send = function($event) {
 						if (!$scope.name || !$scope.email){
@@ -23,7 +29,7 @@ angular.module('izmusLandingPageApp').factory('contactUsDialog',
 						$mdToast.show({
 						      controller: 'contactUsFailCtrl',
 						      templateUrl: '/views-public/landing-page/templates/contact-us-fail.toast.html',
-						      parent : angular.element(element),
+						      parent : angular.element(document.body),
 						      hideDelay: 2000,
 						      position: 'top right',
 						      locals: {
@@ -34,7 +40,7 @@ angular.module('izmusLandingPageApp').factory('contactUsDialog',
 							$mdToast.show({
 							      controller: 'contactUsFailCtrl',
 							      templateUrl: '/views-public/landing-page/templates/contact-us-fail.toast.html',
-							      parent : angular.element(element),
+							      parent : angular.element(document.body),
 							      hideDelay: 2000,
 							      position: 'top right',
 							      locals: {
@@ -48,7 +54,7 @@ angular.module('izmusLandingPageApp').factory('contactUsDialog',
 				$mdDialog.show({
 				    controller: contactUsCtrl,
 				    templateUrl: '/views-public/landing-page/templates/contact-us.dialog.html',
-				    parent: angular.element(element),
+				    parent: angular.element(document.body),
 				    targetEvent: ev,
 				    clickOutsideToClose: true,
 				    fullscreen: false
