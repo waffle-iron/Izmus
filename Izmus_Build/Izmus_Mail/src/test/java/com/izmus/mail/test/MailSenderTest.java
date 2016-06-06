@@ -35,6 +35,7 @@ public class MailSenderTest {
 	private static final String WEB_INF = "../Izmus_View/src/main/webapp/WEB-INF/";
 	private static final String EMAIL_IMAGES_DIR = WEB_INF + "email-images/";
 	private static final String SENT_EMAIL_DIR = WEB_INF + "sent-emails/";
+	private static final String FROM_EMAIL_ADDRESS = "lior@izmus.com";
 	@Autowired
 	private JavaMailSenderImpl mailSender;
 	/*----------------------------------------------------------------------------------------------------*/
@@ -101,6 +102,7 @@ public class MailSenderTest {
 			multipart.addBodyPart(messageBodyPart);
 			addImagesToMultipart(multipart, imageMap);
 			mimeMessage.setContent(multipart);
+			mimeMessage.setFrom(new InternetAddress(FROM_EMAIL_ADDRESS));
 			mimeMessage.writeTo(new FileOutputStream(SENT_EMAIL_DIR + new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date()) + ".mht"));
 		} catch (Exception e) {
 			e.printStackTrace();

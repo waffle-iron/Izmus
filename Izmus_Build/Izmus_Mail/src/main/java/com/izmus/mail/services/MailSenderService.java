@@ -32,6 +32,7 @@ public class MailSenderService {
 	private static final String EMAIL_IMAGES_DIR = "email-images";
 	private static final String SENT_EMAIL_DIR = "sent-emails";
 	private static final String INJECT_DIVEDER = "!";
+	private static final String FROM_EMAIL_ADDRESS = "lior@izmus.com";
 	@Autowired
 	private JavaMailSenderImpl mailSender;
 	@Autowired
@@ -62,6 +63,7 @@ public class MailSenderService {
 			checkEmailDirectories();
 			mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 			mimeMessage.setSubject(subject);
+			mimeMessage.setFrom(new InternetAddress(FROM_EMAIL_ADDRESS));
 			MimeMultipart multipart = new MimeMultipart("related");
 			BodyPart messageBodyPart = new MimeBodyPart();
 			messageBodyPart.setContent(body, "text/html; charset=UTF-8");
