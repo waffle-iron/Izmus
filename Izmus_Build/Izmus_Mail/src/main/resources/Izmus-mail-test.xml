@@ -7,16 +7,15 @@
        					http://www.springframework.org/schema/context/spring-context.xsd">
        					
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="email-smtp.eu-west-1.amazonaws.com" />
+		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
-		<property name="username" value="AKIAJK7DKTMLGLEINAQA" />
-		<property name="password" value="AsZO83Cc4+FQH7meB8HnKuMtOC2Ugz/IBtFSRkSGREXP" />
+		<property name="username" value="nevo.lior@gmail.com" />
+		<property name="password" value="zodiack29" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.transport.protocol">smtp</prop>
 				<prop key="mail.smtp.auth">true</prop>
 				<prop key="mail.smtp.starttls.enable">true</prop>
-				<prop key="mail.smtp.starttls.required">true</prop>
 				<prop key="mail.debug">true</prop>
 			</props>
 		</property>

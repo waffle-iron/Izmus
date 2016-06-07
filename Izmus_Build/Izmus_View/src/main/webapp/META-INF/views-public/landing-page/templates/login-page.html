@@ -15,7 +15,6 @@
 		text-align: center;
 	}
 	.login-section {
-		background-image: url('/views-public/landing-page/images/login/login-background.jpg');
 		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat;
@@ -29,7 +28,9 @@
 		margin-right: 20px;
 	}
 </style>
-<md-whiteframe flex="none" class="login-section md-whiteframe-10dp" layout="row" layout-xs="column" layout-padding layout-align="space-around center">
+<md-whiteframe flex="none" class="login-section md-whiteframe-10dp" 
+    layout="row" layout-xs="column" layout-padding layout-align="space-around center"
+    ng-style="{'background-image': getSectionBackgroundImage('login')}">
 	<div class="login-section-text" layout="column" layout-align="center center">
 		<md-icon class="login-logo-words" aria-label="Logo" md-svg-src="/views-public/core/logo/izmus-logo.svg"></md-icon>
 		<div class="login-section-text-content" layout="row">

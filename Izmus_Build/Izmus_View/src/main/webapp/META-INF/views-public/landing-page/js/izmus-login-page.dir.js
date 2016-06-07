@@ -6,7 +6,8 @@ angular
 						'izmusLogin',
 						'checkUserCredentials',
 						'$mdToast',
-						function(izmusLogin, checkUserCredentials, $mdToast) {
+						'$mdMedia',
+						function(izmusLogin, checkUserCredentials, $mdToast, $mdMedia) {
 							return {
 								restrict : 'E',
 								templateUrl : '/views-public/landing-page/templates/login-page.html',
@@ -36,6 +37,27 @@ angular
 																			$scope.password);
 																}
 															});
+												}
+											}
+											/*----------------------------------------------------------------------------------------------------*/
+											$scope.getSectionBackgroundImage = function(section){
+												if ($mdMedia('sm') || $mdMedia('xs')){
+													return $scope.getMobileBackground(section);
+												}
+												else {
+													return $scope.getWebBackground(section);
+												}
+											}
+											/*----------------------------------------------------------------------------------------------------*/
+											$scope.getMobileBackground = function(section){
+												if (section == 'login'){
+													return "url('/views-public/landing-page/images/login/mobile/login-background.jpg')";
+												}
+											}
+											/*----------------------------------------------------------------------------------------------------*/
+											$scope.getWebBackground = function(section){
+												if (section == 'login'){
+													return "url('/views-public/landing-page/images/login/login-background.jpg')";
 												}
 											}
 										} ],
