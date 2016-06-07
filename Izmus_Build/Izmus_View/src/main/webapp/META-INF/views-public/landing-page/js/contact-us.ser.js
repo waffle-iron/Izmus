@@ -3,6 +3,7 @@ angular.module('izmusLandingPageApp').factory('contactUsDialog',
 			return function(ev, element) {
 			    /*----------------------------------------------------------------------------------------------------*/
 				var contactUsCtrl = function($scope, $mdDialog) {
+					$scope.progressMode = '';
 				    $scope.globalAttr = globalAttr;
 				    $scope.lang = lang;
 					/*----------------------------------------------------------------------------------------------------*/
@@ -21,15 +22,26 @@ angular.module('izmusLandingPageApp').factory('contactUsDialog',
 							$scope.showFailureToast();
 						}
 						else {
-							sendContactUs($scope.name, $scope.email, $scope.subject, $scope.message);
-							$mdDialog.cancel();
+							$scope.progressMode = 'indeterminate';
+							sendContactUs($scope.name, $scope.email, $scope.subject, $scope.message).then(function(response){
+								if (response.data.result == 'success'){
+									$scope.sendSuccessMessage();
+									$mdDialog.cancel();
+								}
+								else {
+									$scope.sendFailureMessage();
+								}
+							},function(response){
+								$scope.sendFailureMessage();
+							});
 						}
 					};
+					/*----------------------------------------------------------------------------------------------------*/
 					$scope.showFailureToast = function(){
 						$mdToast.show({
 						      controller: 'contactUsFailCtrl',
 						      templateUrl: '/views-public/landing-page/templates/contact-us-fail.toast.html',
-						      parent : angular.element(document.body),
+						      parent : angular.element(element),
 						      hideDelay: 2000,
 						      position: 'top right',
 						      locals: {
@@ -40,7 +52,7 @@ angular.module('izmusLandingPageApp').factory('contactUsDialog',
 							$mdToast.show({
 							      controller: 'contactUsFailCtrl',
 							      templateUrl: '/views-public/landing-page/templates/contact-us-fail.toast.html',
-							      parent : angular.element(document.body),
+							      parent : angular.element(element),
 							      hideDelay: 2000,
 							      position: 'top right',
 							      locals: {
@@ -48,6 +60,35 @@ angular.module('izmusLandingPageApp').factory('contactUsDialog',
 							      }
 							    });
 						}, 2000);
+					}
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.sendFailureMessage = function(){
+						$mdToast.show({
+						      controller: 'contactUsFailCtrl',
+						      templateUrl: '/views-public/landing-page/templates/contact-us-fail.toast.html',
+						      parent : angular.element(element),
+						      hideDelay: 2000,
+						      position: 'top right',
+						      locals: {
+						    	  message: $scope.lang.messageNotSent
+						      }
+						    });
+						$timeout(function(){
+							window.location = "/";
+						}, 1000);
+					}
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.sendSuccessMessage = function(){
+						$mdToast.show({
+						      controller: 'contactUsFailCtrl',
+						      templateUrl: '/views-public/landing-page/templates/contact-us-fail.toast.html',
+						      parent : angular.element(element),
+						      hideDelay: 2000,
+						      position: 'top right',
+						      locals: {
+						    	  message: $scope.lang.sendSuccess
+						      }
+						    });
 					}
 				}
 			    /*----------------------------------------------------------------------------------------------------*/
@@ -80,10 +121,10 @@ angular.module('izmusLandingPageApp').factory('sendContactUs',
 					    	subject: subject,
 					    	message: message
 					    })
-					}).then(function successCallback() {
-						resolve();
+					}).then(function successCallback(response) {
+						resolve(response);
 					}, function errorCallback(response) {
-						reject();
+						reject(response);
 					});
 				})
 			}

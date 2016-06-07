@@ -1,98 +1,104 @@
 <style>
-    .send {
-        color: white !important;
-    }
-    .mail-section {
-        width: 320px;
-    }
-    .location-section {
-        width: 320px;
-    }
-    .message-content {
-        height: 240px !important;
-    }
-    .location-text {
-        font-family: monospace;
-        font-size: medium;
-        font-weight: 600;
-        color: #1F6086;
-        text-align: center;
-    }
-    .mail-input {
-        margin-top: 4px !important;
-        margin-bottom: 4px !important;
-    }
-    .desktop-dialog{
-        height: 550px;
-    }
-    .mobile-dialog{
-        height: 950px;
-    }
+	.send {
+		color: white !important;
+	}
+	.mail-section {
+		width: 320px;
+	}
+	.location-section {
+		width: 320px;
+	}
+	.message-content {
+		height: 240px !important;
+	}
+	.location-text {
+		font-family: monospace;
+		font-size: medium;
+		font-weight: 600;
+		color: #1F6086;
+		text-align: center;
+	}
+	.mail-input {
+		margin-top: 4px !important;
+		margin-bottom: 4px !important;
+	}
+	.desktop-dialog {
+		height: 550px;
+	}
+	.mobile-dialog {
+		height: 950px;
+	}
+	.progress{
+		height: 300px;
+	}
 </style>
-<section layout="column" ng-class="dialogClass()" dir="{{globalAttr.direction}}">
-    <section
-    flex="none"
-    layout="row"
-    layout-xs="column"
-    layout-sm="column"
-    layout-padding
-    layout-align="space-around center">
-        <section layout="column" flex="none" class="location-section">
-            <div class="location-text" flex="none" layout="row">
-                <p>
-                    {{lang.address}}
-                </p>
-            </div>
-            <location-map flex="none"></location-map>
-            <div class="location-text" flex="none" layout="row">
-                <p>
-                    Joy@izmus.com
-                </p>
-            </div>
-        </section>
-        <section layout="column" class="mail-section">
-            <form name="contactUsForm" layout="column">
-                <md-input-container flex="none" class="mail-input">
-                    <label>{{lang.name}}</label>
-                    <input required name="name" ng-model="name">
-                    <div ng-messages="contactUsForm.name.$error" multiple md-auto-hide="false">
-                        <div ng-message="required">
-                            {{lang.nameRequired}}
-                        </div>
-                    </div>
-                </md-input-container>
-                <md-input-container flex="none" class="mail-input">
-                    <label>{{lang.email}}</label>
-                    <input required name="email" type="email" ng-model="email">
-                    <div ng-messages="contactUsForm.email.$error" multiple md-auto-hide="false">
-                        <div ng-message="required">
-                            {{lang.emailRequired}}
-                        </div>
-                        <div ng-message="email">
-                            {{lang.enterValidEmailAddress}}
-                        </div>
-                    </div>
-                </md-input-container>
-                <md-input-container flex="none" class="mail-input">
-                    <label>{{lang.subject}}</label>
-                    <input name="subject" ng-model="subject">
-                </md-input-container>
-                <md-content flex="none" class="message-content md-whiteframe-1dp" layout-padding layout="column">
-                    <md-input-container flex="none">
-                        <label>{{lang.message}}</label>
-                        <textarea ng-model="message"></textarea>
-                    </md-input-container>
-                </md-content>
-            </form>
-        </section>
-    </section>
-    <md-dialog-actions flex="none" layout="row">
-        <md-button ng-click="cancel()">
-            {{lang.cancel}}
-        </md-button>
-        <span flex></span>
-        <md-button class="md-raised md-primary send" ng-click="send($event)">
-            {{lang.send}}
-        </md-button>
-    </md-dialog-actions>
+<section ng-if='progressMode != ""' class="progress" layout="column" layout-align="center center">
+	<md-progress-circular class="md-hue-3" md-mode="{{progressMode}}" md-diameter="70"></md-progress-circular>
+</section>
+<section ng-if='progressMode == ""' layout="column" ng-class="dialogClass()" dir="{{globalAttr.direction}}">
+	<section
+	flex="none"
+	layout="row"
+	layout-xs="column"
+	layout-sm="column"
+	layout-padding
+	layout-align="space-around center">
+		<section layout="column" flex="none" class="location-section">
+			<div class="location-text" flex="none" layout="row">
+				<p>
+					{{lang.address}}
+				</p>
+			</div>
+			<location-map flex="none"></location-map>
+			<div class="location-text" flex="none" layout="row">
+				<p>
+					Joy@izmus.com
+				</p>
+			</div>
+		</section>
+		<section layout="column" class="mail-section">
+			<form name="contactUsForm" layout="column">
+				<md-input-container flex="none" class="mail-input">
+					<label>{{lang.name}}</label>
+					<input required name="name" ng-model="$parent.name">
+					<div ng-messages="contactUsForm.name.$error" multiple md-auto-hide="false">
+						<div ng-message="required">
+							{{lang.nameRequired}}
+						</div>
+					</div>
+				</md-input-container>
+				<md-input-container flex="none" class="mail-input">
+					<label>{{lang.email}}</label>
+					<input required name="email" type="email" ng-model="$parent.email">
+					<div ng-messages="contactUsForm.email.$error" multiple md-auto-hide="false">
+						<div ng-message="required">
+							{{lang.emailRequired}}
+						</div>
+						<div ng-message="email">
+							{{lang.enterValidEmailAddress}}
+						</div>
+					</div>
+				</md-input-container>
+				<md-input-container flex="none" class="mail-input">
+					<label>{{lang.subject}}</label>
+					<input name="subject" ng-model="$parent.subject">
+				</md-input-container>
+				<md-content flex="none" class="message-content md-whiteframe-1dp" layout-padding layout="column">
+					<md-input-container flex="none">
+						<label>{{lang.message}}</label>
+						<textarea ng-model="$parent.message"></textarea>
+					</md-input-container>
+				</md-content>
+			</form>
+		</section>
+	</section>
+	<md-dialog-actions flex="none" layout="row">
+		<md-button ng-click="cancel()">
+			{{lang.cancel}}
+		</md-button>
+		<span flex></span>
+		<md-button class="md-raised md-primary send" ng-click="send($event)">
+			{{lang.send}}
+		</md-button>
+	</md-dialog-actions>
 </section>

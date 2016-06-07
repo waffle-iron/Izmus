@@ -91,6 +91,7 @@ angular.module('izmusLandingPageApp').directive('aniView',['$document','$window'
             show: '@',
         },
         link: function(scope, element, attrs) {
+        	scope.sensitivity = 0;
         	var parent = angular.element($document[0].getElementById("about-scroll"));
         	scope.getScrollOffsets = function(w) {
 
@@ -115,8 +116,8 @@ angular.module('izmusLandingPageApp').directive('aniView',['$document','$window'
             scope.getViewPortSize = function(w) {
 
                 return {
-                    x: Math.max(document.documentElement.clientWidth, w.innerWidth || 0) -70,
-                    y: Math.max(document.documentElement.clientHeight, w.innerHeight || 0) -70
+                    x: Math.max(document.documentElement.clientWidth, w.innerWidth || 0) - scope.sensitivity,
+                    y: Math.max(document.documentElement.clientHeight, w.innerHeight || 0) - scope.sensitivity
                 }
 
 

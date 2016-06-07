@@ -45,6 +45,9 @@
 	overflow: hidden;
 	height: 0px;
 }
+.button-text{
+	font-family: artifika;
+}
 </style>
 <title>IZMUS</title>
 <div dir='{{globalAttr.direction}}' ng-cloak layout="column" flex class="background">
@@ -58,19 +61,19 @@
 			</md-button>
 	        <span flex></span>
 	        <div hide-sm hide-xs>
-	        	<md-button ng-hide="(screenShowing == 'about')" class="md-raised" aria-label="about" ng-click="moveToPage('about')">
+	        	<md-button ng-hide="(screenShowing == 'about')" class="md-raised button-text" aria-label="about" ng-click="moveToPage('about')">
 	          		{{lang.about}}
 	        	</md-button>
-	        	<md-button ng-if="(globalAttr.user == null)" class="md-raised" ng-click="contactDialog($event)">
+	        	<md-button ng-if="(globalAttr.user == null)" class="md-raised button-text" ng-click="contactDialog($event)">
 	          		{{lang.contactUs}}
 	        	</md-button>
-	        	<md-button ng-if="(globalAttr.user != null)" class="md-raised" href="/">
+	        	<md-button ng-if="(globalAttr.user != null)" class="md-raised button-text" href="/">
 	          		{{lang.homePage}}
 	        	</md-button>
 	        	<!-- <md-button ng-hide="(screenShowing == 'register')" ng-if="(globalAttr.user == null)" class="md-raised" ng-click="moveToPage('register')">
 	          		{{lang.register}}
 	        	</md-button> -->
-	        	<md-button ng-hide="(screenShowing == 'login')" ng-if="(globalAttr.user == null)" class="md-raised" ng-click="moveToPage('login')">
+	        	<md-button ng-hide="(screenShowing == 'login')" ng-if="(globalAttr.user == null)" class="md-raised button-text" ng-click="moveToPage('login')">
 	          		{{lang.loginTitle}}
 	        	</md-button>
 	        </div>

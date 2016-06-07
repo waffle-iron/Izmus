@@ -115,6 +115,7 @@
 			message: ' <spring:message code="landingPage.message" />',
 			address: ' <spring:message code="landingPage.address" />',
 			messageNotSent: ' <spring:message code="landingPage.messageNotSent" />',
+			sendSuccess: ' <spring:message code="landingPage.sendSuccess" />',
 			badContactInfo: ' <spring:message code="landingPage.badContactInfo" />'
 		};
 		<% if (request.getUserPrincipal()!= null && !request.getUserPrincipal().equals("")){
