@@ -12,31 +12,24 @@
     }
     .about-section-header-text {
         text-shadow: 1px 1px 1px rgb(0,0,0);
-        font-family: amaranth;
         font-size: x-large;
         font-weight: 700;
         color: white;
         text-align: center;
     }
-    .about-section-two-text-header{
-        font-family: amaranth;
-    }
     .about-section-three-header-text {
         font-size: 4em;
-        font-family: amaranth;
         font-weight: 300;
         color: white;
         text-align: center;
     }
     .about-section-text-header {
-        font-family: amaranth;
         font-size: 2em;
         font-weight: 700;
         color: white;
         text-align: center;
     }
     .about-section-text-content {
-        font-family: artifika;
         font-size: large;
         font-weight: 700;
         color: white;
@@ -110,7 +103,6 @@
     .contact-us-button {
         color: white !important;
         background: #9bb2c8 !important;
-        font-family: artifika;
         font-size: large;
         font-weight: 700;
         width: 200px;
@@ -119,6 +111,18 @@
         width: 30px;
         border: 0;
         border-top: 5px solid #edf1f5;
+    }
+    .izmus-fonts{
+    	font-family: artifika;
+    }
+    .izmus-fonts-rtl{
+    	font-family: alef;
+    }
+    .izmus-fonts-header{
+    	font-family: amaranth;
+    }
+    .izmus-fonts-header-rtl{
+    	font-family: alef;
     }
 </style>
 <section style="height: 8px;"></section>
@@ -131,7 +135,8 @@
         <section style="height: 30%;"></section>
         <section layout="column" layout-padding layout-align="space-around center">
             <md-icon class="about-logo-words" aria-label="Logo" md-svg-src="/views-public/core/logo/izmus-logo.svg"></md-icon>
-            <div class="about-section-header-text" layout="row">
+            <div class="about-section-header-text" layout="row"
+            	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
                 <p>
                     {{lang.aboutSectionHeaderText}}
                 </p>
@@ -141,7 +146,8 @@
             <hr>
         </section>
         <section layout-padding layout="row" layout-align="center center">
-            <md-button class="md-raised contact-us-button" ng-click="contactDialog($event)">
+            <md-button class="md-raised contact-us-button" ng-click="contactDialog($event)"
+            	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
                 {{lang.contactUs}}
             </md-button>
         </section>
@@ -163,12 +169,14 @@
         layout-align-xs="space-around center">
             <md-whiteframe class="section-text-whiteframe">
                 <div class="about-section-text" layout="column" layout-align="center center">
-                    <div class="about-section-text-header" layout="row">
+                    <div class="about-section-text-header" layout="row" dir="{{globalAttr.direction}}"
+                    	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
                         <p>
                             {{lang.izmusSectionHeader}}
                         </p>
                     </div>
-                    <div class="about-section-text-content" layout="row" ani-view>
+                    <div class="about-section-text-content" layout="row" ani-view dir="{{globalAttr.direction}}"
+                    	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
                         <p>
                             {{lang.izmusSectionContent}}
                         </p>
@@ -177,22 +185,26 @@
             </md-whiteframe>
             <md-whiteframe class="section-text-whiteframe">
                 <div class="about-section-text" layout="column" layout-align="center center">
-                    <div class="about-section-text-header" layout="row">
+                    <div class="about-section-text-header" layout="row" dir="{{globalAttr.direction}}"
+                    	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
                         <p>
                             {{lang.missionSectionHeader}}
                         </p>
                     </div>
-                    <div class="about-section-text-content" layout="row" ani-view>
+                    <div class="about-section-text-content" layout="row" ani-view dir="{{globalAttr.direction}}"
+                    	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
                         <p>
                             {{lang.missionSectionContentOne}}
                         </p>
                     </div>
-                    <div class="about-section-text-content right" layout="row" ani-view>
+                    <div class="about-section-text-content right" layout="row" ani-view dir="{{globalAttr.direction}}"
+                    	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
                         <p>
                             {{lang.missionSectionContentTwo}}
                         </p>
                     </div>
-                    <div class="about-section-text-content right" layout="row" ani-view>
+                    <div class="about-section-text-content right" layout="row" ani-view dir="{{globalAttr.direction}}"
+                    	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
                         <p>
                             {{lang.missionSectionContentThree}}
                         </p>
@@ -201,12 +213,14 @@
             </md-whiteframe>
             <md-whiteframe class="section-text-whiteframe">
                 <div class="about-section-text" layout="column" layout-align="center center">
-                    <div class="about-section-text-header" layout="row">
+                    <div class="about-section-text-header" layout="row" dir="{{globalAttr.direction}}"
+                    	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
                         <p>
                             {{lang.visionSectionHeader}}
                         </p>
                     </div>
-                    <div class="about-section-text-content" layout="row" ani-view>
+                    <div class="about-section-text-content" layout="row" ani-view dir="{{globalAttr.direction}}"
+                    	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
                         <p>
                             {{lang.visionSectionContent}}
                         </p>
@@ -224,7 +238,8 @@
     ng-style="{'background-image': getSectionBackgroundImage('two')}"
     layout="column">
         <section layout="column" layout-align="center center">
-            <div class="about-section-three-header-text" layout="row">
+            <div class="about-section-three-header-text" layout="row"
+            	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
                 <p>
                     {{lang.aboutSectionTwoHeaderText}}
                 </p>
@@ -240,12 +255,14 @@
         layout-align-xs="center center">
             <div class="about-section-text" layout="column" layout-align="start center" ani-view>
                 <md-icon class="about-singapore-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/compass.svg"></md-icon>
-                <div class="about-section-text-header" layout="row">
+                <div class="about-section-text-header" layout="row"
+                	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
                     <p>
                         {{lang.singaporeLocation}}
                     </p>
                 </div>
-                <div class="about-section-text-content" layout="row">
+                <div class="about-section-text-content" layout="row"
+                	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
                     <p>
                         {{lang.singaporeLocationContent}}
                     </p>
@@ -253,12 +270,14 @@
             </div>
             <div class="about-section-text" layout="column" layout-align="start center" ani-view>
                 <md-icon class="about-singapore-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/suitcase.svg"></md-icon>
-                <div class="about-section-text-header" layout="row">
+                <div class="about-section-text-header" layout="row"
+                	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
                     <p>
                         {{lang.singaporeBusiness}}
                     </p>
                 </div>
-                <div class="about-section-text-content" layout="row">
+                <div class="about-section-text-content" layout="row"
+                	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
                     <p>
                         {{lang.singaporeBusinessContent}}
                     </p>
@@ -266,12 +285,14 @@
             </div>
             <div class="about-section-text right" layout="column" layout-align="start center" ani-view>
                 <md-icon class="about-singapore-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/diagram.svg"></md-icon>
-                <div class="about-section-text-header" layout="row">
+                <div class="about-section-text-header" layout="row"
+                	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
                     <p>
                         {{lang.singaporePopulation}}
                     </p>
                 </div>
-                <div class="about-section-text-content" layout="row">
+                <div class="about-section-text-content" layout="row"
+                	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
                     <p>
                         {{lang.singaporePopulationContent}}
                     </p>
@@ -279,12 +300,14 @@
             </div>
             <div class="about-section-text right" layout="column" layout-align="start center" ani-view>
                 <md-icon class="about-singapore-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/light-bulb.svg"></md-icon>
-                <div class="about-section-text-header" layout="row">
+                <div class="about-section-text-header" layout="row"
+                	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
                     <p>
                         {{lang.smartNation}}
                     </p>
                 </div>
-                <div class="about-section-text-content" layout="row">
+                <div class="about-section-text-content" layout="row"
+                	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
                     <p>
                         {{lang.smartNationContent}}
                     </p>
@@ -300,8 +323,8 @@
         class="bottom-bar-icon"
         md-svg-src="/views-public/landing-page/images/about/facebook-icon.svg"></md-icon>
     </md-button>
-    <div class="bottom-bar-text">
-        © 2016 Created by IZMUS.
+    <div class="bottom-bar-text" dir="{{globalAttr.direction}}">
+        {{lang.aboutBottom}}
     </div>
 </section>
 

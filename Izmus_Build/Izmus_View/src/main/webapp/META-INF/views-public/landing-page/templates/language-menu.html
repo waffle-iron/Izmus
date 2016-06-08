@@ -1,0 +1,34 @@
+<style>
+.language-icon{
+	color: white !important;
+}
+</style>
+<md-menu md-offset="0 70"
+	md-position-mode="{{(globalAttr.direction == 'rtl') ? '' : 'target-right target'}}">
+	<md-button class="md-icon-button toolbar-icons"
+		ng-click="$mdOpenMenu($event)">
+		<md-icon class="material-icons language-icon">language</md-icon> 
+	</md-button> 
+	<md-menu-content width="3" dir='{{globalAttr.direction}}' class="avatar-menu">
+		<md-menu-item>
+				<md-button aria-label="hebrew" ng-href="?language=he">
+					<div flex layout="row">
+						<p class="toolbar-menu-button-text">{{lang.hebrew}}</p>
+						<span flex></span>
+						<md-icon class="material-icons"
+							md-svg-src="/views-public/landing-page/images/israel.svg"></md-icon>
+					</div>
+				</md-button>
+		</md-menu-item> 
+		<md-menu-item>
+				<md-button aria-label="english" ng-href="?language=en">
+					<div flex layout="row">
+						<p class="toolbar-menu-button-text">{{lang.english}}</p>
+						<span flex></span>
+						<md-icon class="material-icons"
+							md-svg-src="/views-public/landing-page/images/usa.svg"></md-icon>
+					</div>
+				</md-button>
+		</md-menu-item>
+	</md-menu-content> 
+</md-menu>

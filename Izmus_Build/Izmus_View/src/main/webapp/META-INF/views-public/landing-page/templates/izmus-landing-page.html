@@ -7,6 +7,10 @@
     font-family: amaranth;
     src: url("/views-public/core/fonts/Amaranth-Regular.otf");
 }
+@font-face {
+    font-family: alef;
+    src: url("/views-public/core/fonts/Alef-regular.woff");
+}
 .toolbar-icons {
 	margin-right: 3px !important;
 	margin-left: 3px !important;
@@ -45,13 +49,16 @@
 	overflow: hidden;
 	height: 0px;
 }
-.button-text{
+.button-text {
 	font-family: artifika;
+}
+.button-text-rtl{
+	font-family: alef;
 }
 </style>
 <title>IZMUS</title>
-<div dir='{{globalAttr.direction}}' ng-cloak layout="column" flex class="background">
-	<md-toolbar flex="none" class="md-whiteframe-10dp">
+<div ng-cloak layout="column" flex class="background">
+	<md-toolbar dir='{{globalAttr.direction}}' flex="none" class="md-whiteframe-10dp">
 		<div class="md-toolbar-tools">
 			<md-button hide-gt-sm class="md-icon-button toolbar-icons logo-button-icon" href='/'>
 				<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/core/logo/logo32x32.svg"></md-icon>
@@ -61,23 +68,31 @@
 			</md-button>
 	        <span flex></span>
 	        <div hide-sm hide-xs>
-	        	<md-button ng-hide="(screenShowing == 'about')" class="md-raised button-text" aria-label="about" ng-click="moveToPage('about')">
+	        	<language-menu>
+	        	</language-menu>
+	        	<md-button ng-hide="(screenShowing == 'about')" class="md-raised" aria-label="about" ng-click="moveToPage('about')"
+	        		ng-class="(globalAttr.direction == 'rtl') ? 'button-text-rtl' : 'button-text'">
 	          		{{lang.about}}
 	        	</md-button>
-	        	<md-button ng-if="(globalAttr.user == null)" class="md-raised button-text" ng-click="contactDialog($event)">
+	        	<md-button ng-if="(globalAttr.user == null)" class="md-raised" ng-click="contactDialog($event)"
+	        		ng-class="(globalAttr.direction == 'rtl') ? 'button-text-rtl' : 'button-text'">
 	          		{{lang.contactUs}}
 	        	</md-button>
-	        	<md-button ng-if="(globalAttr.user != null)" class="md-raised button-text" href="/">
+	        	<md-button ng-if="(globalAttr.user != null)" class="md-raised" href="/"
+	        		ng-class="(globalAttr.direction == 'rtl') ? 'button-text-rtl' : 'button-text'">
 	          		{{lang.homePage}}
 	        	</md-button>
 	        	<!-- <md-button ng-hide="(screenShowing == 'register')" ng-if="(globalAttr.user == null)" class="md-raised" ng-click="moveToPage('register')">
 	          		{{lang.register}}
 	        	</md-button> -->
-	        	<md-button ng-hide="(screenShowing == 'login')" ng-if="(globalAttr.user == null)" class="md-raised button-text" ng-click="moveToPage('login')">
+	        	<md-button ng-hide="(screenShowing == 'login')" ng-if="(globalAttr.user == null)" class="md-raised" ng-click="moveToPage('login')"
+	        		ng-class="(globalAttr.direction == 'rtl') ? 'button-text-rtl' : 'button-text'">
 	          		{{lang.loginTitle}}
 	        	</md-button>
 	        </div>
 	        <div hide-gt-sm>
+	        	<language-menu>
+	        	</language-menu>
 	        	<md-button ng-hide="(screenShowing == 'about')" class="md-icon-button toolbar-icons logo-button-icon" ng-click="moveToPage('about')">
 					<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/about128x128.svg"></md-icon>
 				</md-button>

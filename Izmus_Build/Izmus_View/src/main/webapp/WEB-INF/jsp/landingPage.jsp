@@ -56,6 +56,8 @@
 	<script
 		src="<c:url value="/views-public/landing-page/js/izmus-about-page.dir.js" />"></script>
 	<script
+		src="<c:url value="/views-public/landing-page/js/language-menu.dir.js" />"></script>
+	<script
 		src="<c:url value="/views-public/landing-page/js/contact-us.ser.js" />"></script>
 	<script
 		src="<c:url value="/views-public/core/leaflet/leaflet.js" />"></script>
@@ -118,6 +120,9 @@
 			address: ' <spring:message code="landingPage.address" />',
 			messageNotSent: ' <spring:message code="landingPage.messageNotSent" />',
 			sendSuccess: ' <spring:message code="landingPage.sendSuccess" />',
+			english: ' <spring:message code="navBar.menu.user.language.english" />',
+			hebrew:' <spring:message code="navBar.menu.user.language.hebrew" />',
+			aboutBottom: ' <spring:message code="landingPage.about.bottomAbout" />',
 			badContactInfo: ' <spring:message code="landingPage.badContactInfo" />'
 		};
 		<% if (request.getUserPrincipal()!= null && !request.getUserPrincipal().equals("")){
