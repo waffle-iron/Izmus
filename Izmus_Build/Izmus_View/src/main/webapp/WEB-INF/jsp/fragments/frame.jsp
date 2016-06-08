@@ -40,7 +40,7 @@
 	<script
 		src="<c:url value="/views/core/drag/izmus-drag.js" />"></script>
 	<script
-		src="<c:url value="/views/core/idle/js/angular-idle.min.js" />"></script>
+		src="<c:url value="/views-public/core/idle/js/angular-idle.min.js" />"></script>
 
 	<!-- Angular Material Library -->
 	<script

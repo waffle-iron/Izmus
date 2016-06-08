@@ -61,6 +61,8 @@
 		src="<c:url value="/views-public/core/leaflet/leaflet.js" />"></script>
 	<script
 		src="<c:url value="/views-public/landing-page/js/location-map.dir.js" />"></script>
+	<script
+		src="<c:url value="/views-public/core/idle/js/angular-idle.min.js" />"></script>
 	<script type="text/javascript">
 		var globalAttr = {
 			direction: '${dir}',

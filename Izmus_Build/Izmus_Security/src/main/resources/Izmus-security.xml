@@ -22,6 +22,7 @@
 		<sec:intercept-url pattern="/Login" access="permitAll"/><!-- requires-channel="https"/>-->
 		<sec:intercept-url pattern="/api/ContactUs" access="permitAll"/><!-- requires-channel="https"/>-->
 		<sec:intercept-url pattern="/api/Users/CheckUserAndEmail" access="permitAll"/><!-- requires-channel="https"/>-->
+		<sec:intercept-url pattern="/api/Heartbeat" access="permitAll"/><!-- requires-channel="https"/>-->
 		<sec:intercept-url pattern="/api/Users/CheckUserCredentials" access="isAnonymous()"/><!-- requires-channel="https"/>-->
 		<sec:intercept-url pattern="/api/Users/Register" access="isAnonymous()"/><!-- requires-channel="https"/>-->
 		<sec:intercept-url pattern="/**" access="hasRole('USER')"/><!-- requires-channel="https"/>-->

@@ -1,4 +1,7 @@
-angular.module('izmusLandingPageApp', [ 'ngMaterial', 'ngAnimate', 'ngMessages']);
+var idle = 5 * 60;
+var timeout = 15 * 60;
+var heartbeat = 5 * 60;
+angular.module('izmusLandingPageApp', [ 'ngMaterial', 'ngAnimate', 'ngMessages', 'ngIdle' ]);
 /*----------------------------------------------------------------------------------------------------*/
 /**
  * Directive
@@ -7,7 +10,7 @@ angular
 		.module('izmusLandingPageApp')
 		.directive(
 				'izmusLandingPage',
-				['contactUsDialog', function(contactUsDialog) {
+				['contactUsDialog','Idle','heartbeat', function(contactUsDialog, Idle, heartbeat) {
 							return {
 								restrict : 'E',
 								templateUrl : '/views-public/landing-page/templates/izmus-landing-page.html',
@@ -22,6 +25,14 @@ angular
 									$scope.moveToPage = function(newPage){
 										$scope.screenShowing = newPage;
 									}
+									/*----------------------------------------------------------------------------------------------------*/
+								    $scope.$on('IdleTimeout', function() {
+								        window.location = "/";
+								    });
+								    /*----------------------------------------------------------------------------------------------------*/
+								    $scope.$on('Keepalive', function() {
+								        heartbeat();
+								    });
 								}],
 								link : function(scope, elem, attr) {
 									/*----------------------------------------------------------------------------------------------------*/
@@ -142,6 +153,28 @@ angular.module('izmusLandingPageApp').factory('izmusRegistration',
 				})
 			}
 		} ]);
+angular.module('izmusLandingPageApp').factory('heartbeat',
+		[ '$q', '$http', function($q, $http) {
+			return function(userAvatar) {
+				return $q(function(resolve, reject) {
+					$http({
+						method : 'POST',
+						url : '/api/Heartbeat',
+						headers: {
+					        'Content-Type': "application/x-www-form-urlencoded; charset=UTF-8",
+					        'Upgrade-Insecure-Requests': "1",
+					        'X-CSRF-TOKEN': globalAttr.sessionToken
+					    },
+					}).then(function successCallback(response) {
+						if (!response.data.result){
+							window.location = "/";
+						}
+					}, function errorCallback(response) {
+						window.location = "/";
+					});
+				})
+			}
+		} ]);
 /*----------------------------------------------------------------------------------------------------*/
 /**
  * Configuration
@@ -237,3 +270,13 @@ angular.module('izmusLandingPageApp').config(
 					       .warnPalette('customWarn')
 					       .backgroundPalette('customBackground')
 				} ]);
+angular.module('izmusLandingPageApp').config(function(IdleProvider, KeepaliveProvider) {
+    // configure Idle settings
+    IdleProvider.idle(idle); // in seconds
+    IdleProvider.timeout(timeout); // in seconds
+    KeepaliveProvider.interval(heartbeat); // in seconds
+})
+.run(function(Idle){
+    // start watching when the app runs. also starts the Keepalive service by default.
+    Idle.watch();
+});
