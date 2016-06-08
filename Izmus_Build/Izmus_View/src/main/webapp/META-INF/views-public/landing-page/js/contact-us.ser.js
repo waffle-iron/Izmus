@@ -73,6 +73,7 @@ angular.module('izmusLandingPageApp').factory('contactUsDialog',
 						    	  message: $scope.lang.messageNotSent
 						      }
 						    });
+						$scope.progressMode = '';
 					}
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.sendSuccessMessage = function(){
