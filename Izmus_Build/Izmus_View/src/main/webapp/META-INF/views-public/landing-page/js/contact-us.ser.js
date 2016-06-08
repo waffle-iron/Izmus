@@ -73,9 +73,6 @@ angular.module('izmusLandingPageApp').factory('contactUsDialog',
 						    	  message: $scope.lang.messageNotSent
 						      }
 						    });
-						$timeout(function(){
-							window.location = "/";
-						}, 1000);
 					}
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.sendSuccessMessage = function(){
