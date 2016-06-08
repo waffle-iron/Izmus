@@ -44,6 +44,7 @@ public class MailSenderService {
 			checkEmailDirectories();
 			mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 			mimeMessage.setSubject(subject);
+			mimeMessage.setFrom(new InternetAddress(FROM_EMAIL_ADDRESS));
 			MimeMultipart multipart = new MimeMultipart("related");
 			BodyPart messageBodyPart = new MimeBodyPart();
 			messageBodyPart.setContent(body, "text/html; charset=UTF-8");
@@ -63,7 +64,6 @@ public class MailSenderService {
 			checkEmailDirectories();
 			mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 			mimeMessage.setSubject(subject);
-			mimeMessage.setFrom(new InternetAddress(FROM_EMAIL_ADDRESS));
 			MimeMultipart multipart = new MimeMultipart("related");
 			BodyPart messageBodyPart = new MimeBodyPart();
 			messageBodyPart.setContent(body, "text/html; charset=UTF-8");
@@ -78,6 +78,7 @@ public class MailSenderService {
 	/*----------------------------------------------------------------------------------------------------*/
 	public void sendMessage(MimeMessage mimeMessage){
 		try {
+			mimeMessage.setFrom(new InternetAddress(FROM_EMAIL_ADDRESS));
 			mimeMessage.writeTo(new FileOutputStream(context.getRealPath("/") + "/WEB-INF/" + SENT_EMAIL_DIR + "/" + new SimpleDateFormat("yyyyMMddHHmmssSS").format(new Date()) + ".mht"));
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
