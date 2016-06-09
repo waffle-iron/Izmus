@@ -58,7 +58,9 @@
 		</section>
 		<section layout="column" class="mail-section">
 			<form name="contactUsForm" layout="column">
-				<md-input-container flex="none" class="mail-input">
+				<md-input-container flex="none" 
+				    class="mail-input"
+				    ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : 'input-ltr'">
 					<label>{{lang.name}}</label>
 					<input required name="name" ng-model="$parent.name">
 					<div ng-messages="contactUsForm.name.$error" multiple md-auto-hide="false">
@@ -67,7 +69,9 @@
 						</div>
 					</div>
 				</md-input-container>
-				<md-input-container flex="none" class="mail-input">
+				<md-input-container flex="none" 
+				    class="mail-input"
+				    ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : 'input-ltr'">
 					<label>{{lang.email}}</label>
 					<input required name="email" type="email" ng-model="$parent.email">
 					<div ng-messages="contactUsForm.email.$error" multiple md-auto-hide="false">
@@ -79,12 +83,16 @@
 						</div>
 					</div>
 				</md-input-container>
-				<md-input-container flex="none" class="mail-input">
+				<md-input-container flex="none" 
+				    class="mail-input"
+				    ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : 'input-ltr'">
 					<label>{{lang.subject}}</label>
 					<input name="subject" ng-model="$parent.subject">
 				</md-input-container>
-				<md-content flex="none" class="message-content md-whiteframe-1dp" layout-padding layout="column">
-					<md-input-container flex="none">
+				<md-content flex="none" class="message-content md-whiteframe-1dp" 
+				    layout-padding layout="column">
+					<md-input-container flex="none"
+					   ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : 'input-ltr'">
 						<label>{{lang.message}}</label>
 						<textarea ng-model="$parent.message"></textarea>
 					</md-input-container>

@@ -239,6 +239,7 @@
     layout="column">
         <section layout="column" layout-align="center center">
             <div class="about-section-three-header-text" layout="row"
+                dir="{{globalAttr.direction}}"
             	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
                 <p>
                     {{lang.aboutSectionTwoHeaderText}}
@@ -256,12 +257,14 @@
             <div class="about-section-text" layout="column" layout-align="start center" ani-view>
                 <md-icon class="about-singapore-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/compass.svg"></md-icon>
                 <div class="about-section-text-header" layout="row"
+                	dir="{{globalAttr.direction}}"
                 	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
                     <p>
                         {{lang.singaporeLocation}}
                     </p>
                 </div>
                 <div class="about-section-text-content" layout="row"
+                    dir="{{globalAttr.direction}}"
                 	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
                     <p>
                         {{lang.singaporeLocationContent}}
@@ -271,12 +274,14 @@
             <div class="about-section-text" layout="column" layout-align="start center" ani-view>
                 <md-icon class="about-singapore-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/suitcase.svg"></md-icon>
                 <div class="about-section-text-header" layout="row"
+                	dir="{{globalAttr.direction}}"
                 	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
                     <p>
                         {{lang.singaporeBusiness}}
                     </p>
                 </div>
                 <div class="about-section-text-content" layout="row"
+                	dir="{{globalAttr.direction}}"
                 	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
                     <p>
                         {{lang.singaporeBusinessContent}}
@@ -286,12 +291,14 @@
             <div class="about-section-text right" layout="column" layout-align="start center" ani-view>
                 <md-icon class="about-singapore-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/diagram.svg"></md-icon>
                 <div class="about-section-text-header" layout="row"
+                    dir="{{globalAttr.direction}}"
                 	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
                     <p>
                         {{lang.singaporePopulation}}
                     </p>
                 </div>
                 <div class="about-section-text-content" layout="row"
+                    dir="{{globalAttr.direction}}"
                 	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
                     <p>
                         {{lang.singaporePopulationContent}}
@@ -301,12 +308,14 @@
             <div class="about-section-text right" layout="column" layout-align="start center" ani-view>
                 <md-icon class="about-singapore-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/light-bulb.svg"></md-icon>
                 <div class="about-section-text-header" layout="row"
+                    dir="{{globalAttr.direction}}"
                 	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
                     <p>
                         {{lang.smartNation}}
                     </p>
                 </div>
                 <div class="about-section-text-content" layout="row"
+                	dir="{{globalAttr.direction}}"
                 	ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
                     <p>
                         {{lang.smartNationContent}}

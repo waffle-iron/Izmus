@@ -1,62 +1,68 @@
 <style>
-	.login-logo-words{
+    .login-logo-words {
         width: 280px !important;
         height: 80px !important;
     }
-	.login-section-text {
-		max-width: 400px;
-	}
-	.login-section-text-content {
-		text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-		font-family: artifika;
-		font-size: x-large;
-		font-weight: 700;
-		color: white;
-		text-align: center;
-	}
-	.login-section {
-		background-position: center;
-		background-size: cover;
-		background-repeat: no-repeat;
-	}
-	.login {
-		background-color: white;
-		opacity: 0.9;
-	}
-	.user-name-password {
-		margin-left: 20px;
-		margin-right: 20px;
-	}
+    .login-section-text {
+        max-width: 400px;
+    }
+    .login-section-text-content {
+        text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        font-size: x-large;
+        font-weight: 700;
+        color: white;
+        text-align: center;
+    }
+    .login-section {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .login {
+        background-color: white;
+        opacity: 0.9;
+    }
+    .user-name-password {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .font {
+        font-family: artifika;
+    }
+    .font-rtl {
+        font-family: alef;
+    }
 </style>
-<md-whiteframe flex="none" class="login-section md-whiteframe-10dp" 
-    layout="row" layout-xs="column" layout-padding layout-align="space-around center"
-    ng-style="{'background-image': getSectionBackgroundImage('login')}">
-	<div class="login-section-text" layout="column" layout-align="center center">
-		<md-icon class="login-logo-words" aria-label="Logo" md-svg-src="/views-public/core/logo/izmus-logo.svg"></md-icon>
-		<div class="login-section-text-content" layout="row">
-			<p>
-				{{lang.loginSectionContent}}
-			</p>
-		</div>
-	</div>
-	<div layout="row" flex="none" ng-if="(globalAttr.user == null)">
-		<md-whiteframe class="md-whiteframe-5dp login" layout-padding layout="column" layout-align="center stretch">
-			<div style="text-align: center;">
-				<h1>{{lang.loginTitle}}</h1>
-			</div>
-			<div layout="column" layout-align="center center" class="user-name-password">
-				<md-input-container>
-					<label>{{lang.userName}}</label>
-					<input required name="userName" ng-model="$parent.userName">
-				</md-input-container>
-				<md-input-container>
-					<label>{{lang.password}}</label>
-					<input type="password" required name="password"	ng-model="$parent.password">
-				</md-input-container>
-			</div>
-			<md-button class="md-raised" ng-click="login()">
-				{{lang.go}}
-			</md-button>
-		</md-whiteframe>
-	</div>
+<md-whiteframe flex="none" class="login-section md-whiteframe-10dp"
+layout="row" layout-xs="column" layout-padding layout-align="space-around center"
+ng-style="{'background-image': getSectionBackgroundImage('login')}">
+    <div class="login-section-text" layout="column" layout-align="center center">
+        <md-icon class="login-logo-words" aria-label="Logo" md-svg-src="/views-public/core/logo/izmus-logo.svg"></md-icon>
+        <div class="login-section-text-content" layout="row"
+            ng-class="(globalAttr.direction == 'rtl') ? 'font-rtl' : 'font'">
+            <p>
+                {{lang.loginSectionContent}}
+            </p>
+        </div>
+    </div>
+    <div layout="row" flex="none" ng-if="(globalAttr.user == null)">
+        <md-whiteframe class="md-whiteframe-5dp login" layout-padding layout="column" layout-align="center stretch">
+            <div style="text-align: center;">
+                <h1>{{lang.loginTitle}}</h1>
+            </div>
+            <div layout="column" layout-align="center center" class="user-name-password">
+                <md-input-container ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : 'input-ltr'">
+                    <label>{{lang.userName}}</label>
+                    <input required name="userName" ng-model="$parent.userName">
+                </md-input-container>
+                <md-input-container ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : 'input-ltr'">
+                    <label>{{lang.password}}</label>
+                    <input type="password" required name="password"	ng-model="$parent.password">
+                </md-input-container>
+            </div>
+            <md-button class="md-raised" ng-click="login()">
+                {{lang.go}}
+            </md-button>
+        </md-whiteframe>
+    </div>
 </md-whiteframe>
