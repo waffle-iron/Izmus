@@ -8,4 +8,6 @@ import com.izmus.data.domain.users.User;
 @Repository
 public interface IUserRepository extends JpaRepository<User, Integer> {
 	User findDistinctUserByUserName(String userName);
+
+	User findDistinctUserByUserId(Integer userId);
 }

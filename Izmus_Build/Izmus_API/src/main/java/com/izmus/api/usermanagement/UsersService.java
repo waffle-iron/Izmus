@@ -182,7 +182,31 @@ public class UsersService {
 		try {
 			userDataObject = jacksonObjectMapper.readValue(userData, UserData.class);
 			User authenticatedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			User changedUser = userRepository.findOne(userDataObject.getUserId());
+			User changedUser = userRepository.findDistinctUserByUserId(userDataObject.getUserId());
+			if (authenticatedUser.equals(changedUser)){
+				changedUser = authenticatedUser;
+			}
+			changedUser.setUserName(userDataObject.getUserName());
+			changedUser.getEntity().setEntityEmail(userDataObject.getUserEmail());
+			changedUser.getEntity().setIsEntityMale(userDataObject.getIsUserMale());
+			changedUser.setEnabled(userDataObject.getEnabled());
+			changedUser.setUserAvatar(userDataObject.getUserAvatar());
+			changedUser.setUserRoles(getUserRoles(changedUser, userDataObject.getUserRoles()));
+			userRepository.save(changedUser);
+			LOGGER.info("User Data Saved: " + changedUser);
+		} catch (Exception e) {
+			LOGGER.error("Could Not Save User Information: " + userDataObject);
+		}
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/SaveUserPersonalData", method = RequestMethod.POST)
+	public void saveUserPersonalData(@RequestParam(value = "userData") String userData) {
+		UserData userDataObject = null;
+		try {
+			userDataObject = jacksonObjectMapper.readValue(userData, UserData.class);
+			User authenticatedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if (!userDataObject.getUserId().equals(authenticatedUser.getUserId())) return;
+			User changedUser = userRepository.findDistinctUserByUserId(userDataObject.getUserId());
 			if (authenticatedUser.equals(changedUser)){
 				changedUser = authenticatedUser;
 			}

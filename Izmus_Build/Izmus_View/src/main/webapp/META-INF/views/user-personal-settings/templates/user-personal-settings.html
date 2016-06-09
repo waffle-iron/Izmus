@@ -1,142 +1,174 @@
 <style>
-.user-detail-section {
-	margin: 5px;
-}
+    .user-detail-section {
+        margin: 5px;
+    }
 
-.permission {
-	font-size: x-small;
-	color: grey;
-}
+    .permission {
+        font-size: x-small;
+        color: grey;
+    }
 
-.user-card-head {
-	min-height: 60px;
-	padding: 8px;
-}
+    .user-card-head {
+        min-height: 60px;
+        padding: 8px;
+    }
 
-.user-preview-avatar {
-	max-height: 55px;
-	max-width: 55px;
-	border-radius: 28px;
-	border-width: 1px;
-    border-style: solid;
-    border-color: rgb(160,195,215);;
-}
+    .user-preview-avatar {
+        max-height: 55px;
+        max-width: 55px;
+        border-radius: 28px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(160,195,215);;
+    }
 
-.user-info-input>label {
-	left: auto !important;
-	right: auto !important;
-}
+    .user-info-input > label {
+        left: auto !important;
+        right: auto !important;
+    }
 
-.checkbox-hebrew>.md-container {
-	left: auto;
-	right: 8;
-}
+    .checkbox-hebrew > .md-container {
+        left: auto;
+        right: 8;
+    }
 
-.checkbox-hebrew>.md-label {
-	margin-left: 0px;
-	margin-right: 30px;
-}
+    .checkbox-hebrew > .md-label {
+        margin-left: 0px;
+        margin-right: 30px;
+    }
 
-.user-subheader {
-	font-size: x-small;
-}
+    .user-subheader {
+        font-size: x-small;
+    }
 
-.fab-action-buttons {
-	max-height: 1300px;
-	overflow: hidden;
-	position: absolute;
-	z-index: 25;
-	-webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
-	-webkit-transition-property: max-height;
-	-moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
-	-moz-transition-property: max-height;
-	transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
-	transition-property: max-height;
-}
-.fab-action-buttons.ng-hide{
-	max-height: 0px;
-}
+    .fab-action-buttons {
+        max-height: 1300px;
+        overflow: hidden;
+        position: absolute;
+        z-index: 25;
+        -webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+        -webkit-transition-property: max-height;
+        -moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+        -moz-transition-property: max-height;
+        transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+        transition-property: max-height;
+    }
+    .fab-action-buttons.ng-hide {
+        max-height: 0px;
+    }
 </style>
 <izmus-main-window
-	flex
-	layout="column">
-	<main-content flex layout="column">
-		<section flex="none" layout-padding>
-			<div class="user-card-head" layout="row" layout-align="start center">
-				<md-button
-					aria-label="logo-button"
-					ng-click="changeAvatar($event)"
-					ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}">
-					<img class="user-preview-avatar" ng-src="{{getUserAvatar()}}" />
-				</md-button>
-				<div layout="column" layout-align="center start">
-					<span class="md-title">{{ownUser.userName}}</span> 
-					<span class="md-subheader user-subheader">{{lang.created + ': ' + ownUser.creationTime}}</span> 
-					<span class="md-subheader user-subheader">{{lang.lastSeen + ': ' + ownUser.lastLogin}}</span> 
-					<span class="md-subheader user-subheader">{{lang.userId	+ ': ' + ownUser.userId}}</span>
-				</div>
-				<span flex></span>
-				<div>
-					<div layout="column" layout-align="center center">
-						<md-button
-							ng-blur="toggleMainFab($event, true)" 
-							aria-label="menu" class="md-fab md-mini" ng-click="toggleMainFab($event)">
-							<md-icon aria-label="Menu" class="material-icons">more_vert</md-icon> 
-						</md-button>
-						<div class="fab-action-buttons" layout="column" ng-hide="!isMainFabOpen">
-							<md-button class="md-fab md-raised md-mini" 
-								ng-click="saveChanges()">
-								<md-icon class="material-icons">save</md-icon>
-								<md-tooltip md-direction="{{(globalAttr.direction == 'rtl') ? 'right' : 'left'}}">
-         							{{lang.saveUserInfo}}
-    							</md-tooltip>
-							</md-button>
-							<md-button class="md-fab md-raised md-mini" 
-								ng-click="changePassword()">
-								<md-icon class="material-icons">vpn_key</md-icon>
-								<md-tooltip md-direction="{{(globalAttr.direction == 'rtl') ? 'right' : 'left'}}">
-         							{{lang.changePassword}}
-    							</md-tooltip>
-							</md-button>  
-						</div>
-					</div>
-				</div>
-			</div>
-			<md-divider></md-divider>
-		</section>
-		<md-content>
-			<section layout-padding layout="column">
-				<md-whiteframe class="md-whiteframe-1dp user-detail-section"
-					flex="none" layout-padding layout="column"> <span
-					class="md-headline">{{lang.userInfo}}</span>
-				<div layout-padding layout-wrap>
-					<md-input-container class="user-info-input"> <label>{{lang.gender}}</label>
-					<md-select ng-model="ownUser.isUserMale"> <md-option
-						ng-value={{true}}> {{lang.male}} </md-option> <md-option
-						ng-value={{false}}> {{lang.female}} </md-option> </md-select> </md-input-container>
-				</div>
-				<div layout-padding layout-wrap>
-					<md-input-container class="user-info-input"> <label>{{lang.userEmail}}</label>
-					<md-icon class="material-icons">email</md-icon> <input
-						ng-model="ownUser.userEmail"> </md-input-container>
-				</div>
-				</md-whiteframe>
-				<md-whiteframe class="md-whiteframe-1dp user-detail-section"
-					flex="none" layout-padding layout="column"> 
-					<div class="md-headline" layout="row" layout-align="start center">
-						{{lang.userRoles}}
-					</div>
-					<md-whiteframe
-					ng-repeat="role in ownUser.userRoles"
-					class="md-whiteframe-1dp user-detail-section"> <md-header
-					layout="row">
-				<p>{{role.roleName}}</p>
-				<span flex></span> 
-				<md-divider ng-if="role.permissions.length > 0"></md-divider>
-				<p class="permission" ng-repeat="permission in role.permissions">
-					{{permission.permissionName}}</p>
-				</md-whiteframe> </md-whiteframe>
-			</section>
-		</md-content>
-	</main-content>
+flex
+layout="column">
+    <main-content flex layout="column">
+        <section ng-if='progressMode != ""' flex layout="column" layout-align="center center">
+            <div>
+                <md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120"></md-progress-circular>
+            </div>
+        </section>
+        <section ng-if='progressMode == ""' flex="none" layout-padding>
+            <div class="user-card-head" layout="row" layout-align="start center">
+                <md-button
+                aria-label="logo-button"
+                ng-click="changeAvatar($event)"
+                ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}">
+                    <img class="user-preview-avatar" ng-src="{{getUserAvatar()}}" />
+                </md-button>
+                <div layout="column" layout-align="center start">
+                    <span class="md-title">{{ownUser.userName}}</span>
+                    <span class="md-subheader user-subheader">{{lang.created + ': ' + ownUser.creationTime}}</span>
+                    <span class="md-subheader user-subheader">{{lang.lastSeen + ': ' + ownUser.lastLogin}}</span>
+                    <span class="md-subheader user-subheader">{{lang.userId	+ ': ' + ownUser.userId}}</span>
+                </div>
+                <span flex></span>
+                <div>
+                    <div layout="column" layout-align="center center">
+                        <md-button
+                        ng-blur="toggleMainFab($event, true)"
+                        aria-label="menu" class="md-fab md-mini" ng-click="toggleMainFab($event)">
+                            <md-icon aria-label="Menu" class="material-icons">
+                                more_vert
+                            </md-icon>
+                        </md-button>
+                        <div class="fab-action-buttons" layout="column" ng-hide="!isMainFabOpen">
+                            <md-button class="md-fab md-raised md-mini"
+                            ng-click="saveChanges()">
+                                <md-icon class="material-icons">
+                                    save
+                                </md-icon>
+                                <md-tooltip md-direction="{{(globalAttr.direction == 'rtl') ? 'right' : 'left'}}">
+                                    {{lang.saveUserInfo}}
+                                </md-tooltip>
+                            </md-button>
+                            <md-button class="md-fab md-raised md-mini"
+                            ng-click="changePassword()">
+                                <md-icon class="material-icons">
+                                    vpn_key
+                                </md-icon>
+                                <md-tooltip md-direction="{{(globalAttr.direction == 'rtl') ? 'right' : 'left'}}">
+                                    {{lang.changePassword}}
+                                </md-tooltip>
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <md-divider></md-divider>
+        </section>
+        <md-content ng-if='progressMode == ""'>
+            <section layout-padding layout="column">
+                <md-whiteframe class="md-whiteframe-1dp user-detail-section"
+                flex="none" layout-padding layout="column">
+                    <span
+                    class="md-headline">{{lang.userInfo}}</span>
+                    <div layout-padding layout-wrap>
+                        <md-input-container class="user-info-input">
+                            <label>{{lang.gender}}</label>
+                            <md-select ng-model="ownUser.isUserMale">
+                                <md-option
+                                ng-value={{true}}>
+                                    {{lang.male}}
+                                </md-option>
+                                <md-option
+                                ng-value={{false}}>
+                                    {{lang.female}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div layout-padding layout-wrap>
+                        <md-input-container class="user-info-input">
+                            <label>{{lang.userEmail}}</label>
+                            <md-icon class="material-icons">
+                                email
+                            </md-icon>
+                            <input
+                            ng-model="ownUser.userEmail">
+                        </md-input-container>
+                    </div>
+                </md-whiteframe>
+                <md-whiteframe class="md-whiteframe-1dp user-detail-section"
+                flex="none" layout-padding layout="column">
+                    <div class="md-headline" layout="row" layout-align="start center">
+                        {{lang.userRoles}}
+                    </div>
+                    <md-whiteframe
+                    ng-repeat="role in ownUser.userRoles"
+                    class="md-whiteframe-1dp user-detail-section">
+                        <md-header
+                        layout="row">
+                            <p>
+                                {{role.roleName}}
+                            </p>
+                            <span flex></span>
+                            <md-divider ng-if="role.permissions.length > 0"></md-divider>
+                            <p class="permission" ng-repeat="permission in role.permissions">
+                                {{permission.permissionName}}
+                            </p>
+                        </md-header>
+                    </md-whiteframe>
+                </md-whiteframe>
+            </section>
+        </md-content>
+    </main-content>
 </izmus-main-window>

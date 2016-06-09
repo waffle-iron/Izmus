@@ -105,7 +105,7 @@ md-tab-item>span{
 </style>
 <section ng-if='progressMode != ""' flex layout="column" layout-align="center center">
 	<div>
-    	<md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120">
+    	<md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120"></md-progress-circular>
 	</div>
 </section>
 <section flex ng-if="selectedStartup && progressMode == ''" layout="column" layout-padding ng-class="(isSmallDevice()) ? 'small-page-section' : ''">

@@ -1,4 +1,4 @@
-angular.module('userPersonalSettingsApp').directive('izmusUserPersonalSettings', ['getOwnUser', function(getOwnUser) {
+angular.module('userPersonalSettingsApp').directive('izmusUserPersonalSettings', ['getOwnUser','saveUserPersonalData', function(getOwnUser, saveUserPersonalData) {
 	return {
 		restrict : 'E',
 		templateUrl : '/views/user-personal-settings/templates/user-personal-settings.html',
@@ -10,6 +10,7 @@ angular.module('userPersonalSettingsApp').directive('izmusUserPersonalSettings',
 			$scope.lang = lang;
 			$scope.globalAttr = globalAttr;
 			$scope.isMainFabOpen = false;
+			$scope.progressMode = '';
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.toggleMainFab = function($event, lostFocus){
 				if (lostFocus){
@@ -48,6 +49,13 @@ angular.module('userPersonalSettingsApp').directive('izmusUserPersonalSettings',
 				else {
 					return avatars[0];
 				}
+			}
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.saveChanges = function(){
+				$scope.progressMode = 'indeterminate';
+				saveUserPersonalData($scope.ownUser).then(function(){
+					$scope.progressMode = '';
+				});
 			}
 		}],
 		link : function(scope, elem, attr) {

@@ -17,3 +17,27 @@ angular.module('userPersonalSettingsApp').factory('getOwnUser',
 				})
 			}
 		} ]);
+/*----------------------------------------------------------------------------------------------------*/
+angular.module('userPersonalSettingsApp').factory('saveUserPersonalData',
+		[ '$q', '$http', '$httpParamSerializer', function($q, $http, $httpParamSerializer) {
+			return function(userData) {
+				return $q(function(resolve, reject) {
+					$http({
+						method : 'POST',
+						url : '/api/Users/SaveUserPersonalData',
+						headers: {
+					        'Content-Type': "application/x-www-form-urlencoded; charset=UTF-8",
+					        'Upgrade-Insecure-Requests': "1",
+					        'X-CSRF-TOKEN': globalAttr.sessionToken
+					    },
+					    data : $httpParamSerializer({
+					    	userData: userData
+					    })
+					}).then(function successCallback() {
+						resolve();
+					}, function errorCallback(response) {
+						reject();
+					});
+				})
+			}
+		} ]);

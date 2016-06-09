@@ -30,7 +30,7 @@ angular.module('changePasswordApp').directive('izmusChangePassword', ['saveUserP
 					});
 				}
 				else {
-					scope.showFailMessage();
+					scope.showMessage(scope.lang.failMessage);
 				}
 			}
 			/*----------------------------------------------------------------------------------------------------*/
