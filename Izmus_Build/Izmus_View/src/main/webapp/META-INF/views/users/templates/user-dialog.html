@@ -19,7 +19,7 @@
 	right: auto !important;
 }
 </style>
-<section layout="column" id="user-dialog">
+<section layout="column" id="user-dialog" dir="{{globalAttr.direction}}">
 	<section flex="30" class="flex-section"></section>
 	<md-whiteframe flex="none" class="registration-section md-whiteframe-10dp" 
 		layout="row" layout-xs="column" layout-padding layout-align="space-around center">
@@ -30,14 +30,14 @@
 				</div>
 				<div layout="column" layout-align="center center" class="user-name-password">
 					<form name="registrationForm" layout="column">
-						<md-input-container>
+						<md-input-container ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
 							<label>{{lang.userName}}</label> 
 							<input required name="userName" ng-model="userName">
 							<div ng-messages="registrationForm.userName.$error" multiple md-auto-hide="false">
 								<div ng-message="required">{{lang.userNameRequired}}</div>
 							</div> 
 						</md-input-container>
-						<md-input-container>
+						<md-input-container ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
 							<label>{{lang.email}}</label> 
 							<input required name="email" type="email" ng-model="email">
 							<div ng-messages="registrationForm.email.$error" multiple md-auto-hide="false">
@@ -45,7 +45,7 @@
 								<div ng-message="email">{{lang.enterValidEmailAddress}}</div>
 							</div>
 						</md-input-container>
-						<md-input-container class="user-type-input"> 
+						<md-input-container class="user-type-input" ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''"> 
 							<label> User Type </label>
 							<md-select ng-model="userType" required name="userType"> 
 								<md-option value="Izmus Finder"> Izmus Finder </md-option>

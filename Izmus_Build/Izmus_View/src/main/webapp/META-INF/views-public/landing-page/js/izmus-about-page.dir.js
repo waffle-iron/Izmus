@@ -15,7 +15,7 @@ angular
 										function($scope) {
 											$scope.globalAttr = globalAttr;
 											$scope.lang = lang;
-											$scope.backgroundSwitch = true;
+//											$scope.backgroundSwitch = true;
 											/*----------------------------------------------------------------------------------------------------*/
 											$scope.getSectionBackgroundImage = function(section){
 												if ($mdMedia('sm') || $mdMedia('xs')){
@@ -27,41 +27,41 @@ angular
 											}
 											/*----------------------------------------------------------------------------------------------------*/
 											$scope.getMobileBackground = function(section){
-												if ($scope.backgroundSwitch){
+//												if ($scope.backgroundSwitch){
 													if (section == 'one'){
 														return "url('/views-public/landing-page/images/about/mobile/about-background.jpg')";
 													}
 													else if (section == 'two'){
 														return "url('/views-public/landing-page/images/about/mobile/about-background-2.jpg')";
 													}	
-												}
-												else {
-													if (section == 'two'){
-														return "url('/views-public/landing-page/images/about/mobile/about-background.jpg')";
-													}
-													else if (section == 'one'){
-														return "url('/views-public/landing-page/images/about/mobile/about-background-2.jpg')";
-													}
-												}
+//												}
+//												else {
+//													if (section == 'two'){
+//														return "url('/views-public/landing-page/images/about/mobile/about-background.jpg')";
+//													}
+//													else if (section == 'one'){
+//														return "url('/views-public/landing-page/images/about/mobile/about-background-2.jpg')";
+//													}
+//												}
 											}
 											/*----------------------------------------------------------------------------------------------------*/
 											$scope.getWebBackground = function(section){
-												if ($scope.backgroundSwitch){
+//												if ($scope.backgroundSwitch){
 													if (section == 'one'){
 														return "url('/views-public/landing-page/images/about/about-background.jpg')";
 													}
 													else if (section == 'two'){
 														return "url('/views-public/landing-page/images/about/about-background-2.jpg')";
 													}	
-												}
-												else {
-													if (section == 'two'){
-														return "url('/views-public/landing-page/images/about/about-background.jpg')";
-													}
-													else if (section == 'one'){
-														return "url('/views-public/landing-page/images/about/about-background-2.jpg')";
-													}
-												}
+//												}
+//												else {
+//													if (section == 'two'){
+//														return "url('/views-public/landing-page/images/about/about-background.jpg')";
+//													}
+//													else if (section == 'one'){
+//														return "url('/views-public/landing-page/images/about/about-background-2.jpg')";
+//													}
+//												}
 											}
 											/*----------------------------------------------------------------------------------------------------*/
 //											$scope.backgroundLoop = function(){
@@ -92,7 +92,9 @@ angular.module('izmusLandingPageApp').directive('aniView',['$document','$window'
         },
         link: function(scope, element, attrs) {
         	scope.sensitivity = 0;
-        	var parent = angular.element($document[0].getElementById("about-scroll"));
+        	scope.parent = angular.element($document[0].getElementById("about-scroll"));
+        	scope.show = false;
+			/*----------------------------------------------------------------------------------------------------*/
         	scope.getScrollOffsets = function(w) {
 
                 // Use the specified window or the current window if no argument
@@ -107,43 +109,38 @@ angular.module('izmusLandingPageApp').directive('aniView',['$document','$window'
                 }
 
             };
+			/*----------------------------------------------------------------------------------------------------*/
             scope.getPosition = function(e) {
                 return {
                     x: e[0].offsetLeft,
                     y: e[0].offsetTop
                 };
-            }
+            };
+			/*----------------------------------------------------------------------------------------------------*/
             scope.getViewPortSize = function(w) {
-
                 return {
                     x: Math.max(document.documentElement.clientWidth, w.innerWidth || 0) - scope.sensitivity,
                     y: Math.max(document.documentElement.clientHeight, w.innerHeight || 0) - scope.sensitivity
                 }
-
-
             }
-            scope.show = false;
-
-            updateElementVisiblityOnScroll();
-
-
-            function updateElementVisiblityOnScroll(){
-              angular.element(parent).bind('scroll', updateElementVisiblity);
+			/*----------------------------------------------------------------------------------------------------*/
+            scope.updateElementVisiblityOnScroll = function(){
+              angular.element(scope.parent).bind('scroll', scope.updateElementVisiblity);
             }
-
+			/*----------------------------------------------------------------------------------------------------*/
             //enables elements to be shown if they're already on viewport when page's loaded
-            function updateElementOnPageLoad(){
-              setTimeout(updateElementVisiblity, 0);
+            scope.updateElementOnPageLoad = function (){
+              setTimeout(scope.updateElementVisiblity, 0);
             }
-
-            function updateElementVisiblity(){
-              scope.show = elementIsOnViewport(scope, element, $window)
+			/*----------------------------------------------------------------------------------------------------*/
+            scope.updateElementVisiblity = function (){
+              scope.show = scope.elementIsOnViewport(scope, element, $window)
               scope.$apply();
             }
-
-            function elementIsOnViewport(scope, element, $window){
+			/*----------------------------------------------------------------------------------------------------*/
+            scope.elementIsOnViewport = function (scope, element, $window){
               var position = scope.getPosition(element);
-              var offset = scope.getScrollOffsets(parent);
+              var offset = scope.getScrollOffsets(scope.parent);
               var viewport = scope.getViewPortSize($window);
               var coverage = {
                   x: parseInt(viewport.x + offset.x),
@@ -155,6 +152,9 @@ angular.module('izmusLandingPageApp').directive('aniView',['$document','$window'
               }
               return false;
             }
+			/*----------------------------------------------------------------------------------------------------*/
+            scope.updateElementVisiblityOnScroll();
+            scope.updateElementOnPageLoad();
         }
     }
 }]);

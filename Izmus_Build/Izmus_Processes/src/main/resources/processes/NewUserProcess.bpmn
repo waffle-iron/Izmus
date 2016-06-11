@@ -11,7 +11,6 @@
         <flowNodeRef>CreateIzmusAssessorServiceId</flowNodeRef>
         <flowNodeRef>IzmusWelcomeServiceId</flowNodeRef>
         <flowNodeRef>CreateIzmusFinderServiceId</flowNodeRef>
-        <flowNodeRef>usertask1</flowNodeRef>
       </lane>
       <lane id="UserLaneId" name="User"></lane>
     </laneSet>
@@ -22,14 +21,12 @@
     <sequenceFlow id="flow2" name="Izmus Assessor" sourceRef="exclusivegateway1" targetRef="CreateIzmusAssessorServiceId">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${userType.equals("Izmus Assessor")}]]></conditionExpression>
     </sequenceFlow>
-    <serviceTask id="CreateIzmusFinderServiceId" name="Create Izmus Finder" activiti:expression="#{CreateIzmusClient.execute(execution)}"></serviceTask>
+    <serviceTask id="CreateIzmusFinderServiceId" name="Create Izmus Finder" activiti:expression="#{CreateIzmusFinder.execute(execution)}"></serviceTask>
     <sequenceFlow id="flow3" name="Izmus Finder" sourceRef="exclusivegateway1" targetRef="CreateIzmusFinderServiceId">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${userType.equals("Izmus Finder")}]]></conditionExpression>
     </sequenceFlow>
     <serviceTask id="IzmusWelcomeServiceId" name="Izmus Welcome E-Mail" activiti:expression="#{IzmusWelcomeEmail.execute(execution)}"></serviceTask>
     <sequenceFlow id="flow4" sourceRef="CreateIzmusAssessorServiceId" targetRef="IzmusWelcomeServiceId"></sequenceFlow>
-    <userTask id="usertask1" name="Send Forms"></userTask>
-    <sequenceFlow id="flow5" sourceRef="CreateIzmusFinderServiceId" targetRef="usertask1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration">
     <bpmndi:BPMNPlane bpmnElement="Collaboration" id="BPMNPlane_Collaboration">
@@ -57,9 +54,6 @@
       <bpmndi:BPMNShape bpmnElement="IzmusWelcomeServiceId" id="BPMNShape_IzmusWelcomeServiceId">
         <omgdc:Bounds height="55.0" width="121.0" x="520.0" y="130.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
-        <omgdc:Bounds height="55.0" width="105.0" x="490.0" y="40.0"></omgdc:Bounds>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
         <omgdi:waypoint x="135.0" y="157.0"></omgdi:waypoint>
         <omgdi:waypoint x="200.0" y="157.0"></omgdi:waypoint>
@@ -82,10 +76,6 @@
       <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
         <omgdi:waypoint x="431.0" y="157.0"></omgdi:waypoint>
         <omgdi:waypoint x="520.0" y="157.0"></omgdi:waypoint>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
-        <omgdi:waypoint x="431.0" y="67.0"></omgdi:waypoint>
-        <omgdi:waypoint x="490.0" y="67.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
