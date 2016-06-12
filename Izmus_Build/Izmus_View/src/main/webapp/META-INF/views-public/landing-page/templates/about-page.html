@@ -14,6 +14,8 @@
 		font-size: 25;
 		font-weight: 700;
 		max-width: 400px;
+		padding-left: 12px;
+		padding-right:12px;
 		color: #1f6086;
 		text-align: center;
 	}
@@ -97,7 +99,7 @@
 		visibility: hidden;
 	}
 	.section-one-anim.ng-hide-remove{
-		animation: fadeIn 5s;
+		animation: fadeIn 2s;
 	}
 	.section-one-anim.ng-hide {
 		display: block !important;
@@ -149,10 +151,10 @@
 	layout="row"
 	layout-xs="column"
 	layout-sm="column">
-		<section hide-sm hide-xs hide-md style="width: 10%"></section>
+		<section hide-sm hide-xs hide-md style="width: 7%"></section>
 		<section layout="column">
 			<section hide-sm hide-xs style="height: 15%;"></section>
-			<section layout="column" layout-padding layout-align="space-around center" class="section-one-anim" ani-view>
+			<section layout="column" layout-align="space-around center" class="section-one-anim" ani-view>
 				<div class="about-section-header-text" layout="row"
 				ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
 					<p>

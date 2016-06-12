@@ -93,6 +93,10 @@
 	        		ng-class="(globalAttr.direction == 'rtl') ? 'button-text-rtl' : 'button-text'">
 	          		{{lang.loginTitle}}
 	        	</md-button>
+	        	<md-button ng-hide="(screenShowing == 'news')" class="md-raised" ng-click="moveToPage('news')"
+	        		ng-class="(globalAttr.direction == 'rtl') ? 'button-text-rtl' : 'button-text'">
+	          		{{lang.news}}
+	        	</md-button>
 	        </div>
 	        <div hide-gt-sm>
 	        	<language-menu>
@@ -108,6 +112,9 @@
 				</md-button>
 				<md-button ng-if="(globalAttr.user == null)" class="md-icon-button toolbar-icons logo-button-icon" ng-click="contactDialog($event)">
                     <md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/contact128x128.svg"></md-icon>
+                </md-button>
+                <md-button ng-hide="(screenShowing == 'news')" class="md-icon-button toolbar-icons logo-button-icon" ng-click="moveToPage('news')">
+                    <md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/news.svg"></md-icon>
                 </md-button>
 	        </div>
 		</div>

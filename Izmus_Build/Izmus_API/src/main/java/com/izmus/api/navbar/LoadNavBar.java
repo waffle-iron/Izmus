@@ -34,8 +34,11 @@ public class LoadNavBar {
 		try {
 			navbar = new ArrayList<>();
 			authentication = SecurityContextHolder.getContext().getAuthentication();
-			if (permissionEvaluator.hasPermission(authentication, "Startup Assessment", null)){
-				navbar.add(getStartupAssessmnetItem());
+			if (permissionEvaluator.hasPermission(authentication, "Assessors Menu", null)){
+				navbar.add(getAssessorsMenu(authentication));
+			}
+			if (permissionEvaluator.hasPermission(authentication, "Finders Menu", null)){
+				navbar.add(getFindersMenu(authentication));
 			}
 			if (permissionEvaluator.hasPermission(authentication, "Admin Menu", null)){
 				navbar.add(getAdminMenu(authentication));
@@ -44,6 +47,41 @@ public class LoadNavBar {
 			LOGGER.error("Getting Navbar Failed For User: " + authentication);
 		}
 		return navbar;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private NavbarItem getAssessorsMenu(Authentication authentication) {
+		NavbarItem assessorsMenu = new NavbarItem();
+		assessorsMenu.setHref("");
+		assessorsMenu.setLabel(context.getMessage("navBar.menu.assessorsMenu",null, LocaleContextHolder.getLocale()));
+		assessorsMenu.setIcon("/views/core/izmus-nav-bar/images/assessor.svg");
+		assessorsMenu.setType("toggle");
+		assessorsMenu.setSubItems(new ArrayList<NavbarItem>());
+		if (permissionEvaluator.hasPermission(authentication, "Startup Assessment", null)){
+			assessorsMenu.getSubItems().add(getStartupAssessmnetItem());
+		}
+		return assessorsMenu;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private NavbarItem getFindersMenu(Authentication authentication) {
+		NavbarItem findersMenu = new NavbarItem();
+		findersMenu.setHref("");
+		findersMenu.setLabel(context.getMessage("navBar.menu.findersMenu",null, LocaleContextHolder.getLocale()));
+		findersMenu.setIcon("/views/core/izmus-nav-bar/images/finders-menu.svg");
+		findersMenu.setType("toggle");
+		findersMenu.setSubItems(new ArrayList<NavbarItem>());
+		if (permissionEvaluator.hasPermission(authentication, "Finders Dashboard", null)){
+			findersMenu.getSubItems().add(getFindersDashboardItem());
+		}
+		return findersMenu;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private NavbarItem getFindersDashboardItem() {
+		NavbarItem findersDashboardItem = new NavbarItem();
+		findersDashboardItem.setHref("/FindersDashboard");
+		findersDashboardItem.setLabel(context.getMessage("navBar.menu.findersMenu.findersDashboard",null, LocaleContextHolder.getLocale()));
+		findersDashboardItem.setIcon("dashboard");
+		findersDashboardItem.setType("link");
+		return findersDashboardItem;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	private NavbarItem getAdminMenu(Authentication authentication) {

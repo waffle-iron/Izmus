@@ -5,20 +5,17 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="STARTUPS")
@@ -62,11 +59,12 @@ public class Startup implements Serializable, Comparable<Startup> {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.LAZY, orphanRemoval = true)
 	@Fetch(value = FetchMode.JOIN)
 	private Set<StartupAdditionalDocument> additionalDocuments;
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "GROUP_ID", nullable = true)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.LAZY, orphanRemoval = true)
 	@Fetch(value = FetchMode.JOIN)
-	@JsonBackReference
-	private StartupGroup startupGroup;
+	private Set<StartupMeeting> meetings;
+	@Column(name = "STARTUP_GROUP_IDS")
+	@ElementCollection(targetClass = Integer.class, fetch = FetchType.EAGER)
+	private Set<Integer> startupGroupsIds;
 	/*----------------------------------------------------------------------------------------------------*/
 	public boolean equals(Object obj) {
 		if ((obj != null) && ((obj instanceof Startup))) {
@@ -235,19 +233,27 @@ public class Startup implements Serializable, Comparable<Startup> {
 		this.responsibleUser = responsibleUser;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
-	public StartupGroup getStartupGroup() {
-		return startupGroup;
-	}
-	/*----------------------------------------------------------------------------------------------------*/
-	public void setStartupGroup(StartupGroup startupGroup) {
-		this.startupGroup = startupGroup;
-	}
-	/*----------------------------------------------------------------------------------------------------*/
 	public Set<StartupAdditionalDocument> getAdditionalDocuments() {
 		return additionalDocuments;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	public void setAdditionalDocuments(Set<StartupAdditionalDocument> additionalDocuments) {
 		this.additionalDocuments = additionalDocuments;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public Set<Integer> getStartupGroupsIds() {
+		return startupGroupsIds;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public void setStartupGroupsIds(Set<Integer> startupGroupsIds) {
+		this.startupGroupsIds = startupGroupsIds;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public Set<StartupMeeting> getMeetings() {
+		return meetings;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public void setMeetings(Set<StartupMeeting> meetings) {
+		this.meetings = meetings;
 	}
 }

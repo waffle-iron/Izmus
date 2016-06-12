@@ -41,6 +41,13 @@ public class HomeController {
 		return returnModel;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/FindersDashboard", method = RequestMethod.GET)
+	@PreAuthorize("hasPermission('Finders Dashboard', '')")
+	public ModelAndView getFindersDashboard() {
+		ModelAndView returnModel = new ModelAndView("findersDashboard");
+		return returnModel;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/Users", method = RequestMethod.GET)
 	@PreAuthorize("hasPermission('Admin Menu/Users', '')")
 	public ModelAndView getUsers() {

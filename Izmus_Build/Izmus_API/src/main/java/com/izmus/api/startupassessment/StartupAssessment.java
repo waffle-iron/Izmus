@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -39,6 +38,7 @@ import com.izmus.data.domain.startups.ScoreCardReport;
 import com.izmus.data.domain.startups.Startup;
 import com.izmus.data.domain.startups.StartupAdditionalDocument;
 import com.izmus.data.domain.startups.StartupContact;
+import com.izmus.data.domain.startups.StartupMeeting;
 import com.izmus.data.domain.startups.StartupScoreCard;
 import com.izmus.data.domain.users.User;
 import com.izmus.data.repository.IStartupAdditionalDocumentRepository;
@@ -314,6 +314,7 @@ public class StartupAssessment {
 					changedStartup.setSite(startupObject.getSite());
 					setScoreCards(changedStartup, startupObject);
 					setContacts(changedStartup, startupObject);
+					setMeetings(changedStartup, startupObject);
 					startupRepository.save(changedStartup);
 					LOGGER.info("Startup Data Saved: " + changedStartup);
 				} catch (Exception e) {
@@ -324,6 +325,18 @@ public class StartupAssessment {
 		};
 		saveDataThread.setName("STARTUP_SAVE_DATA_THREAD");
 		saveDataThread.start();
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private void setMeetings(Startup changedStartup, Startup startupObject) {
+		if (startupObject.getMeetings() != null) {
+			changedStartup.setMeetings(startupObject.getMeetings());
+			for (StartupMeeting meeting : changedStartup.getMeetings()) {
+				meeting.setStartup(changedStartup);
+			}
+		} else {
+			HashSet<StartupMeeting> startupMeetings = new HashSet<>();
+			changedStartup.setMeetings(startupMeetings);
+		}
 	}
 
 	/*----------------------------------------------------------------------------------------------------*/
@@ -355,7 +368,7 @@ public class StartupAssessment {
 	public String deleteAdditionalDocument(@RequestParam("documentId") Integer documentId, @RequestParam("startupId") Integer startupId) {
 		try {
 			Startup parentStartup = startupRepository.findDistinctStartupByStartupId(startupId);
-			Set<StartupAdditionalDocument> newSet = new HashSet<StartupAdditionalDocument>();
+			HashSet<StartupAdditionalDocument> newSet = new HashSet<StartupAdditionalDocument>();
 			for (Iterator<StartupAdditionalDocument> iterator = parentStartup.getAdditionalDocuments().iterator(); iterator.hasNext();){
 				StartupAdditionalDocument parentDocument = iterator.next();
 				if (!parentDocument.getDocumentId().equals(documentId)){
@@ -378,7 +391,7 @@ public class StartupAssessment {
 				contact.setStartup(changedStartup);
 			}
 		} else {
-			Set<StartupContact> startupContacts = new HashSet<>();
+			HashSet<StartupContact> startupContacts = new HashSet<>();
 			changedStartup.setContacts(startupContacts);
 		}
 	}
@@ -397,7 +410,7 @@ public class StartupAssessment {
 				}
 			}
 		} else {
-			Set<StartupScoreCard> scoreCards = new HashSet<>();
+			HashSet<StartupScoreCard> scoreCards = new HashSet<>();
 			changedStartup.setScoreCards(scoreCards);
 		}
 	}

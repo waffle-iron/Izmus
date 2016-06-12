@@ -81,7 +81,7 @@ angular
 								}
 							}
 						} ]);
-angular.module('izmusLandingPageApp').directive('aniView',['$document','$window', function($document, $window) {
+angular.module('izmusLandingPageApp').directive('aniView',['$document','$window','$timeout', function($document, $window, $timeout) {
     return {
         restrict: 'A',
         transclude: true,
@@ -154,7 +154,9 @@ angular.module('izmusLandingPageApp').directive('aniView',['$document','$window'
             }
 			/*----------------------------------------------------------------------------------------------------*/
             scope.updateElementVisiblityOnScroll();
-            scope.updateElementOnPageLoad();
+            $timeout(function(){
+            	scope.updateElementOnPageLoad();
+            }, 2000);
         }
     }
 }]);

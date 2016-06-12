@@ -77,6 +77,14 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 				$scope.selectedStartup.contacts.push({});
 			}
 			/*----------------------------------------------------------------------------------------------------*/
+			$scope.addNewMeeting = function(){
+				$scope.tabs.selectedTab = 3;
+				if (!$scope.selectedStartup.meetings){
+					$scope.selectedStartup.meetings = [];
+				}
+				$scope.selectedStartup.meetings.push({});
+			}
+			/*----------------------------------------------------------------------------------------------------*/
 			$scope.addNewScoreCard = function(){
 				if (!$scope.selectedStartup.scoreCards){
 					$scope.selectedStartup.scoreCards = [];
@@ -85,7 +93,7 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 					scoreCardDate: new Date(),
 					measurements: []
 				});
-				$scope.tabs.selectedTab = $scope.selectedStartup.scoreCards.length + 3;
+				$scope.tabs.selectedTab = $scope.selectedStartup.scoreCards.length + 4;
 			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.isSmallDevice = function(){

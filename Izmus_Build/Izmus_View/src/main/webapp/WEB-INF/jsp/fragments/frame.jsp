@@ -15,7 +15,7 @@
 <meta http-equiv="x-ua-compatible" content="IE=Edge" />
 <!-- Angular Material style sheet -->
 <link
-	href="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.6/angular-material.min.css" />"
+	href="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.9/angular-material.min.css" />"
 	rel="stylesheet" />
 <link
 	href="<c:url value="https://fonts.googleapis.com/icon?family=Material+Icons" />"
@@ -44,7 +44,7 @@
 
 	<!-- Angular Material Library -->
 	<script
-		src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.6/angular-material.min.js" />"></script>
+		src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.9/angular-material.min.js" />"></script>
 	<script type="text/javascript">
 		var globalAttr = {
 			direction: '${dir}',

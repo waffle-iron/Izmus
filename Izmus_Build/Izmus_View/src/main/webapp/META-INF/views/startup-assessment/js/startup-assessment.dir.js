@@ -8,10 +8,12 @@ angular.module('startupAssessmentApp').directive('izmusStartupAssessment', [
 			
 		},
 		controller : ['$scope',function($scope) {
+			/*----------------------------------------------------------------------------------------------------*/
 			this.setSelectedStartup = function(selectedStartup){
 				$scope.selectedStartup = selectedStartup;
 				$mdSidenav('mainWidowSidenav').toggle();
 			}
+			/*----------------------------------------------------------------------------------------------------*/
 			$scope.globalAttr = globalAttr;
 			$scope.lang = lang;
 			$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');

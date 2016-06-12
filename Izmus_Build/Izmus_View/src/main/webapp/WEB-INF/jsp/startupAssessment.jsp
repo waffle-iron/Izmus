@@ -23,6 +23,8 @@
 <script
 	src="<c:url value="/views/startup-assessment/js/startup-additional-documents.dir.js" />"></script>
 <script
+	src="<c:url value="/views/startup-assessment/js/startup-meetings.dir.js" />"></script>
+<script
 	src="<c:url value="/views/core/file-upload/js/ng-file-upload-shim.js" />"></script>
 <script
 	src="<c:url value="/views/core/file-upload/js/ng-file-upload.js" />"></script>
@@ -77,6 +79,9 @@
 			onlyEmails:' <spring:message code="navBar.menu.startupAssessment.onlyEmails" />',
 			additionalDocuments:' <spring:message code="navBar.menu.startupAssessment.additionalDocuments" />',
 			uploadFile:' <spring:message code="navBar.menu.startupAssessment.uploadFile" />',
+			meetings:' <spring:message code="navBar.menu.startupAssessment.meetings" />',
+			addMeeting:' <spring:message code="navBar.menu.startupAssessment.addMeeting" />',
+			enterDate:' <spring:message code="navBar.menu.startupAssessment.enterDate" />',
 			dropPdf:' <spring:message code="navBar.menu.startupAssessment.dropPdf" />'
 	};
 </script>

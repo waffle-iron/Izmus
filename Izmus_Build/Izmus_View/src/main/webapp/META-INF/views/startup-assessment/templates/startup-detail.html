@@ -178,7 +178,14 @@ md-tab-item>span{
 							<md-tooltip md-direction="{{(globalAttr.direction == 'rtl') ? 'right' : 'left'}}">
          						{{lang.addContact}}
     						</md-tooltip>
-						</md-button> 
+						</md-button>
+						<md-button aria-label="Twitter" class="md-fab md-raised md-mini" 
+							ng-click="addNewMeeting()">
+							<md-icon class="material-icons" md-svg-src="/views/startup-assessment/images/meeting.svg"></md-icon>
+							<md-tooltip md-direction="{{(globalAttr.direction == 'rtl') ? 'right' : 'left'}}">
+         						{{lang.addMeeting}}
+    						</md-tooltip>
+						</md-button>  
 						<md-button aria-label="Twitter" class="md-fab md-raised md-mini" 
 							ng-click="addNewScoreCard()">
 							<md-icon class="material-icons">assignment</md-icon>
@@ -261,6 +268,11 @@ md-tab-item>span{
 			<izmus-startup-additional-documents
 				selected-startup='selectedStartup'>
 			</izmus-startup-additional-documents>
+		</md-tab>
+		<md-tab label="{{lang.meetings}}">
+			<izmus-startup-meetings
+				selected-startup='selectedStartup'>
+			</izmus-startup-meetings>
 		</md-tab>
 		<md-tab ng-repeat="scoreCard in selectedStartup.scoreCards">
 			<md-tab-label>

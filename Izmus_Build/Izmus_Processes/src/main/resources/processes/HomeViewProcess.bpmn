@@ -12,6 +12,7 @@
         <flowNodeRef>endevent4</flowNodeRef>
         <flowNodeRef>exclusivegateway2</flowNodeRef>
         <flowNodeRef>CheckUserPasswordServiceId</flowNodeRef>
+        <flowNodeRef>FindersServiceId</flowNodeRef>
       </lane>
       <lane id="UserLane" name="User">
         <flowNodeRef>UserAccessHomescreen</flowNodeRef>
@@ -41,6 +42,10 @@
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${changePassword}]]></conditionExpression>
     </sequenceFlow>
     <serviceTask id="UserChangePasswordServiceId" name="User Change Password" activiti:expression="#{UserChangePasswordService.execute(execution)}"></serviceTask>
+    <serviceTask id="FindersServiceId" name="Finders View" activiti:expression="#{CreateFindersView.execute(execution)}"></serviceTask>
+    <sequenceFlow id="flow14" sourceRef="exclusivegateway1" targetRef="FindersServiceId">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${userType.equals("IzmusFinder")}]]></conditionExpression>
+    </sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration">
     <bpmndi:BPMNPlane bpmnElement="Collaboration" id="BPMNPlane_Collaboration">
@@ -63,10 +68,10 @@
         <omgdc:Bounds height="40.0" width="40.0" x="348.0" y="107.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endevent3" id="BPMNShape_endevent3">
-        <omgdc:Bounds height="35.0" width="35.0" x="270.0" y="110.0"></omgdc:Bounds>
+        <omgdc:Bounds height="35.0" width="35.0" x="245.0" y="110.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endevent4" id="BPMNShape_endevent4">
-        <omgdc:Bounds height="35.0" width="35.0" x="420.0" y="30.0"></omgdc:Bounds>
+        <omgdc:Bounds height="35.0" width="35.0" x="245.0" y="30.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="CheckUserPasswordServiceId" id="BPMNShape_CheckUserPasswordServiceId">
         <omgdc:Bounds height="55.0" width="105.0" x="100.0" y="170.0"></omgdc:Bounds>
@@ -77,15 +82,18 @@
       <bpmndi:BPMNShape bpmnElement="UserChangePasswordServiceId" id="BPMNShape_UserChangePasswordServiceId">
         <omgdc:Bounds height="71.0" width="121.0" x="200.0" y="382.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="FindersServiceId" id="BPMNShape_FindersServiceId">
+        <omgdc:Bounds height="55.0" width="105.0" x="510.0" y="30.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
         <omgdi:waypoint x="368.0" y="170.0"></omgdi:waypoint>
         <omgdi:waypoint x="368.0" y="147.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
         <omgdi:waypoint x="348.0" y="127.0"></omgdi:waypoint>
-        <omgdi:waypoint x="305.0" y="127.0"></omgdi:waypoint>
+        <omgdi:waypoint x="280.0" y="127.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="30.0" width="100.0" x="283.0" y="78.0"></omgdc:Bounds>
+          <omgdc:Bounds height="30.0" width="100.0" x="231.0" y="78.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
@@ -95,9 +103,9 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
         <omgdi:waypoint x="368.0" y="107.0"></omgdi:waypoint>
-        <omgdi:waypoint x="437.0" y="65.0"></omgdi:waypoint>
+        <omgdi:waypoint x="262.0" y="65.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="30.0" width="100.0" x="440.0" y="27.0"></omgdc:Bounds>
+          <omgdc:Bounds height="30.0" width="100.0" x="320.0" y="41.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
@@ -114,6 +122,11 @@
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="30.0" width="100.0" x="267.0" y="300.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow14" id="BPMNEdge_flow14">
+        <omgdi:waypoint x="368.0" y="107.0"></omgdi:waypoint>
+        <omgdi:waypoint x="368.0" y="57.0"></omgdi:waypoint>
+        <omgdi:waypoint x="510.0" y="57.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

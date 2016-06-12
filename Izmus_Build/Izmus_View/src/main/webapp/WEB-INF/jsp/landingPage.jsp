@@ -123,6 +123,7 @@
 			english: ' <spring:message code="navBar.menu.user.language.english" />',
 			hebrew:' <spring:message code="navBar.menu.user.language.hebrew" />',
 			aboutBottom: ' <spring:message code="landingPage.about.bottomAbout" />',
+			news: ' <spring:message code="landingPage.news" />',
 			badContactInfo: ' <spring:message code="landingPage.badContactInfo" />'
 		};
 		<% if (request.getUserPrincipal()!= null && !request.getUserPrincipal().equals("")){

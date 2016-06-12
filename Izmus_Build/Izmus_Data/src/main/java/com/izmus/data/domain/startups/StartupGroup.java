@@ -4,19 +4,16 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 @Entity
-@Table(name="STARTUP_GROUPS")
+@Table(name = "STARTUP_GROUPS")
 public class StartupGroup implements Serializable, Comparable<StartupGroup> {
 	/*----------------------------------------------------------------------------------------------------*/
 	private static final long serialVersionUID = 1L;
@@ -26,9 +23,10 @@ public class StartupGroup implements Serializable, Comparable<StartupGroup> {
 	private Integer groupId;
 	@Column(name = "GROUPS_NAME")
 	private String groupName;
-	@OneToMany(mappedBy = "startupGroup", fetch = FetchType.EAGER)
-	@Fetch(value = FetchMode.JOIN)
-	private Set<Startup> startups;
+	@Column(name = "sTARTUP_IDS")
+	@ElementCollection(targetClass = Integer.class, fetch = FetchType.EAGER)
+	private Set<Integer> startupIds;
+
 	/*----------------------------------------------------------------------------------------------------*/
 	public boolean equals(Object obj) {
 		if ((obj != null) && ((obj instanceof StartupGroup))) {
@@ -36,44 +34,52 @@ public class StartupGroup implements Serializable, Comparable<StartupGroup> {
 		}
 		return false;
 	}
+
 	/*----------------------------------------------------------------------------------------------------*/
 	@Override
 	public int compareTo(StartupGroup otherStartup) {
 		return toString().compareTo(otherStartup.toString());
 	}
+
 	/*----------------------------------------------------------------------------------------------------*/
 	public int hashCode() {
 		String thisToString = toString();
 		return thisToString.hashCode();
 	}
+
 	/*----------------------------------------------------------------------------------------------------*/
 	public String toString() {
-		return "{\"groupId\": " + getGroupId() + ", "
-				+ "\"groupName: \"" + getGroupName() + "\"}";
+		return "{\"groupId\": " + getGroupId() + ", " + "\"groupName: \"" + getGroupName() + "\"}";
 	}
+
 	/*----------------------------------------------------------------------------------------------------*/
 	/*----------------------------------------------------------------------------------------------------*/
 	public Integer getGroupId() {
 		return groupId;
 	}
+
 	/*----------------------------------------------------------------------------------------------------*/
 	public void setGroupId(Integer groupId) {
 		this.groupId = groupId;
 	}
+
 	/*----------------------------------------------------------------------------------------------------*/
 	public String getGroupName() {
 		return groupName;
 	}
+
 	/*----------------------------------------------------------------------------------------------------*/
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
+
 	/*----------------------------------------------------------------------------------------------------*/
-	public Set<Startup> getStartups() {
-		return startups;
+	public Set<Integer> getStartupIds() {
+		return startupIds;
 	}
+
 	/*----------------------------------------------------------------------------------------------------*/
-	public void setStartups(Set<Startup> startups) {
-		this.startups = startups;
+	public void setStartupIds(Set<Integer> startupIds) {
+		this.startupIds = startupIds;
 	}
 }

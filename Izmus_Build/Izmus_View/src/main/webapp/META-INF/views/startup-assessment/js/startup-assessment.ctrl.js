@@ -1,1 +1,1 @@
-angular.module('startupAssessmentApp', ['izmusNavBarApp', 'izmusMainWindowApp', 'ngAnimate', 'ngFileUpload']);
+angular.module('startupAssessmentApp', ['izmusNavBarApp', 'izmusMainWindowApp', 'ngAnimate', 'ngFileUpload', 'ngMessages']);
