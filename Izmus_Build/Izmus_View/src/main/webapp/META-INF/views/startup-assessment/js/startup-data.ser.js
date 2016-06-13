@@ -33,8 +33,8 @@ angular.module('startupAssessmentApp').factory('saveStartupData',
 					    data : $httpParamSerializer({
 					    	startupData: startupData
 					    })
-					}).then(function successCallback() {
-						resolve();
+					}).then(function successCallback(response) {
+						resolve(response.data);
 					}, function errorCallback(response) {
 						reject();
 					});

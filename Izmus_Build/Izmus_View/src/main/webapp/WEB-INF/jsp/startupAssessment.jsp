@@ -82,6 +82,10 @@
 			meetings:' <spring:message code="navBar.menu.startupAssessment.meetings" />',
 			addMeeting:' <spring:message code="navBar.menu.startupAssessment.addMeeting" />',
 			enterDate:' <spring:message code="navBar.menu.startupAssessment.enterDate" />',
+			dateRequired:' <spring:message code="navBar.menu.startupAssessment.dateRequired" />',
+			dateInvalid:' <spring:message code="navBar.menu.startupAssessment.dateInvalid" />',
+			saveFail:' <spring:message code="navBar.menu.startupAssessment.saveFail" />',
+			saveSuccess:' <spring:message code="navBar.menu.startupAssessment.saveSuccess" />',
 			dropPdf:' <spring:message code="navBar.menu.startupAssessment.dropPdf" />'
 	};
 </script>

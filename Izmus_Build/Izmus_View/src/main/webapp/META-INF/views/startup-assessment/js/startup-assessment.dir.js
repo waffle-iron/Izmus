@@ -1,6 +1,6 @@
 angular.module('startupAssessmentApp').directive('izmusStartupAssessment', [ 
-        '$mdSidenav', '$mdMedia','$mdDialog', 'loadStartupData', 'saveStartupData',
-        function($mdSidenav, $mdMedia, $mdDialog, loadStartupData, saveStartupData) {
+        '$mdSidenav', '$mdMedia','$mdDialog', 'loadStartupData', 'saveStartupData','$mdToast',
+        function($mdSidenav, $mdMedia, $mdDialog, loadStartupData, saveStartupData, $mdToast) {
 	return {
 		restrict : 'E',
 		templateUrl : '/views/startup-assessment/templates/startup-assessment.html',
@@ -83,10 +83,33 @@ angular.module('startupAssessmentApp').directive('izmusStartupAssessment', [
 					var newStartup = {
 							startupName: $scope.startupName	
 					};
-					saveStartupData(newStartup);
+					saveStartupData(newStartup).then(function(response){
+						if (response.result != 'success'){
+							scope.showMessage(scope.lang.saveFail);
+						}
+						else {
+							scope.showMessage(scope.lang.saveSuccess);
+						}
+					},
+					function(){
+						scope.showMessage(scope.lang.saveFail);
+					});
 					scope.sidenavCtrl.startupDataList.push(newStartup);
 					$mdDialog.cancel();
 				};
+			}
+			/*----------------------------------------------------------------------------------------------------*/
+			scope.showMessage = function(message){
+				$mdToast.show({
+				      controller: 'toastCtrl',
+				      templateUrl: '/views/core/toast/templates/toast.html',
+				      parent : angular.element(elem),
+				      hideDelay: 2600,
+				      position: 'top right',
+				      locals: {
+				    	  message: message
+				      }
+				    });
 			}
 		}
 	}

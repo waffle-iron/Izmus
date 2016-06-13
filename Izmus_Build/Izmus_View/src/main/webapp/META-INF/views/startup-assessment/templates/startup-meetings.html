@@ -1,4 +1,8 @@
 <style>
+.error-message{
+    font-size: small;
+    color: red;
+}
 </style>
 <section layout="row" layout-padding layout-wrap layout-align="center stretch">
 	<md-whiteframe
@@ -11,12 +15,12 @@
 		<form name="meetingForm">
 			<md-datepicker name="dateField" ng-model="meeting.meetingDate" md-placeholder="{{lang.enterDate}}"
 			required ng-class="(globalAttr.direction == 'rtl') ? 'datepicker-rtl' : ''"></md-datepicker>
-			<div multiple md-auto-hide="false" ng-messages="meetingForm.dateField.$error">
-				<div ng-message="required">
-					This date is required!
+			<div layout-padding multiple md-auto-hide="false" ng-messages="meetingForm.dateField.$error">
+				<div ng-message="required" class="error-message">
+					{{lang.dateRequired}}
 				</div>
-				<div ng-message="valid">
-					The entered value is not a date!
+				<div ng-message="valid" class="error-message">
+					{{lang.dateInvalid}}
 				</div>
 			</div>
 		</form>

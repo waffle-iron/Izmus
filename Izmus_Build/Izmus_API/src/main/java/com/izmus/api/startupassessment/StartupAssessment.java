@@ -284,47 +284,41 @@ public class StartupAssessment {
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/SaveStartupData", method = RequestMethod.POST)
 	@PreAuthorize("hasPermission('Startup Assessment+Edit', '')")
-	public void saveStartupData(@RequestParam(value = "startupData") final String startupData) {
-		Thread saveDataThread = new Thread() {
-			@Override
-			public void run() {
-				Startup startupObject = null;
-				try {
-					startupObject = jacksonObjectMapper.readValue(startupData, Startup.class);
-					Startup changedStartup = null;
-					if (startupObject.getStartupId() != null) {
-						changedStartup = startupRepository.findDistinctStartupByStartupId(startupObject.getStartupId());
-					} else {
-						changedStartup = startupRepository
-								.findDistinctStartupByStartupName(startupObject.getStartupName());
-					}
-					if (changedStartup == null)
-						changedStartup = new Startup();
-					changedStartup.setStartupName(startupObject.getStartupName());
-					changedStartup.setAddress(startupObject.getAddress());
-					changedStartup.setOfficePhone(startupObject.getOfficePhone());
-					changedStartup.setMiscellaneous(startupObject.getMiscellaneous());
-					changedStartup.setRequestedFunds(startupObject.getRequestedFunds());
-					changedStartup.setAchivedFunds(startupObject.getAchivedFunds());
-					changedStartup.setStartupOwnValuation(startupObject.getStartupOwnValuation());
-					changedStartup.setIzmusValuation(startupObject.getIzmusValuation());
-					changedStartup.setSector(startupObject.getSector());
-					changedStartup.setLogo(startupObject.getLogo());
-					changedStartup.setResponsibleUser(startupObject.getResponsibleUser());
-					changedStartup.setSite(startupObject.getSite());
-					setScoreCards(changedStartup, startupObject);
-					setContacts(changedStartup, startupObject);
-					setMeetings(changedStartup, startupObject);
-					startupRepository.save(changedStartup);
-					LOGGER.info("Startup Data Saved: " + changedStartup);
-				} catch (Exception e) {
-					LOGGER.error("Could Not Save Startup Information: " + startupObject);
-				}
-				super.run();
+	public String saveStartupData(@RequestParam(value = "startupData") final String startupData) {
+		Startup startupObject = null;
+		try {
+			startupObject = jacksonObjectMapper.readValue(startupData, Startup.class);
+			Startup changedStartup = null;
+			if (startupObject.getStartupId() != null) {
+				changedStartup = startupRepository.findDistinctStartupByStartupId(startupObject.getStartupId());
+			} else {
+				changedStartup = startupRepository
+						.findDistinctStartupByStartupName(startupObject.getStartupName());
 			}
-		};
-		saveDataThread.setName("STARTUP_SAVE_DATA_THREAD");
-		saveDataThread.start();
+			if (changedStartup == null)
+				changedStartup = new Startup();
+			changedStartup.setStartupName(startupObject.getStartupName());
+			changedStartup.setAddress(startupObject.getAddress());
+			changedStartup.setOfficePhone(startupObject.getOfficePhone());
+			changedStartup.setMiscellaneous(startupObject.getMiscellaneous());
+			changedStartup.setRequestedFunds(startupObject.getRequestedFunds());
+			changedStartup.setAchivedFunds(startupObject.getAchivedFunds());
+			changedStartup.setStartupOwnValuation(startupObject.getStartupOwnValuation());
+			changedStartup.setIzmusValuation(startupObject.getIzmusValuation());
+			changedStartup.setSector(startupObject.getSector());
+			changedStartup.setLogo(startupObject.getLogo());
+			changedStartup.setResponsibleUser(startupObject.getResponsibleUser());
+			changedStartup.setSite(startupObject.getSite());
+			setScoreCards(changedStartup, startupObject);
+			setContacts(changedStartup, startupObject);
+			setMeetings(changedStartup, startupObject);
+			startupRepository.save(changedStartup);
+			LOGGER.info("Startup Data Saved: " + changedStartup);
+		} catch (Exception e) {
+			LOGGER.error("Could Not Save Startup Information: " + startupObject);
+			return "{\"result\": \"fail\"}";
+		}
+		return "{\"result\": \"success\"}";
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	private void setMeetings(Startup changedStartup, Startup startupObject) {

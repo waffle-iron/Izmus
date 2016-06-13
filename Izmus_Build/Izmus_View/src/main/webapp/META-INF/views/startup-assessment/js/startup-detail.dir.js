@@ -1,6 +1,6 @@
 angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveStartupData','avatarDialog','$mdMedia', 
-                        'exportScoreCardReport', '$mdDialog', '$mdConstant','emailScoreCardReport',
-                        function(saveStartupData, avatarDialog, $mdMedia, exportScoreCardReport, $mdDialog, $mdConstant, emailScoreCardReport) {
+                        'exportScoreCardReport', '$mdDialog', '$mdConstant','emailScoreCardReport', '$mdToast',
+                        function(saveStartupData, avatarDialog, $mdMedia, exportScoreCardReport, $mdDialog, $mdConstant, emailScoreCardReport, $mdToast) {
 	return {
 		restrict : 'E',
 		require: '^^izmusStartupAssessment',
@@ -55,11 +55,18 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.saveChanges = function(){
 				$scope.progressMode = 'indeterminate';
-				saveStartupData($scope.selectedStartup).then(function(result){
+				saveStartupData($scope.selectedStartup).then(function(response){
 					$scope.isMainFabOpen = false;
 					$scope.progressMode = '';
+					if (response.result != 'success'){
+						$scope.showMessage($scope.lang.saveFail);
+					}
+					else {
+						$scope.showMessage($scope.lang.saveSuccess);
+					}
 				}, function(error){
 					$scope.progressMode = '';
+					$scope.showMessage($scope.lang.saveFail);
 				});
 			}
 			/*----------------------------------------------------------------------------------------------------*/
@@ -82,7 +89,9 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 				if (!$scope.selectedStartup.meetings){
 					$scope.selectedStartup.meetings = [];
 				}
-				$scope.selectedStartup.meetings.push({});
+				$scope.selectedStartup.meetings.push({
+					meetingDate: new Date()
+				});
 			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.addNewScoreCard = function(){
@@ -256,6 +265,20 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 					});
 					$mdDialog.cancel();
 				};
+			}
+			/*----------------------------------------------------------------------------------------------------*/
+
+			scope.showMessage = function(message){
+				$mdToast.show({
+				      controller: 'toastCtrl',
+				      templateUrl: '/views/core/toast/templates/toast.html',
+				      parent : angular.element(elem),
+				      hideDelay: 2600,
+				      position: 'top right',
+				      locals: {
+				    	  message: message
+				      }
+				    });
 			}
 		}
 	}
