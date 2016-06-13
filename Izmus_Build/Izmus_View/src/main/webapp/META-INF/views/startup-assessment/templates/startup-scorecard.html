@@ -48,7 +48,7 @@ md-radio-group{
 </section>
 <section ng-if='progressMode != ""' flex layout="column" layout-align="center center">
 	<div>
-    	<md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120">
+    	<md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120"></md-progress-circular>
 	</div>
 </section>
 <section ng-if="scoreCard.measurements.length > 0 && progressMode == ''" layout="row" layout-padding layout-wrap layout-align="center stretch">
@@ -79,12 +79,13 @@ md-radio-group{
 		</div>
 		<span class="measurement-description">{{measurement.description}}</span>
 		<div layout-padding layout-wrap>
-			<form name="measurementForm" layout="column">
-				<md-input-container flex class="measurement-input" ng-class="(globalAttr.direction == 'rtl') ? 'startup-info-input-rtl' : 'startup-info-input-ltr'"> 
+			<form name="measurementForm" flex layout="column">
+				<md-input-container flex="none" class="measurement-input" ng-class="(globalAttr.direction == 'rtl') ? 'startup-info-input-rtl' : 'startup-info-input-ltr'"> 
 					<label>{{lang.assessment}}</label>
 					<textarea aria-label="miscellaneous-text" ng-model="measurement.assessment" md-select-on-focus></textarea>
 				</md-input-container>
 				<md-input-container
+					flex="none"
 					class="measurement-input"
 					ng-class="(globalAttr.direction == 'rtl') ? 'startup-info-input-rtl' : 'startup-info-input-ltr'"
 					class="startup-info-input"> 
@@ -99,7 +100,7 @@ md-radio-group{
 				        </div>
 				   </div>
 				</md-input-container>
-				<div layout-padding layout="column" ng-repeat="question in measurement.measurementQuestions">
+				<div flex="none" layout-padding layout="column" ng-repeat="question in measurement.measurementQuestions">
 					<span class="question">{{$index + 1 + '. ' + question.question}}</span>
 					<md-radio-group ng-model="question.score">
 	      				<md-radio-button value="1">{{lang.inadequate}}</md-radio-button>
