@@ -65,8 +65,8 @@ angular
 													else {
 														$scope.counter = (($scope.counter + 1) % 6) == 0 ? 1 : ($scope.counter + 1) % 6;
 													}
-												}, 2010);
-											},7000);
+												}, 2000);
+											},6000);
 											/*----------------------------------------------------------------------------------------------------*/
 											$scope.showSection = function(sectionNumber){
 												return $scope.section[sectionNumber]['show'];

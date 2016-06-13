@@ -11,8 +11,8 @@
         height: 80px !important;
     }
     .about-section-header-text {
-        font-size: 25;
-        font-weight: 700;
+        font-size: 27;
+        font-weight: 800;
         max-width: 400px;
         padding-left: 12px;
         padding-right: 12px;
@@ -42,10 +42,6 @@
         text-align: justify;
     }
     .about-section {
-        -webkit-transition: background ease-in-out 1s;
-        -moz-transition: background ease-in-out 1s;
-        -o-transition: background ease-in-out 1s;
-        transition: background ease-in-out 1s;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -55,10 +51,6 @@
         background: #9bb2c8;
     }
     .about-section-three {
-        -webkit-transition: background ease-in-out 1s;
-        -moz-transition: background ease-in-out 1s;
-        -o-transition: background ease-in-out 1s;
-        transition: background ease-in-out 1s;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -83,7 +75,7 @@
         margin: 5px;
     }
     .about-section-text-content.ng-hide {
-        animation: bounceOutRight 2s;
+        animation: fadeOutDown 2s;
     }
 
     .about-section-text-content.ng-hide-remove {
@@ -93,19 +85,18 @@
     .about-section-text-content.right.ng-hide-remove {
         animation: bounceInRight 2s !important;
     }
-    .about-section-text.ng-hide {
-        animation: bounceOutRight 2s;
-    }
     .section-one-anim.ng-hide-remove {
         animation: fadeIn 2s;
     }
     .section-one-anim.ng-hide {
-        animation: fadeOut 2s;
+        animation: fadeOutDown 2s;
     }
     .about-section-text.ng-hide-remove {
         animation: bounceInLeft 2s;
     }
-
+ 	.about-section-text.ng-hide {
+        animation: fadeOutDown 2s;
+    }
     .about-section-text.right.ng-hide-remove {
         animation: bounceInRight 2s !important;
     }
@@ -138,6 +129,9 @@
     .izmus-fonts-header-rtl {
         font-family: alef;
     }
+    .background-blue{
+    	background: rgba(31, 96, 134, 0.7);
+    }
 </style>
 <section style="height: 8px;"></section>
 <section layout="column">
@@ -149,7 +143,7 @@
     layout-xs="column"
     layout-sm="column">
         <section hide-sm hide-xs hide-md style="width: 7%"></section>
-        <section layout="column">
+        <section layout="column" layout-padding layout-align="start center">
             <section hide-sm hide-xs style="height: 15%;"></section>
             <section layout="column" layout-align="space-around center" class="section-one-anim" ng-show="showSection(1)" ng-if="addSection(1)">
                 <div class="about-section-header-text" layout="row"
@@ -160,25 +154,25 @@
                 </div>
             </section>
             <div class="about-section-text" layout="column" layout-align="center center">
-                <div class="about-section-text-header" layout="row" dir="{{globalAttr.direction}}"
+                <div class="about-section-header-text section-one-anim" layout="row" dir="{{globalAttr.direction}}"
                 ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'" ng-show="showSection(2)" ng-if="addSection(2)">
                     <p>
                         {{lang.missionSectionHeader}}
                     </p>
                 </div>
-                <div class="about-section-text-content" layout="row" dir="{{globalAttr.direction}}"
+                <div class="about-section-text-content md-whiteframe-1dp background-blue" layout-padding layout="row" dir="{{globalAttr.direction}}"
                 ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'" ng-show="showSection(3)" ng-if="addSection(3)">
-                    <p>
-                        {{lang.missionSectionContentOne}}
-                    </p>
-                </div>
-                <div class="about-section-text-content right" layout="row" dir="{{globalAttr.direction}}"
-                ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'" ng-show="showSection(4)" ng-if="addSection(4)">
                     <p>
                         {{lang.missionSectionContentTwo}}
                     </p>
                 </div>
-                <div class="about-section-text-content right" layout="row" dir="{{globalAttr.direction}}"
+                <div class="about-section-text-content md-whiteframe-1dp background-blue" layout-padding layout="row" dir="{{globalAttr.direction}}"
+                ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'" ng-show="showSection(4)" ng-if="addSection(4)">
+                    <p>
+                        {{lang.missionSectionContentOne}}
+                    </p>
+                </div>
+                <div class="about-section-text-content md-whiteframe-1dp background-blue" layout-padding layout="row" dir="{{globalAttr.direction}}"
                 ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'" ng-show="showSection(5)" ng-if="addSection(5)">
                     <p>
                         {{lang.missionSectionContentThree}}
