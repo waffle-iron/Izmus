@@ -61,6 +61,7 @@ angular
 														$scope.counter = 3;
 														$scope.section[$scope.counter]['show'] = true;
 														$scope.section[$scope.counter]['add'] = true;
+														$scope.counter = 4;
 													}
 													else {
 														$scope.counter = (($scope.counter + 1) % 6) == 0 ? 1 : ($scope.counter + 1) % 6;
