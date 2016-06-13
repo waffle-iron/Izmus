@@ -1,361 +1,356 @@
 <style>
-	.about-section-text {
-		max-width: 400px;
-	}
-	.about-logo-words {
-		width: 280px !important;
-		height: 80px !important;
-	}
-	.about-singapore-icon {
-		width: 80px !important;
-		height: 80px !important;
-	}
-	.about-section-header-text {
-		font-size: 25;
-		font-weight: 700;
-		max-width: 400px;
-		padding-left: 12px;
-		padding-right:12px;
-		color: #1f6086;
-		text-align: center;
-	}
-	.about-section-three-header-text {
-		font-size: 4em;
-		font-weight: 300;
-		color: white;
-		text-align: center;
-	}
-	.about-section-three-header-text > p {
-		/*margin-top: 20px;
-		margin-bottom: 20px;*/
-	}
-	.about-section-text-header {
-		font-size: 2em;
-		font-weight: 700;
-		color: white;
-		text-align: center;
-	}
-	.about-section-text-content {
-		font-size: large;
-		font-weight: 700;
-		color: white;
-		text-align: justify;
-	}
-	.about-section {
-		-webkit-transition: background ease-in-out 1s;
-		-moz-transition: background ease-in-out 1s;
-		-o-transition: background ease-in-out 1s;
-		transition: background ease-in-out 1s;
-		background-position: center;
-		background-size: cover;
-		background-repeat: no-repeat;
-		height: 90%;
-	}
-	.about-section-two {
-		background: #9bb2c8;
-	}
-	.about-section-three {
-		-webkit-transition: background ease-in-out 1s;
-		-moz-transition: background ease-in-out 1s;
-		-o-transition: background ease-in-out 1s;
-		transition: background ease-in-out 1s;
-		background-position: center;
-		background-size: cover;
-		background-repeat: no-repeat;
-	}
-	.bottom-bar {
-		background-color: #2F2E2E;
-		height: 103px;
-	}
-	.bottom-bar-text {
-		color: #FFFFFF;
-		font-size: small;
-	}
-	.bottom-bar-icon {
-		width: 32px !important;
-		height: 32px !important;
-	}
-	.bottom-bar-button {
-		width: 48px !important;
-		height: 48px !important;
-	}
-	.section-text-whiteframe {
-		margin: 5px;
-	}
-	.about-section-text-content.ng-hide {
-		display: block !important;
-		visibility: hidden;
-	}
+    .about-section-text {
+        max-width: 400px;
+    }
+    .about-logo-words {
+        width: 280px !important;
+        height: 80px !important;
+    }
+    .about-singapore-icon {
+        width: 80px !important;
+        height: 80px !important;
+    }
+    .about-section-header-text {
+        font-size: 25;
+        font-weight: 700;
+        max-width: 400px;
+        padding-left: 12px;
+        padding-right: 12px;
+        color: #1f6086;
+        text-align: center;
+    }
+    .about-section-three-header-text {
+        font-size: 4em;
+        font-weight: 300;
+        color: white;
+        text-align: center;
+    }
+    .about-section-three-header-text > p {
+        /*margin-top: 20px;
+         margin-bottom: 20px;*/
+    }
+    .about-section-text-header {
+        font-size: 2em;
+        font-weight: 700;
+        color: white;
+        text-align: center;
+    }
+    .about-section-text-content {
+        font-size: large;
+        font-weight: 700;
+        color: white;
+        text-align: justify;
+    }
+    .about-section {
+        -webkit-transition: background ease-in-out 1s;
+        -moz-transition: background ease-in-out 1s;
+        -o-transition: background ease-in-out 1s;
+        transition: background ease-in-out 1s;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 90%;
+    }
+    .about-section-two {
+        background: #9bb2c8;
+    }
+    .about-section-three {
+        -webkit-transition: background ease-in-out 1s;
+        -moz-transition: background ease-in-out 1s;
+        -o-transition: background ease-in-out 1s;
+        transition: background ease-in-out 1s;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .bottom-bar {
+        background-color: #2F2E2E;
+        height: 103px;
+    }
+    .bottom-bar-text {
+        color: #FFFFFF;
+        font-size: small;
+    }
+    .bottom-bar-icon {
+        width: 32px !important;
+        height: 32px !important;
+    }
+    .bottom-bar-button {
+        width: 48px !important;
+        height: 48px !important;
+    }
+    .section-text-whiteframe {
+        margin: 5px;
+    }
+    .about-section-text-content.ng-hide {
+        animation: bounceOutRight 2s;
+    }
 
-	.about-section-text-content.ng-hide-remove {
-		animation: bounceInLeft 2s;
-	}
+    .about-section-text-content.ng-hide-remove {
+        animation: bounceInLeft 2s;
+    }
 
-	.about-section-text-content.right.ng-hide-remove {
-		animation: bounceInRight 2s !important;
-	}
-	.about-section-text.ng-hide {
-		display: block !important;
-		visibility: hidden;
-	}
-	.section-one-anim.ng-hide-remove{
-		animation: fadeIn 2s;
-	}
-	.section-one-anim.ng-hide {
-		display: block !important;
-		visibility: hidden;
-	}
-	.about-section-text.ng-hide-remove {
-		animation: bounceInLeft 2s;
-	}
+    .about-section-text-content.right.ng-hide-remove {
+        animation: bounceInRight 2s !important;
+    }
+    .about-section-text.ng-hide {
+        animation: bounceOutRight 2s;
+    }
+    .section-one-anim.ng-hide-remove {
+        animation: fadeIn 2s;
+    }
+    .section-one-anim.ng-hide {
+        animation: fadeOut 2s;
+    }
+    .about-section-text.ng-hide-remove {
+        animation: bounceInLeft 2s;
+    }
 
-	.about-section-text.right.ng-hide-remove {
-		animation: bounceInRight 2s !important;
-	}
-	.contact-us-button {
-		color: white !important;
-		background: #1f6086 !important;
-		font-size: large;
-		font-weight: 700;
-		width: 200px;
-	}
-	hr {
-		width: 40px;
-		border: 0;
-		margin-top: 4px !important;
-		margin-bottom: 4px !important;
-		border-top: 5px solid #9bb2c8;
-	}
-	.divider{
-		padding-bottom: 12px;
-	}
-	.izmus-fonts {
-		font-family: raleway-regular;
-	}
-	.izmus-fonts-rtl {
-		font-family: alef;
-	}
-	.izmus-fonts-header {
-		font-family: raleway-bold;
-	}
-	.izmus-fonts-header-rtl {
-		font-family: alef;
-	}
+    .about-section-text.right.ng-hide-remove {
+        animation: bounceInRight 2s !important;
+    }
+    .contact-us-button {
+        color: white !important;
+        background: #1f6086 !important;
+        font-size: large;
+        font-weight: 700;
+        width: 200px;
+    }
+    hr {
+        width: 40px;
+        border: 0;
+        margin-top: 4px !important;
+        margin-bottom: 4px !important;
+        border-top: 5px solid #9bb2c8;
+    }
+    .divider {
+        padding-bottom: 12px;
+    }
+    .izmus-fonts {
+        font-family: raleway-regular;
+    }
+    .izmus-fonts-rtl {
+        font-family: alef;
+    }
+    .izmus-fonts-header {
+        font-family: raleway-bold;
+    }
+    .izmus-fonts-header-rtl {
+        font-family: alef;
+    }
 </style>
 <section style="height: 8px;"></section>
 <section layout="column">
-	<md-whiteframe
-	flex="none"
-	class="about-section md-whiteframe-10dp"
-	ng-style="{'background-image': getSectionBackgroundImage('one')}"
-	layout="row"
-	layout-xs="column"
-	layout-sm="column">
-		<section hide-sm hide-xs hide-md style="width: 7%"></section>
-		<section layout="column">
-			<section hide-sm hide-xs style="height: 15%;"></section>
-			<section layout="column" layout-align="space-around center" class="section-one-anim" ani-view>
-				<div class="about-section-header-text" layout="row"
-				ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
-					<p>
-						{{lang.aboutSectionHeaderText}}
-					</p>
-				</div>
-			</section>
-			<section layout="row" layout-align="center center" class="section-one-anim divider" ani-view>
-				<hr>
-			</section>
-			<section layout-padding layout="row" layout-align="center center" class="section-one-anim" ani-view>
-				<md-button class="md-raised contact-us-button" ng-click="contactDialog($event)"
-				ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
-					{{lang.contactUs}}
-				</md-button>
-			</section>
-		</section>
-	</md-whiteframe>
+    <md-whiteframe
+    flex="none"
+    class="about-section md-whiteframe-10dp"
+    ng-style="{'background-image': getSectionBackgroundImage('one')}"
+    layout="row"
+    layout-xs="column"
+    layout-sm="column">
+        <section hide-sm hide-xs hide-md style="width: 7%"></section>
+        <section layout="column">
+            <section hide-sm hide-xs style="height: 15%;"></section>
+            <section layout="column" layout-align="space-around center" class="section-one-anim" ng-show="showSection(1)" ng-if="addSection(1)">
+                <div class="about-section-header-text" layout="row"
+                ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
+                    <p>
+                        {{lang.aboutSectionHeaderText}}
+                    </p>
+                </div>
+            </section>
+            <div class="about-section-text" layout="column" layout-align="center center">
+                <div class="about-section-text-header" layout="row" dir="{{globalAttr.direction}}"
+                ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'" ng-show="showSection(2)" ng-if="addSection(2)">
+                    <p>
+                        {{lang.missionSectionHeader}}
+                    </p>
+                </div>
+                <div class="about-section-text-content" layout="row" dir="{{globalAttr.direction}}"
+                ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'" ng-show="showSection(3)" ng-if="addSection(3)">
+                    <p>
+                        {{lang.missionSectionContentOne}}
+                    </p>
+                </div>
+                <div class="about-section-text-content right" layout="row" dir="{{globalAttr.direction}}"
+                ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'" ng-show="showSection(4)" ng-if="addSection(4)">
+                    <p>
+                        {{lang.missionSectionContentTwo}}
+                    </p>
+                </div>
+                <div class="about-section-text-content right" layout="row" dir="{{globalAttr.direction}}"
+                ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'" ng-show="showSection(5)" ng-if="addSection(5)">
+                    <p>
+                        {{lang.missionSectionContentThree}}
+                    </p>
+                </div>
+            </div>
+            <!-- <section layout="row" layout-align="center center" class="section-one-anim divider">
+                <hr>
+            </section>
+            <section layout-padding layout="row" layout-align="center center" class="section-one-anim">
+                <md-button class="md-raised contact-us-button" ng-click="contactDialog($event)"
+                ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
+                    {{lang.contactUs}}
+                </md-button>
+            </section> -->
+        </section>
+    </md-whiteframe>
 </section>
 <section style="height: 8px;"></section>
 <section layout="column">
-	<md-whiteframe
-	flex="none"
-	class="about-section-two md-whiteframe-10dp"
-	layout="column">
-		<section
-		layout="row"
-		layout-xs="column"
-		layout-sm="column"
-		layout-padding
-		layout-align="space-around start"
-		layout-align-sm="space-around center"
-		layout-align-xs="space-around center">
-			<md-whiteframe class="section-text-whiteframe">
-				<div class="about-section-text" layout="column" layout-align="center center">
-					<div class="about-section-text-header" layout="row" dir="{{globalAttr.direction}}"
-					ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
-						<p>
-							{{lang.izmusSectionHeader}}
-						</p>
-					</div>
-					<div class="about-section-text-content" layout="row" ani-view dir="{{globalAttr.direction}}"
-					ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
-						<p>
-							{{lang.izmusSectionContent}}
-						</p>
-					</div>
-				</div>
-			</md-whiteframe>
-			<md-whiteframe class="section-text-whiteframe">
-				<div class="about-section-text" layout="column" layout-align="center center">
-					<div class="about-section-text-header" layout="row" dir="{{globalAttr.direction}}"
-					ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
-						<p>
-							{{lang.missionSectionHeader}}
-						</p>
-					</div>
-					<div class="about-section-text-content" layout="row" ani-view dir="{{globalAttr.direction}}"
-					ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
-						<p>
-							{{lang.missionSectionContentOne}}
-						</p>
-					</div>
-					<div class="about-section-text-content right" layout="row" ani-view dir="{{globalAttr.direction}}"
-					ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
-						<p>
-							{{lang.missionSectionContentTwo}}
-						</p>
-					</div>
-					<div class="about-section-text-content right" layout="row" ani-view dir="{{globalAttr.direction}}"
-					ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
-						<p>
-							{{lang.missionSectionContentThree}}
-						</p>
-					</div>
-				</div>
-			</md-whiteframe>
-			<md-whiteframe class="section-text-whiteframe">
-				<div class="about-section-text" layout="column" layout-align="center center">
-					<div class="about-section-text-header" layout="row" dir="{{globalAttr.direction}}"
-					ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
-						<p>
-							{{lang.visionSectionHeader}}
-						</p>
-					</div>
-					<div class="about-section-text-content" layout="row" ani-view dir="{{globalAttr.direction}}"
-					ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
-						<p>
-							{{lang.visionSectionContent}}
-						</p>
-					</div>
-				</div>
-			</md-whiteframe>
-		</section>
-	</md-whiteframe>
+    <md-whiteframe
+    flex="none"
+    class="about-section-two md-whiteframe-10dp"
+    layout="column">
+        <section
+        layout="row"
+        layout-xs="column"
+        layout-sm="column"
+        layout-padding
+        layout-align="space-around start"
+        layout-align-sm="space-around center"
+        layout-align-xs="space-around center">
+            <md-whiteframe class="section-text-whiteframe">
+                <div class="about-section-text" layout="column" layout-align="center center">
+                    <div class="about-section-text-header" layout="row" dir="{{globalAttr.direction}}"
+                    ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
+                        <p>
+                            {{lang.izmusSectionHeader}}
+                        </p>
+                    </div>
+                    <div class="about-section-text-content" layout="row" ani-view dir="{{globalAttr.direction}}"
+                    ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
+                        <p>
+                            {{lang.izmusSectionContent}}
+                        </p>
+                    </div>
+                </div>
+            </md-whiteframe>
+            <md-whiteframe class="section-text-whiteframe">
+                <div class="about-section-text" layout="column" layout-align="center center">
+                    <div class="about-section-text-header" layout="row" dir="{{globalAttr.direction}}"
+                    ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
+                        <p>
+                            {{lang.visionSectionHeader}}
+                        </p>
+                    </div>
+                    <div class="about-section-text-content" layout="row" ani-view dir="{{globalAttr.direction}}"
+                    ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
+                        <p>
+                            {{lang.visionSectionContent}}
+                        </p>
+                    </div>
+                </div>
+            </md-whiteframe>
+        </section>
+    </md-whiteframe>
 </section>
 <section style="height: 8px;"></section>
 <section layout="column">
-	<md-whiteframe
-	flex="none"
-	class="about-section-three md-whiteframe-10dp"
-	ng-style="{'background-image': getSectionBackgroundImage('two')}"
-	layout="column">
-		<section layout="column" layout-align="center center">
-			<div class="about-section-three-header-text" layout="row"
-			dir="{{globalAttr.direction}}"
-			ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
-				<p>
-					{{lang.aboutSectionTwoHeaderText}}
-				</p>
-			</div>
-		</section>
-		<section
-		layout="row"
-		layout-xs="column"
-		layout-sm="column"
-		layout-padding
-		layout-align="center start"
-		layout-align-sm="center center"
-		layout-align-xs="center center">
-			<div class="about-section-text" layout="column" layout-align="start center" ani-view>
-				<md-icon class="about-singapore-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/compass.svg"></md-icon>
-				<div class="about-section-text-header" layout="row"
-				dir="{{globalAttr.direction}}"
-				ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
-					<p>
-						{{lang.singaporeLocation}}
-					</p>
-				</div>
-				<div class="about-section-text-content" layout="row"
-				dir="{{globalAttr.direction}}"
-				ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
-					<p>
-						{{lang.singaporeLocationContent}}
-					</p>
-				</div>
-			</div>
-			<div class="about-section-text" layout="column" layout-align="start center" ani-view>
-				<md-icon class="about-singapore-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/suitcase.svg"></md-icon>
-				<div class="about-section-text-header" layout="row"
-				dir="{{globalAttr.direction}}"
-				ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
-					<p>
-						{{lang.singaporeBusiness}}
-					</p>
-				</div>
-				<div class="about-section-text-content" layout="row"
-				dir="{{globalAttr.direction}}"
-				ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
-					<p>
-						{{lang.singaporeBusinessContent}}
-					</p>
-				</div>
-			</div>
-			<div class="about-section-text right" layout="column" layout-align="start center" ani-view>
-				<md-icon class="about-singapore-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/diagram.svg"></md-icon>
-				<div class="about-section-text-header" layout="row"
-				dir="{{globalAttr.direction}}"
-				ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
-					<p>
-						{{lang.singaporePopulation}}
-					</p>
-				</div>
-				<div class="about-section-text-content" layout="row"
-				dir="{{globalAttr.direction}}"
-				ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
-					<p>
-						{{lang.singaporePopulationContent}}
-					</p>
-				</div>
-			</div>
-			<div class="about-section-text right" layout="column" layout-align="start center" ani-view>
-				<md-icon class="about-singapore-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/light-bulb.svg"></md-icon>
-				<div class="about-section-text-header" layout="row"
-				dir="{{globalAttr.direction}}"
-				ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
-					<p>
-						{{lang.smartNation}}
-					</p>
-				</div>
-				<div class="about-section-text-content" layout="row"
-				dir="{{globalAttr.direction}}"
-				ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
-					<p>
-						{{lang.smartNationContent}}
-					</p>
-				</div>
-			</div>
-		</section>
-		<section style="height: 450px;"></section>
-	</md-whiteframe>
+    <md-whiteframe
+    flex="none"
+    class="about-section-three md-whiteframe-10dp"
+    ng-style="{'background-image': getSectionBackgroundImage('two')}"
+    layout="column">
+        <section layout="column" layout-align="center center">
+            <div class="about-section-three-header-text" layout="row"
+            dir="{{globalAttr.direction}}"
+            ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
+                <p>
+                    {{lang.aboutSectionTwoHeaderText}}
+                </p>
+            </div>
+        </section>
+        <section
+        layout="row"
+        layout-xs="column"
+        layout-sm="column"
+        layout-padding
+        layout-align="center start"
+        layout-align-sm="center center"
+        layout-align-xs="center center">
+            <div class="about-section-text" layout="column" layout-align="start center" ani-view>
+                <md-icon class="about-singapore-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/compass.svg"></md-icon>
+                <div class="about-section-text-header" layout="row"
+                dir="{{globalAttr.direction}}"
+                ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
+                    <p>
+                        {{lang.singaporeLocation}}
+                    </p>
+                </div>
+                <div class="about-section-text-content" layout="row"
+                dir="{{globalAttr.direction}}"
+                ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
+                    <p>
+                        {{lang.singaporeLocationContent}}
+                    </p>
+                </div>
+            </div>
+            <div class="about-section-text" layout="column" layout-align="start center" ani-view>
+                <md-icon class="about-singapore-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/suitcase.svg"></md-icon>
+                <div class="about-section-text-header" layout="row"
+                dir="{{globalAttr.direction}}"
+                ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
+                    <p>
+                        {{lang.singaporeBusiness}}
+                    </p>
+                </div>
+                <div class="about-section-text-content" layout="row"
+                dir="{{globalAttr.direction}}"
+                ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
+                    <p>
+                        {{lang.singaporeBusinessContent}}
+                    </p>
+                </div>
+            </div>
+            <div class="about-section-text right" layout="column" layout-align="start center" ani-view>
+                <md-icon class="about-singapore-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/diagram.svg"></md-icon>
+                <div class="about-section-text-header" layout="row"
+                dir="{{globalAttr.direction}}"
+                ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
+                    <p>
+                        {{lang.singaporePopulation}}
+                    </p>
+                </div>
+                <div class="about-section-text-content" layout="row"
+                dir="{{globalAttr.direction}}"
+                ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
+                    <p>
+                        {{lang.singaporePopulationContent}}
+                    </p>
+                </div>
+            </div>
+            <div class="about-section-text right" layout="column" layout-align="start center" ani-view>
+                <md-icon class="about-singapore-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/light-bulb.svg"></md-icon>
+                <div class="about-section-text-header" layout="row"
+                dir="{{globalAttr.direction}}"
+                ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
+                    <p>
+                        {{lang.smartNation}}
+                    </p>
+                </div>
+                <div class="about-section-text-content" layout="row"
+                dir="{{globalAttr.direction}}"
+                ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
+                    <p>
+                        {{lang.smartNationContent}}
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section style="height: 450px;"></section>
+    </md-whiteframe>
 </section>
 <section style="height: 8px;"></section>
 <section class="bottom-bar" layout="column" layout-padding layout-align="center center">
-	<md-button aria-label="facebook" class="md-icon-button bottom-bar-button" href='https://www.facebook.com/IZMUS-580954152052097/?fref=ts'>
-		<md-icon
-		class="bottom-bar-icon"
-		md-svg-src="/views-public/landing-page/images/about/facebook-icon.svg"></md-icon>
-	</md-button>
-	<div class="bottom-bar-text" dir="{{globalAttr.direction}}">
-		{{lang.aboutBottom}}
-	</div>
+    <md-button aria-label="facebook" class="md-icon-button bottom-bar-button" href='https://www.facebook.com/IZMUS-580954152052097/?fref=ts'>
+        <md-icon
+        class="bottom-bar-icon"
+        md-svg-src="/views-public/landing-page/images/about/facebook-icon.svg"></md-icon>
+    </md-button>
+    <div class="bottom-bar-text" dir="{{globalAttr.direction}}">
+        {{lang.aboutBottom}}
+    </div>
 </section>
 

@@ -2,8 +2,8 @@ angular
 		.module('izmusLandingPageApp')
 		.directive(
 				'izmusAboutPage',
-				['$timeout', '$mdMedia','contactUsDialog','$document',
-						function($timeout, $mdMedia, contactUsDialog, $document) {
+				['$timeout', '$mdMedia','contactUsDialog','$document','$interval',
+						function($timeout, $mdMedia, contactUsDialog, $document, $interval) {
 							return {
 								restrict : 'E',
 								templateUrl : '/views-public/landing-page/templates/about-page.html',
@@ -15,6 +15,14 @@ angular
 										function($scope) {
 											$scope.globalAttr = globalAttr;
 											$scope.lang = lang;
+											$scope.section = {
+													1: {add: false, show: false},
+													2: {add: false, show: false},
+													3: {add: false, show: false},
+													4: {add: false, show: false},
+													5: {add: false, show: false}
+											};
+											$scope.counter = 2;
 //											$scope.backgroundSwitch = true;
 											/*----------------------------------------------------------------------------------------------------*/
 											$scope.getSectionBackgroundImage = function(section){
@@ -24,6 +32,48 @@ angular
 												else {
 													return $scope.getWebBackground(section);
 												}
+											}
+											/*----------------------------------------------------------------------------------------------------*/
+											$timeout(function(){
+												$scope.section[1]['show'] = true;
+												$scope.section[1]['add'] = true;
+											}, 2000);
+											/*----------------------------------------------------------------------------------------------------*/
+											$interval(function(){
+												if ($scope.counter == 1){
+													$scope.section[5]['show'] = false;
+													$scope.section[2]['show'] = false;
+													$timeout(function(){
+														$scope.section[5]['add'] = false;
+														$scope.section[2]['add'] = false;
+													}, 2000);
+												}
+												else if ($scope.counter - 1 != 2){
+													$scope.section[$scope.counter-1]['show'] = false;
+													$timeout(function(){
+														$scope.section[$scope.counter-1]['add'] = false;
+													}, 2000);
+												}
+												$timeout(function(){
+													$scope.section[$scope.counter]['show'] = true;
+													$scope.section[$scope.counter]['add'] = true;
+													if ($scope.counter == 2){
+														$scope.counter = 3;
+														$scope.section[$scope.counter]['show'] = true;
+														$scope.section[$scope.counter]['add'] = true;
+													}
+													else {
+														$scope.counter = (($scope.counter + 1) % 6) == 0 ? 1 : ($scope.counter + 1) % 6;
+													}
+												}, 2010);
+											},7000);
+											/*----------------------------------------------------------------------------------------------------*/
+											$scope.showSection = function(sectionNumber){
+												return $scope.section[sectionNumber]['show'];
+											}
+											/*----------------------------------------------------------------------------------------------------*/
+											$scope.addSection = function(sectionNumber){
+												return $scope.section[sectionNumber]['add'];
 											}
 											/*----------------------------------------------------------------------------------------------------*/
 											$scope.getMobileBackground = function(section){
