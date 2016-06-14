@@ -32,6 +32,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.izmus.data.domain.startups.FinancialIndicator;
+import com.izmus.data.domain.startups.FinancialIndicatorType;
+import com.izmus.data.domain.startups.IndicatorPoint;
 import com.izmus.data.domain.startups.Measurement;
 import com.izmus.data.domain.startups.MeasurementQuestion;
 import com.izmus.data.domain.startups.ScoreCardReport;
@@ -41,6 +44,8 @@ import com.izmus.data.domain.startups.StartupContact;
 import com.izmus.data.domain.startups.StartupMeeting;
 import com.izmus.data.domain.startups.StartupScoreCard;
 import com.izmus.data.domain.users.User;
+import com.izmus.data.repository.IFinancialIndicatorRepository;
+import com.izmus.data.repository.IFinancialIndicatorTypeRepository;
 import com.izmus.data.repository.IStartupAdditionalDocumentRepository;
 import com.izmus.data.repository.IStartupRepository;
 import com.izmus.data.repository.IStartupScoreCardReportRepository;
@@ -64,6 +69,10 @@ public class StartupAssessment {
 	private IStartupRepository startupRepository;
 	@Autowired
 	private IStartupScoreCardRepository startupScoreCardRepository;
+	@Autowired
+	private IFinancialIndicatorRepository financialIndicatorRepository;
+	@Autowired
+	private IFinancialIndicatorTypeRepository financialIndicatorTypeRepository;
 	@Autowired
 	private RuntimeService runtimeService;
 	@Autowired
@@ -113,7 +122,88 @@ public class StartupAssessment {
 		}
 		return startups;
 	}
-
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/FinancialIndicatorTypes", method = RequestMethod.GET)
+	@PreAuthorize("hasPermission('Startup Assessment', '')")
+	public List<FinancialIndicatorType> getIndicatorTypes() {
+		List<FinancialIndicatorType> indicatorTypes = new ArrayList<>();
+		try {
+			indicatorTypes = financialIndicatorTypeRepository.findAll();
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+		}
+		return indicatorTypes;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/FinancialIndicators", method = RequestMethod.GET)
+	@PreAuthorize("hasPermission('Startup Assessment', '')")
+	public List<FinancialIndicator> getIndicators(@RequestParam(value = "startupId", required = true) Integer startupId) {
+		List<FinancialIndicator> indicators = new ArrayList<>();
+		List<FinancialIndicatorType> indicatorTypes = new ArrayList<>();
+		try {
+			indicators = financialIndicatorRepository.findFinancialIndicatorByStartupId(startupId);
+			indicatorTypes = financialIndicatorTypeRepository.findAll();
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+		}
+		if (indicators.size() < indicatorTypes.size()){
+			adjustIndicatorsForStartup(indicators, startupId, indicatorTypes);
+		}
+		return indicators;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private void adjustIndicatorsForStartup(List<FinancialIndicator> indicators, Integer startupId,
+			List<FinancialIndicatorType> indicatorTypes) {
+		for (Iterator<FinancialIndicator> itrIndicator = indicators.iterator();itrIndicator.hasNext();){
+			FinancialIndicator nextIndicator = itrIndicator.next();
+			boolean found = false;
+			for (Iterator<FinancialIndicatorType> itr = indicatorTypes.iterator(); itr.hasNext();){
+				FinancialIndicatorType nextType = itr.next();
+				if (nextType.getTypeId().equals(nextIndicator.getTypeId())){
+					found = true;
+					itr.remove();
+					break;
+				}
+			}
+			if (!found){
+				itrIndicator.remove();
+			}
+		}
+		for (Iterator<FinancialIndicatorType> itr = indicatorTypes.iterator(); itr.hasNext();){
+			FinancialIndicatorType nextType = itr.next();
+			FinancialIndicator newIndicator = new FinancialIndicator();
+			newIndicator.setStartupId(startupId);
+			newIndicator.setTypeId(nextType.getTypeId());
+			newIndicator = financialIndicatorRepository.save(newIndicator);
+			indicators.add(newIndicator);
+		}
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/FinancialIndicators", method = RequestMethod.POST)
+	@PreAuthorize("hasPermission('Startup Assessment', '')")
+	public String saveIndicators(@RequestParam(value = "financialIndicators", required = true) String financialIndicatorsObject,
+			@RequestParam(value = "startupId", required = true) Integer startupId) {
+		try {
+			List<FinancialIndicator> financialIndicators = jacksonObjectMapper.readValue(financialIndicatorsObject, 
+					jacksonObjectMapper.getTypeFactory().constructCollectionType(List.class, FinancialIndicator.class));
+			List<FinancialIndicator> startupFinancialIndicators = financialIndicatorRepository.findFinancialIndicatorByStartupId(startupId);
+			for (Iterator<FinancialIndicator> itr = financialIndicators.iterator(); itr.hasNext();){
+				FinancialIndicator nextIndicator = itr.next();
+				for (IndicatorPoint point : nextIndicator.getPoints()){
+					point.setFinancialIndicator(nextIndicator);
+				}
+				financialIndicatorRepository.save(nextIndicator);
+				itr.remove();
+			}
+			for (FinancialIndicator deletedIndicator : startupFinancialIndicators){
+				financialIndicatorRepository.delete(deletedIndicator);
+			}
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+			return "{\"result\": \"fail\"}";
+		}
+		return "{\"result\": \"success\"}";
+	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/DefaultScoreCard", method = RequestMethod.GET)
 	@PreAuthorize("hasPermission('Startup Assessment', '')")

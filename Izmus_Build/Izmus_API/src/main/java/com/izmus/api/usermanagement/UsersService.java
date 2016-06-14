@@ -36,7 +36,6 @@ import com.izmus.data.domain.users.UserRole;
 import com.izmus.data.repository.ISystemLogRepository;
 import com.izmus.data.repository.IUserRepository;
 import com.izmus.data.repository.IUserRoleRepository;
-import com.izmus.security.authentication.IzmusAuthenticationProvider;
 
 @RestController
 @RequestMapping("api/Users")
@@ -292,11 +291,20 @@ public class UsersService {
 			newUserData.setCreationTime("");
 		}
 		try {
+			List<SystemLog> loginEntries = systemLogRepository
+					.findByMessageIgnoreCaseContainingOrderByLogTimeDesc(user.toString());
 			List<SystemLog> logEntries = systemLogRepository
-					.findByMessageIgnoreCaseContainingAndLogClassIgnoreCaseContainingOrderByLogTimeDesc(user.toString(), IzmusAuthenticationProvider.class.getName());
-			newUserData.setLastLogin(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(logEntries.get(0).getLogTime()));
+					.findByUserNameIgnoreCaseContainingOrderByLogTimeDesc(user.toString());
+			Date lastEntryDate = null;
+			if (loginEntries.get(0).getLogTime().after(logEntries.get(0).getLogTime())){
+				lastEntryDate = loginEntries.get(0).getLogTime();
+			}
+			else {
+				lastEntryDate = logEntries.get(0).getLogTime();
+			}
+			newUserData.setLastSeen(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(lastEntryDate));
 		} catch (Exception e) {
-			newUserData.setLastLogin("Unknown");
+			newUserData.setLastSeen("Unknown");
 		}
 		addUserRoles(newUserData, user);
 		return newUserData;

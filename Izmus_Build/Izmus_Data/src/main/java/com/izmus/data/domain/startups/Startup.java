@@ -65,6 +65,9 @@ public class Startup implements Serializable, Comparable<Startup> {
 	@Column(name = "STARTUP_GROUP_IDS")
 	@ElementCollection(targetClass = Integer.class, fetch = FetchType.EAGER)
 	private Set<Integer> startupGroupsIds;
+	@Column(name = "FINANCIAL_INDICATORS_IDS")
+	@ElementCollection(targetClass = Integer.class, fetch = FetchType.EAGER)
+	private Set<Integer> financialIndicatorsIds;
 	/*----------------------------------------------------------------------------------------------------*/
 	public boolean equals(Object obj) {
 		if ((obj != null) && ((obj instanceof Startup))) {
@@ -256,4 +259,13 @@ public class Startup implements Serializable, Comparable<Startup> {
 	public void setMeetings(Set<StartupMeeting> meetings) {
 		this.meetings = meetings;
 	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public Set<Integer> getFinancialIndicatorsIds() {
+		return financialIndicatorsIds;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public void setFinancialIndicatorsIds(Set<Integer> financialIndicatorsIds) {
+		this.financialIndicatorsIds = financialIndicatorsIds;
+	}
+	
 }

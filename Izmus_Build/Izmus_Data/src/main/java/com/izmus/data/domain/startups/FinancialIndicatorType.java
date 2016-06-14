@@ -13,23 +13,27 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "STARTUP_GROUPS")
-public class StartupGroup implements Serializable, Comparable<StartupGroup> {
+@Table(name = "FINANCIAL_INDICATOR_TYPES")
+public class FinancialIndicatorType implements Serializable, Comparable<FinancialIndicatorType> {
 	/*----------------------------------------------------------------------------------------------------*/
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "GROUP_ID")
-	private Integer groupId;
-	@Column(name = "GROUPS_NAME")
-	private String groupName;
-	@Column(name = "STARTUP_IDS")
-	@ElementCollection(targetClass = Integer.class, fetch = FetchType.EAGER)
-	private Set<Integer> startupIds;
+	@Column(name = "TYPE_ID")
+	private Integer typeId;
+	@Column(name = "NAME")
+	private String name;
+	@Column(name = "ORDER_IN_REPORT")
+	private Integer orderInReport;
+	@Column(name = "REPORT_NAME")
+	private String reportName;
+	@Column(name = "CHILDREN_TYPES")
+	@ElementCollection(targetClass = FinancialIndicatorType.class, fetch = FetchType.EAGER)
+	private Set<FinancialIndicatorType> childrenTypes;
 
 	/*----------------------------------------------------------------------------------------------------*/
 	public boolean equals(Object obj) {
-		if ((obj != null) && ((obj instanceof StartupGroup))) {
+		if ((obj != null) && ((obj instanceof FinancialIndicatorType))) {
 			return obj.toString().equals(this.toString());
 		}
 		return false;
@@ -37,8 +41,8 @@ public class StartupGroup implements Serializable, Comparable<StartupGroup> {
 
 	/*----------------------------------------------------------------------------------------------------*/
 	@Override
-	public int compareTo(StartupGroup otherStartup) {
-		return toString().compareTo(otherStartup.toString());
+	public int compareTo(FinancialIndicatorType otherType) {
+		return toString().compareTo(otherType.toString());
 	}
 
 	/*----------------------------------------------------------------------------------------------------*/
@@ -49,37 +53,50 @@ public class StartupGroup implements Serializable, Comparable<StartupGroup> {
 
 	/*----------------------------------------------------------------------------------------------------*/
 	public String toString() {
-		return "{\"groupId\": " + getGroupId() + ", " + "\"groupName: \"" + getGroupName() + "\"}";
+		return "{\"id\": " + getTypeId() + ", "
+				+ "\"name: \"" + getName() + "\", "
+				+ "\"reportName: \"" + getReportName() + "\"}";
 	}
-
 	/*----------------------------------------------------------------------------------------------------*/
 	/*----------------------------------------------------------------------------------------------------*/
-	public Integer getGroupId() {
-		return groupId;
+	public Integer getTypeId() {
+		return typeId;
 	}
-
 	/*----------------------------------------------------------------------------------------------------*/
-	public void setGroupId(Integer groupId) {
-		this.groupId = groupId;
+	public void setTypeId(Integer typeId) {
+		this.typeId = typeId;
 	}
-
 	/*----------------------------------------------------------------------------------------------------*/
-	public String getGroupName() {
-		return groupName;
+	public String getName() {
+		return name;
 	}
-
 	/*----------------------------------------------------------------------------------------------------*/
-	public void setGroupName(String groupName) {
-		this.groupName = groupName;
+	public void setName(String name) {
+		this.name = name;
 	}
-
 	/*----------------------------------------------------------------------------------------------------*/
-	public Set<Integer> getStartupIds() {
-		return startupIds;
+	public Integer getOrderInReport() {
+		return orderInReport;
 	}
-
 	/*----------------------------------------------------------------------------------------------------*/
-	public void setStartupIds(Set<Integer> startupIds) {
-		this.startupIds = startupIds;
+	public void setOrderInReport(Integer orderInReport) {
+		this.orderInReport = orderInReport;
 	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public String getReportName() {
+		return reportName;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public void setReportName(String reportName) {
+		this.reportName = reportName;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public Set<FinancialIndicatorType> getChildrenTypes() {
+		return childrenTypes;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public void setChildrenTypes(Set<FinancialIndicatorType> childrenTypes) {
+		this.childrenTypes = childrenTypes;
+	}
+	
 }

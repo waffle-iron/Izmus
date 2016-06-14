@@ -134,7 +134,7 @@ public class LoadNavBar {
 		NavbarItem proposalItem = new NavbarItem();
 		proposalItem.setHref("/StartupAssessment");
 		proposalItem.setLabel(context.getMessage("navBar.menu.startupAssessment",null, LocaleContextHolder.getLocale()));
-		proposalItem.setIcon("star_rate");
+		proposalItem.setIcon("/views/core/izmus-nav-bar/images/startup.svg");
 		proposalItem.setType("link");
 		return proposalItem;
 	}

@@ -1,4 +1,7 @@
 <%@ include file="fragments/frame.jsp"%>
+<link
+	href="<c:url value="/views/core/table/css/md-data-table.css" />"
+	rel="stylesheet" />
 <izmus-nav-bar ng-app="startupAssessmentApp"
 		initial-selected-item=' <spring:message code="navBar.menu.startupAssessment" />'>
 		<izmus-startup-assessment
@@ -25,9 +28,13 @@
 <script
 	src="<c:url value="/views/startup-assessment/js/startup-meetings.dir.js" />"></script>
 <script
+	src="<c:url value="/views/startup-assessment/js/startup-financials.dir.js" />"></script>
+<script
 	src="<c:url value="/views/core/file-upload/js/ng-file-upload-shim.js" />"></script>
 <script
 	src="<c:url value="/views/core/file-upload/js/ng-file-upload.js" />"></script>
+<script
+	src="<c:url value="/views/core/table/js/md-data-table.js" />"></script>
 <script>
 	var lang = {
 			startupAssessmentProcess: ' <spring:message code="navBar.menu.startupAssessment.startupAssessmnetProcess" />',
@@ -86,6 +93,9 @@
 			dateInvalid:' <spring:message code="navBar.menu.startupAssessment.dateInvalid" />',
 			saveFail:' <spring:message code="navBar.menu.startupAssessment.saveFail" />',
 			saveSuccess:' <spring:message code="navBar.menu.startupAssessment.saveSuccess" />',
-			dropPdf:' <spring:message code="navBar.menu.startupAssessment.dropPdf" />'
+			dropPdf:' <spring:message code="navBar.menu.startupAssessment.dropPdf" />',
+			financials: ' <spring:message code="navBar.menu.startupAssessment.financials" />',
+			incomeStatement: ' <spring:message code="navBar.menu.startupAssessment.incomeStatement" />',
+			addValue: ' <spring:message code="navBar.menu.startupAssessment.addValue" />'
 	};
 </script>

@@ -18,6 +18,47 @@ angular.module('startupAssessmentApp').factory('loadStartupData',
 			}
 		} ]);
 /*----------------------------------------------------------------------------------------------------*/
+angular.module('startupAssessmentApp').factory('loadFinancialIndicators',
+		[ '$q', '$http', function($q, $http) {
+			return function(startupId) {
+				return $q(function(resolve, reject) {
+					$http({
+						method : 'GET',
+						url : '/api/StartupAssessment/FinancialIndicators',
+						params: {startupId: startupId}
+					}).then(function successCallback(response) {
+						if (response.data) {
+							resolve(response.data);
+						} else {
+							reject();
+						}
+					}, function errorCallback(response) {
+						reject();
+					});
+				})
+			}
+		} ]);
+/*----------------------------------------------------------------------------------------------------*/
+angular.module('startupAssessmentApp').factory('loadFinancialIndicatorTypes',
+		[ '$q', '$http', function($q, $http) {
+			return function() {
+				return $q(function(resolve, reject) {
+					$http({
+						method : 'GET',
+						url : '/api/StartupAssessment/FinancialIndicatorTypes',
+					}).then(function successCallback(response) {
+						if (response.data) {
+							resolve(response.data);
+						} else {
+							reject();
+						}
+					}, function errorCallback(response) {
+						reject();
+					});
+				})
+			}
+		} ]);
+/*----------------------------------------------------------------------------------------------------*/
 angular.module('startupAssessmentApp').factory('saveStartupData',
 		[ '$q', '$http', '$httpParamSerializer', function($q, $http, $httpParamSerializer) {
 			return function(startupData) {
@@ -32,6 +73,31 @@ angular.module('startupAssessmentApp').factory('saveStartupData',
 					    },
 					    data : $httpParamSerializer({
 					    	startupData: startupData
+					    })
+					}).then(function successCallback(response) {
+						resolve(response.data);
+					}, function errorCallback(response) {
+						reject();
+					});
+				})
+			}
+		} ]);
+/*----------------------------------------------------------------------------------------------------*/
+angular.module('startupAssessmentApp').factory('saveFinancialIndicators',
+		[ '$q', '$http', '$httpParamSerializer', function($q, $http, $httpParamSerializer) {
+			return function(financialIndicators, startupId) {
+				return $q(function(resolve, reject) {
+					$http({
+						method : 'POST',
+						url : '/api/StartupAssessment/FinancialIndicators',
+						headers: {
+					        'Content-Type': "application/x-www-form-urlencoded; charset=UTF-8",
+					        'Upgrade-Insecure-Requests': "1",
+					        'X-CSRF-TOKEN': globalAttr.sessionToken
+					    },
+					    data : $httpParamSerializer({
+					    	financialIndicators: financialIndicators,
+					    	startupId: startupId
 					    })
 					}).then(function successCallback(response) {
 						resolve(response.data);

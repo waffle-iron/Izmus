@@ -1,0 +1,42 @@
+<style>
+	tr {
+		line-height: 2;
+	}
+</style>
+<section layout="row" layout-padding layout-wrap layout-align="center stretch">
+	<md-whiteframe
+	class="md-whiteframe-1dp"
+	layout="column"
+	layout-padding
+	layout-align="center center">
+		<section layout="row" layout-align="space-between center">
+			<section layout="row" layout-padding layout-align="space-between center">
+				<md-button aria-label="menu" class="md-fab md-mini" ng-click="addPeriod()">
+					<md-icon aria-label="Menu" class="material-icons">
+						add
+					</md-icon>
+				</md-button>
+			</section>
+			<span class="md-headline">{{lang.incomeStatement}}</span>
+		</section>
+		<md-table-container>
+			<table md-table>
+				<thead md-head>
+					<!-- when the user clicks this cell, the myOrder variable will get the value 'nameToLower' -->
+					<th md-column></th>
+					<!-- the variable myOrder will not be changed when this cell is clicked -->
+					<th md-column md-numeric ng-repeat="period in filteredPeriods | orderBy: 'period'">{{period}}</th>
+				</thead>
+				<tbody md-body>
+					<!-- we can let ng-repeat sort the columns for us -->
+					<tr ng-repeat="indicator in filteredFinancialIndicators | orderBy: 'indicator.type.orderInReport'">
+						<td md-cell>{{indicator.type.name}}</td>
+						<td md-cell
+						ng-repeat="point in indicator.indicator.points| orderBy: 'point.period'"
+						ng-click="editCell($event, point)"> {{point.value}} </td>
+					</tr>
+				</tbody>
+			</table>
+		</md-table-container>
+	</md-whiteframe>
+</section>

@@ -9,7 +9,7 @@ public class UserData implements Serializable, Comparable<UserData>{
 	private Integer userId;
 	private String userName;
 	private String userType;
-	private String lastLogin;
+	private String lastSeen;
 	private String userEmail;
 	private Boolean enabled;
 	private Boolean isUserMale;
@@ -71,12 +71,12 @@ public class UserData implements Serializable, Comparable<UserData>{
 		this.userName = userName;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
-	public String getLastLogin() {
-		return lastLogin;
+	public String getLastSeen() {
+		return lastSeen;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
-	public void setLastLogin(String lastLogin) {
-		this.lastLogin = lastLogin;
+	public void setLastSeen(String lastSeen) {
+		this.lastSeen = lastSeen;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	public String getUserEmail() {

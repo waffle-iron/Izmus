@@ -6,7 +6,7 @@
 }
 .startup-avatar-icon {
 	height: 38px;
-	width: 38px;
+	width: 38px !important;
 	border-radius: 20px;
 	border-width: 1px;
     border-style: solid;
@@ -44,8 +44,7 @@
 		<md-icon
 			ng-if="(startup.logo == null || statup.logo =='')"
 			ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
-			class="material-icons startup-icon">
-			start_rate
+			class="material-icons startup-icon startup-avatar-icon" md-svg-src="/views/core/izmus-nav-bar/images/startup.svg">
 		</md-icon>
 		<img 
 			ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
@@ -55,7 +54,6 @@
 		<div
 			layout-align="center center"
 			layout="row"
-			ng-if="(getFinalScore(startup) != '')"
 			ng-style="(globalAttr.direction == 'rtl') ? 
 			{'margin-left': '15px', 'margin-right': '0px','background-color': getMeasurementColor(startup), 'border-width': '1px', 'border-style': 'solid', 'border-radius': '50%', 'padding': '7px', 'border-color': '#6792AB'}
 			: {'margin-right': '15px', 'margin-left': '0px','background-color': getMeasurementColor(startup), 'border-width': '1px', 'border-style': 'solid', 'border-radius': '50%', 'padding': '7px', 'border-color': '#6792AB'}"

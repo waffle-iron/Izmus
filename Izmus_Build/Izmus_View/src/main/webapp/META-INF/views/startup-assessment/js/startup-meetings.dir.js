@@ -20,10 +20,12 @@ angular
 											$scope.parseDate = function(meeting){
 												meeting.meetingDate = new Date(meeting.meetingDate);
 											}
-											for (var i = 0; i < $scope.selectedStartup.meetings.length; i++){
-												var meeting = $scope.selectedStartup.meetings[i];
-												$scope.parseDate(meeting);
-											}
+											$scope.$watch('selectedStartup', function(){
+												for (var i = 0; i < $scope.selectedStartup.meetings.length; i++){
+													var meeting = $scope.selectedStartup.meetings[i];
+													$scope.parseDate(meeting);
+												}
+											});
 										} ],
 								link : function(scope, elem, attr, parentCtrl) {
 

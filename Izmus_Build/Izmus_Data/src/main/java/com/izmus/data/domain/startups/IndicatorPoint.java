@@ -1,35 +1,43 @@
 package com.izmus.data.domain.startups;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
-@Table(name = "STARTUP_GROUPS")
-public class StartupGroup implements Serializable, Comparable<StartupGroup> {
+@Table(name = "INDICATOR_POINT")
+public class IndicatorPoint implements Serializable, Comparable<IndicatorPoint> {
 	/*----------------------------------------------------------------------------------------------------*/
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "GROUP_ID")
-	private Integer groupId;
-	@Column(name = "GROUPS_NAME")
-	private String groupName;
-	@Column(name = "STARTUP_IDS")
-	@ElementCollection(targetClass = Integer.class, fetch = FetchType.EAGER)
-	private Set<Integer> startupIds;
-
+	@Column(name = "POINT_ID")
+	private Integer pointId;
+	@Column(name = "PERIOD")
+	private String period;
+	@Column(name = "VALUE")
+	private Double value;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "INDICATOR_ID")
+	@Fetch(value = FetchMode.JOIN)
+	@JsonBackReference
+	private FinancialIndicator financialIndicator;
 	/*----------------------------------------------------------------------------------------------------*/
 	public boolean equals(Object obj) {
-		if ((obj != null) && ((obj instanceof StartupGroup))) {
+		if ((obj != null) && ((obj instanceof IndicatorPoint))) {
 			return obj.toString().equals(this.toString());
 		}
 		return false;
@@ -37,8 +45,8 @@ public class StartupGroup implements Serializable, Comparable<StartupGroup> {
 
 	/*----------------------------------------------------------------------------------------------------*/
 	@Override
-	public int compareTo(StartupGroup otherStartup) {
-		return toString().compareTo(otherStartup.toString());
+	public int compareTo(IndicatorPoint otherPoint) {
+		return toString().compareTo(otherPoint.toString());
 	}
 
 	/*----------------------------------------------------------------------------------------------------*/
@@ -49,37 +57,41 @@ public class StartupGroup implements Serializable, Comparable<StartupGroup> {
 
 	/*----------------------------------------------------------------------------------------------------*/
 	public String toString() {
-		return "{\"groupId\": " + getGroupId() + ", " + "\"groupName: \"" + getGroupName() + "\"}";
+		return "{\"id\": " + getPointId() + ", "
+				+ "\"period\": \"" + getPeriod() + "\"}";
 	}
-
 	/*----------------------------------------------------------------------------------------------------*/
 	/*----------------------------------------------------------------------------------------------------*/
-	public Integer getGroupId() {
-		return groupId;
+	public String getPeriod() {
+		return period;
 	}
-
 	/*----------------------------------------------------------------------------------------------------*/
-	public void setGroupId(Integer groupId) {
-		this.groupId = groupId;
+	public Integer getPointId() {
+		return pointId;
 	}
-
 	/*----------------------------------------------------------------------------------------------------*/
-	public String getGroupName() {
-		return groupName;
+	public void setPointId(Integer pointId) {
+		this.pointId = pointId;
 	}
-
 	/*----------------------------------------------------------------------------------------------------*/
-	public void setGroupName(String groupName) {
-		this.groupName = groupName;
+	public void setPeriod(String period) {
+		this.period = period;
 	}
-
 	/*----------------------------------------------------------------------------------------------------*/
-	public Set<Integer> getStartupIds() {
-		return startupIds;
+	public Double getValue() {
+		return value;
 	}
-
 	/*----------------------------------------------------------------------------------------------------*/
-	public void setStartupIds(Set<Integer> startupIds) {
-		this.startupIds = startupIds;
+	public void setValue(Double value) {
+		this.value = value;
 	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public FinancialIndicator getFinancialIndicator() {
+		return financialIndicator;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public void setFinancialIndicator(FinancialIndicator financialIndicator) {
+		this.financialIndicator = financialIndicator;
+	}
+	
 }

@@ -214,16 +214,17 @@ angular.module('izmusNavBarApp').config(
 					       .warnPalette('customWarn')
 					       .backgroundPalette('customBackground')
 				} ]);
-angular.module('izmusNavBarApp').config(function(IdleProvider, KeepaliveProvider) {
+angular.module('izmusNavBarApp').config(['IdleProvider','KeepaliveProvider','TitleProvider', function(IdleProvider, KeepaliveProvider, TitleProvider) {
     // configure Idle settings
     IdleProvider.idle(idle); // in seconds
     IdleProvider.timeout(timeout); // in seconds
     KeepaliveProvider.interval(heartbeat); // in seconds
-})
-.run(function(Idle){
+    TitleProvider.enabled(false);
+}])
+.run(['Idle', function(Idle){
     // start watching when the app runs. also starts the Keepalive service by default.
     Idle.watch();
-});
+}]);
 /*----------------------------------------------------------------------------------------------------*/
 /**
  * Services

@@ -78,6 +78,7 @@ public class StartupReport {
 		parameters.put("measurementSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentMeasurementsLTR.jasper");
 		parameters.put("contactsSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentContacts.jasper");
 		parameters.put("miscSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentMiscLTR.jasper");
+		parameters.put("financialsSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentFinancialsLTR.jasper");
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	private JRTableModelDataSource createContactDatasource(Startup startup) {

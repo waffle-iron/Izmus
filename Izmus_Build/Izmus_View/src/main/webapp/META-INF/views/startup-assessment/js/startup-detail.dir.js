@@ -1,6 +1,6 @@
 angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveStartupData','avatarDialog','$mdMedia', 
-                        'exportScoreCardReport', '$mdDialog', '$mdConstant','emailScoreCardReport', '$mdToast',
-                        function(saveStartupData, avatarDialog, $mdMedia, exportScoreCardReport, $mdDialog, $mdConstant, emailScoreCardReport, $mdToast) {
+                        'exportScoreCardReport', '$mdDialog', '$mdConstant','emailScoreCardReport', '$mdToast','saveFinancialIndicators',
+                        function(saveStartupData, avatarDialog, $mdMedia, exportScoreCardReport, $mdDialog, $mdConstant, emailScoreCardReport, $mdToast, saveFinancialIndicators) {
 	return {
 		restrict : 'E',
 		require: '^^izmusStartupAssessment',
@@ -8,7 +8,9 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 		scope: {
 			selectedStartup: '=',
 			startupGeneralAttributes: '=',
-			startupGeneralFinancials: '='
+			startupGeneralFinancials: '=',
+			financialIndicators: '=',
+			financialIndicatorTypes: '='
 		},
 		controller : ['$scope',function($scope) {
 			/*----------------------------------------------------------------------------------------------------*/
@@ -63,11 +65,24 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 					}
 					else {
 						$scope.showMessage($scope.lang.saveSuccess);
+						var startupFinancialIndicators = $scope.getFinancialIndicators();
+						if (startupFinancialIndicators != null && startupFinancialIndicators != ''){
+							saveFinancialIndicators(startupFinancialIndicators, $scope.selectedStartup.startupId);
+						}
 					}
 				}, function(error){
 					$scope.progressMode = '';
 					$scope.showMessage($scope.lang.saveFail);
 				});
+			}
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.getFinancialIndicators = function(){
+				for (var i = 0; i < $scope.financialIndicators.length; i++){
+					var indicatorSet = $scope.financialIndicators[i];
+					if (indicatorSet.startupId == $scope.selectedStartup.startupId){
+						return angular.toJson(indicatorSet.indicators);
+					}
+				}
 			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.changeLogo = function(ev){
@@ -102,7 +117,7 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 					scoreCardDate: new Date(),
 					measurements: []
 				});
-				$scope.tabs.selectedTab = $scope.selectedStartup.scoreCards.length + 4;
+				$scope.tabs.selectedTab = $scope.selectedStartup.scoreCards.length + 5;
 			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.isSmallDevice = function(){

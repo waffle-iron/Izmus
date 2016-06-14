@@ -1,6 +1,6 @@
 angular.module('startupAssessmentApp').directive('izmusStartupAssessment', [ 
-        '$mdSidenav', '$mdMedia','$mdDialog', 'loadStartupData', 'saveStartupData','$mdToast',
-        function($mdSidenav, $mdMedia, $mdDialog, loadStartupData, saveStartupData, $mdToast) {
+        '$mdSidenav', '$mdMedia','$mdDialog', 'loadStartupData', 'saveStartupData','$mdToast','loadFinancialIndicatorTypes',
+        function($mdSidenav, $mdMedia, $mdDialog, loadStartupData, saveStartupData, $mdToast, loadFinancialIndicatorTypes) {
 	return {
 		restrict : 'E',
 		templateUrl : '/views/startup-assessment/templates/startup-assessment.html',
@@ -17,6 +17,13 @@ angular.module('startupAssessmentApp').directive('izmusStartupAssessment', [
 			$scope.globalAttr = globalAttr;
 			$scope.lang = lang;
 			$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+			$scope.financialIndicators = [];
+			/*----------------------------------------------------------------------------------------------------*/
+			loadFinancialIndicatorTypes().then(function(response){
+				$scope.financialIndicatorTypes = response;
+			},function(response){
+				$scope.financialIndicatorTypes = [];
+			});
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.startupGeneralAttributes = {
 					startupName: lang.startupName,

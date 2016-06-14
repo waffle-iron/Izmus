@@ -62,7 +62,7 @@ angular.module('startupAssessmentApp').directive('izmusStartupList', [function()
 						}
 					}
 				}
-				return returnScore;
+				return returnScore == '' ? '-' : returnScore;
 			}
 		}],
 		link : function(scope, elem, attr, parentCtrl) {
