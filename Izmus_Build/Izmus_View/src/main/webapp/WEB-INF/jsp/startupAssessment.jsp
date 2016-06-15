@@ -96,6 +96,9 @@
 			dropPdf:' <spring:message code="navBar.menu.startupAssessment.dropPdf" />',
 			financials: ' <spring:message code="navBar.menu.startupAssessment.financials" />',
 			incomeStatement: ' <spring:message code="navBar.menu.startupAssessment.incomeStatement" />',
-			addValue: ' <spring:message code="navBar.menu.startupAssessment.addValue" />'
+			addValue: ' <spring:message code="navBar.menu.startupAssessment.addValue" />',
+			enterNewPeriod: ' <spring:message code="navBar.menu.startupAssessment.enterNewPeriod" />',
+			addPeriod: ' <spring:message code="navBar.menu.startupAssessment.addPeriod" />',
+			assetsAndLiabilities: ' <spring:message code="navBar.menu.startupAssessment.assetsAndLiabilities" />'
 	};
 </script>

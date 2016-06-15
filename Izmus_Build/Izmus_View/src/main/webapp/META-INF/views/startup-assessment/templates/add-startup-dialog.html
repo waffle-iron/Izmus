@@ -1,33 +1,38 @@
 <section layout="column">
-	<md-toolbar layout="column" dir="{{parentScope.globalAttr.direction}}"
-		class="md-whiteframe-1dp md-accent">
-		<div class="md-toolbar-tools">
-			<md-button ng-click="cancel()"
-				class="md-icon-button toolbar-icons"> <md-icon
-				aria-label="Menu" class="material-icons">clear</md-icon> </md-button>
-		</div>
-	</md-toolbar>
-	<md-content layout-padding dir="{{parentScope.globalAttr.direction}}">
-		</md-whiteframe>
-			<md-whiteframe class="md-whiteframe-1dp user-detail-section"
-				flex="none" layout-padding layout="column"> 
-				<div class="md-headline" layout="row" layout-align="start center">
-					{{parentScope.lang.newStartup}}
-				</div>
-				<md-input-container> 
-					<label>{{parentScope.lang.startupName}}</label>
-					<md-icon class="material-icons">star_rate</md-icon> 
-					<input ng-model="startupName"> 
-				</md-input-container>
-			</md-whiteframe>
-	</md-content>
-	<md-dialog-actions layout="row">
-	      <md-button ng-click="cancel()">
-	       	{{parentScope.lang.cancel}}
-	      </md-button>
-	      <span flex></span>
-	      <md-button ng-click="ok()">
-	        {{parentScope.lang.ok}}
-	      </md-button>
-	</md-dialog-actions>
+    <md-toolbar layout="column" dir="{{parentScope.globalAttr.direction}}"
+    class="md-whiteframe-1dp md-accent">
+        <div class="md-toolbar-tools">
+            <md-button ng-click="cancel()"
+            class="md-icon-button toolbar-icons">
+                <md-icon
+                aria-label="Menu" class="material-icons">
+                    clear
+                </md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content layout-padding dir="{{parentScope.globalAttr.direction}}">
+        <md-whiteframe class="md-whiteframe-1dp user-detail-section"
+        flex="none" layout-padding layout="column">
+            <div class="md-headline" layout="row" layout-align="start center">
+                {{parentScope.lang.newStartup}}
+            </div>
+            <md-input-container>
+                <label>{{parentScope.lang.startupName}}</label>
+                <md-icon class="material-icons">
+                    star_rate
+                </md-icon>
+                <input ng-model="startupName">
+            </md-input-container>
+        </md-whiteframe>
+    </md-content>
+    <md-dialog-actions layout="row">
+        <md-button ng-click="cancel()">
+            {{parentScope.lang.cancel}}
+        </md-button>
+        <span flex></span>
+        <md-button ng-click="ok()">
+            {{parentScope.lang.ok}}
+        </md-button>
+    </md-dialog-actions>
 </section>

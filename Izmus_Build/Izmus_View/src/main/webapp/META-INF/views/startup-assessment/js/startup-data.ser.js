@@ -206,3 +206,31 @@ angular.module('startupAssessmentApp').factory('emailScoreCardReport',
 				})
 			}
 		} ]);
+angular.module('startupAssessmentApp').factory('addPeriodDialog',
+		[ '$mdMedia', '$mdDialog', function($mdMedia, $mdDialog) {
+			return function(ev, then) {
+			    /*----------------------------------------------------------------------------------------------------*/
+				var addPeriodCtrl = function($scope) {
+				    $scope.globalAttr = globalAttr;
+				    $scope.lang = lang;
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.cancel = function() {
+						$mdDialog.cancel();
+					};
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.ok = function() {
+						then($scope.period);
+						$mdDialog.cancel();
+					};
+				}
+			    /*----------------------------------------------------------------------------------------------------*/
+				$mdDialog.show({
+				    controller: addPeriodCtrl,
+				    templateUrl: '/views/startup-assessment/templates/add-period.dialog.html',
+				    parent: angular.element(document.body),
+				    targetEvent: ev,
+				    clickOutsideToClose: true,
+				    fullscreen: false
+				});
+			}
+		} ]);

@@ -1,0 +1,23 @@
+<section layout="column">
+    <md-content layout-padding dir="{{globalAttr.direction}}">
+        <md-whiteframe class="md-whiteframe-1dp"
+        flex="none" layout-padding layout="column">
+            <div class="md-headline" layout="row" layout-align="start center">
+                {{lang.addPeriod}}
+            </div>
+            <md-input-container>
+                <label>{{lang.enterNewPeriod}}</label>
+                <input ng-model="period">
+            </md-input-container>
+        </md-whiteframe>
+    </md-content>
+    <md-dialog-actions layout="row">
+        <md-button ng-click="cancel()">
+            {{lang.cancel}}
+        </md-button>
+        <span flex></span>
+        <md-button ng-click="ok()">
+            {{lang.ok}}
+        </md-button>
+    </md-dialog-actions>
+</section>

@@ -5,7 +5,8 @@ angular
 				[
 						'loadFinancialIndicators',
 						'$mdEditDialog',
-						function(loadFinancialIndicators, $mdEditDialog) {
+						'addPeriodDialog',
+						function(loadFinancialIndicators, $mdEditDialog, addPeriodDialog) {
 							return {
 								restrict : 'E',
 								require : '^^izmusStartupAssessment',
@@ -75,37 +76,44 @@ angular
 											}
 											/*----------------------------------------------------------------------------------------------------*/
 											$scope.createFilteredFinancialIndicators = function() {
-												$scope.filteredFinancialIndicators = [];
-												$scope.filteredPeriods = [];
+												$scope.filteredFinancialIndicators = {
+													statementOfIncome: [],
+													assetsAndLiabilities: []
+												};
+												$scope.filteredPeriods = {
+													statementOfIncome: [],
+													assetsAndLiabilities: []
+												};
 												for (var i = 0; i < $scope.financialIndicatorTypes.length; i++) {
 													var indicatorType = $scope.financialIndicatorTypes[i];
 													var indicator = $scope
 															.getFinancialIndicator(indicatorType.typeId);
-													$scope.addPeriodsToFilteredPeriods($scope.filteredPeriods, indicator);
-													$scope.filteredFinancialIndicators
-															.push({
-																type : indicatorType,
-																indicator : indicator
-															});
+													if (indicatorType.reportName == "Statement of Income"){
+														$scope.filteredFinancialIndicators.statementOfIncome
+														.push({
+															type : indicatorType,
+															indicator : indicator
+														});
+													}
+													else if (indicatorType.reportName == "Assets and Liabilities"){
+														$scope.filteredFinancialIndicators.assetsAndLiabilities
+														.push({
+															type : indicatorType,
+															indicator : indicator
+														});
+													}
+												}
+												if ($scope.filteredFinancialIndicators.statementOfIncome[0] != null && $scope.filteredFinancialIndicators.statementOfIncome[0].indicator != null){
+													for (var i = 0; i < $scope.filteredFinancialIndicators.statementOfIncome[0].indicator.points.length; i++){
+														$scope.filteredPeriods.statementOfIncome.push($scope.filteredFinancialIndicators.statementOfIncome[0].indicator.points[i].period);
+													}
+												}
+												if ($scope.filteredFinancialIndicators.assetsAndLiabilities[0] != null && $scope.filteredFinancialIndicators.assetsAndLiabilities[0].indicator != null){
+													for (var i = 0; i < $scope.filteredFinancialIndicators.assetsAndLiabilities[0].indicator.points.length; i++){
+														$scope.filteredPeriods.assetsAndLiabilities.push($scope.filteredFinancialIndicators.assetsAndLiabilities[0].indicator.points[i].period);
+													}
 												}
 											}
-											/*----------------------------------------------------------------------------------------------------*/
-											$scope.addPeriodsToFilteredPeriods = function(periods, indicator){
-												if (indicator.points) for (var i = 0; i < indicator.points.length; i++){
-													var found = false;
-													var point = indicator.points[i];
-													for (var j = 0; j < periods.length; j++){
-														var period = periods[j];
-														if (period == point.period){
-															found = true;
-															break;
-														}
-													}
-													if (!found){
-														periods.push(point.period);
-													}
-												}
-											};
 											/*----------------------------------------------------------------------------------------------------*/
 											$scope.editCell = function(
 													event, point) {
@@ -136,14 +144,16 @@ angular
 												promise.then();
 											};
 											/*----------------------------------------------------------------------------------------------------*/
-											$scope.addPeriod = function(){
-												$scope.addPeriodToIndicators('2017');
-												$scope.filteredPeriods.push('2017');
+											$scope.addPeriod = function(ev, reportName){
+												addPeriodDialog(ev, function(period){
+													$scope.addPeriodToIndicators(period, reportName);
+													$scope.filteredPeriods[reportName].push(period);
+												});
 											}
 											/*----------------------------------------------------------------------------------------------------*/
-											$scope.addPeriodToIndicators = function(period){
-												for (var i = 0; i < $scope.selectedFinancialIndicators.length; i++){
-													var indicator = $scope.selectedFinancialIndicators[i];
+											$scope.addPeriodToIndicators = function(period, reportName){
+												for (var i = 0; i < $scope.filteredFinancialIndicators[reportName].length; i++){
+													var indicator = $scope.filteredFinancialIndicators[reportName][i].indicator;
 													if (!indicator.points){
 														indicator.points = [];
 													}

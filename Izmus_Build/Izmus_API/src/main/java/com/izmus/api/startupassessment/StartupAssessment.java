@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -132,7 +133,116 @@ public class StartupAssessment {
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
 		}
+		if (indicatorTypes == null || indicatorTypes.size() == 0){
+			addDefaultIndicatorTypes(indicatorTypes);
+		}
 		return indicatorTypes;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private void addDefaultIndicatorTypes(List<FinancialIndicatorType> indicatorTypes) {
+		FinancialIndicatorType sales = new FinancialIndicatorType();
+		sales.setName("Sales");
+		sales.setOrderInReport(1);
+		sales.setReportName("Statement of Income");
+		financialIndicatorTypeRepository.save(sales);
+		FinancialIndicatorType costOfSales = new FinancialIndicatorType();
+		costOfSales.setName("Cost of Sales");
+		costOfSales.setOrderInReport(2);
+		costOfSales.setReportName("Statement of Income");
+		financialIndicatorTypeRepository.save(costOfSales);
+		FinancialIndicatorType grossProfit = new FinancialIndicatorType();
+		grossProfit.setName("Gross Profit");
+		grossProfit.setOrderInReport(3);
+		grossProfit.setReportName("Statement of Income");
+		financialIndicatorTypeRepository.save(grossProfit);
+		FinancialIndicatorType operatingExpenses = new FinancialIndicatorType();
+		operatingExpenses.setName("Operating Expenses");
+		operatingExpenses.setOrderInReport(4);
+		operatingExpenses.setReportName("Statement of Income");
+		financialIndicatorTypeRepository.save(operatingExpenses);
+		FinancialIndicatorType operatingProfit = new FinancialIndicatorType();
+		operatingProfit.setName("Operating Profit");
+		operatingProfit.setOrderInReport(5);
+		operatingProfit.setReportName("Statement of Income");
+		financialIndicatorTypeRepository.save(operatingProfit);
+		FinancialIndicatorType otherIncome = new FinancialIndicatorType();
+		otherIncome.setName("Other Income");
+		otherIncome.setOrderInReport(6);
+		otherIncome.setReportName("Statement of Income");
+		financialIndicatorTypeRepository.save(otherIncome);
+		FinancialIndicatorType otherExpenses = new FinancialIndicatorType();
+		otherExpenses.setName("Other Expenses");
+		otherExpenses.setOrderInReport(7);
+		otherExpenses.setReportName("Statement of Income");
+		financialIndicatorTypeRepository.save(otherExpenses);
+		FinancialIndicatorType ebidta = new FinancialIndicatorType();
+		ebidta.setName("EBIDTA");
+		ebidta.setOrderInReport(8);
+		ebidta.setReportName("Statement of Income");
+		financialIndicatorTypeRepository.save(ebidta);
+		indicatorTypes.add(sales);
+		indicatorTypes.add(costOfSales);
+		indicatorTypes.add(grossProfit);
+		indicatorTypes.add(operatingExpenses);
+		indicatorTypes.add(operatingProfit);
+		indicatorTypes.add(otherIncome);
+		indicatorTypes.add(otherExpenses);
+		indicatorTypes.add(ebidta);
+		
+		FinancialIndicatorType cash = new FinancialIndicatorType();
+		cash.setName("Cash and Equivalents");
+		cash.setOrderInReport(1);
+		cash.setReportName("Assets and Liabilities");
+		financialIndicatorTypeRepository.save(cash);
+		indicatorTypes.add(cash);
+		FinancialIndicatorType inventory = new FinancialIndicatorType();
+		inventory.setName("Inventory");
+		inventory.setOrderInReport(2);
+		inventory.setReportName("Assets and Liabilities");
+		financialIndicatorTypeRepository.save(inventory);
+		indicatorTypes.add(inventory);
+		FinancialIndicatorType totalCurrentAssets = new FinancialIndicatorType();
+		totalCurrentAssets.setName("Total Current Assets");
+		totalCurrentAssets.setOrderInReport(3);
+		totalCurrentAssets.setReportName("Assets and Liabilities");
+		financialIndicatorTypeRepository.save(totalCurrentAssets);
+		indicatorTypes.add(totalCurrentAssets);
+		FinancialIndicatorType intangibleAssets = new FinancialIndicatorType();
+		intangibleAssets.setName("Intangible Assets");
+		intangibleAssets.setOrderInReport(4);
+		intangibleAssets.setReportName("Assets and Liabilities");
+		financialIndicatorTypeRepository.save(intangibleAssets);
+		indicatorTypes.add(intangibleAssets);
+		FinancialIndicatorType totalAssets = new FinancialIndicatorType();
+		totalAssets.setName("Total Assets");
+		totalAssets.setOrderInReport(5);
+		totalAssets.setReportName("Assets and Liabilities");
+		financialIndicatorTypeRepository.save(totalAssets);
+		indicatorTypes.add(totalAssets);
+		FinancialIndicatorType accountsPayable = new FinancialIndicatorType();
+		accountsPayable.setName("Accounts Payable");
+		accountsPayable.setOrderInReport(6);
+		accountsPayable.setReportName("Assets and Liabilities");
+		financialIndicatorTypeRepository.save(accountsPayable);
+		indicatorTypes.add(accountsPayable);
+		FinancialIndicatorType otherLiabilities = new FinancialIndicatorType();
+		otherLiabilities.setName("Other Liabilities");
+		otherLiabilities.setOrderInReport(7);
+		otherLiabilities.setReportName("Assets and Liabilities");
+		financialIndicatorTypeRepository.save(otherLiabilities);
+		indicatorTypes.add(otherLiabilities);
+		FinancialIndicatorType totalLiabilities = new FinancialIndicatorType();
+		totalLiabilities.setName("Total Liabilities");
+		totalLiabilities.setOrderInReport(8);
+		totalLiabilities.setReportName("Assets and Liabilities");
+		financialIndicatorTypeRepository.save(totalLiabilities);
+		indicatorTypes.add(totalLiabilities);
+		FinancialIndicatorType totalLiabilitiesEquity = new FinancialIndicatorType();
+		totalLiabilitiesEquity.setName("Total Liabilities and Equity");
+		totalLiabilitiesEquity.setOrderInReport(9);
+		totalLiabilitiesEquity.setReportName("Assets and Liabilities");
+		financialIndicatorTypeRepository.save(totalLiabilitiesEquity);
+		indicatorTypes.add(totalLiabilitiesEquity);
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/FinancialIndicators", method = RequestMethod.GET)
@@ -154,6 +264,7 @@ public class StartupAssessment {
 	/*----------------------------------------------------------------------------------------------------*/
 	private void adjustIndicatorsForStartup(List<FinancialIndicator> indicators, Integer startupId,
 			List<FinancialIndicatorType> indicatorTypes) {
+		TreeSet<String> periods = getPeriods(indicators);
 		for (Iterator<FinancialIndicator> itrIndicator = indicators.iterator();itrIndicator.hasNext();){
 			FinancialIndicator nextIndicator = itrIndicator.next();
 			boolean found = false;
@@ -174,9 +285,26 @@ public class StartupAssessment {
 			FinancialIndicator newIndicator = new FinancialIndicator();
 			newIndicator.setStartupId(startupId);
 			newIndicator.setTypeId(nextType.getTypeId());
+			newIndicator.setPoints(new TreeSet<IndicatorPoint>());
+			for (String period : periods){
+				IndicatorPoint newPoint = new IndicatorPoint();
+				newPoint.setPeriod(period);
+				newPoint.setFinancialIndicator(newIndicator);
+				newIndicator.getPoints().add(newPoint);
+			}
 			newIndicator = financialIndicatorRepository.save(newIndicator);
 			indicators.add(newIndicator);
 		}
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private TreeSet<String> getPeriods(List<FinancialIndicator> indicators) {
+		TreeSet<String> returnPeriods = new TreeSet<>();
+		for (FinancialIndicator indicator : indicators){
+			for (IndicatorPoint point : indicator.getPoints()){
+				returnPeriods.add(point.getPeriod());
+			}
+		}
+		return returnPeriods; 
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/FinancialIndicators", method = RequestMethod.POST)
@@ -193,7 +321,13 @@ public class StartupAssessment {
 					point.setFinancialIndicator(nextIndicator);
 				}
 				financialIndicatorRepository.save(nextIndicator);
-				itr.remove();
+				for (Iterator<FinancialIndicator> databaseIndicator = startupFinancialIndicators.iterator(); databaseIndicator.hasNext();){
+					FinancialIndicator nextDatabaseIndicator = databaseIndicator.next();
+					if (nextDatabaseIndicator.equals(nextIndicator)){
+						databaseIndicator.remove();
+						break;
+					}
+				}
 			}
 			for (FinancialIndicator deletedIndicator : startupFinancialIndicators){
 				financialIndicatorRepository.delete(deletedIndicator);
