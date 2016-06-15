@@ -75,12 +75,36 @@ public class StartupReport {
 				LocaleContextHolder.getLocale()));
 		parameters.put("measurementsDatasource", createMeasurementsDatasource(scoreCard.getMeasurements()));
 		parameters.put("misc", startup.getMiscellaneous());
+		parameters.put("statementDatasource", getStatementIndicatorDatasource());
+		parameters.put("assetsDatasource", getAssetsIndicatorDatasource());
 		parameters.put("measurementSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentMeasurementsLTR.jasper");
 		parameters.put("contactsSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentContacts.jasper");
 		parameters.put("miscSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentMiscLTR.jasper");
 		parameters.put("financialsSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentFinancialsLTR.jasper");
 		parameters.put("disclaimerSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/disclaimer/DisclaimerLTR.jasper");
 		parameters.put("disclaimerLogo", context.getRealPath("/") + "/META-INF/views-public/core/logo/logowhite.jpg");
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private JRTableModelDataSource getAssetsIndicatorDatasource() {
+		DefaultTableModel statementTableModel = new DefaultTableModel(new Object[]{"row", "column", "value"}, 0);
+		Object[] newRow = new Object[3];
+		newRow[0] = "testRow";
+		newRow[1] = "testColumn";
+		newRow[2] = "testValue";
+		statementTableModel.addRow(newRow);
+		JRTableModelDataSource returnDatasource = new JRTableModelDataSource(statementTableModel);
+		return returnDatasource;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private JRTableModelDataSource getStatementIndicatorDatasource() {
+		DefaultTableModel statementTableModel = new DefaultTableModel(new Object[]{"row", "column", "value"}, 0);
+		Object[] newRow = new Object[3];
+		newRow[0] = "testRow";
+		newRow[1] = "testColumn";
+		newRow[2] = "testValue";
+		statementTableModel.addRow(newRow);
+		JRTableModelDataSource returnDatasource = new JRTableModelDataSource(statementTableModel);
+		return returnDatasource;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	private JRTableModelDataSource createContactDatasource(Startup startup) {
