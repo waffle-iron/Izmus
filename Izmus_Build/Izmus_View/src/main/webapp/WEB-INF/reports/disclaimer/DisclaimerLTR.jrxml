@@ -1,38 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-03T14:13:17 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="disclaimerLTR" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a38f1e33-c998-430a-96d7-b52d4883d5c6">
+<!-- Created with Jaspersoft Studio version 6.2.1.final using JasperReports Library version 6.2.1  -->
+<!-- 2016-06-15T16:17:14 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="disclaimerLTR" pageWidth="555" pageHeight="742" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a38f1e33-c998-430a-96d7-b52d4883d5c6">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<parameter name="disclaimerLogo" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<title>
-		<band height="682">
-			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-			<image>
-				<reportElement x="128" y="191" width="300" height="300" uuid="d4c6997a-fbe3-43f2-a505-83a583a0c250">
-					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-				</reportElement>
-				<imageExpression><![CDATA["src/main/webapp/META-INF/views-public/core/logo/logowhite.jpg"]]></imageExpression>
-			</image>
-		</band>
-	</title>
-	<pageFooter>
-		<band height="120" splitType="Stretch">
-			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+	<summary>
+		<band height="742">
 			<line>
-				<reportElement x="0" y="0" width="555" height="1" forecolor="#888888" uuid="e70579bc-dc6b-44ca-b6a0-bcee2a4af3f9">
+				<reportElement x="0" y="620" width="555" height="1" forecolor="#888888" uuid="e70579bc-dc6b-44ca-b6a0-bcee2a4af3f9">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 			</line>
 			<textField>
-				<reportElement x="0" y="20" width="555" height="100" uuid="c7e7ba07-3c4a-4438-9e41-da4157a8330e">
+				<reportElement x="0" y="642" width="555" height="100" uuid="c7e7ba07-3c4a-4438-9e41-da4157a8330e">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
@@ -42,17 +28,25 @@
 				<textFieldExpression><![CDATA["THE ANALYSIS PROVIDED THEREUNDER, IS BASED ON SUCH COMPANIES PRESENTATIONS AND MATERIALS ATHERED ABOUT THE COMPANY BY IZMUS, AND REPRESENTS IZMUS’ OPINION ONLY REGARDING THE RESPECTIVE COMPANY AND THE REASONS WHY IT HAS CHOSEN TO RECOMMEND SUCH COMPANY. YOU ARE SOLELY RESPONSIBLE FOR DETERMINING WHETHER ANY INVESTMENT, INVESTMENT STRATEGY, SECURITY OR RELATED TRANSACTION IS APPROPRIATE FOR YOU BASED ON YOUR PERSONAL INVESTMENT OBJECTIVES, FINANCIAL CIRCUMSTANCES AND RISK TOLERANCE. INVESTORS AND USERS SHOULD CONDUCT THEIR OWN DILIGENCE AND CONSULT WITH LICENSED PROFESSIONALS, INVESTMENT FOR ANY INVESTMENT, INSURANCE, TAX OR LEGAL ADVICE."]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="4" width="555" height="15" uuid="8b4cc1cf-91e1-4373-842d-29c171328946">
+				<reportElement x="0" y="621" width="555" height="17" uuid="8b4cc1cf-91e1-4373-842d-29c171328946">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement>
-					<font size="11" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["DISCLAIMER"]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="128" y="163" width="300" height="300" uuid="d4c6997a-fbe3-43f2-a505-83a583a0c250">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{disclaimerLogo}]]></imageExpression>
+			</image>
 		</band>
-	</pageFooter>
+	</summary>
 </jasperReport>
