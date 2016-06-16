@@ -10,6 +10,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,10 +26,15 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
+import com.izmus.data.domain.startups.FinancialIndicator;
+import com.izmus.data.domain.startups.FinancialIndicatorType;
+import com.izmus.data.domain.startups.IndicatorPoint;
 import com.izmus.data.domain.startups.Measurement;
 import com.izmus.data.domain.startups.Startup;
 import com.izmus.data.domain.startups.StartupContact;
 import com.izmus.data.domain.startups.StartupScoreCard;
+import com.izmus.data.repository.IFinancialIndicatorRepository;
+import com.izmus.data.repository.IFinancialIndicatorTypeRepository;
 
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -44,6 +50,10 @@ public class StartupReport {
 	private ServletContext context;
 	@Autowired
 	private MessageSource messageSource;
+	@Autowired
+	private IFinancialIndicatorRepository financialIndicatorRepository;
+	@Autowired
+	private IFinancialIndicatorTypeRepository financialIndicatorTypeRepository;
 	/*----------------------------------------------------------------------------------------------------*/
 	public JasperPrint createScoreCardReport(StartupScoreCard scoreCard, Startup startup){
 		try {
@@ -75,36 +85,56 @@ public class StartupReport {
 				LocaleContextHolder.getLocale()));
 		parameters.put("measurementsDatasource", createMeasurementsDatasource(scoreCard.getMeasurements()));
 		parameters.put("misc", startup.getMiscellaneous());
-		parameters.put("statementDatasource", getStatementIndicatorDatasource());
-		parameters.put("assetsDatasource", getAssetsIndicatorDatasource());
+		parameters.put("indicatorReportMap", getIndicatorReportMap(startup.getStartupId()));
 		parameters.put("measurementSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentMeasurementsLTR.jasper");
 		parameters.put("contactsSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentContacts.jasper");
 		parameters.put("miscSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentMiscLTR.jasper");
 		parameters.put("financialsSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentFinancialsLTR.jasper");
 		parameters.put("disclaimerSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/disclaimer/DisclaimerLTR.jasper");
+		parameters.put("statementReportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentStatementOfIncome.jasper");
 		parameters.put("disclaimerLogo", context.getRealPath("/") + "/META-INF/views-public/core/logo/logowhite.jpg");
 	}
 	/*----------------------------------------------------------------------------------------------------*/
-	private JRTableModelDataSource getAssetsIndicatorDatasource() {
-		DefaultTableModel statementTableModel = new DefaultTableModel(new Object[]{"row", "column", "value"}, 0);
-		Object[] newRow = new Object[3];
-		newRow[0] = "testRow";
-		newRow[1] = "testColumn";
-		newRow[2] = "testValue";
-		statementTableModel.addRow(newRow);
-		JRTableModelDataSource returnDatasource = new JRTableModelDataSource(statementTableModel);
-		return returnDatasource;
+	private HashMap<String, JRTableModelDataSource> getIndicatorReportMap(Integer startupId) {
+		HashMap<String, JRTableModelDataSource> returnMap = new HashMap<>();
+		List<FinancialIndicator> startupFinancialIndicators = financialIndicatorRepository.findFinancialIndicatorByStartupId(startupId);
+		List<FinancialIndicatorType> indicatorTypes = financialIndicatorTypeRepository.findAll();
+		DefaultTableModel statementCrossTabTable = new DefaultTableModel(new Object[]{"row", "column", "value"}, 0);
+		DefaultTableModel assetsCrossTabTable = new DefaultTableModel(new Object[]{"row", "column", "value"}, 0);
+		for (FinancialIndicator indicator : startupFinancialIndicators){
+			FinancialIndicatorType indicatorType = getFinancialIndicatorType(indicator, indicatorTypes);
+			if (indicatorType == null) continue;
+			switch (indicatorType.getReportName()){
+			case "Statement of Income":
+				addIndicatorsToTable(indicator, indicatorType, statementCrossTabTable);
+				break;
+			case "Assets and Liabilities":
+				addIndicatorsToTable(indicator, indicatorType, assetsCrossTabTable);
+				break;
+			}
+		}
+		returnMap.put("statementOfIncome", new JRTableModelDataSource(statementCrossTabTable));
+		returnMap.put("assetsAndLiabilities", new JRTableModelDataSource(assetsCrossTabTable));
+		return returnMap;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
-	private JRTableModelDataSource getStatementIndicatorDatasource() {
-		DefaultTableModel statementTableModel = new DefaultTableModel(new Object[]{"row", "column", "value"}, 0);
-		Object[] newRow = new Object[3];
-		newRow[0] = "testRow";
-		newRow[1] = "testColumn";
-		newRow[2] = "testValue";
-		statementTableModel.addRow(newRow);
-		JRTableModelDataSource returnDatasource = new JRTableModelDataSource(statementTableModel);
-		return returnDatasource;
+	private void addIndicatorsToTable(FinancialIndicator indicator, FinancialIndicatorType indicatorType,
+			DefaultTableModel crossTabTable) {
+		for (IndicatorPoint point : indicator.getPoints()){
+			String indicatorTypeName = indicatorType.getName();
+			Integer indicatorTypeOrder = indicatorType.getOrderInReport();
+			crossTabTable.addRow(new Object[]{indicatorTypeOrder + ". " + indicatorTypeName, point.getPeriod(), point.getValue()});
+		}
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private FinancialIndicatorType getFinancialIndicatorType(FinancialIndicator indicator,
+			List<FinancialIndicatorType> indicatorTypes) {
+		for (FinancialIndicatorType indicatorType : indicatorTypes){
+			if (indicatorType.getTypeId().equals(indicator.getTypeId())){
+				return indicatorType;
+			}
+		}
+		return null;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	private JRTableModelDataSource createContactDatasource(Startup startup) {
