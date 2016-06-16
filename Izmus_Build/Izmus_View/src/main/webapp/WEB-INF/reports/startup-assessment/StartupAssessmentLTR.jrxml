@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-16T09:28:06 -->
+<!-- 2016-06-16T18:50:05 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StartupAssessmentEnglish" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" whenResourceMissingType="Error" uuid="a619498a-562a-46e4-8840-1b8587b66bd2">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="startup" class="com.izmus.data.domain.startups.Startup"/>
@@ -22,8 +22,8 @@
 	<parameter name="disclaimerSubreportPath" class="java.lang.String"/>
 	<parameter name="disclaimerLogo" class="java.lang.String"/>
 	<parameter name="indicatorReportMap" class="java.util.HashMap"/>
-	<parameter name="assetsReportPath" class="java.lang.String"/>
-	<parameter name="statementReportPath" class="java.lang.String"/>
+	<parameter name="financialIndicatorReportPath" class="java.lang.String"/>
+	<parameter name="financialLineGraphPath" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -108,11 +108,11 @@
 				<subreportParameter name="indicatorReportMap">
 					<subreportParameterExpression><![CDATA[$P{indicatorReportMap}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="assetsReportPath">
-					<subreportParameterExpression><![CDATA[$P{assetsReportPath}]]></subreportParameterExpression>
+				<subreportParameter name="financialIndicatorReportPath">
+					<subreportParameterExpression><![CDATA[$P{financialIndicatorReportPath}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="statementReportPath">
-					<subreportParameterExpression><![CDATA[$P{statementReportPath}]]></subreportParameterExpression>
+				<subreportParameter name="financialLineGraphPath">
+					<subreportParameterExpression><![CDATA[$P{financialLineGraphPath}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportExpression><![CDATA[$P{financialsSubreportPath}]]></subreportExpression>
 			</subreport>

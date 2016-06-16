@@ -13,10 +13,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
+import java.util.Vector;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
@@ -85,19 +88,20 @@ public class StartupReport {
 				LocaleContextHolder.getLocale()));
 		parameters.put("measurementsDatasource", createMeasurementsDatasource(scoreCard.getMeasurements()));
 		parameters.put("misc", startup.getMiscellaneous());
-		parameters.put("indicatorReportMap", getIndicatorReportMap(startup.getStartupId()));
+		parameters.put("indicatorReportMap", getIndicatorReportMap(startup));
 		parameters.put("measurementSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentMeasurementsLTR.jasper");
 		parameters.put("contactsSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentContacts.jasper");
 		parameters.put("miscSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentMiscLTR.jasper");
 		parameters.put("financialsSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentFinancialsLTR.jasper");
 		parameters.put("disclaimerSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/disclaimer/DisclaimerLTR.jasper");
-		parameters.put("statementReportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentStatementOfIncome.jasper");
+		parameters.put("financialIndicatorReportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentFinancialIndicatorReport.jasper");
+		parameters.put("financialLineGraphPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentFinancialLineGraph.jasper");
 		parameters.put("disclaimerLogo", context.getRealPath("/") + "/META-INF/views-public/core/logo/logowhite.jpg");
 	}
 	/*----------------------------------------------------------------------------------------------------*/
-	private HashMap<String, JRTableModelDataSource> getIndicatorReportMap(Integer startupId) {
-		HashMap<String, JRTableModelDataSource> returnMap = new HashMap<>();
-		List<FinancialIndicator> startupFinancialIndicators = financialIndicatorRepository.findFinancialIndicatorByStartupId(startupId);
+	private HashMap<String, Object> getIndicatorReportMap(Startup startup) {
+		HashMap<String, Object> returnMap = new HashMap<>();
+		List<FinancialIndicator> startupFinancialIndicators = financialIndicatorRepository.findFinancialIndicatorByStartupId(startup.getStartupId());
 		List<FinancialIndicatorType> indicatorTypes = financialIndicatorTypeRepository.findAll();
 		DefaultTableModel statementCrossTabTable = new DefaultTableModel(new Object[]{"row", "column", "value"}, 0);
 		DefaultTableModel assetsCrossTabTable = new DefaultTableModel(new Object[]{"row", "column", "value"}, 0);
@@ -115,7 +119,38 @@ public class StartupReport {
 		}
 		returnMap.put("statementOfIncome", new JRTableModelDataSource(statementCrossTabTable));
 		returnMap.put("assetsAndLiabilities", new JRTableModelDataSource(assetsCrossTabTable));
+		returnMap.put("lineGraph", new JRTableModelDataSource(orderTableByPeriod(statementCrossTabTable)));
+		returnMap.put("financialExplanationText", startup.getAchivedFunds());
+		returnMap.put("ourValuation", startup.getIzmusValuation());
 		return returnMap;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private TableModel orderTableByPeriod(DefaultTableModel statementCrossTabTable) {
+		DefaultTableModel returnData = new DefaultTableModel(new Object[]{"row", "column", "value"}, 0);
+		TreeSet<String> orderedSet = new TreeSet<>();
+		for (Iterator<Vector> itr = statementCrossTabTable.getDataVector().iterator(); itr.hasNext();){
+			Vector nextVector = itr.next();
+			orderedSet.add(nextVector.get(1).toString());
+		}
+		for (String order : orderedSet){
+			for (Iterator<Vector> itr = statementCrossTabTable.getDataVector().iterator(); itr.hasNext();){
+				Vector nextVector = itr.next();
+				switch(nextVector.get(0).toString()){
+				case "1. Sales":
+				case "3. Gross Profit":
+				case "4. Operating Expenses":
+				case "8. EBIDTA":
+					break;
+				default:
+					continue;
+				}
+				if (nextVector.get(1).toString().equals(order)){
+					returnData.addRow(nextVector);
+				}
+			}
+		}
+		return returnData;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	private void addIndicatorsToTable(FinancialIndicator indicator, FinancialIndicatorType indicatorType,

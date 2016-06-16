@@ -36,13 +36,13 @@ public class Startup implements Serializable, Comparable<Startup> {
 	private String officePhone;
 	@Column(name = "MISCELLANEOUS", columnDefinition = "VARCHAR(5242880)")
 	private String miscellaneous;
-	@Column(name = "REQUESTED_FUNDS")
+	@Column(name = "REQUESTED_FUNDS", columnDefinition = "VARCHAR(5242880)")
 	private String requestedFunds;
-	@Column(name = "ACHIVED_FUNDS")
+	@Column(name = "ACHIVED_FUNDS", columnDefinition = "VARCHAR(5242880)")
 	private String achivedFunds;
-	@Column(name = "STARTUP_OWN_VALUATION")
+	@Column(name = "STARTUP_OWN_VALUATION", columnDefinition = "VARCHAR(5242880)")
 	private String startupOwnValuation;
-	@Column(name = "IZMUS_VALUATION")
+	@Column(name = "IZMUS_VALUATION", columnDefinition = "VARCHAR(5242880)")
 	private String izmusValuation;
 	@Column(name = "SITE")
 	private String site;

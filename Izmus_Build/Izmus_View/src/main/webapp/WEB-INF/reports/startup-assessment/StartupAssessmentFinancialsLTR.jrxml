@@ -1,21 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-16T12:31:28 -->
+<!-- 2016-06-16T21:44:31 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StartupAssessmentFinancialsLTR" pageWidth="555" pageHeight="742" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ee928ec1-a512-4842-8913-2c2c643fbe69">
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<parameter name="indicatorReportMap" class="java.util.HashMap"/>
-	<parameter name="statementReportPath" class="java.lang.String"/>
-	<parameter name="assetsReportPath" class="java.lang.String"/>
+	<parameter name="financialIndicatorReportPath" class="java.lang.String"/>
+	<parameter name="financialLineGraphPath" class="java.lang.String"/>
 	<summary>
-		<band height="1" splitType="Stretch">
-			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.grid.JSSGridBagLayout"/>
+		<band height="15" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement x="0" y="5" width="555" height="1" uuid="55d283c1-caaa-4b89-9774-70ffd391e420">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{indicatorReportMap}.get("financialExplanationText")]]></textFieldExpression>
+			</textField>
 			<subreport>
-				<reportElement positionType="Float" x="0" y="0" width="555" height="1" uuid="eb96b868-32ca-4be9-85f6-bf59290f947f">
+				<reportElement positionType="Float" x="0" y="6" width="555" height="1" uuid="eb96b868-32ca-4be9-85f6-bf59290f947f">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<subreportParameter name="title">
+					<subreportParameterExpression><![CDATA["Statement of Income"]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{indicatorReportMap}.get("statementOfIncome")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{financialIndicatorReportPath}]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="7" width="555" height="1" uuid="14b9144c-961d-4a16-9f8c-898fba7bb632">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<subreportParameter name="title">
+					<subreportParameterExpression><![CDATA["Assets and Liabilities"]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{indicatorReportMap}.get("assetsAndLiabilities")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{financialIndicatorReportPath}]]></subreportExpression>
+			</subreport>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement positionType="Float" x="0" y="13" width="555" height="1" uuid="5e36f4fd-6d78-4bf2-9dc0-b4d96b4091be">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{indicatorReportMap}.get("ourValuation")]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="14" width="555" height="1" uuid="6a7af688-1fc2-4397-b713-10513339d0d3">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
-				<dataSourceExpression><![CDATA[$P{indicatorReportMap}.get("statementOfIncome")]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{statementReportPath}]]></subreportExpression>
+				<dataSourceExpression><![CDATA[$P{indicatorReportMap}.get("lineGraph")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{financialLineGraphPath}]]></subreportExpression>
 			</subreport>
 		</band>
 	</summary>

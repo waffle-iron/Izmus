@@ -239,7 +239,7 @@ md-tab-item>span{
 					<md-whiteframe class="md-whiteframe-1dp startup-detail-section"
 						flex="nogrow" layout-padding layout="column"> 
 						<span class="md-headline">{{lang.generalFinancials}}</span>
-						<div layout="row" layout-padding layout-wrap layout-align="center center">
+						<div layout="column">
 							<md-input-container ng-repeat="(attr, value) in startupGeneralFinancials" ng-class="(globalAttr.direction == 'rtl') ? 'startup-info-input-rtl' : 'startup-info-input-ltr'"> 
 								<label>{{value}}</label>
 								<textarea ng-model="selectedStartup[attr]" md-select-on-focus></textarea> 
@@ -249,7 +249,7 @@ md-tab-item>span{
 					<md-whiteframe class="md-whiteframe-1dp startup-detail-section"
 						flex="nogrow" layout-padding layout="column"> 
 						<span class="md-headline">{{lang.miscellaneous}}</span>
-						<div layout-padding layout="row">
+						<div layout="column">
 							<md-input-container flex ng-class="(globalAttr.direction == 'rtl') ? 'startup-info-input-rtl' : 'startup-info-input-ltr'"> 
 								<textarea aria-label="miscellaneous-text" ng-model="selectedStartup.miscellaneous" md-select-on-focus></textarea>
 							</md-input-container>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-16T12:56:00 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StartupAssessmentStatementOfIncome" pageWidth="555" pageHeight="300" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a1a99c5e-255f-4a3e-841f-e5df9ee39107">
+<!-- 2016-06-16T17:59:32 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StartupAssessmentFinancialIndicatorReport" pageWidth="555" pageHeight="300" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a1a99c5e-255f-4a3e-841f-e5df9ee39107">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
@@ -48,6 +48,7 @@
 			<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 		</box>
 	</style>
+	<parameter name="title" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -57,7 +58,8 @@
 	</field>
 	<field name="value" class="java.lang.Double"/>
 	<summary>
-		<band height="125" splitType="Stretch">
+		<band height="140" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<crosstab>
 				<reportElement positionType="Float" x="0" y="25" width="554" height="100" uuid="c050838d-552d-4d3b-9303-cb97906dbd20">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
@@ -72,14 +74,14 @@
 						<cellContents backcolor="#FFFFFF" mode="Opaque" style="Crosstab_CH">
 							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 							<box>
-								<pen lineWidth="1.0"/>
-								<topPen lineWidth="1.0" lineStyle="Dotted" lineColor="#888888"/>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.3" lineStyle="Solid" lineColor="#888888"/>
 								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-								<bottomPen lineWidth="1.0" lineStyle="Dotted" lineColor="#888888"/>
+								<bottomPen lineWidth="0.3" lineStyle="Solid" lineColor="#888888"/>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textField>
-								<reportElement x="0" y="0" width="150" height="11" forecolor="#444444" uuid="fe41b3fe-ec99-4c5a-ba3e-af4370ae433f">
+								<reportElement x="0" y="0" width="150" height="11" forecolor="#777777" uuid="fe41b3fe-ec99-4c5a-ba3e-af4370ae433f">
 									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 								</reportElement>
 								<box>
@@ -117,7 +119,7 @@
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textField>
-								<reportElement x="0" y="0" width="60" height="11" forecolor="#444444" uuid="cdaf6c3b-0f95-4998-9c72-25cdfcc7181d"/>
+								<reportElement x="0" y="0" width="60" height="11" forecolor="#777777" uuid="cdaf6c3b-0f95-4998-9c72-25cdfcc7181d"/>
 								<box>
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -148,9 +150,9 @@
 						<textField pattern="$#,##0.###;$(#,##0.###)" isBlankWhenNull="true">
 							<reportElement x="0" y="0" width="60" height="11" forecolor="#000000" uuid="1e2de76a-c797-4b0e-b0c5-3c40584c02e5"/>
 							<box>
-								<topPen lineWidth="1.0" lineStyle="Dotted" lineColor="#888888"/>
+								<topPen lineWidth="0.3" lineStyle="Solid" lineColor="#888888"/>
 								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-								<bottomPen lineWidth="1.0" lineStyle="Dotted" lineColor="#888888"/>
+								<bottomPen lineWidth="0.3" lineStyle="Solid" lineColor="#888888"/>
 								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -194,7 +196,7 @@
 					<font size="14" isBold="true"/>
 					<paragraph leftIndent="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Statement of Income"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
