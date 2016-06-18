@@ -29,6 +29,13 @@ angular.module('startupAssessmentApp').directive('izmusStartupContacts', ['avata
 					contact.contactAvatar = croppedImage;
 				});
 			};
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.addNewContact = function(){
+				if (!$scope.selectedStartup.contacts){
+					$scope.selectedStartup.contacts = [];
+				}
+				$scope.selectedStartup.contacts.push({});
+			}
 		}],
 		link : function(scope, elem, attr, parentCtrl) {
 			

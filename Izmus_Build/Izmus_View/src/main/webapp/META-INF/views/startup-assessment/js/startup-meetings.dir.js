@@ -31,6 +31,15 @@ angular
 											$scope.viewMeeting = function(ev, meeting){
 												meetingViewDialog(ev, meeting);
 											}
+											/*----------------------------------------------------------------------------------------------------*/
+											$scope.addNewMeeting = function(){
+												if (!$scope.selectedStartup.meetings){
+													$scope.selectedStartup.meetings = [];
+												}
+												$scope.selectedStartup.meetings.push({
+													meetingDate: new Date()
+												});
+											}
 										} ],
 								link : function(scope, elem, attr, parentCtrl) {
 

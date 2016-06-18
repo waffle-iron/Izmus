@@ -16,6 +16,13 @@
 		min-height: 40px;
 	}
 </style>
+<section layout="row" layout-padding layout-align="space-between center">
+	<md-button class="md-fab md-mini" ng-click="addNewContact()">
+		<md-icon class="material-icons">
+			add
+		</md-icon>
+	</md-button>
+</section>
 <section layout="row" layout-padding layout-wrap layout-align="center stretch">
 	<md-whiteframe
 	ng-repeat="contact in selectedStartup.contacts"
