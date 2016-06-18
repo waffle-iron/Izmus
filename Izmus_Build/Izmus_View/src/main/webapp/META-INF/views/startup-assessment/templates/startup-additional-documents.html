@@ -23,6 +23,10 @@
 	.document-whiteframe:hover{
 		cursor: pointer;
 	}
+	.delete-icon{
+		min-width: 40px;
+		min-height: 40px;
+	}
 </style>
 <section layout="row" layout-padding layout-align="space-between center">
 	<div flex ngf-drop ngf-select ng-model="file" class="drop-box"
@@ -49,6 +53,7 @@
 	flex="nogrow"
 	layout-padding
 	layout="row"
+	layout-wrap
 	layout-align="space-around center"
 	ng-click="downloadDocument($index)">
 		<p>
@@ -61,7 +66,7 @@
 		</section>
 		<md-button
 		ng-if='!(doc.progressMode && doc.progressMode != "")'
-		class="md-fab md-mini"
+		class="md-fab md-mini delete-icon"
 		aria-label="delete" ng-click="deleteDocument($index, $event, doc)">
 			<md-icon class="material-icons">
 				delete

@@ -1,54 +1,59 @@
 <style>
-<!--
-.contact-card{
-	margin: 5px;
-	width: 470px;
-}
-.client-avatar-icon{
-	height: 38px;
-	width: 38px;
-	border-radius: 20px;
-	border-width: 1px;
-    border-style: solid;
-    border-color: rgb(160,195,215);
-}
--->
+	.contact-card {
+		margin: 5px;
+		width: 470px;
+	}
+	.client-avatar-icon {
+		height: 38px;
+		width: 38px;
+		border-radius: 20px;
+		border-width: 1px;
+		border-style: solid;
+		border-color: rgb(160,195,215);
+	}
+	.delete-icon {
+		min-width: 40px;
+		min-height: 40px;
+	}
 </style>
 <section layout="row" layout-padding layout-wrap layout-align="center stretch">
-	<md-whiteframe 
-		ng-repeat="contact in selectedStartup.contacts"
-		class="md-whiteframe-1dp contact-card"
-		flex="nogrow" 
-		layout-padding 
-		layout="column">
+	<md-whiteframe
+	ng-repeat="contact in selectedStartup.contacts"
+	class="md-whiteframe-1dp contact-card"
+	flex="nogrow"
+	layout-padding
+	layout="column">
 		<div layout="row" layout-align="start center">
 			<md-button
-				aria-label="contact-avatar-button"
-				ng-click="changeContactAvatar($event, contact)"
-				ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}">
+			aria-label="contact-avatar-button"
+			ng-click="changeContactAvatar($event, contact)"
+			ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '0px', 'margin-right': '0px'} : {'margin-right': '0px', 'margin-left': '0px'}">
 				<md-icon
-					ng-if="(contact.contactAvatar == null || contact.contactAvatar =='')"
-					class="material-icons">
+				ng-if="(contact.contactAvatar == null || contact.contactAvatar =='')"
+				class="material-icons">
 					contact_phone
 				</md-icon>
-				<img 
-					ng-if="(contact.contactAvatar != null && contact.contactAvatar !='')" class="client-avatar-icon" ng-src="{{contact.contactAvatar}}"/>
+				<img
+				ng-if="(contact.contactAvatar != null && contact.contactAvatar !='')" class="client-avatar-icon" ng-src="{{contact.contactAvatar}}"/>
 			</md-button>
-			<span class="md-headline">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
+			<span hide-sm hide-xs class="md-headline">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
+			<span hide-gt-sm class="md-subheader">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
 			<span flex></span>
-			<md-button 
-				class="md-fab md-mini"
-				aria-label="delete" ng-click="deleteContact($index)"> 
-				<md-icon class="material-icons">delete</md-icon>
+			<md-button
+			class="md-fab md-mini delete-icon"
+			aria-label="delete" ng-click="deleteContact($index)">
+				<md-icon class="material-icons">
+					delete
+				</md-icon>
 			</md-button>
-		</div> 
+		</div>
 		<div layout="row" layout-padding layout-wrap layout-align="center center">
 			<md-input-container
-				ng-repeat="(attr, value) in contactAttributes"
-				ng-class="(globalAttr.direction == 'rtl') ? 'startup-info-input-rtl' : 'startup-info-input-ltr'"
-				class="startup-info-input"> 
+			ng-repeat="(attr, value) in contactAttributes"
+			ng-class="(globalAttr.direction == 'rtl') ? 'startup-info-input-rtl' : 'startup-info-input-ltr'"
+			class="startup-info-input">
 				<label>{{value}}</label>
-				<textarea ng-model="contact[attr]" md-select-on-focus></textarea> 
+				<textarea ng-model="contact[attr]" md-select-on-focus></textarea>
 			</md-input-container>
 		</div>
 	</md-whiteframe>

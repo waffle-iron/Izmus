@@ -1,6 +1,8 @@
 angular.module('izmusLandingPageApp').factory('contactUsDialog',
 		[ '$mdMedia', '$mdDialog', 'sendContactUs','$mdToast','$timeout', function($mdMedia, $mdDialog, sendContactUs, $mdToast, $timeout) {
 			return function(ev, element) {
+				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
 			    /*----------------------------------------------------------------------------------------------------*/
 				var contactUsCtrl = function($scope, $mdDialog) {
 					$scope.progressMode = '';
@@ -96,7 +98,7 @@ angular.module('izmusLandingPageApp').factory('contactUsDialog',
 				    parent: angular.element(document.body),
 				    targetEvent: ev,
 				    clickOutsideToClose: true,
-				    fullscreen: false
+				    fullscreen: useFullScreen
 				});
 			}
 		} ]);

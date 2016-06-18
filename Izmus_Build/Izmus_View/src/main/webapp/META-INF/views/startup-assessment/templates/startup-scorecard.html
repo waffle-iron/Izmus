@@ -59,19 +59,21 @@ md-radio-group{
 		flex="nogrow" 
 		layout-padding 
 		layout="column">
-		<div layout="row" layout-align="start center">
-			<div
-				layout-align="center center"
-				layout="column"
-				ng-if="(getFinalScore(measurement) != 0)"
-				ng-style="(globalAttr.direction == 'rtl') ? 
-				{'margin-left': '15px', 'margin-right': '0px','background-color': getMeasurementColor(measurement), 'border-width': '1px', 'border-style': 'solid', 'border-radius': '50%', 'padding': '7px', 'border-color': '#6792AB'}
-				: {'margin-right': '15px', 'margin-left': '0px','background-color': getMeasurementColor(measurement), 'border-width': '1px', 'border-style': 'solid', 'border-radius': '50%', 'padding': '7px', 'border-color': '#6792AB'}"
-				class="number-circle">
-				<span style="margin: 0px;">{{getFinalScore(measurement)}}</span>
-			</div>
-			<span class="md-subheader">{{measurement.title}}</span>
-			<span flex></span>
+		<div layout="row" layout-align="space-between center">
+			<section layout="row" layout-align="start center">
+				<div
+					layout-align="center center"
+					layout="column"
+					ng-if="(getFinalScore(measurement) != 0)"
+					ng-style="(globalAttr.direction == 'rtl') ? 
+					{'min-width':'40px', 'margin-left': '5px', 'margin-right': '0px','border-width': '1px', 'border-style': 'solid', 'border-radius': '50%', 'padding': '7px', 'border-color': '#6792AB'}
+					: {'min-width':'40px', 'margin-right': '5px', 'margin-left': '0px', 'border-width': '1px', 'border-style': 'solid', 'border-radius': '50%', 'padding': '7px', 'border-color': '#6792AB'}"
+					class="number-circle">
+					<span style="margin: 0px;">{{getFinalScore(measurement)}}</span>
+				</div>
+				<p hide-sm hide-xs class="md-subheader">{{measurement.title}}</p>
+				<p hide-gt-sm class="md-caption">{{measurement.title}}</p>
+			</section>
 			<div layout-padding layout-align="center center" layout-wrap layout="column">
 				<span class="progress-text">{{lang.measurementProgress + ': ' + measurementProgress(measurement) + '%'}}</span>
 				<md-progress-linear md-mode="determinate" value="{{measurementProgress(measurement)}}"></md-progress-linear>

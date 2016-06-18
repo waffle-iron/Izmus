@@ -99,6 +99,9 @@
 			addValue: ' <spring:message code="navBar.menu.startupAssessment.addValue" />',
 			enterNewPeriod: ' <spring:message code="navBar.menu.startupAssessment.enterNewPeriod" />',
 			addPeriod: ' <spring:message code="navBar.menu.startupAssessment.addPeriod" />',
+			meetingSummary: ' <spring:message code="navBar.menu.startupAssessment.meetingSummary" />',
+			meetingDate: ' <spring:message code="navBar.menu.startupAssessment.meetingDate" />',
+			meetingTitleText: ' <spring:message code="navBar.menu.startupAssessment.meetingTitleText" />',
 			assetsAndLiabilities: ' <spring:message code="navBar.menu.startupAssessment.assetsAndLiabilities" />'
 	};
 </script>

@@ -32,15 +32,21 @@
     .font-rtl {
         font-family: alef;
     }
+    .smaller-login-text{
+    	font-size: 19 !important;
+    }
 </style>
 <md-whiteframe flex="none" class="login-section md-whiteframe-10dp"
 layout="row" layout-xs="column" layout-padding layout-align="space-around center"
 ng-style="{'background-image': getSectionBackgroundImage('login')}">
     <div class="login-section-text" layout="column" layout-align="center center">
-        <md-icon class="login-logo-words" aria-label="Logo" md-svg-src="/views-public/core/logo/izmus-logo.svg"></md-icon>
+        <md-icon hide-sm hide-xs class="login-logo-words" aria-label="Logo" md-svg-src="/views-public/core/logo/izmus-logo.svg"></md-icon>
         <div class="login-section-text-content" layout="row"
             ng-class="(globalAttr.direction == 'rtl') ? 'font-rtl' : 'font'">
-            <p>
+            <p hide-sm hide-xs>
+                {{lang.loginSectionContent}}
+            </p>
+            <p hide-gt-sm class="smaller-login-text">
                 {{lang.loginSectionContent}}
             </p>
         </div>

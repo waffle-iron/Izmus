@@ -49,6 +49,7 @@
 	max-height: 1300px;
 	overflow: hidden;
 	position: absolute;
+	top: 65px;
 	z-index: 25;
 	-webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
 	-webkit-transition-property: max-height;
@@ -247,11 +248,11 @@ md-tab-item>span{
 						</div>
 					</md-whiteframe>
 					<md-whiteframe class="md-whiteframe-1dp startup-detail-section"
-						flex="nogrow" layout-padding layout="column"> 
+						layout-padding layout="column"> 
 						<span class="md-headline">{{lang.miscellaneous}}</span>
 						<div layout="column">
-							<md-input-container flex ng-class="(globalAttr.direction == 'rtl') ? 'startup-info-input-rtl' : 'startup-info-input-ltr'"> 
-								<textarea aria-label="miscellaneous-text" ng-model="selectedStartup.miscellaneous" md-select-on-focus></textarea>
+							<md-input-container ng-class="(globalAttr.direction == 'rtl') ? 'startup-info-input-rtl' : 'startup-info-input-ltr'"> 
+								<textarea ng-model="selectedStartup.miscellaneous" md-select-on-focus></textarea>
 							</md-input-container>
 						</div>
 					</md-whiteframe>
