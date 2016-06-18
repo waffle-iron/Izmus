@@ -1,27 +1,136 @@
 <style>
-.meeting-dialog-whiteframe{
-	max-width: 450px;
-}
+	.meeting-dialog-whiteframe {
+		max-width: 550px;
+	}
 </style>
 <section layout="column">
-    <md-content layout-padding dir="{{globalAttr.direction}}">
-        <md-whiteframe class="md-whiteframe-1dp meeting-dialog-whiteframe"
-        flex="none" layout-padding layout="column">
-        	<p class="md-title">
+	<md-content layout-padding dir="{{globalAttr.direction}}">
+		<md-whiteframe class="md-whiteframe-1dp meeting-dialog-whiteframe"
+		flex="none" layout-padding layout="column">
+			<p class="md-title">
 				{{lang.meetingSummary}}
 			</p>
 			<p class="md-subheader">
 				{{lang.meetingTitleText}}
 			</p>
-        </md-whiteframe>
-    </md-content>
-    <md-dialog-actions layout="row">
-        <md-button ng-click="cancel()">
-            {{lang.cancel}}
-        </md-button>
-        <span flex></span>
-        <md-button ng-click="ok()">
-            {{lang.ok}}
-        </md-button>
-    </md-dialog-actions>
+			<form name="meetingForm" layout-padding layout="column">
+				<p>
+					{{lang.meetingPurpose}}
+				</p>
+				<md-input-container>
+					<md-radio-group name="meetingPurpose" required ng-model="meeting.meetingPurpose">
+						<md-radio-button value="investment">
+							{{lang.investment}}
+						</md-radio-button>
+						<md-radio-button value="businessDevelopment">
+							{{lang.busDev}}
+						</md-radio-button>
+						<md-radio-button value="both">
+							{{lang.both}}
+						</md-radio-button>
+						<div
+						ng-messages="meetingForm.meetingPurpose.$error"
+						multiple md-auto-hide="false">
+							<div ng-message="required">
+								{{lang.fieldRequired}}
+							</div>
+						</div>
+					</md-radio-group>
+				</md-input-container>
+				<md-input-container ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+					<label>{{lang.parties}}</label>
+					<textarea name="parties" ng-model="meeting.parties"></textarea>
+				</md-input-container>
+				<p>
+					{{lang.meetingDate}}
+				</p>
+				<md-datepicker
+				class="date-field"
+				name="dateField"
+				ng-model="meeting.meetingDate"
+				md-placeholder="{{lang.enterDate}}"
+				required ng-class="(globalAttr.direction == 'rtl') ? 'datepicker-rtl' : ''"></md-datepicker>
+				<div layout-padding multiple md-auto-hide="false" ng-messages="meetingForm.dateField.$error">
+					<div ng-message="required" class="error-message">
+						{{lang.dateRequired}}
+					</div>
+					<div ng-message="valid" class="error-message">
+						{{lang.dateInvalid}}
+					</div>
+				</div>
+				<md-input-container ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+					<label>{{lang.startupParty}}</label>
+					<textarea required name="startupParty" ng-model="meeting.startupParty"></textarea>
+					<div
+					ng-messages="meetingForm.startupParty.$error"
+					multiple md-auto-hide="false">
+						<div ng-message="required">
+							{{lang.fieldRequired}}
+						</div>
+					</div>
+				</md-input-container>
+				<md-input-container ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+					<label>{{lang.companyParty}}</label>
+					<textarea required name="companyParty" ng-model="meeting.companyParty"></textarea>
+					<div
+					ng-messages="meetingForm.companyParty.$error"
+					multiple md-auto-hide="false">
+						<div ng-message="required">
+							{{lang.fieldRequired}}
+						</div>
+					</div>
+				</md-input-container>
+				<md-input-container ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+					<label>{{lang.companyIntro}}</label>
+					<textarea required name="companyIntro" ng-model="meeting.companyIntro"></textarea>
+					<div
+					ng-messages="meetingForm.companyIntro.$error"
+					multiple md-auto-hide="false">
+						<div ng-message="required">
+							{{lang.fieldRequired}}
+						</div>
+					</div>
+				</md-input-container>
+				<md-input-container ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+					<label>{{lang.meetingFlow}}</label>
+					<textarea required name="meetingFlow" ng-model="meeting.meetingFlow"></textarea>
+					<div
+					ng-messages="meetingForm.meetingFlow.$error"
+					multiple md-auto-hide="false">
+						<div ng-message="required">
+							{{lang.fieldRequired}}
+						</div>
+					</div>
+				</md-input-container>
+				<md-input-container ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+					<label>{{lang.oneSentenceSummary}}</label>
+					<textarea required name="oneSentenceSummary" ng-model="meeting.oneSentenceSummary"></textarea>
+					<div
+					ng-messages="meetingForm.oneSentenceSummary.$error"
+					multiple md-auto-hide="false">
+						<div ng-message="required">
+							{{lang.fieldRequired}}
+						</div>
+					</div>
+				</md-input-container>
+				<md-input-container ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+					<label>{{lang.followUp}}</label>
+					<textarea required name="followUp" ng-model="meeting.followUp"></textarea>
+					<div
+					ng-messages="meetingForm.followUp.$error"
+					multiple md-auto-hide="false">
+						<div ng-message="required">
+							{{lang.fieldRequired}}
+						</div>
+					</div>
+				</md-input-container>
+			</form>
+		</md-whiteframe>
+	</md-content>
+	<md-dialog-actions layout="row">
+		<span flex></span>
+		<md-button ng-click="ok()">
+			{{lang.ok}}
+		</md-button>
+	</md-dialog-actions>
 </section>

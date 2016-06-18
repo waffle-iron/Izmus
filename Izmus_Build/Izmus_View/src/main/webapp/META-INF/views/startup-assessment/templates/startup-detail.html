@@ -252,7 +252,7 @@ md-tab-item>span{
 						<span class="md-headline">{{lang.miscellaneous}}</span>
 						<div layout="column">
 							<md-input-container ng-class="(globalAttr.direction == 'rtl') ? 'startup-info-input-rtl' : 'startup-info-input-ltr'"> 
-								<textarea ng-model="selectedStartup.miscellaneous" md-select-on-focus></textarea>
+								<textarea aria-label="{{lang.miscellaneous}}" ng-model="selectedStartup.miscellaneous" md-select-on-focus></textarea>
 							</md-input-container>
 						</div>
 					</md-whiteframe>

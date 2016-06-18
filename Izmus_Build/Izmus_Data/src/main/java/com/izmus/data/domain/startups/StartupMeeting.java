@@ -32,21 +32,21 @@ public class StartupMeeting implements Serializable, Comparable<StartupMeeting> 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "MEETING_DATE", nullable=false)
 	private Date meetingDate;
-	@Column(name = "MEETING_PURPOSE")
+	@Column(name = "MEETING_PURPOSE", columnDefinition = "VARCHAR(5242880)")
 	private String meetingPurpose;
-	@Column(name = "STARTUP_PARTY")
+	@Column(name = "STARTUP_PARTY", columnDefinition = "VARCHAR(5242880)")
 	private String startupParty;
-	@Column(name = "COMPANY_PARTY")
+	@Column(name = "COMPANY_PARTY", columnDefinition = "VARCHAR(5242880)")
 	private String companyParty;
-	@Column(name = "PARTIES")
+	@Column(name = "PARTIES", columnDefinition = "VARCHAR(5242880)")
 	private String parties;
-	@Column(name = "COMPANY_INTRO")
+	@Column(name = "COMPANY_INTRO", columnDefinition = "VARCHAR(5242880)")
 	private String companyIntro;
-	@Column(name = "MEETING_FLOW")
+	@Column(name = "MEETING_FLOW", columnDefinition = "VARCHAR(5242880)")
 	private String meetingFlow;
-	@Column(name = "ONE_SENTENCE_SUMMARY")
+	@Column(name = "ONE_SENTENCE_SUMMARY", columnDefinition = "VARCHAR(5242880)")
 	private String oneSentenceSummary;
-	@Column(name = "FOLLOW_UP")
+	@Column(name = "FOLLOW_UP", columnDefinition = "VARCHAR(5242880)")
 	private String followUp;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "STARTUP_ID", nullable = false)
