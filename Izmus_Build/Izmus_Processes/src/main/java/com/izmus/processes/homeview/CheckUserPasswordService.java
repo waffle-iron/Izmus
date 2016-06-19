@@ -34,7 +34,6 @@ public class CheckUserPasswordService {
 			if (user.getPasswordChangeDate() == null || user.getPasswordChangeDate().before(cal.getTime())){
 				changePassword = true;
 			}
-			runtimeService.setVariable(execution.getId(), "user", user);
 			runtimeService.setVariable(execution.getId(), "changePassword", changePassword);
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
