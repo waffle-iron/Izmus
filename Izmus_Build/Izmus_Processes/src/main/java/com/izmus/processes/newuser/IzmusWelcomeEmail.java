@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import com.izmus.data.domain.users.User;
 import com.izmus.data.messages.MessageSource;
+import com.izmus.data.repository.IUserRepository;
 import com.izmus.mail.services.MailSenderService;
 
 @Component("IzmusWelcomeEmail")
@@ -32,12 +33,15 @@ public class IzmusWelcomeEmail {
 	private RuntimeService runtimeService;
 	@Autowired
 	private ServletContext context;
+	@Autowired
+	private IUserRepository userRepository;
 	/*----------------------------------------------------------------------------------------------------*/
 	public void execute(Execution execution) {
 		User user = null;
 		String userEmail = "unknown";
 		try {
-			user = (User) runtimeService.getVariable(execution.getId(), "user");
+			Integer userId = (Integer) runtimeService.getVariable(execution.getId(), "userId");
+			user = userRepository.findDistinctUserByUserId(userId);
 			userEmail = user.getEntity().getEntityEmail();
 			LOGGER.info("Sending Welcome Email To: " + userEmail);
 			InputStream inputStream = context.getResourceAsStream("/WEB-INF/emails/welcome-email-inline.html");

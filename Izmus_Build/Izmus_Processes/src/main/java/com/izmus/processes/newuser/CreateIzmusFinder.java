@@ -45,8 +45,8 @@ public class CreateIzmusFinder {
 			newIzmusFinder.setEntityEmail(email.toLowerCase());
 			newUser.setPassword(uuid);
 			addBaseRoleToUser(newUser);
-			userRepository.save(newUser);
-			runtimeService.setVariable(execution.getId(), "user", newUser);
+			newUser = userRepository.save(newUser);
+			runtimeService.setVariable(execution.getId(), "userId", newUser.getUserId());
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
 		}
