@@ -36,8 +36,7 @@
 	<md-progress-circular class="md-hue-3" md-mode="{{progressMode}}" md-diameter="70"></md-progress-circular>
 </section>
 <section ng-if='progressMode == ""' layout="column" ng-class="dialogClass()" dir="{{globalAttr.direction}}">
-	<section
-	flex="none"
+	<md-content
 	layout="row"
 	layout-xs="column"
 	layout-sm="column"
@@ -89,7 +88,7 @@
 					<label>{{lang.subject}}</label>
 					<input name="subject" ng-model="$parent.subject">
 				</md-input-container>
-				<md-content flex="none" class="message-content md-whiteframe-1dp" 
+				<md-content flex="none" class="message-content" 
 				    layout-padding layout="column">
 					<md-input-container flex="none"
 					   ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : 'input-ltr'">
@@ -99,7 +98,7 @@
 				</md-content>
 			</form>
 		</section>
-	</section>
+	</md-content>
 	<md-dialog-actions flex="none" layout="row">
 		<md-button ng-click="cancel()">
 			{{lang.cancel}}

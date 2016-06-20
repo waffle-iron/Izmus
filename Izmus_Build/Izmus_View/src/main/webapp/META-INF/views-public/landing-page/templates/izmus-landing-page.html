@@ -14,6 +14,12 @@
 .toolbar-icons {
 	margin-right: 3px !important;
 	margin-left: 3px !important;
+	width: 40px !important;
+    height: 40px !important;
+}
+.toolbar-icons > md-icon {
+    width: 24px !important;
+    height: 24px !important;
 }
 .logo-button-words{
 	width: 156px !important;
@@ -64,10 +70,10 @@
 <div ng-cloak layout="column" flex class="background">
 	<md-toolbar dir='{{globalAttr.direction}}' flex="none" class="md-whiteframe-10dp">
 		<div class="md-toolbar-tools">
-			<md-button hide-gt-sm class="md-icon-button toolbar-icons logo-button-icon" href='/'>
+			<md-button hide-gt-sm class="md-icon-button logo-button-icon" href='/'>
 				<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/core/logo/logo32x32.svg"></md-icon>
 			</md-button>
-			<md-button hide-sm hide-xs class="md-icon-button toolbar-icons logo-button-words" href='/'>
+			<md-button hide-sm hide-xs class="md-icon-button logo-button-words" href='/'>
 				<md-icon class="logo-words" aria-label="Logo" md-svg-src="/views-public/core/logo/izmus-logo.svg"></md-icon>
 			</md-button>
 	        <span flex></span>
@@ -101,20 +107,20 @@
 	        <div hide-gt-sm>
 	        	<language-menu>
 	        	</language-menu>
-	        	<md-button ng-hide="(screenShowing == 'about')" class="md-icon-button toolbar-icons logo-button-icon" ng-click="moveToPage('about')">
-					<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/about128x128.svg"></md-icon>
+	        	<md-button ng-hide="(screenShowing == 'about')" class="md-icon-button toolbar-icons" ng-click="moveToPage('about')">
+					<md-icon aria-label="Logo" md-svg-src="/views-public/landing-page/images/about128x128.svg"></md-icon>
 				</md-button>
 				<!-- <md-button ng-hide="(screenShowing == 'register')" ng-if="(globalAttr.user == null)"  class="md-icon-button toolbar-icons logo-button-icon" ng-click="moveToPage('register')">
 					<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/register128x128.svg"></md-icon>
 				</md-button> -->
-				<md-button ng-hide="(screenShowing == 'login')" ng-if="(globalAttr.user == null)" class="md-icon-button toolbar-icons logo-button-icon" ng-click="moveToPage('login')">
-					<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/login128x128.svg"></md-icon>
+				<md-button ng-hide="(screenShowing == 'login')" ng-if="(globalAttr.user == null)" class="md-icon-button toolbar-icons" ng-click="moveToPage('login')">
+					<md-icon aria-label="Logo" md-svg-src="/views-public/landing-page/images/login128x128.svg"></md-icon>
 				</md-button>
-				<md-button ng-if="(globalAttr.user == null)" class="md-icon-button toolbar-icons logo-button-icon" ng-click="contactDialog($event)">
-                    <md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/contact128x128.svg"></md-icon>
+				<md-button ng-if="(globalAttr.user == null)" class="md-icon-button toolbar-icons" ng-click="contactDialog($event)">
+                    <md-icon aria-label="Logo" md-svg-src="/views-public/landing-page/images/contact128x128.svg"></md-icon>
                 </md-button>
-                <md-button ng-hide="(screenShowing == 'news')" class="md-icon-button toolbar-icons logo-button-icon" ng-click="moveToPage('news')">
-                    <md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/news.svg"></md-icon>
+                <md-button ng-hide="(screenShowing == 'news')" class="md-icon-button toolbar-icons" ng-click="moveToPage('news')">
+                    <md-icon aria-label="Logo" md-svg-src="/views-public/landing-page/images/news.svg"></md-icon>
                 </md-button>
 	        </div>
 		</div>
