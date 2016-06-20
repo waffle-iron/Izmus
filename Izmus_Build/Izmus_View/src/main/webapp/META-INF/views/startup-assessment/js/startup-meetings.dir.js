@@ -41,6 +41,10 @@ angular
 													meetingDate: new Date()
 												});
 											}
+											/*----------------------------------------------------------------------------------------------------*/
+											$scope.exportPDF = function(startup, meeting){
+												exportMeetingSummary(startup.startupId, meeting);
+											}
 										} ],
 								link : function(scope, elem, attr, parentCtrl) {
 

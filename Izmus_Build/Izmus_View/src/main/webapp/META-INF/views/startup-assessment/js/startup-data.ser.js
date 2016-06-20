@@ -182,7 +182,7 @@ angular.module('startupAssessmentApp').factory('exportScoreCardReport',
 /*----------------------------------------------------------------------------------------------------*/
 angular.module('startupAssessmentApp').factory('exportMeetingSummary',
 		[ '$q', '$http', '$httpParamSerializer', function($q, $http, $httpParamSerializer) {
-			return function(startupId, additionalDocuments) {
+			return function(startupId, meeting) {
 				return $q(function(resolve, reject) {
 					$http({
 						method : 'POST',
@@ -194,10 +194,10 @@ angular.module('startupAssessmentApp').factory('exportMeetingSummary',
 					    },
 					    data : $httpParamSerializer({
 					    	startupId: startupId,
-					    	additionalDocuments: additionalDocuments,
+					    	startupMeeting: meeting,
 					    })
 					}).then(function successCallback(response) {
-						window.location = "/Export/StartupScoreCardReport/" + response.data.parameters;
+						window.location = "/Export/StartupMeetingSummaryReport/" + response.data.reportId;
 						resolve();
 					}, function errorCallback(response) {
 						reject();

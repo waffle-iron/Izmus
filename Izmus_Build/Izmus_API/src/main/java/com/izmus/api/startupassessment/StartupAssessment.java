@@ -43,11 +43,13 @@ import com.izmus.data.domain.startups.Startup;
 import com.izmus.data.domain.startups.StartupAdditionalDocument;
 import com.izmus.data.domain.startups.StartupContact;
 import com.izmus.data.domain.startups.StartupMeeting;
+import com.izmus.data.domain.startups.StartupMeetingSummaryReport;
 import com.izmus.data.domain.startups.StartupScoreCard;
 import com.izmus.data.domain.users.User;
 import com.izmus.data.repository.IFinancialIndicatorRepository;
 import com.izmus.data.repository.IFinancialIndicatorTypeRepository;
 import com.izmus.data.repository.IStartupAdditionalDocumentRepository;
+import com.izmus.data.repository.IStartupMeetingSummaryRepository;
 import com.izmus.data.repository.IStartupRepository;
 import com.izmus.data.repository.IStartupScoreCardReportRepository;
 import com.izmus.data.repository.IStartupScoreCardRepository;
@@ -89,6 +91,8 @@ public class StartupAssessment {
 	private IStartupScoreCardReportRepository scoreCardReportRepository;
 	@Autowired
 	private IStartupAdditionalDocumentRepository startupAdditionalDocumentRepository;
+	@Autowired
+	private IStartupMeetingSummaryRepository startupMeetingSummaryRepository;
 	@Autowired
 	private MailSenderService mailService;
 
@@ -406,18 +410,29 @@ public class StartupAssessment {
 	@RequestMapping(value = "/MeetingSummaryReport", method = RequestMethod.POST)
 	@PreAuthorize("hasPermission('Startup Assessment', '')")
 	public String getMeetingSummaryReport(@RequestParam(value = "startupId", required = true) Integer startupId,
-			@RequestParam(value = "startupMeetingJson", required = true) String startupMeetingJson) {
-		StartupMeetingSummary startupMeetingSummary = null;
+			@RequestParam(value = "startupMeeting", required = true) String startupMeetingJson) {
+		StartupMeeting startupMeeting = null;
 		Startup startup = null;
+		StartupMeetingSummaryReport startupMeetingSummaryReport = null;
 		try {
 			startup = startupRepository.findDistinctStartupByStartupId(startupId);
-			startupMeetingSummary = jacksonObjectMapper.readValue(startupMeetingJson, StartupMeetingSummary.class);
+			startupMeeting = jacksonObjectMapper.readValue(startupMeetingJson, StartupMeeting.class);
+			JasperPrint report = startupMeetingSummary.createMeetingSummaryReport(startupMeeting, startup);
+			User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			startupMeetingSummaryReport = new StartupMeetingSummaryReport();
+			startupMeetingSummaryReport.setCreatingUserId(user.getUserId());
+			startupMeetingSummaryReport.setReport(report);
+			startupMeetingSummaryReport.setMeetingId(startupMeeting.getMeetingId());
+			startupMeetingSummaryReport.setSummaryReportDate(new Date());
+			startupMeetingSummaryReport.setReportName(startup.getStartupName() + "_Meeting_Report_"
+					+ new SimpleDateFormat("yyyyMMdd").format(startupMeetingSummaryReport.getSummaryReportDate()));
+			startupMeetingSummaryReport = startupMeetingSummaryRepository.save(startupMeetingSummaryReport);
 			LOGGER.info("Meeting Summary Report Saved Successfully To The Database For Startup Id: " + startupId);
 		} catch (Exception e) {
 			LOGGER.error("Could Not Create Score Startup Meeting Report For Startup Id: " + startupId + " With Error: "
 					+ e.getMessage());
 		}
-		return "";
+		return "{\"reportId\": \"" + startupMeetingSummaryReport.getSummaryReportId() + "\"}";
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	private String createScoreCardReportReturnString(String[] additionalDocuments, ScoreCardReport scoreCardReport, Integer startupId) {

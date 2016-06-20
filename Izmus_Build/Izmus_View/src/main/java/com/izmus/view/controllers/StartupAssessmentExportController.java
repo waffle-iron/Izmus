@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.izmus.data.domain.startups.ScoreCardReport;
 import com.izmus.data.domain.startups.Startup;
 import com.izmus.data.domain.startups.StartupAdditionalDocument;
+import com.izmus.data.domain.startups.StartupMeetingSummaryReport;
+import com.izmus.data.repository.IStartupMeetingSummaryRepository;
 import com.izmus.data.repository.IStartupRepository;
 import com.izmus.data.repository.IStartupScoreCardReportRepository;
 import com.lowagie.text.Document;
@@ -28,14 +30,15 @@ import com.lowagie.text.pdf.PdfReader;
 import net.sf.jasperreports.engine.JasperExportManager;
 
 @Controller
-public class ExportController {
+public class StartupAssessmentExportController {
 	/*----------------------------------------------------------------------------------------------------*/
-	private static final Logger LOGGER = LoggerFactory.getLogger(ExportController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(StartupAssessmentExportController.class);
 	@Autowired
 	private IStartupScoreCardReportRepository scoreCardReportRepository;
 	@Autowired
 	private IStartupRepository startupRepository;
-
+	@Autowired
+	private IStartupMeetingSummaryRepository startupMeetingSummaryReportRepository;
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/Export/StartupAdditionalDocuments/{documentId}", method = RequestMethod.GET)
 	@PreAuthorize("hasPermission('Export', '')")
@@ -111,7 +114,7 @@ public class ExportController {
 			// File("/home/lior/test.html"));
 			// IOUtils.copy(file, response.getOutputStream());
 		} catch (Exception e) {
-			LOGGER.error("Could Not Export Report: " + reportId + " With Error: " + e.getMessage());
+			LOGGER.error("Could Not Export Score Card Report: " + reportId + " With Error: " + e.getMessage());
 		}
 	}
 
@@ -125,5 +128,27 @@ public class ExportController {
 				returnList.add(additionalDocument.getDocument());
 			}
 		return returnList;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/Export/StartupMeetingSummaryReport/{reportId}", method = RequestMethod.GET)
+	@PreAuthorize("hasPermission('Export', '')")
+	public void getLoginPage(@PathVariable("reportId") Integer reportId, HttpServletResponse response) {
+		try {
+			StartupMeetingSummaryReport meetingReport = startupMeetingSummaryReportRepository.findOne(reportId);
+			// set headers for the response
+	        String headerKey = "Content-Disposition";
+	        String headerValue = String.format("attachment; filename=\"%s\"",
+	        		meetingReport.getReportName() + ".pdf");
+	        response.setHeader(headerKey, headerValue);
+	        response.setContentType("application/pdf");
+	        response.getOutputStream().write(JasperExportManager.exportReportToPdf(meetingReport.getReport()));
+			response.flushBuffer();
+//	        JasperExportManager.exportReportToHtmlFile(scoreCardReport.getReport(), "/home/lior/test.html");
+//	        response.setContentType("text/html");
+//			FileInputStream file = new FileInputStream(new File("/home/lior/test.html"));
+//			IOUtils.copy(file, response.getOutputStream());
+		} catch (Exception e) {
+			LOGGER.error("Could Not Export Meeting Report: " + reportId + " With Error: " + e.getMessage());
+		}
 	}
 }
