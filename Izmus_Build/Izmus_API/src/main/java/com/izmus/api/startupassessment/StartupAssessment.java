@@ -52,6 +52,7 @@ import com.izmus.data.repository.IStartupRepository;
 import com.izmus.data.repository.IStartupScoreCardReportRepository;
 import com.izmus.data.repository.IStartupScoreCardRepository;
 import com.izmus.mail.services.MailSenderService;
+import com.izmus.reports.startups.StartupMeetingSummary;
 import com.izmus.reports.startups.StartupReport;
 import com.lowagie.text.Document;
 import com.lowagie.text.pdf.PdfCopy;
@@ -82,6 +83,8 @@ public class StartupAssessment {
 	private MessageSource messageSource;
 	@Autowired
 	private StartupReport startupReport;
+	@Autowired
+	private StartupMeetingSummary startupMeetingSummary;
 	@Autowired
 	private IStartupScoreCardReportRepository scoreCardReportRepository;
 	@Autowired
@@ -399,7 +402,23 @@ public class StartupAssessment {
 		}
 		return createScoreCardReportReturnString(additionalDocuments, scoreCardReport, startup.getStartupId());
 	}
-
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/MeetingSummaryReport", method = RequestMethod.POST)
+	@PreAuthorize("hasPermission('Startup Assessment', '')")
+	public String getMeetingSummaryReport(@RequestParam(value = "startupId", required = true) Integer startupId,
+			@RequestParam(value = "startupMeetingJson", required = true) String startupMeetingJson) {
+		StartupMeetingSummary startupMeetingSummary = null;
+		Startup startup = null;
+		try {
+			startup = startupRepository.findDistinctStartupByStartupId(startupId);
+			startupMeetingSummary = jacksonObjectMapper.readValue(startupMeetingJson, StartupMeetingSummary.class);
+			LOGGER.info("Meeting Summary Report Saved Successfully To The Database For Startup Id: " + startupId);
+		} catch (Exception e) {
+			LOGGER.error("Could Not Create Score Startup Meeting Report For Startup Id: " + startupId + " With Error: "
+					+ e.getMessage());
+		}
+		return "";
+	}
 	/*----------------------------------------------------------------------------------------------------*/
 	private String createScoreCardReportReturnString(String[] additionalDocuments, ScoreCardReport scoreCardReport, Integer startupId) {
 		String returnString = "{\"parameters\": \"" + scoreCardReport.getReportId().toString();

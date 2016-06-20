@@ -3,7 +3,8 @@ angular
 		.directive(
 				'izmusStartupMeetings',
 				[ 'meetingViewDialog',
-						function(meetingViewDialog) {
+				  'exportMeetingSummary',
+						function(meetingViewDialog, exportMeetingSummary) {
 							return {
 								restrict : 'E',
 								require : '^^izmusStartupAssessment',
