@@ -32,7 +32,7 @@ public class IndicatorPoint implements Serializable, Comparable<IndicatorPoint> 
 	private Double value;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "INDICATOR_ID")
-	@Fetch(value = FetchMode.JOIN)
+	@Fetch(value = FetchMode.SELECT)
 	@JsonBackReference
 	private FinancialIndicator financialIndicator;
 	/*----------------------------------------------------------------------------------------------------*/

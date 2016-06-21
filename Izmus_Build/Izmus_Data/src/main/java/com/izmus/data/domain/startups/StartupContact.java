@@ -19,7 +19,7 @@ public class StartupContact extends IzmusContact {
 	private static final long serialVersionUID = 1L;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "STARTUP_ID", nullable = true)
-	@Fetch(value = FetchMode.JOIN)
+	@Fetch(value = FetchMode.SELECT)
 	@JsonBackReference
 	private Startup startup;
 	/*----------------------------------------------------------------------------------------------------*/

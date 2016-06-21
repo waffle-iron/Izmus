@@ -1,0 +1,1 @@
+angular.module('assessorsMeetingsApp', ['izmusNavBarApp', 'izmusMainWindowApp']);

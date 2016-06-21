@@ -46,8 +46,8 @@ public class User implements Serializable, Comparable<User> {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	private Set<UserRole> userRoles;
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@Fetch(value = FetchMode.JOIN)
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SELECT)
 	@JsonBackReference
 	private SystemEntity entity;
 	@Column(name = "AVATAR", columnDefinition = "VARCHAR(5242880)")

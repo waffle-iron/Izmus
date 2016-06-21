@@ -36,7 +36,7 @@ public class MeasurementQuestion implements Serializable, Comparable<Measurement
 	private String questionLocale;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "MEASUREMENT_ID", nullable = false)
-	@Fetch(value = FetchMode.JOIN)
+	@Fetch(value = FetchMode.SELECT)
 	@JsonBackReference
 	private Measurement measurement;
 	/*----------------------------------------------------------------------------------------------------*/

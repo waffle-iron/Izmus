@@ -50,17 +50,17 @@ public class Startup implements Serializable, Comparable<Startup> {
 	private String responsibleUser;
 	@Column(name = "LOGO", columnDefinition = "VARCHAR(5242880)")
 	private String logo;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.LAZY, orphanRemoval = true)
-	@Fetch(value = FetchMode.JOIN)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.EAGER, orphanRemoval = true)
+	@Fetch(value = FetchMode.SELECT)
 	private Set<StartupContact> contacts;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.LAZY, orphanRemoval = true)
-	@Fetch(value = FetchMode.JOIN)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.EAGER, orphanRemoval = true)
+	@Fetch(value = FetchMode.SELECT)
 	private Set<StartupScoreCard> scoreCards;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.LAZY, orphanRemoval = true)
-	@Fetch(value = FetchMode.JOIN)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.EAGER, orphanRemoval = true)
+	@Fetch(value = FetchMode.SELECT)
 	private Set<StartupAdditionalDocument> additionalDocuments;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.LAZY, orphanRemoval = true)
-	@Fetch(value = FetchMode.JOIN)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "startup", fetch = FetchType.EAGER, orphanRemoval = true)
+	@Fetch(value = FetchMode.SELECT)
 	private Set<StartupMeeting> meetings;
 	@Column(name = "STARTUP_GROUP_IDS")
 	@ElementCollection(targetClass = Integer.class, fetch = FetchType.EAGER)

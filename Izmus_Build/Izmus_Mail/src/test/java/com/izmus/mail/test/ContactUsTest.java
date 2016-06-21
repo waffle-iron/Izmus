@@ -47,7 +47,7 @@ public class ContactUsTest {
 			String emailString = IOUtils.toString(inputStream);
 			emailString = injectStringsToHTML(emailString);
 			HashMap<String, String> imageMap = getConfirmationEmailImageMap();
-			sendHTMLMail("nevo.lior@gmail.com", "Test Welcome Email", emailString,
+			sendHTMLMail("nevo.lior@gmail.com, lior@izmus.com, lior.nevo@ubs.com", "Test Welcome Email", emailString,
 					imageMap);
 		} catch (Exception e) {
 			e.printStackTrace();

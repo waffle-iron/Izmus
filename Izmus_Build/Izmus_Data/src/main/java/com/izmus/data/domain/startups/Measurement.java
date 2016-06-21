@@ -47,11 +47,11 @@ public class Measurement implements Serializable, Comparable<Measurement> {
 	private Double finalScoreRatio;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "SCORE_CARD_ID", nullable = false)
-	@Fetch(value = FetchMode.JOIN)
+	@Fetch(value = FetchMode.SELECT)
 	@JsonBackReference
 	private StartupScoreCard scoreCard;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "measurement", fetch = FetchType.EAGER, orphanRemoval = true)
-	@Fetch(value = FetchMode.JOIN)
+	@Fetch(value = FetchMode.SELECT)
 	private Set<MeasurementQuestion> measurementQuestions;
 	/*----------------------------------------------------------------------------------------------------*/
 	public boolean equals(Object obj) {

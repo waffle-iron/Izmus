@@ -34,7 +34,7 @@ public class StartupAdditionalDocument implements Serializable, Comparable<Start
 	private byte[] document;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "STARTUP_ID", nullable = false)
-	@Fetch(value = FetchMode.JOIN)
+	@Fetch(value = FetchMode.SELECT)
 	@JsonBackReference
 	private Startup startup;
 	/*----------------------------------------------------------------------------------------------------*/

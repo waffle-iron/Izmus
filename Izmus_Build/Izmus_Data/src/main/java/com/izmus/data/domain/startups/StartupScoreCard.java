@@ -39,11 +39,11 @@ public class StartupScoreCard implements Serializable, Comparable<StartupScoreCa
 	private Integer finalScore;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "STARTUP_ID", nullable = false)
-	@Fetch(value = FetchMode.JOIN)
+	@Fetch(value = FetchMode.SELECT)
 	@JsonBackReference
 	private Startup startup;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "scoreCard", fetch = FetchType.EAGER, orphanRemoval = true)
-	@Fetch(value = FetchMode.JOIN)
+	@Fetch(value = FetchMode.SELECT)
 	private Set<Measurement> measurements;
 	/*----------------------------------------------------------------------------------------------------*/
 	public boolean equals(Object obj) {

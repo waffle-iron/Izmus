@@ -30,9 +30,9 @@ public abstract class SystemEntity implements Serializable, Comparable<SystemEnt
 	private String entityEmail;
 	@Column(name = "IS_ENTITY_MALE")
 	private Boolean isEntityMale;
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="USER_ID")
-	@Fetch(value = FetchMode.JOIN)
+	@Fetch(value = FetchMode.SELECT)
 	private User user;
 	/*----------------------------------------------------------------------------------------------------*/
 	public boolean equals(Object obj) {

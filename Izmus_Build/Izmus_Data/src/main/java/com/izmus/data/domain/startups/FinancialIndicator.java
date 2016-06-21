@@ -31,8 +31,8 @@ public class FinancialIndicator implements Serializable, Comparable<FinancialInd
 	private Integer startupId;
 	@Column(name = "TYPE_ID")
 	private Integer typeId;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "financialIndicator", fetch = FetchType.LAZY, orphanRemoval = true)
-	@Fetch(value = FetchMode.JOIN)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "financialIndicator", fetch = FetchType.EAGER, orphanRemoval = true)
+	@Fetch(value = FetchMode.SELECT)
 	private Set<IndicatorPoint> points;
 	/*----------------------------------------------------------------------------------------------------*/
 	public boolean equals(Object obj) {
