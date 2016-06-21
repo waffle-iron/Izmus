@@ -13,6 +13,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <meta http-equiv="x-ua-compatible" content="IE=Edge" />
+<meta name="theme-color" content="#1f6086">
 <!-- Angular Material style sheet -->
 <link
 	href="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.6/angular-material.min.css" />"
@@ -26,6 +27,12 @@
 <link
 	href="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" />"
 	rel="stylesheet" />
+<!-- icon in the highest resolution we need it for -->
+<link rel="icon" sizes="192x192" href="/views-public/core/logo/logo192x192.png">
+<!-- reuse same icon for Safari -->
+<link rel="apple-touch-icon" href="/views-public/core/logo/logo192x192.png">
+<!-- multiple icons for IE -->
+<meta name="msapplication-square310x310logo" content="/views-public/core/logo/logo192x192.png">
 </head>
 <body layout="colum">
 	<izmus-landing-page 
