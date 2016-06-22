@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------------------------------------*/
 angular.module('meetingsApp').factory('meetingViewDialog',
 		[ '$mdMedia', '$mdDialog', function($mdMedia, $mdDialog) {
-			return function(ev, meeting) {
+			return function(ev, meeting, exportFunction) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
 			    /*----------------------------------------------------------------------------------------------------*/
@@ -9,9 +9,11 @@ angular.module('meetingsApp').factory('meetingViewDialog',
 				    $scope.globalAttr = globalAttr;
 				    $scope.lang = lang;
 				    $scope.meeting = meeting;
-					/*----------------------------------------------------------------------------------------------------*/
-					$scope.cancel = function() {
-						$mdDialog.cancel();
+				    /*----------------------------------------------------------------------------------------------------*/
+					$scope.export = function() {
+						if (exportFunction){
+							exportFunction();
+						}
 					};
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.ok = function() {
@@ -43,6 +45,32 @@ angular.module('meetingsApp').factory('loadAllMeetings',
 						} else {
 							reject();
 						}
+					}, function errorCallback(response) {
+						reject();
+					});
+				})
+			}
+		} ]);
+/*----------------------------------------------------------------------------------------------------*/
+angular.module('meetingsApp').factory('exportGeneralMeeting',
+		[ '$q', '$http', '$httpParamSerializer', function($q, $http, $httpParamSerializer) {
+			return function(meeting) {
+				return $q(function(resolve, reject) {
+					$http({
+						method : 'POST',
+						url : '/api/Meetings/MeetingReport',
+						headers: {
+					        'Content-Type': "application/x-www-form-urlencoded; charset=UTF-8",
+					        'Upgrade-Insecure-Requests': "1",
+					        'X-CSRF-TOKEN': globalAttr.sessionToken
+					        
+					    },
+					    data : $httpParamSerializer({
+					    	startupMeeting: meeting,
+					    })
+					}).then(function successCallback(response) {
+						window.location = "/Export/MeetingReport/" + response.data.reportId;
+						resolve();
 					}, function errorCallback(response) {
 						reject();
 					});

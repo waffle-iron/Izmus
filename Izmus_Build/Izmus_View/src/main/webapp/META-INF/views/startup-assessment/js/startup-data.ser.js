@@ -264,7 +264,7 @@ angular.module('startupAssessmentApp').factory('addPeriodDialog',
 /*----------------------------------------------------------------------------------------------------*/
 angular.module('startupAssessmentApp').factory('meetingViewDialog',
 		[ '$mdMedia', '$mdDialog', function($mdMedia, $mdDialog) {
-			return function(ev, meeting) {
+			return function(ev, meeting, exportFunction) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
 			    /*----------------------------------------------------------------------------------------------------*/
@@ -273,8 +273,11 @@ angular.module('startupAssessmentApp').factory('meetingViewDialog',
 				    $scope.lang = lang;
 				    $scope.meeting = meeting;
 					/*----------------------------------------------------------------------------------------------------*/
-					$scope.cancel = function() {
-						$mdDialog.cancel();
+					$scope.export = function() {
+						if (exportFunction){
+							exportFunction();
+							$mdDialog.cancel();
+						}
 					};
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.ok = function() {

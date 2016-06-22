@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.1.final using JasperReports Library version 6.2.1  -->
+<!-- 2016-06-22T19:02:28 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StartupMeetingLTR" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="55da965f-5ee4-4180-ae02-ccdcfda6c845">
+	<parameter name="meeting" class="com.izmus.data.domain.meetings.GeneralMeeting"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="60" splitType="Prevent">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<line>
+				<reportElement x="0" y="59" width="555" height="1" forecolor="#888888" uuid="32972509-772a-41a3-843a-57b80e6c64a8">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="25" uuid="eded147c-3a2e-4f7e-a324-bb31caa33423">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA["Meeting Date"]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMM d, yyyy">
+				<reportElement x="455" y="25" width="100" height="25" forecolor="#888888" uuid="32b18800-36b7-4c86-854c-7b22ab2e8f19">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{meeting}.getMeetingDate()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<summary>
+		<band height="555" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="0" y="10" width="555" height="17" uuid="0a5be3a2-e723-444f-80a6-ff20d454b2c7">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Meeting Summary"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="32" width="555" height="35" forecolor="#888888" uuid="0c893887-33cf-4436-828f-621a1eb793b3">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA["Summarizes the meeting between the the \"Startup\" and the \"Company\". The \"Startup\" refers to the startups/SMEs/Companies we are bringing from Israel and the \"Company\" refers to the potential business partner/Investor in Singapore."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="84" width="555" height="17" uuid="87069e18-45c0-452f-a681-097ff3ed2344">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Purpose"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="106" width="555" height="12" forecolor="#888888" uuid="63a37eb7-e556-415a-9e31-890d92d01da6">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$P{meeting}.getMeetingPurpose()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="135" width="555" height="17" uuid="eac4103b-2e9a-493b-a757-cd686caadc31">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Parties"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="157" width="555" height="12" forecolor="#888888" uuid="cb33b10f-5c4e-4a24-bb6b-3264277d93b9">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$P{meeting}.getParties()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="169" width="555" height="37" uuid="de5564f9-484f-4c72-8f1f-efca4160b31e">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+					<paragraph spacingBefore="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Attendees From The Startup's Side"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="206" width="555" height="17" forecolor="#888888" uuid="2ede8f8d-d924-47b1-a335-95980b8808d7">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement markup="styled">
+					<paragraph spacingBefore="5" spacingAfter="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{meeting}.getStartupParty() + "<br/>" + "<br/>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="223" width="555" height="17" uuid="c51e5ddc-c9f8-4fec-b143-876b034db881">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+					<paragraph spacingBefore="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Attendees From The Company's Side"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="240" width="555" height="17" forecolor="#888888" uuid="b39714b5-bca7-435c-83ae-0d2384e25cac">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement markup="styled">
+					<paragraph spacingBefore="5" spacingAfter="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{meeting}.getCompanyParty() + "<br/>" + "<br/>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="257" width="555" height="17" uuid="5a19aaa6-0129-4593-8abd-498c84b631cb">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+					<paragraph spacingBefore="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Company Introduction"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="274" width="555" height="17" forecolor="#888888" uuid="aac95dc0-42b8-44ee-86c0-4b677b9f3d2d">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement markup="styled">
+					<paragraph spacingBefore="5" spacingAfter="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{meeting}.getCompanyIntro() + "<br/>" + "<br/>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="291" width="555" height="17" uuid="d376a128-8e37-4a37-a135-1b34807d0699">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+					<paragraph spacingBefore="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Meeting Flow"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="308" width="555" height="17" forecolor="#888888" uuid="104fb990-728e-4e1c-ae98-6adc7091b4e4">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement markup="styled">
+					<paragraph spacingBefore="5" spacingAfter="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{meeting}.getMeetingFlow() + "<br/>" + "<br/>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="325" width="555" height="17" uuid="bd5e551c-aaa7-4ce9-8aea-049f9067d606">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+					<paragraph spacingBefore="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA["One Sentence Summary"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="342" width="555" height="17" forecolor="#888888" uuid="af27ae24-7f80-4ea1-b45d-c2eb0137af89">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement markup="styled">
+					<paragraph spacingBefore="5" spacingAfter="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{meeting}.getOneSentenceSummary() + "<br/>" + "<br/>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="359" width="555" height="17" uuid="7a07a0d6-8bae-4a9c-a5cb-afedf8d9808f">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="14" isBold="true"/>
+					<paragraph spacingBefore="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Follow Up"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="376" width="555" height="17" forecolor="#888888" uuid="b174002b-1fb7-479d-8f48-18089af85f9d">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement markup="styled">
+					<paragraph spacingBefore="5" spacingAfter="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{meeting}.getFollowUp() + "<br/>" + "<br/>"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

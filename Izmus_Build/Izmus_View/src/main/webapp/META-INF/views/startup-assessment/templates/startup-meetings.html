@@ -15,14 +15,19 @@
 		min-width: 300px;
 	}
 </style>
-<section layout="row" layout-padding layout-align="space-between center">
+<section ng-if='progressMode != ""' flex layout="column" layout-align="center center">
+    <div>
+        <md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120"></md-progress-circular>
+    </div>
+</section>
+<section ng-if='progressMode == ""' layout="row" layout-padding layout-align="space-between center">
 	<md-button class="md-fab md-mini" ng-click="addNewMeeting()">
 		<md-icon class="material-icons">
 			add
 		</md-icon>
 	</md-button>
 </section>
-<section layout="row" layout-padding layout-wrap layout-align="center stretch">
+<section ng-if='progressMode == ""' layout="row" layout-padding layout-wrap layout-align="center stretch">
 	<md-whiteframe
 	ng-repeat="meeting in selectedStartup.meetings"
 	class="md-whiteframe-1dp meeting-whiteframe"

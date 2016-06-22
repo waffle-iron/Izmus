@@ -17,6 +17,7 @@ angular
 										function($scope) {
 											$scope.globalAttr = globalAttr;
 											$scope.lang = lang;
+											$scope.progressMode = '';
 											/*----------------------------------------------------------------------------------------------------*/
 											$scope.parseDate = function(meeting){
 												meeting.meetingDate = new Date(meeting.meetingDate);
@@ -30,7 +31,12 @@ angular
 											});
 											/*----------------------------------------------------------------------------------------------------*/
 											$scope.viewMeeting = function(ev, meeting){
-												meetingViewDialog(ev, meeting);
+												meetingViewDialog(ev, meeting, function(){
+													$scope.progressMode = 'indeterminate';
+													exportMeetingSummary($scope.selectedStartup.startupId, meeting).then(function(){
+														$scope.progressMode = '';
+													});
+												});
 											}
 											/*----------------------------------------------------------------------------------------------------*/
 											$scope.addNewMeeting = function(){
@@ -43,7 +49,10 @@ angular
 											}
 											/*----------------------------------------------------------------------------------------------------*/
 											$scope.exportPDF = function(startup, meeting){
-												exportMeetingSummary(startup.startupId, meeting);
+												$scope.progressMode = 'indeterminate';
+												exportMeetingSummary(startup.startupId, meeting).then(function(){
+													$scope.progressMode = '';
+												});
 											}
 										} ],
 								link : function(scope, elem, attr, parentCtrl) {

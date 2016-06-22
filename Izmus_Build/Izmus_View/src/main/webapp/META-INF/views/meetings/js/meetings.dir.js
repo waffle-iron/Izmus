@@ -1,5 +1,5 @@
 angular.module('meetingsApp').directive('meetingsDashboard',
-		[ 'loadAllMeetings','meetingViewDialog',function(loadAllMeetings,meetingViewDialog) {
+		[ 'loadAllMeetings','meetingViewDialog','exportGeneralMeeting', function(loadAllMeetings,meetingViewDialog,exportGeneralMeeting) {
 			return {
 				restrict : 'E',
 				templateUrl : '/views/meetings/templates/meetings.html',
@@ -7,6 +7,7 @@ angular.module('meetingsApp').directive('meetingsDashboard',
 					$scope.meetings = [];
 					$scope.lang = lang;
 					$scope.globalAttr = globalAttr;
+					$scope.progressMode = '';
 					/*----------------------------------------------------------------------------------------------------*/
 					loadAllMeetings().then(function(data){
 						$scope.meetings = $scope.meetings.concat(data.generalMeetings);
@@ -28,7 +29,19 @@ angular.module('meetingsApp').directive('meetingsDashboard',
 					});
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.viewMeeting = function(ev, meeting){
-						meetingViewDialog(ev, meeting);
+						meetingViewDialog(ev, meeting, function(){
+							$scope.progressMode = 'indeterminate';
+							exportGeneralMeeting(meeting).then(function(){
+								$scope.progressMode = '';
+							});
+						});
+					}
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.exportPDF = function(meeting){
+						$scope.progressMode = 'indeterminate';
+						exportGeneralMeeting(meeting).then(function(){
+							$scope.progressMode = '';
+						});
 					}
 				} ],
 				link : function(scope, elem, attr) {
