@@ -3,6 +3,9 @@ var timeout = 15 * 60;
 var heartbeat = 5 * 60;
 var popupTimeout = 200;
 angular.module('izmusNavBarApp', [ 'ngMaterial', 'ngImgCrop', 'ngIdle' ]);
+angular.module('izmusNavBarApp').controller('toastCtrl', ['$scope','message', function($scope, message){
+	$scope.message = message;
+}]);
 /*----------------------------------------------------------------------------------------------------*/
 /**
  * Directive

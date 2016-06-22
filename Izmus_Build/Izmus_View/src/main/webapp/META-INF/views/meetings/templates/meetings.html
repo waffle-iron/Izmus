@@ -26,9 +26,9 @@ layout="column">
                     <md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120"></md-progress-circular>
                 </div>
             </section>
-            <section ng-if='progressMode == ""' layout="row" layout-padding layout-wrap layout-align="center stretch">
+            <section ng-if='progressMode == ""' layout="row" layout-padding layout-wrap>
                 <md-whiteframe
-                ng-repeat="meeting in meetings"
+                ng-repeat="meeting in meetings.generalMeetings"
                 class="md-whiteframe-1dp meeting-whiteframe"
                 flex="nogrow"
                 layout-padding
@@ -45,7 +45,48 @@ layout="column">
                             </md-icon>
                         </md-button>
                         <md-button aria-label="menu" class="md-fab md-mini"
-                        ng-click="viewMeeting($event, meeting)">
+                        ng-click="viewGeneralMeeting($event, meeting)">
+                            <md-icon aria-label="Menu" class="material-icons">
+                                remove_red_eye
+                            </md-icon>
+                        </md-button>
+                    </section>
+                    <form name="meetingForm" layout-padding layout="column">
+                        <md-datepicker
+                        class="date-field"
+                        name="dateField"
+                        ng-model="meeting.meetingDate"
+                        md-placeholder="{{lang.enterDate}}"
+                        required ng-class="(globalAttr.direction == 'rtl') ? 'datepicker-rtl' : ''"></md-datepicker>
+                        <div layout-padding multiple md-auto-hide="false" ng-messages="meetingForm.dateField.$error">
+                            <div ng-message="required" class="error-message">
+                                {{lang.dateRequired}}
+                            </div>
+                            <div ng-message="valid" class="error-message">
+                                {{lang.dateInvalid}}
+                            </div>
+                        </div>
+                    </form>
+                </md-whiteframe>
+                <md-whiteframe
+                ng-repeat="meeting in meetings.startupMeetings"
+                class="md-whiteframe-1dp meeting-whiteframe"
+                flex="nogrow"
+                layout-padding
+                layout="column"
+                layout-align="start space-around">
+                    <section layout="row" layout-align="space-between center">
+                        <p class="md-title">
+                            {{lang.meetingDate}}
+                        </p>
+                        <md-button aria-label="menu" class="md-fab md-mini"
+                        ng-click="exportPDF(meeting)">
+                            <md-icon aria-label="Menu" class="material-icons">
+                                picture_as_pdf
+                            </md-icon>
+                        </md-button>
+                        <md-button aria-label="menu" class="md-fab md-mini"
+                        ng-click="viewStartupMeeting($event, meeting)">
                             <md-icon aria-label="Menu" class="material-icons">
                                 remove_red_eye
                             </md-icon>
@@ -72,7 +113,7 @@ layout="column">
         </md-container>
         <section layout="row" layout-padding layout-align="space-between center">
             <span flex></span>
-            <md-button class="md-fab md-mini" ng-click="addNewMeeting()">
+            <md-button class="md-fab md-mini" ng-click="addGeneralMeeting($event)">
                 <md-icon class="material-icons">
                     add
                 </md-icon>

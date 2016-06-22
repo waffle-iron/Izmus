@@ -96,7 +96,7 @@ public class StartupReport {
 		parameters.put("disclaimerSubreportPath", context.getRealPath("/") + "/WEB-INF/reports/disclaimer/DisclaimerLTR.jasper");
 		parameters.put("financialIndicatorReportPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentFinancialIndicatorReport.jasper");
 		parameters.put("financialLineGraphPath", context.getRealPath("/") + "/WEB-INF/reports/startup-assessment/StartupAssessmentFinancialLineGraph.jasper");
-		parameters.put("disclaimerLogo", context.getRealPath("/") + "/META-INF/views-public/core/logo/logowhite.jpg");
+		parameters.put("disclaimerLogo", context.getRealPath("/") + "/META-INF/views-public/core/logo/logowhite960x960.jpg");
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	private HashMap<String, Object> getIndicatorReportMap(Startup startup) {

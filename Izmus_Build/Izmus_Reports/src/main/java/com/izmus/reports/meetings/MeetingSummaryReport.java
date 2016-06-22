@@ -42,5 +42,6 @@ public class MeetingSummaryReport {
 	/*----------------------------------------------------------------------------------------------------*/
 	private void buildParameters(Map<String, Object> parameters, GeneralMeeting meeting) {
 		parameters.put("meeting", meeting);
+		parameters.put("logo", context.getRealPath("/") + "/META-INF/views-public/core/logo/logo708X181.png");
 	}
 }

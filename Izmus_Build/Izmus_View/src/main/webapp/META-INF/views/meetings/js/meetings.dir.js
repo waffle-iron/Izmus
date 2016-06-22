@@ -1,5 +1,6 @@
 angular.module('meetingsApp').directive('meetingsDashboard',
-		[ 'loadAllMeetings','meetingViewDialog','exportGeneralMeeting', function(loadAllMeetings,meetingViewDialog,exportGeneralMeeting) {
+		[ 'loadAllMeetings','meetingViewDialog','exportGeneralMeeting','saveGeneralMeeting', '$mdToast',
+		  function(loadAllMeetings,meetingViewDialog,exportGeneralMeeting, saveGeneralMeeting, $mdToast) {
 			return {
 				restrict : 'E',
 				templateUrl : '/views/meetings/templates/meetings.html',
@@ -10,8 +11,7 @@ angular.module('meetingsApp').directive('meetingsDashboard',
 					$scope.progressMode = '';
 					/*----------------------------------------------------------------------------------------------------*/
 					loadAllMeetings().then(function(data){
-						$scope.meetings = $scope.meetings.concat(data.generalMeetings);
-						$scope.meetings = $scope.meetings.concat(data.startupMeetings);
+						$scope.meetings = data;
 					},
 					function(){
 						
@@ -22,13 +22,40 @@ angular.module('meetingsApp').directive('meetingsDashboard',
 					}
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.$watch('meetings', function(){
-						for (var i = 0; i < $scope.meetings.length; i++){
-							var meeting = $scope.meetings[i];
+						if ($scope.meetings.generalMeetings) for (var i = 0; i < $scope.meetings.generalMeetings.length; i++){
+							var meeting = $scope.meetings.generalMeetings[i];
+							$scope.parseDate(meeting);
+						}
+						if ($scope.meetings.startupMeetings) for (var i = 0; i < $scope.meetings.startupMeetings.length; i++){
+							var meeting = $scope.meetings.startupMeetings[i];
 							$scope.parseDate(meeting);
 						}
 					});
 					/*----------------------------------------------------------------------------------------------------*/
-					$scope.viewMeeting = function(ev, meeting){
+					$scope.viewGeneralMeeting = function(ev, meeting){
+						meetingViewDialog(ev, meeting, function(){
+							$scope.progressMode = 'indeterminate';
+							exportGeneralMeeting(meeting).then(function(){
+								$scope.progressMode = '';
+							});
+						},function(){
+							$scope.progressMode = 'indeterminate';
+							saveGeneralMeeting(meeting).then(function(data){
+								if (data.result == 'success'){
+									$scope.progressMode = '';
+									meeting.meetingId = data.meetingId;
+									$scope.showMessage($scope.lang.saveSuccess);
+								}
+								else {
+									$scope.showMessage($scope.lang.saveFail);
+								}
+							}, function(){
+								$scope.showMessage($scope.lang.saveFail);
+							});
+						});
+					}
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.viewStartupMeeting = function(ev, meeting){
 						meetingViewDialog(ev, meeting, function(){
 							$scope.progressMode = 'indeterminate';
 							exportGeneralMeeting(meeting).then(function(){
@@ -43,9 +70,32 @@ angular.module('meetingsApp').directive('meetingsDashboard',
 							$scope.progressMode = '';
 						});
 					}
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.addGeneralMeeting = function(ev){
+						if (!$scope.meetings.generalMeetings){
+							$scope.meetings.generalMeetings = [];
+						}
+						var newMeeting = {
+							meetingDate: new Date()
+						};
+						$scope.viewGeneralMeeting(ev, newMeeting);
+						$scope.meetings.generalMeetings.push(newMeeting);
+					}
 				} ],
 				link : function(scope, elem, attr) {
-					
+					/*----------------------------------------------------------------------------------------------------*/
+					scope.showMessage = function(message){
+						$mdToast.show({
+						      controller: 'toastCtrl',
+						      templateUrl: '/views/core/toast/templates/toast.html',
+						      parent : angular.element(elem),
+						      hideDelay: 2600,
+						      position: 'top right',
+						      locals: {
+						    	  message: message
+						      }
+						    });
+					}
 				}
 			}
 		} ]);

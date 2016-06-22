@@ -70,7 +70,7 @@ public class Meetings {
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/MeetingReport", method = RequestMethod.POST)
 	@PreAuthorize("hasPermission('Meetings', '')")
-	public String getMeetingReport(@RequestParam(value = "startupMeeting", required = true) String meetingJson) {
+	public String getMeetingReport(@RequestParam(value = "meeting", required = true) String meetingJson) {
 		GeneralMeeting meeting = null;
 		MeetingReport meetingReport = null;
 		try {
@@ -90,5 +90,21 @@ public class Meetings {
 					+ e.getMessage());
 		}
 		return "{\"reportId\": \"" + meetingReport.getReportId() + "\"}";
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(method = RequestMethod.POST)
+	@PreAuthorize("hasPermission('Meetings', '')")
+	public String saveGeneralMeeting(@RequestParam(value = "meeting", required = true) String meetingJson) {
+		GeneralMeeting meeting = null;
+		try {
+			meeting = jacksonObjectMapper.readValue(meetingJson, GeneralMeeting.class);
+			meeting = generalMeetingRepository.save(meeting);
+			LOGGER.info("Meeting Saved Successfully To The Database");
+		} catch (Exception e) {
+			LOGGER.error("Could Not Save Meeting With Error: "
+					+ e.getMessage());
+			return "{\"result\": \"fail\"}";
+		}
+		return "{\"result\": \"success\", \"meetingId\":" + meeting.getMeetingId() + "}";
 	}
 }

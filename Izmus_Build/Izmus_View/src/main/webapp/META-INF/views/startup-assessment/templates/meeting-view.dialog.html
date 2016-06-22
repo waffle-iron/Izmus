@@ -133,6 +133,11 @@
                 picture_as_pdf
             </md-icon>
         </md-button>
+        <md-button ng-if="saveMeeting" ng-click="save()">
+            <md-icon class="material-icons">
+                save
+            </md-icon>
+        </md-button>
         <span flex></span>
         <md-button ng-click="ok()">
             {{lang.ok}}

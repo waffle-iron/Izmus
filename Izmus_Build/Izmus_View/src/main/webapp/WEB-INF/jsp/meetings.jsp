@@ -29,6 +29,8 @@
 			meetingFlow: ' <spring:message code="navBar.menu.startupAssessment.meetingFlow" />',
 			oneSentenceSummary: ' <spring:message code="navBar.menu.startupAssessment.oneSentenceSummary" />',
 			followUp: ' <spring:message code="navBar.menu.startupAssessment.followUp" />',
-			ok:' <spring:message code="navBar.menu.startupAssessment.ok" />'
+			ok:' <spring:message code="navBar.menu.startupAssessment.ok" />',
+			saveFail:' <spring:message code="navBar.menu.assessorsMenu.meetings.saveFail" />',
+			saveSuccess:' <spring:message code="navBar.menu.assessorsMenu.meetings.saveSuccess" />'
 	};
 </script>
