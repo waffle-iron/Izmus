@@ -59,8 +59,8 @@ public class LoadNavBar {
 		if (permissionEvaluator.hasPermission(authentication, "Startup Assessment", null)){
 			assessorsMenu.getSubItems().add(getStartupAssessmnetItem());
 		}
-		if (permissionEvaluator.hasPermission(authentication, "Assessors Meetings", null)){
-			assessorsMenu.getSubItems().add(getAssessorsMeetingsItem());
+		if (permissionEvaluator.hasPermission(authentication, "Meetings", null)){
+			assessorsMenu.getSubItems().add(getMeetingsItem());
 		}
 		return assessorsMenu;
 	}
@@ -142,11 +142,11 @@ public class LoadNavBar {
 		return proposalItem;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
-	private NavbarItem getAssessorsMeetingsItem() {
+	private NavbarItem getMeetingsItem() {
 		NavbarItem proposalItem = new NavbarItem();
-		proposalItem.setHref("/AssessorsMeetings");
-		proposalItem.setLabel(context.getMessage("navBar.menu.assessorsMenu.assessorsMeetings",null, LocaleContextHolder.getLocale()));
-		proposalItem.setIcon("/views/assessors-meetings/images/meeting.svg");
+		proposalItem.setHref("/Meetings");
+		proposalItem.setLabel(context.getMessage("navBar.menu.assessorsMenu.meetings",null, LocaleContextHolder.getLocale()));
+		proposalItem.setIcon("/views/meetings/images/meeting.svg");
 		proposalItem.setType("link");
 		return proposalItem;
 	}

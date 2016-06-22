@@ -1,17 +1,17 @@
 <%@ include file="fragments/frame.jsp"%>
-<izmus-nav-bar ng-app="assessorsMeetingsApp"
-	initial-selected-item=' <spring:message code="navBar.menu.assessorsMenu.assessorsMeetings" />'>
-	<assessors-meetings
+<izmus-nav-bar ng-app="meetingsApp"
+	initial-selected-item=' <spring:message code="navBar.menu.assessorsMenu.meetings" />'>
+	<meetings-dashboard
 				flex
 				layout="column">
-	</assessors-meetings>
+	</meetings-dashboard>
 </izmus-nav-bar>
 <script
-	src="<c:url value="/views/assessors-meetings/js/assessors-meetings.ctrl.js" />"></script>
+	src="<c:url value="/views/meetings/js/meetings.ctrl.js" />"></script>
 <script
-	src="<c:url value="/views/assessors-meetings/js/assessors-meetings.dir.js" />"></script>
+	src="<c:url value="/views/meetings/js/meetings.dir.js" />"></script>
 <script
-	src="<c:url value="/views/assessors-meetings/js/assessors-meetings.ser.js" />"></script>
+	src="<c:url value="/views/meetings/js/meetings.ser.js" />"></script>
 <script>
 	var lang = {
 			meetingSummary: ' <spring:message code="navBar.menu.startupAssessment.meetingSummary" />',
@@ -28,6 +28,7 @@
 			companyIntro: ' <spring:message code="navBar.menu.startupAssessment.companyIntro" />',
 			meetingFlow: ' <spring:message code="navBar.menu.startupAssessment.meetingFlow" />',
 			oneSentenceSummary: ' <spring:message code="navBar.menu.startupAssessment.oneSentenceSummary" />',
-			followUp: ' <spring:message code="navBar.menu.startupAssessment.followUp" />'
+			followUp: ' <spring:message code="navBar.menu.startupAssessment.followUp" />',
+			ok:' <spring:message code="navBar.menu.startupAssessment.ok" />'
 	};
 </script>

@@ -29,25 +29,25 @@ public class Meetings {
 	private IGeneralMeetingRepository generalMeetingRepository;
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/GeneralMeetings")
-	@PreAuthorize("hasPermission('Assessors Meetings', '')")
+	@PreAuthorize("hasPermission('Meetings', '')")
 	public List<GeneralMeeting> getAllGeneralMeetings(){
 		List<GeneralMeeting> allGeneralMeetings = generalMeetingRepository.findAll();
 		return allGeneralMeetings;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/StartupMeetings")
-	@PreAuthorize("hasPermission('Assessors Meetings', '')")
+	@PreAuthorize("hasPermission('Meetings', '')")
 	public List<StartupMeeting> getAllStartupMeetings(){
 		List<StartupMeeting> allStartupMeetings = startupMeetingRepository.findAll();
 		return allStartupMeetings;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET)
-	@PreAuthorize("hasPermission('Assessors Meetings', '')")
+	@PreAuthorize("hasPermission('Meetings', '')")
 	public Map<String, List<? extends IzmusMeeting>> getAllIzmusMeetings(){
 		HashMap<String, List<? extends IzmusMeeting>> returnMap = new HashMap<String, List<? extends IzmusMeeting>>();
-		returnMap.put("General Meetings", getAllGeneralMeetings());
-		returnMap.put("Startup Meetings", getAllStartupMeetings());
+		returnMap.put("generalMeetings", getAllGeneralMeetings());
+		returnMap.put("startupMeetings", getAllStartupMeetings());
 		return returnMap;
 	}
 }

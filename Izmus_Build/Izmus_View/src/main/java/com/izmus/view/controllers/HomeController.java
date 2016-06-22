@@ -69,10 +69,10 @@ public class HomeController {
 		return returnModel;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
-	@RequestMapping(value = "/AssessorsMeetings", method = RequestMethod.GET)
-	@PreAuthorize("hasPermission('Assessors Meetings', '')")
-	public ModelAndView getAssessorsMeetings() {
-		ModelAndView returnModel = new ModelAndView("assessorsMeetings");
+	@RequestMapping(value = "/Meetings", method = RequestMethod.GET)
+	@PreAuthorize("hasPermission('Meetings', '')")
+	public ModelAndView getMeetings() {
+		ModelAndView returnModel = new ModelAndView("meetings");
 		return returnModel;
 	}
 }
