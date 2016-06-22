@@ -20,7 +20,7 @@
 flex
 layout="column">
     <main-content flex layout="column">
-        <md-container flex>
+        <md-content flex>
             <section ng-if='progressMode != ""' flex layout="column" layout-align="center center">
                 <div>
                     <md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120"></md-progress-circular>
@@ -110,7 +110,7 @@ layout="column">
                     </form>
                 </md-whiteframe>
             </section>
-        </md-container>
+        </md-content>
         <section layout="row" layout-padding layout-align="space-between center">
             <span flex></span>
             <md-button class="md-fab md-mini" ng-click="addGeneralMeeting($event)">
