@@ -1,0 +1,68 @@
+<style>
+	.contact-card {
+		margin: 5px;
+		width: 360px;
+	}
+	.contact-avatar-icon {
+		height: 38px;
+		width: 38px;
+		margin-left: 5px;
+		margin-right: 5px;
+		border-radius: 20px;
+		border-width: 1px;
+		border-style: solid;
+		border-color: rgb(160,195,215);
+	}
+	.search-input{
+		margin-bottom: 0px;
+		margin-top: 8px;
+	}
+</style>
+<izmus-main-window
+flex
+layout="column">
+	<main-content flex layout="column">
+		<section layout-padding layout="column">
+			<md-input-container
+			class="search-input"
+			ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+				<label>{{lang.search}}</label>
+				<input ng-model="$parent.$parent.search">
+			</md-input-container>
+		</section>
+		<md-content flex>
+			<section ng-if='progressMode != ""' flex layout="column" layout-align="center center">
+				<div>
+					<md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120"></md-progress-circular>
+				</div>
+			</section>
+			<section ng-if='progressMode == ""' layout="row" layout-padding layout-wrap>
+				<md-whiteframe
+				ng-repeat="contact in contacts.startupContacts | filter: searchContact"
+				class="md-whiteframe-1dp contact-card"
+				flex="nogrow"
+				layout="column">
+					<div layout="row" layout-align="start center">
+						<md-icon
+						ng-if="(contact.contactAvatar == null || contact.contactAvatar =='')"
+						class="material-icons ">
+							contact_phone
+						</md-icon>
+						<img
+						ng-if="(contact.contactAvatar != null && contact.contactAvatar !='')" class="contact-avatar-icon" ng-src="{{contact.contactAvatar}}"/>
+						<span hide-sm hide-xs class="md-headline">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
+						<span hide-gt-sm class="md-subheader">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
+					</div>
+				</md-whiteframe>
+			</section>
+		</md-content>
+		<section layout="row" layout-padding layout-align="space-between center">
+			<span flex></span>
+			<md-button class="md-fab md-mini" ng-click="addGeneralContact($event)">
+				<md-icon class="material-icons">
+					add
+				</md-icon>
+			</md-button>
+		</section>
+	</main-content>
+</izmus-main-window>

@@ -11,7 +11,7 @@
 </c:if>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui">
 <meta http-equiv="x-ua-compatible" content="IE=Edge" />
 <meta name="theme-color" content="#1f6086">
 <!-- Angular Material style sheet -->
@@ -48,6 +48,8 @@
 		src="<c:url value="/views/core/drag/izmus-drag.js" />"></script>
 	<script
 		src="<c:url value="/views-public/core/idle/js/angular-idle.min.js" />"></script>
+	<script
+		src="<c:url value="/views-public/core/full-screen/js/full-screen.js" />"></script>
 
 	<!-- Angular Material Library -->
 	<script
@@ -67,10 +69,21 @@
 			selectAnImage: ' <spring:message code="navBar.menu.user.selectAnImage" />',
 			croppedImage: ' <spring:message code="navBar.menu.user.croppedImage" />',
 			userSettings: ' <spring:message code="navBar.menu.user.settings" />',
-			timeout: ' <spring:message code="navBar.timeout" />'
+			timeout: ' <spring:message code="navBar.timeout" />',
+			fullScreen: ' <spring:message code="navBar.fullScreen" />'
 		};
 		globalAttr.user.userAvatar = '${user.userAvatar}';
 		globalAttr.user.userRoles = '${user.userRoles}';
+		var docElm = document.documentElement;
+		if (docElm.requestFullscreen) {
+		    docElm.requestFullscreen();
+		}
+		else if (docElm.mozRequestFullScreen) {
+		    docElm.mozRequestFullScreen();
+		}
+		else if (docElm.webkitRequestFullScreen) {
+		    docElm.webkitRequestFullScreen();
+		}
 	</script>
 </body>
 </html>

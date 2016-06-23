@@ -62,6 +62,9 @@ public class LoadNavBar {
 		if (permissionEvaluator.hasPermission(authentication, "Meetings", null)){
 			assessorsMenu.getSubItems().add(getMeetingsItem());
 		}
+		if (permissionEvaluator.hasPermission(authentication, "Contacts", null)){
+			assessorsMenu.getSubItems().add(getContactsItem());
+		}
 		return assessorsMenu;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
@@ -147,6 +150,15 @@ public class LoadNavBar {
 		proposalItem.setHref("/Meetings");
 		proposalItem.setLabel(context.getMessage("navBar.menu.assessorsMenu.meetings",null, LocaleContextHolder.getLocale()));
 		proposalItem.setIcon("/views/meetings/images/meeting.svg");
+		proposalItem.setType("link");
+		return proposalItem;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private NavbarItem getContactsItem() {
+		NavbarItem proposalItem = new NavbarItem();
+		proposalItem.setHref("/Contacts");
+		proposalItem.setLabel(context.getMessage("navBar.menu.assessorsMenu.contacts",null, LocaleContextHolder.getLocale()));
+		proposalItem.setIcon("/views/contacts/images/contact.svg");
 		proposalItem.setType("link");
 		return proposalItem;
 	}

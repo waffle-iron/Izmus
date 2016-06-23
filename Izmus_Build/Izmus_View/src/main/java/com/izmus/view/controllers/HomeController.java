@@ -75,4 +75,11 @@ public class HomeController {
 		ModelAndView returnModel = new ModelAndView("meetings");
 		return returnModel;
 	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/Contacts", method = RequestMethod.GET)
+	@PreAuthorize("hasPermission('Contacts', '')")
+	public ModelAndView getContacts() {
+		ModelAndView returnModel = new ModelAndView("contacts");
+		return returnModel;
+	}	
 }

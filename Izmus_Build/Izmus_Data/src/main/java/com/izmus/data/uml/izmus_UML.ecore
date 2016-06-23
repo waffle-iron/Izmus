@@ -202,7 +202,7 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="Contacts">
-    <eClassifiers xsi:type="ecore:EClass" name="IzmusContact" abstract="true" eSuperTypes="#//Startups/StartupContact">
+    <eClassifiers xsi:type="ecore:EClass" name="IzmusContact" abstract="true" eSuperTypes="#//Startups/StartupContact #//Contacts/GeneralContact">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="officePhone" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -213,7 +213,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="contactAvatar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="InvestorContact"/>
+    <eClassifiers xsi:type="ecore:EClass" name="GeneralContact"/>
   </eSubpackages>
   <eSubpackages name="Meetings">
     <eClassifiers xsi:type="ecore:EClass" name="IzmusMeeting" abstract="true" eSuperTypes="#//Meetings/GeneralMeeting #//Startups/StartupMeeting">

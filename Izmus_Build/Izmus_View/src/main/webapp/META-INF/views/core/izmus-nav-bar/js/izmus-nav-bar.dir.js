@@ -2,7 +2,7 @@ var idle = 5 * 60;
 var timeout = 15 * 60;
 var heartbeat = 5 * 60;
 var popupTimeout = 200;
-angular.module('izmusNavBarApp', [ 'ngMaterial', 'ngImgCrop', 'ngIdle' ]);
+angular.module('izmusNavBarApp', [ 'ngMaterial', 'ngImgCrop', 'ngIdle','FBAngular' ]);
 angular.module('izmusNavBarApp').controller('toastCtrl', ['$scope','message', function($scope, message){
 	$scope.message = message;
 }]);
@@ -460,7 +460,7 @@ angular
 		.module('izmusNavBarApp')
 		.directive(
 				'izmusToolbarMenu',
-				[ 'izmusLogout', 'saveUserAvatar', 'avatarDialog', function(izmusLogout, saveUserAvatar, avatarDialog) {
+				[ 'izmusLogout', 'saveUserAvatar', 'avatarDialog','Fullscreen', function(izmusLogout, saveUserAvatar, avatarDialog, Fullscreen) {
 					return {
 						scope : {
 							
@@ -500,6 +500,14 @@ angular
 							/*----------------------------------------------------------------------------------------------------*/
 							scope.userSettings = function(){
 								window.location = "/UserPersonalSettings";
+							}
+							/*----------------------------------------------------------------------------------------------------*/
+							scope.goFullScreen = function(){
+								Fullscreen.all();
+							}
+							/*----------------------------------------------------------------------------------------------------*/
+							scope.isFullscreenSupported = function(){
+								return Fullscreen.isSupported();
 							}
 						}
 					};

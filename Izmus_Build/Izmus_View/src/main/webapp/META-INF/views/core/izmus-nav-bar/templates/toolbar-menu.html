@@ -67,6 +67,15 @@
 					</div>
 				</md-button>
 		</md-menu-item>
+		<md-menu-item ng-if="isFullscreenSupported()">
+				<md-button aria-label="logout" ng-click='goFullScreen()'>
+					<div flex layout="row">
+						<p class="toolbar-menu-button-text">{{globalAttr.fullScreen}}</p>
+						<span flex></span>
+						<md-icon class="material-icons toolbar-icons">fullscreen</md-icon> 
+					</div>
+				</md-button>
+		</md-menu-item>
 		<md-menu-item>
 				<md-button aria-label="logout" ng-click='izmusLogout()'>
 					<div flex layout="row">
