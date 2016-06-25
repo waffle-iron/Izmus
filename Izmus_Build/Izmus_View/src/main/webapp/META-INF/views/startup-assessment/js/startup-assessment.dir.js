@@ -70,7 +70,6 @@ angular.module('startupAssessmentApp').directive('izmusStartupAssessment', [
 			};
 			/*----------------------------------------------------------------------------------------------------*/
 			loadStartupData().then(function(result) {
-				$mdSidenav('mainWidowSidenav').toggle();
 				$scope.sidenavCtrl.startupDataList = result;
 				$scope.sidenavCtrl.progressMode = '';
 			}, function(error) {

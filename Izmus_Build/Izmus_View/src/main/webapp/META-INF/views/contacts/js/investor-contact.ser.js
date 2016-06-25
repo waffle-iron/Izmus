@@ -23,7 +23,7 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 							averageInvestmentSize: lang.averageInvestmentSize,
 							numberOfPastInvestments: lang.noPastInvestments,
 							numberOfPastExits: lang.noPastExits,
-							howWeMet: land.howWeMet
+							howWeMet: lang.howWeMet
 					};
 				    /*----------------------------------------------------------------------------------------------------*/
 					$scope.changeContactAvatar = function(ev){

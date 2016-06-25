@@ -8,13 +8,14 @@ angular.module('meetingsApp').directive('meetingsDashboard',
 					$scope.meetings = [];
 					$scope.lang = lang;
 					$scope.globalAttr = globalAttr;
-					$scope.progressMode = '';
+					$scope.progressMode = 'indeterminate';
 					/*----------------------------------------------------------------------------------------------------*/
 					loadAllMeetings().then(function(data){
 						$scope.meetings = data;
+						$scope.progressMode = '';
 					},
 					function(){
-						
+						$scope.progressMode = '';
 					});
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.parseDate = function(meeting){
