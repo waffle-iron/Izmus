@@ -16,6 +16,22 @@
 		layout-padding
 		flex="none"
 		layout="column">
+			<section layout="row" layout-align="start center">
+				<md-button
+				aria-label="contact-avatar-button"
+				ng-click="changeContactAvatar($event)"
+				ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '0px', 'margin-right': '0px'} : {'margin-right': '0px', 'margin-left': '0px'}">
+					<md-icon
+					ng-if="(investorContact.contactAvatar == null || investorContact.contactAvatar =='')"
+					class="material-icons">
+						contact_phone
+					</md-icon>
+					<img
+					ng-if="(investorContact.contactAvatar != null && investorContact.contactAvatar !='')" class="contact-avatar-icon" ng-src="{{investorContact.contactAvatar}}"/>
+				</md-button>
+				<span hide-sm hide-xs class="md-headline">{{(investorContact.firstName == null ? '' : investorContact.firstName) + " " + (investorContact.lastName == null ? '' : investorContact.lastName)}}</span>
+				<span hide-gt-sm class="md-subheader">{{(investorContact.firstName == null ? '' : investorContact.firstName) + " " + (investorContact.lastName == null ? '' : investorContact.lastName)}}</span>
+			</section>
 			<div layout="row" flex="none" layout-padding layout-wrap layout-align="center center">
 				<md-input-container
 				ng-repeat="(attr, value) in investorContactAttributes"

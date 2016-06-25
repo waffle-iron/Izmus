@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------------------------------------*/
 angular.module('contactsApp').factory('viewFinderContactDialog',
-		[ '$mdMedia', '$mdDialog', 'loadFinderContact', function($mdMedia, $mdDialog, loadFinderContact) {
-			return function(ev, finderContact, saveFunction) {
+		[ '$mdMedia', '$mdDialog', 'loadFinderContact', 'avatarDialog',function($mdMedia, $mdDialog, loadFinderContact, avatarDialog) {
+			return function(ev, finderContact, saveFunction, reloadAfterAvatar, reloaded) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
 			    /*----------------------------------------------------------------------------------------------------*/
@@ -19,8 +19,19 @@ angular.module('contactsApp').factory('viewFinderContactDialog',
 							email: lang.email,
 							position: lang.position
 					};
+					 /*----------------------------------------------------------------------------------------------------*/
+					$scope.changeContactAvatar = function(ev){
+						avatarDialog(ev, function(croppedImage){
+							$scope.investorContact.contactAvatar = croppedImage;
+							if (reloadAfterAvatar){
+								reloadAfterAvatar($scope.investorContact);
+							}
+						}, function(){
+							reloadAfterAvatar($scope.investorContact);
+						});
+					}
 				    /*----------------------------------------------------------------------------------------------------*/
-				    if (finderContact.contactId){
+				    if (finderContact.contactId && !reloaded){
 				    	loadFinderContact(finderContact.contactId).then(function(data){
 				    		if(data){
 				    			$scope.finderContact = data;

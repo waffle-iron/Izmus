@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------------------------------------*/
 angular.module('contactsApp').factory('viewInvestorContactDialog',
-		[ '$mdMedia', '$mdDialog', 'loadInvestorContact', function($mdMedia, $mdDialog, loadInvestorContact) {
-			return function(ev, investorContact, saveFunction) {
+		[ '$mdMedia', '$mdDialog', 'loadInvestorContact', 'avatarDialog', function($mdMedia, $mdDialog, loadInvestorContact, avatarDialog) {
+			return function(ev, investorContact, saveFunction, reloadAfterAvatar, reloaded) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
 			    /*----------------------------------------------------------------------------------------------------*/
@@ -17,10 +17,27 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 							mobilePhone: lang.mobilePhone,
 							officePhone: lang.officePhone,
 							email: lang.email,
-							position: lang.position
+							position: lang.position,
+							founded: lang.founded,
+							assetsUnderManagement: lang.assetsUnderManagement,
+							averageInvestmentSize: lang.averageInvestmentSize,
+							numberOfPastInvestments: lang.noPastInvestments,
+							numberOfPastExits: lang.noPastExits,
+							howWeMet: land.howWeMet
 					};
 				    /*----------------------------------------------------------------------------------------------------*/
-				    if (investorContact.contactId){
+					$scope.changeContactAvatar = function(ev){
+						avatarDialog(ev, function(croppedImage){
+							$scope.investorContact.contactAvatar = croppedImage;
+							if (reloadAfterAvatar){
+								reloadAfterAvatar($scope.investorContact);
+							}
+						}, function(){
+							reloadAfterAvatar($scope.investorContact);
+						});
+					}
+				    /*----------------------------------------------------------------------------------------------------*/
+				    if (investorContact.contactId && !reloaded){
 				    	loadInvestorContact(investorContact.contactId).then(function(data){
 				    		if(data){
 				    			$scope.investorContact = data;

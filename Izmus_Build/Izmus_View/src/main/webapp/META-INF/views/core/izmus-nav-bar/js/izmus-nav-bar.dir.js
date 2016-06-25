@@ -321,7 +321,7 @@ angular.module('izmusNavBarApp').factory('izmusLogout',
 		} ]);
 angular.module('izmusNavBarApp').factory('avatarDialog',
 		[ '$mdMedia', '$mdDialog',function($mdMedia, $mdDialog) {
-			return function(ev, okFunction) {
+			return function(ev, okFunction, cancelFunction) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
 			    /*----------------------------------------------------------------------------------------------------*/
@@ -341,11 +341,16 @@ angular.module('izmusNavBarApp').factory('avatarDialog',
 				    };
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.cancel = function() {
+						if(cancelFunction){
+							cancelFunction();
+						}
 						$mdDialog.cancel();
 					};
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.ok = function() {
-						okFunction($scope.croppedImage);
+						if(okFunction){
+							okFunction($scope.croppedImage);
+						}
 						$mdDialog.cancel();
 					};
 				}

@@ -35,6 +35,12 @@
 			email:' <spring:message code="navBar.menu.startupAssessment.email" />',
 			mobilePhone:' <spring:message code="navBar.menu.startupAssessment.mobilePhone" />',
 			position:' <spring:message code="navBar.menu.startupAssessment.position" />',
-			officePhone:' <spring:message code="navBar.menu.startupAssessment.officePhone" />'
+			officePhone:' <spring:message code="navBar.menu.startupAssessment.officePhone" />',
+			founded: ' <spring:message code="navBar.menu.assessorsMenu.contacts.founded" />',
+			assetsUnderManagement: ' <spring:message code="navBar.menu.assessorsMenu.contacts.assetsUnderManagement" />',
+			averageInvestmentSize:' <spring:message code="navBar.menu.assessorsMenu.contacts.averageInvestmentSize" />',
+			noPastInvestments: ' <spring:message code="navBar.menu.assessorsMenu.contacts.noPastInvestments" />',
+			noPastExits: ' <spring:message code="navBar.menu.assessorsMenu.contacts.noPastExits" />',
+			howWeMet: ' <spring:message code="navBar.menu.assessorsMenu.contacts.howWeMet" />'
 	};
 </script>

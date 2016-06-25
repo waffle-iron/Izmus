@@ -46,7 +46,7 @@ angular.module('contactsApp').directive('contactsDashboard',
 							contactId: null
 						};
 						$scope.contacts.finderContacts.push(finderContact);
-						$scope.viewFinderContact(ev, finderContact);
+						$scope.viewFinderContact(ev, finderContact, false);
 					}
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.addGeneralContact = function(ev){
@@ -54,7 +54,7 @@ angular.module('contactsApp').directive('contactsDashboard',
 							contactId: null
 						};
 						$scope.contacts.generalContacts.push(generalContact);
-						$scope.viewGeneralContact(ev, generalContact);
+						$scope.viewGeneralContact(ev, generalContact, false);
 					}
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.addInvestorContact = function(ev){
@@ -62,10 +62,10 @@ angular.module('contactsApp').directive('contactsDashboard',
 							contactId: null
 						};
 						$scope.contacts.investorContacts.push(investorContact);
-						$scope.viewInvestorContact(ev, investorContact);
+						$scope.viewInvestorContact(ev, investorContact, false);
 					}
 					/*----------------------------------------------------------------------------------------------------*/
-					$scope.viewInvestorContact = function(ev, investorContact){
+					$scope.viewInvestorContact = function(ev, investorContact, reload){
 						viewInvestorContactDialog(ev, investorContact, function(investorContact){
 							$scope.progressMode = 'indeterminate';
 							saveInvestorContact(investorContact).then(function(data){
@@ -82,10 +82,12 @@ angular.module('contactsApp').directive('contactsDashboard',
 								$scope.showMessage($scope.lang.saveFail);
 								$scope.progressMode = '';
 							});
-						});
+						}, function(investorContactAvatarReload){
+							$scope.viewInvestorContact(ev, investorContactAvatarReload, true);
+						}, reload);
 					}
 					/*----------------------------------------------------------------------------------------------------*/
-					$scope.viewFinderContact = function(ev, finderContact){
+					$scope.viewFinderContact = function(ev, finderContact, reload){
 						viewFinderContactDialog(ev, finderContact, function(finderContact){
 							$scope.progressMode = 'indeterminate';
 							saveFinderContact(finderContact).then(function(data){
@@ -102,10 +104,12 @@ angular.module('contactsApp').directive('contactsDashboard',
 								$scope.showMessage($scope.lang.saveFail);
 								$scope.progressMode = '';
 							});
-						});
+						}, function(finderContactAvatarReload){
+							$scope.viewFinderContact(ev, finderContactAvatarReload, true);
+						}, reload);
 					}
 					/*----------------------------------------------------------------------------------------------------*/
-					$scope.viewGeneralContact = function(ev, generalContact){
+					$scope.viewGeneralContact = function(ev, generalContact, reload){
 						viewGeneralContactDialog(ev, generalContact, function(generalContact){
 							$scope.progressMode = 'indeterminate';
 							saveGeneralContact(generalContact).then(function(data){
@@ -122,7 +126,9 @@ angular.module('contactsApp').directive('contactsDashboard',
 								$scope.showMessage($scope.lang.saveFail);
 								$scope.progressMode = '';
 							});
-						});
+						}, function(generalContactAvatarReload){
+							$scope.viewGeneralContact(ev, generalContactAvatarReload, true);
+						}, reload);
 					}
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.viewStartupContact = function(ev, startupContact){
