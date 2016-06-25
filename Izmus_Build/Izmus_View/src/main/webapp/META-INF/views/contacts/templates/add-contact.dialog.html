@@ -1,0 +1,34 @@
+<section layout="column">
+	<md-content layout-padding dir="{{globalAttr.direction}}" layout="column">
+		<form name="contactTypeForm" layout="column">
+			<md-input-container class="user-type-input" ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+				<label> Contact Type </label>
+				<md-select ng-model="contactType" required name="contactType">
+					<md-option value="Izmus Finder">
+						Izmus Finder
+					</md-option>
+					<md-option value="Izmus Investor">
+						Izmus Investor
+					</md-option>
+					<md-option value="General Contact">
+						General Contact
+					</md-option>
+				</md-select>
+				<div ng-messages="contactTypeForm.contactType.$error" multiple md-auto-hide="false">
+					<div ng-message="required">
+						{{lang.contactTypeRequired}}
+					</div>
+				</div>
+			</md-input-container>
+		</form>
+	</md-content>
+	<md-dialog-actions layout="row">
+		<md-button ng-click="cancel()">
+			{{lang.cancel}}
+		</md-button>
+		<span flex></span>
+		<md-button ng-click="ok()">
+			{{lang.ok}}
+		</md-button>
+	</md-dialog-actions>
+</section>

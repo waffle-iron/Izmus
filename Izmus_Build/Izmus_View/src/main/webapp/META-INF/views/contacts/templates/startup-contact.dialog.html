@@ -1,0 +1,62 @@
+<style>
+	.progress {
+		min-height: 400px !important;
+		min-width: 300px !important;
+	}
+	.contact-avatar-icon {
+		height: 38px;
+		width: 38px;
+		margin-left: 5px;
+		margin-right: 5px;
+		border-radius: 20px;
+		border-width: 1px;
+		border-style: solid;
+		border-color: rgb(160,195,215);
+	}
+	.contact-info-gt-sm{
+		min-width: 500px !important;
+	}
+</style>
+<section class="progress" ng-if='progressMode != ""' flex layout="column" layout-align="center center">
+	<div>
+		<md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120"></md-progress-circular>
+	</div>
+</section>
+<section ng-if='progressMode == ""' layout="column">
+	<md-content layout-padding dir="{{globalAttr.direction}}" layout="column">
+		<md-whiteframe
+		class="md-whiteframe-1dp"
+		flex="nogrow"
+		layout-padding
+		ng-class="($mdMedia('gt-sm')) ? 'contact-info-gt-sm' : ''"
+		layout="column">
+			<div layout="row" layout-align="start center">
+				<md-icon
+					ng-if="(startupContact.contactAvatar == null || startupContact.contactAvatar =='')"
+					class="material-icons">
+						contact_phone
+					</md-icon>
+					<img
+					ng-if="(startupContact.contactAvatar != null && startupContact.contactAvatar !='')" class="contact-avatar-icon" ng-src="{{startupContact.contactAvatar}}"/>
+				<span hide-sm hide-xs class="md-headline">{{(startupContact.firstName == null ? '' : startupContact.firstName) + " " + (startupContact.lastName == null ? '' : startupContact.lastName)}}</span>
+				<span hide-gt-sm class="md-subheader">{{(startupContact.firstName == null ? '' : startupContact.firstName) + " " + (startupContact.lastName == null ? '' : startupContact.lastName)}}</span>
+			</div>
+			<div layout="row" layout-padding layout-wrap layout-align="center center">
+				<div 
+					layout="column"
+					ng-repeat="(attr, value) in contactAttributes" 
+					ng-if="startupContact[attr]"
+					layout-align="center center">
+					<md-subheader>{{value}}</md-subheader>
+					<p>{{startupContact[attr]}}</p>
+				</div>
+			</div>
+		</md-whiteframe>
+	</md-content>
+	<md-dialog-actions layout="row">
+		<span flex></span>
+		<md-button ng-click="ok()">
+			{{lang.ok}}
+		</md-button>
+	</md-dialog-actions>
+</section>

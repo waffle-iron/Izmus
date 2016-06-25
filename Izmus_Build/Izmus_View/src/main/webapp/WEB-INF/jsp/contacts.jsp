@@ -15,5 +15,20 @@
 <script>
 	var lang = {
 			search:' <spring:message code="navBar.menu.startupAssessment.search" />',
+			startupContacts: ' <spring:message code="navBar.menu.assessorsMenu.contacts.startupContacts" />',
+			cancel:' <spring:message code="navBar.menu.startupAssessment.cancel" />',
+			ok:' <spring:message code="navBar.menu.startupAssessment.ok" />',
+			contactTypeRequired: ' <spring:message code="navBar.menu.assessorsMenu.contacts.contactTypeRequired" />',
+			investorContacts: ' <spring:message code="navBar.menu.assessorsMenu.contacts.investorContacts" />',
+			generalContacts: ' <spring:message code="navBar.menu.assessorsMenu.contacts.generalContacts" />',
+			finderContacts: ' <spring:message code="navBar.menu.assessorsMenu.contacts.finderContacts" />',
+			saveFail:' <spring:message code="navBar.menu.assessorsMenu.contacts.saveFail" />',
+			saveSuccess:' <spring:message code="navBar.menu.assessorsMenu.contacts.saveSuccess" />',
+			firstName:' <spring:message code="navBar.menu.startupAssessment.firstName" />',
+			lastName:' <spring:message code="navBar.menu.startupAssessment.lastName" />',
+			email:' <spring:message code="navBar.menu.startupAssessment.email" />',
+			mobilePhone:' <spring:message code="navBar.menu.startupAssessment.mobilePhone" />',
+			position:' <spring:message code="navBar.menu.startupAssessment.position" />',
+			officePhone:' <spring:message code="navBar.menu.startupAssessment.officePhone" />'
 	};
 </script>

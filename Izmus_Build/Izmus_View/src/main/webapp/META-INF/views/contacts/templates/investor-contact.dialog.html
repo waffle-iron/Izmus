@@ -1,0 +1,28 @@
+<style>
+.progress{
+	min-height: 400px !important;
+	min-width: 300px !important;
+}
+</style>
+<section class="progress" ng-if='progressMode != ""' flex layout="column" layout-align="center center">
+	<div>
+		<md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120"></md-progress-circular>
+	</div>
+</section>
+<section ng-if='progressMode == ""' layout="column">
+	<md-content layout-padding dir="{{globalAttr.direction}}" layout="column">
+		<form name="contactTypeForm" layout="column">
+		</form>
+	</md-content>
+	<md-dialog-actions layout="row">
+		<md-button ng-click="save()">
+            <md-icon class="material-icons">
+                save
+            </md-icon>
+        </md-button>
+		<span flex></span>
+		<md-button ng-click="ok()">
+			{{lang.ok}}
+		</md-button>
+	</md-dialog-actions>
+</section>

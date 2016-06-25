@@ -1,1 +1,1 @@
-angular.module('contactsApp', ['izmusNavBarApp', 'izmusMainWindowApp']);
+angular.module('contactsApp', ['izmusNavBarApp', 'izmusMainWindowApp','ngMessages']);

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.izmus.data.domain.users.IzmusFinder;
 
-public interface IIzmusClientRepository extends JpaRepository<IzmusFinder, Integer> {
+public interface IIzmusFinderRepository extends JpaRepository<IzmusFinder, Integer> {
 	List<IzmusFinder> findByEntityEmail(String entityEmail);
+	IzmusFinder findDistinctIzmusFinderByEntityId(Integer entityId);
 }

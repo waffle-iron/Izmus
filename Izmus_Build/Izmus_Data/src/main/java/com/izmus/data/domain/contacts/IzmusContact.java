@@ -1,9 +1,12 @@
 package com.izmus.data.domain.contacts;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,6 +28,8 @@ public abstract class IzmusContact implements Serializable, Comparable<IzmusCont
 	private String lastName;
 	@Column(name = "OFFICE_PHONE")
 	private String officePhone;
+	@Column(name = "OTHER_PHONE")
+	private String otherPhone;
 	@Column(name = "MOBILE_PHONE")
 	private String mobilePhone;
 	@Column(name = "EMAIL")
@@ -33,6 +38,18 @@ public abstract class IzmusContact implements Serializable, Comparable<IzmusCont
 	private String position;
 	@Column(name = "LOGO", columnDefinition = "VARCHAR(5242880)")
 	private String contactAvatar;
+	@Column(name = "COMPANY_AVATAR", columnDefinition = "VARCHAR(5242880)")
+	private String companyAvatar;
+	@Column(name = "COMPANY_NAME")
+	private String companyName;
+	@Column(name = "HOW_WE_MET")
+	private String howWeMet;
+	@Column(name = "FOCUS_AREAS")
+	@ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
+	private Set<String> focusAreas;
+	@Column(name = "NOTES")
+	@ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
+	private Set<String> notes;
 	/*----------------------------------------------------------------------------------------------------*/
 	public boolean equals(Object obj) {
 		if ((obj != null) && ((obj instanceof IzmusContact))) {
@@ -130,6 +147,66 @@ public abstract class IzmusContact implements Serializable, Comparable<IzmusCont
 	/*----------------------------------------------------------------------------------------------------*/
 	public void setContactAvatar(String contactAvatar) {
 		this.contactAvatar = contactAvatar;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+
+	public String getCompanyAvatar() {
+		return companyAvatar;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+
+	public void setCompanyAvatar(String companyAvatar) {
+		this.companyAvatar = companyAvatar;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+
+	public String getCompanyName() {
+		return companyName;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+
+	public String getOtherPhone() {
+		return otherPhone;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+
+	public void setOtherPhone(String otherPhone) {
+		this.otherPhone = otherPhone;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+
+	public Set<String> getFocusAreas() {
+		return focusAreas;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+
+	public void setFocusAreas(Set<String> focusAreas) {
+		this.focusAreas = focusAreas;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+
+	public Set<String> getNotes() {
+		return notes;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+
+	public void setNotes(Set<String> notes) {
+		this.notes = notes;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+
+	public String getHowWeMet() {
+		return howWeMet;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+
+	public void setHowWeMet(String howWeMet) {
+		this.howWeMet = howWeMet;
 	}
 	
 }
