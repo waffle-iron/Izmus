@@ -13,9 +13,6 @@
 		border-style: solid;
 		border-color: rgb(160,195,215);
 	}
-	.contact-info-gt-sm{
-		min-width: 500px !important;
-	}
 </style>
 <section class="progress" ng-if='progressMode != ""' flex layout="column" layout-align="center center">
 	<div>
@@ -28,7 +25,6 @@
 		class="md-whiteframe-1dp"
 		flex="nogrow"
 		layout-padding
-		ng-class="($mdMedia('gt-sm')) ? 'contact-info-gt-sm' : ''"
 		layout="column">
 			<div layout="row" layout-align="start center">
 				<md-icon

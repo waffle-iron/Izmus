@@ -19,6 +19,16 @@
 		margin-top: 8px;
 		height: 30px;
 	}
+	.default-avatar{
+		margin-right: 10px;
+		margin-left: 10px;
+	}
+	.contacts-title{
+		background: #435582;
+		color: white;
+		padding-top: 0px;
+		padding-bottom: 0px;
+	}
 </style>
 <izmus-main-window
 flex
@@ -39,7 +49,7 @@ layout="column">
 		</section>
 		<md-content ng-if='progressMode == ""' flex>
 		
-			<section layout-padding layout="column">
+			<section class="contacts-title" layout-padding layout="column">
 				<span class="md-title">{{lang.startupContacts}}</span>
 			</section>
 			<section layout="row" layout-padding layout-wrap>
@@ -52,7 +62,7 @@ layout="column">
 					<div layout="row" layout-align="start center">
 						<md-icon
 						ng-if="(contact.contactAvatar == null || contact.contactAvatar =='')"
-						class="material-icons ">
+						class="material-icons default-avatar">
 							contact_phone
 						</md-icon>
 						<img
@@ -66,7 +76,7 @@ layout="column">
 				</md-whiteframe>
 			</section>
 			
-			<section layout-padding layout="column">
+			<section class="contacts-title" layout-padding layout="column">
 				<span class="md-title">{{lang.investorContacts}}</span>
 			</section>
 			<section layout="row" layout-padding layout-wrap>
@@ -79,7 +89,61 @@ layout="column">
 					<div layout="row" layout-align="start center">
 						<md-icon
 						ng-if="(contact.contactAvatar == null || contact.contactAvatar =='')"
-						class="material-icons ">
+						class="material-icons default-avatar">
+							contact_phone
+						</md-icon>
+						<img
+						ng-if="(contact.contactAvatar != null && contact.contactAvatar !='')" class="contact-avatar-icon" ng-src="{{contact.contactAvatar}}"/>
+						<span hide-sm hide-xs class="md-headline">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
+						<span hide-gt-sm class="md-subheader">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
+						<span flex></span>
+						<img
+						ng-if="(contact.companyAvatar != null && contact.companyAvatar !='')" class="contact-avatar-icon" ng-src="{{contact.companyAvatar}}"/>
+					</div>
+				</md-whiteframe>
+			</section>
+			
+			<section class="contacts-title" layout-padding layout="column">
+				<span class="md-title">{{lang.finderContacts}}</span>
+			</section>
+			<section layout="row" layout-padding layout-wrap>
+				<md-whiteframe
+				ng-repeat="contact in contacts.finderContacts | filter: searchContact"
+				class="md-whiteframe-1dp contact-card"
+				flex="nogrow"
+				ng-click="viewFinderContact($event, contact)"
+				layout="column">
+					<div layout="row" layout-align="start center">
+						<md-icon
+						ng-if="(contact.contactAvatar == null || contact.contactAvatar =='')"
+						class="material-icons default-avatar">
+							contact_phone
+						</md-icon>
+						<img
+						ng-if="(contact.contactAvatar != null && contact.contactAvatar !='')" class="contact-avatar-icon" ng-src="{{contact.contactAvatar}}"/>
+						<span hide-sm hide-xs class="md-headline">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
+						<span hide-gt-sm class="md-subheader">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
+						<span flex></span>
+						<img
+						ng-if="(contact.companyAvatar != null && contact.companyAvatar !='')" class="contact-avatar-icon" ng-src="{{contact.companyAvatar}}"/>
+					</div>
+				</md-whiteframe>
+			</section>
+			
+			<section class="contacts-title" layout-padding layout="column">
+				<span class="md-title">{{lang.generalContacts}}</span>
+			</section>
+			<section layout="row" layout-padding layout-wrap>
+				<md-whiteframe
+				ng-repeat="contact in contacts.generalContacts | filter: searchContact"
+				class="md-whiteframe-1dp contact-card"
+				flex="nogrow"
+				ng-click="viewGeneralContact($event, contact)"
+				layout="column">
+					<div layout="row" layout-align="start center">
+						<md-icon
+						ng-if="(contact.contactAvatar == null || contact.contactAvatar =='')"
+						class="material-icons default-avatar">
 							contact_phone
 						</md-icon>
 						<img

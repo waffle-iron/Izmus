@@ -12,6 +12,12 @@
 	src="<c:url value="/views/contacts/js/contacts.dir.js" />"></script>
 <script
 	src="<c:url value="/views/contacts/js/contacts.ser.js" />"></script>
+<script
+	src="<c:url value="/views/contacts/js/investor-contact.ser.js" />"></script>
+<script
+	src="<c:url value="/views/contacts/js/finder-contact.ser.js" />"></script>
+<script
+	src="<c:url value="/views/contacts/js/general-contact.ser.js" />"></script>
 <script>
 	var lang = {
 			search:' <spring:message code="navBar.menu.startupAssessment.search" />',

@@ -56,6 +56,35 @@ public class Contacts {
 		return allGeneralContacts;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(method = RequestMethod.GET, value = "/GeneralContacts/{contactId}")
+	@PreAuthorize("hasPermission('Contacts', '')")
+	public GeneralContact getGeneralContact(@PathVariable("contactId") Integer contactId){
+		GeneralContact returnGeneral = null;
+		try {
+			returnGeneral = generalContactRepository.findDistinctGeneralContactByContactId(contactId);
+		} catch (Exception e) {
+			LOGGER.error("Could Not Load Contact With Error: "
+					+ e.getMessage());
+		}
+		return returnGeneral;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(method = RequestMethod.POST, value = "/GeneralContacts")
+	@PreAuthorize("hasPermission('Contacts', '')")
+	public String saveGeneralContacts(@RequestParam(value = "generalContact", required = true) String generalContactJson){
+		GeneralContact contact = null;
+		try {
+			contact = jacksonObjectMapper.readValue(generalContactJson, GeneralContact.class);
+			contact = generalContactRepository.save(contact);
+			LOGGER.info("Contact Saved Successfully To The Database");
+		} catch (Exception e) {
+			LOGGER.error("Could Not Save Contact With Error: "
+					+ e.getMessage());
+			return "{\"result\": \"fail\"}";
+		}
+		return "{\"result\": \"success\", \"contactId\":" + contact.getContactId() + "}";
+	}
+	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/FinderContacts")
 	@PreAuthorize("hasPermission('Contacts', '')")
 	public List<FinderContact> getAllFinderContacts(){
@@ -67,6 +96,35 @@ public class Contacts {
 			}
 		}
 		return allFinderContacts;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(method = RequestMethod.GET, value = "/FinderContacts/{contactId}")
+	@PreAuthorize("hasPermission('Contacts', '')")
+	public FinderContact getFinderContact(@PathVariable("contactId") Integer contactId){
+		FinderContact returnFinder = null;
+		try {
+			returnFinder = finderContactRepository.findDistinctFinderContactByContactId(contactId);
+		} catch (Exception e) {
+			LOGGER.error("Could Not Load Contact With Error: "
+					+ e.getMessage());
+		}
+		return returnFinder;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(method = RequestMethod.POST, value = "/FinderContacts")
+	@PreAuthorize("hasPermission('Contacts', '')")
+	public String saveFinderContacts(@RequestParam(value = "finderContact", required = true) String finderContactJson){
+		FinderContact contact = null;
+		try {
+			contact = jacksonObjectMapper.readValue(finderContactJson, FinderContact.class);
+			contact = finderContactRepository.save(contact);
+			LOGGER.info("Contact Saved Successfully To The Database");
+		} catch (Exception e) {
+			LOGGER.error("Could Not Save Contact With Error: "
+					+ e.getMessage());
+			return "{\"result\": \"fail\"}";
+		}
+		return "{\"result\": \"success\", \"contactId\":" + contact.getContactId() + "}";
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/InvestorContacts")

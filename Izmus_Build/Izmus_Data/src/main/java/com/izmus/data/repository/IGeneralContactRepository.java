@@ -7,4 +7,5 @@ import com.izmus.data.domain.contacts.GeneralContact;
 
 @Repository
 public interface IGeneralContactRepository extends JpaRepository<GeneralContact, Integer> {
+	GeneralContact findDistinctGeneralContactByContactId(Integer contactId);
 }

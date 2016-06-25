@@ -7,4 +7,5 @@ import com.izmus.data.domain.contacts.FinderContact;
 
 @Repository
 public interface IFinderContactRepository extends JpaRepository<FinderContact, Integer> {
+	FinderContact findDistinctFinderContactByContactId(Integer contactId);
 }
