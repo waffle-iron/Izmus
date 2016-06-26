@@ -41,6 +41,11 @@
 			averageInvestmentSize:' <spring:message code="navBar.menu.assessorsMenu.contacts.averageInvestmentSize" />',
 			noPastInvestments: ' <spring:message code="navBar.menu.assessorsMenu.contacts.noPastInvestments" />',
 			noPastExits: ' <spring:message code="navBar.menu.assessorsMenu.contacts.noPastExits" />',
-			howWeMet: ' <spring:message code="navBar.menu.assessorsMenu.contacts.howWeMet" />'
+			howWeMet: ' <spring:message code="navBar.menu.assessorsMenu.contacts.howWeMet" />',
+			generalInfo: ' <spring:message code="navBar.menu.assessorsMenu.contacts.generalInfo" />',
+			save: ' <spring:message code="navBar.menu.assessorsMenu.contacts.save" />',
+			company: ' <spring:message code="navBar.menu.assessorsMenu.contacts.company" />',
+			companyName: ' <spring:message code="navBar.menu.assessorsMenu.contacts.companyName" />',
+			focusAreas: ' <spring:message code="navBar.menu.assessorsMenu.contacts.focusAreas" />'
 	};
 </script>

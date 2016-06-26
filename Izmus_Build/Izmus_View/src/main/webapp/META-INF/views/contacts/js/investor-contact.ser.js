@@ -10,6 +10,50 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 				    $scope.lang = lang;
 				    $scope.progressMode = 'indeterminate';
 				    $scope.$mdMedia = $mdMedia;
+				    $scope.focusAreas = [
+				                         'IoT', 
+				                         'MedTech', 
+				                         'Digital Health', 
+				                         'Fintech', 
+				                         'AI', 
+				                         'AR', 
+				                         'VR', 
+				                         'E-commerce', 
+				                         'Mobile', 
+				                         'Data', 
+				                         'Infocomm'
+				                         ];
+				    /*----------------------------------------------------------------------------------------------------*/
+				    $scope.focusAreaToggle = function (item, list) {
+				      var idx = list.indexOf(item);
+				      if (idx > -1) {
+				        list.splice(idx, 1);
+				      }
+				      else {
+				        list.push(item);
+				      }
+				    };
+				    /*----------------------------------------------------------------------------------------------------*/
+				    $scope.focusAreaExists = function (item, list) {
+				      return list.indexOf(item) > -1;
+				    };
+				    /*----------------------------------------------------------------------------------------------------*/
+				    $scope.isFocusAreaIndeterminate = function() {
+				      return ($scope.investorContact.focusAreas.length !== 0 &&
+				          $scope.investorContact.focusAreas.length !== $scope.focusAreas.length);
+				    };
+				    /*----------------------------------------------------------------------------------------------------*/
+				    $scope.isFocusAreaChecked = function() {
+				      return $scope.investorContact.focusAreas.length === $scope.focusAreas.length;
+				    };
+				    /*----------------------------------------------------------------------------------------------------*/
+				    $scope.focusAreaToggleAll = function() {
+				      if ($scope.investorContact.focusAreas.length === $scope.focusAreas.length) {
+				        $scope.investorContact.focusAreas = [];
+				      } else if ($scope.investorContact.focusAreas.length === 0 || $scope.investorContact.focusAreas.length > 0) {
+				        $scope.investorContact.focusAreas = $scope.focusAreas.slice(0);
+				      }
+				    };
 				    /*----------------------------------------------------------------------------------------------------*/
 					$scope.investorContactAttributes = {
 							firstName: lang.firstName,
@@ -18,17 +62,32 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 							officePhone: lang.officePhone,
 							email: lang.email,
 							position: lang.position,
+							howWeMet: lang.howWeMet
+					};
+				    /*----------------------------------------------------------------------------------------------------*/
+					$scope.investorCompanyAttributes = {
+							companyName: lang.companyName,
 							founded: lang.founded,
 							assetsUnderManagement: lang.assetsUnderManagement,
 							averageInvestmentSize: lang.averageInvestmentSize,
 							numberOfPastInvestments: lang.noPastInvestments,
-							numberOfPastExits: lang.noPastExits,
-							howWeMet: lang.howWeMet
-					};
+							numberOfPastExits: lang.noPastExits
+					}
 				    /*----------------------------------------------------------------------------------------------------*/
 					$scope.changeContactAvatar = function(ev){
 						avatarDialog(ev, function(croppedImage){
 							$scope.investorContact.contactAvatar = croppedImage;
+							if (reloadAfterAvatar){
+								reloadAfterAvatar($scope.investorContact);
+							}
+						}, function(){
+							reloadAfterAvatar($scope.investorContact);
+						});
+					}
+					 /*----------------------------------------------------------------------------------------------------*/
+					$scope.changeCompanyAvatar = function(ev){
+						avatarDialog(ev, function(croppedImage){
+							$scope.investorContact.companyAvatar = croppedImage;
 							if (reloadAfterAvatar){
 								reloadAfterAvatar($scope.investorContact);
 							}

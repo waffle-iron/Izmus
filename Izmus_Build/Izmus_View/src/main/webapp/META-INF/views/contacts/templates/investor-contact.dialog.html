@@ -1,57 +1,106 @@
 <style>
-	.progress {
-		min-height: 400px !important;
-		min-width: 300px !important;
-	}
+    .progress {
+        min-height: 400px !important;
+        min-width: 300px !important;
+    }
+    .dialog-button {
+        color: white !important;
+    }
+    .dialog-button > md-icon {
+        color: white !important;
+    }
 </style>
 <section class="progress" ng-if='progressMode != ""' flex layout="column" layout-align="center center">
-	<div>
-		<md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120"></md-progress-circular>
-	</div>
+    <div>
+        <md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120"></md-progress-circular>
+    </div>
 </section>
 <section ng-if='progressMode == ""' layout="column">
-	<md-content layout-padding dir="{{globalAttr.direction}}" layout="column">
-		<md-whiteframe
-		class="md-whiteframe-1dp"
-		layout-padding
-		flex="none"
-		layout="column">
-			<section layout="row" layout-align="start center">
-				<md-button
-				aria-label="contact-avatar-button"
-				ng-click="changeContactAvatar($event)"
-				ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '0px', 'margin-right': '0px'} : {'margin-right': '0px', 'margin-left': '0px'}">
-					<md-icon
-					ng-if="(investorContact.contactAvatar == null || investorContact.contactAvatar =='')"
-					class="material-icons">
-						contact_phone
-					</md-icon>
-					<img
-					ng-if="(investorContact.contactAvatar != null && investorContact.contactAvatar !='')" class="contact-avatar-icon" ng-src="{{investorContact.contactAvatar}}"/>
-				</md-button>
-				<span hide-sm hide-xs class="md-headline">{{(investorContact.firstName == null ? '' : investorContact.firstName) + " " + (investorContact.lastName == null ? '' : investorContact.lastName)}}</span>
-				<span hide-gt-sm class="md-subheader">{{(investorContact.firstName == null ? '' : investorContact.firstName) + " " + (investorContact.lastName == null ? '' : investorContact.lastName)}}</span>
-			</section>
-			<div layout="row" flex="none" layout-padding layout-wrap layout-align="center center">
-				<md-input-container
-				ng-repeat="(attr, value) in investorContactAttributes"
-				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''"
-				class="startup-info-input">
-					<label>{{value}}</label>
-					<textarea ng-model="investorContact[attr]" md-select-on-focus></textarea>
-				</md-input-container>
-			</div>
-		</md-whiteframe>
-	</md-content>
-	<md-dialog-actions layout="row">
-		<md-button ng-click="save()">
-			<md-icon class="material-icons">
-				save
-			</md-icon>
-		</md-button>
-		<span flex></span>
-		<md-button ng-click="ok()">
-			{{lang.ok}}
-		</md-button>
-	</md-dialog-actions>
+    <md-content layout-padding dir="{{globalAttr.direction}}" layout="column">
+        <md-whiteframe
+        class="md-whiteframe-1dp"
+        layout-padding
+        flex="none"
+        layout="column">
+            <section layout="row" layout-align="start center">
+                <md-button
+                aria-label="contact-avatar-button"
+                ng-click="changeContactAvatar($event)"
+                ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '0px', 'margin-right': '0px'} : {'margin-right': '0px', 'margin-left': '0px'}">
+                    <md-icon
+                    ng-if="(investorContact.contactAvatar == null || investorContact.contactAvatar =='')"
+                    class="material-icons">
+                        contact_phone
+                    </md-icon>
+                    <img
+                    ng-if="(investorContact.contactAvatar != null && investorContact.contactAvatar !='')" class="contact-avatar-icon" ng-src="{{investorContact.contactAvatar}}"/>
+                </md-button>
+                <span hide-sm hide-xs class="md-headline">{{(investorContact.firstName == null ? '' : investorContact.firstName) + " " + (investorContact.lastName == null ? '' : investorContact.lastName)}}</span>
+                <span hide-gt-sm class="md-subheader">{{(investorContact.firstName == null ? '' : investorContact.firstName) + " " + (investorContact.lastName == null ? '' : investorContact.lastName)}}</span>
+            </section>
+            <p class="md-title">
+                {{lang.generalInfo}}
+            </p>
+            <div layout="row" flex="none" layout-padding layout-wrap layout-align="center center">
+                <md-input-container
+                ng-repeat="(attr, value) in investorContactAttributes"
+                ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''"
+                class="startup-info-input">
+                    <label>{{value}}</label>
+                    <textarea ng-model="investorContact[attr]" md-select-on-focus></textarea>
+                </md-input-container>
+            </div>
+            <section layout="row" layout-padding layout-align="space-between center">
+                <p class="md-title">
+                    {{lang.company}}
+                </p>
+                <md-button
+                aria-label="contact-avatar-button"
+                ng-click="changeCompanyAvatar($event)"
+                ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '0px', 'margin-right': '0px'} : {'margin-right': '0px', 'margin-left': '0px'}">
+                    <md-icon
+                    ng-if="(investorContact.companyAvatar == null || investorContact.companyAvatar =='')"
+                    class="material-icons">
+                        contact_phone
+                    </md-icon>
+                    <img
+                    ng-if="(investorContact.companyAvatar != null && investorContact.companyAvatar !='')" class="contact-avatar-icon" ng-src="{{investorContact.companyAvatar}}"/>
+                </md-button>
+            </section>
+            <div layout="row" flex="none" layout-padding layout-wrap layout-align="center center">
+                <md-input-container
+                ng-repeat="(attr, value) in investorCompanyAttributes"
+                ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''"
+                class="startup-info-input">
+                    <label>{{value}}</label>
+                    <textarea ng-model="investorContact[attr]" md-select-on-focus></textarea>
+                </md-input-container>
+            </div>
+            <md-checkbox aria-label="Select All"
+            ng-checked="isFocusAreaChecked()"
+            md-indeterminate="isFocusAreaIndeterminate()"
+            ng-click="focusAreaToggleAll()">
+                 <p class="md-title">
+                    {{lang.focusAreas}}
+                 </p>
+            </md-checkbox>
+            <section layout="row" layout-padding layout-wrap>
+                <md-checkbox ng-repeat="item in focusAreas" ng-checked="focusAreaExists(item, investorContact.focusAreas)" ng-click="focusAreaToggle(item, investorContact.focusAreas)">
+                    {{ item }}
+                </md-checkbox>
+            </section>
+        </md-whiteframe>
+    </md-content>
+    <md-dialog-actions layout="row">
+        <md-button class="md-raised md-primary dialog-button" ng-click="save()">
+            {{lang.save}}
+            <md-icon class="material-icons">
+                save
+            </md-icon>
+        </md-button>
+        <span flex></span>
+        <md-button class="md-raised md-primary dialog-button" ng-click="ok()">
+            {{lang.ok}}
+        </md-button>
+    </md-dialog-actions>
 </section>
