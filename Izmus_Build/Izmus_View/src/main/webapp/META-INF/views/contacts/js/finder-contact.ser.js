@@ -22,12 +22,12 @@ angular.module('contactsApp').factory('viewFinderContactDialog',
 					 /*----------------------------------------------------------------------------------------------------*/
 					$scope.changeContactAvatar = function(ev){
 						avatarDialog(ev, function(croppedImage){
-							$scope.investorContact.contactAvatar = croppedImage;
+							$scope.finderContact.contactAvatar = croppedImage;
 							if (reloadAfterAvatar){
-								reloadAfterAvatar($scope.investorContact);
+								reloadAfterAvatar($scope.finderContact);
 							}
 						}, function(){
-							reloadAfterAvatar($scope.investorContact);
+							reloadAfterAvatar($scope.finderContact);
 						});
 					}
 				    /*----------------------------------------------------------------------------------------------------*/

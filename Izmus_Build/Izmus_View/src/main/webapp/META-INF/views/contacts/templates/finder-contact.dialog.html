@@ -3,6 +3,12 @@
 		min-height: 400px !important;
 		min-width: 300px !important;
 	}
+	.dialog-button {
+        color: white !important;
+    }
+    .dialog-button > md-icon {
+        color: white !important;
+    }
 </style>
 <section class="progress" ng-if='progressMode != ""' flex layout="column" layout-align="center center">
 	<div>
@@ -16,26 +22,46 @@
 		layout-padding
 		flex="none"
 		layout="column">
-			<div layout="row" flex="none" layout-padding layout-wrap layout-align="center center">
-				<md-input-container
-				ng-repeat="(attr, value) in investorContactAttributes"
-				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''"
-				class="startup-info-input">
-					<label>{{value}}</label>
-					<textarea ng-model="investorContact[attr]" md-select-on-focus></textarea>
-				</md-input-container>
-			</div>
+			 <section layout="row" layout-align="start center">
+                <md-button
+                aria-label="contact-avatar-button"
+                ng-click="changeContactAvatar($event)"
+                ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '0px', 'margin-right': '0px'} : {'margin-right': '0px', 'margin-left': '0px'}">
+                    <md-icon
+                    ng-if="(finderContact.contactAvatar == null || finderContact.contactAvatar =='')"
+                    class="material-icons">
+                        contact_phone
+                    </md-icon>
+                    <img
+                    ng-if="(finderContact.contactAvatar != null && finderContact.contactAvatar !='')" class="contact-avatar-icon" ng-src="{{finderContact.contactAvatar}}"/>
+                </md-button>
+                <span hide-sm hide-xs class="md-headline">{{(finderContact.firstName == null ? '' : finderContact.firstName) + " " + (finderContact.lastName == null ? '' : finderContact.lastName)}}</span>
+                <span hide-gt-sm class="md-subheader">{{(finderContact.firstName == null ? '' : finderContact.firstName) + " " + (finderContact.lastName == null ? '' : finderContact.lastName)}}</span>
+            </section>
+            <p class="md-title">
+                {{lang.generalInfo}}
+            </p>
+            <div layout="row" flex="none" layout-padding layout-wrap layout-align="center center">
+                <md-input-container
+                ng-repeat="(attr, value) in finderContactAttributes"
+                ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''"
+                class="startup-info-input">
+                    <label>{{value}}</label>
+                    <textarea ng-model="finderContact[attr]" md-select-on-focus></textarea>
+                </md-input-container>
+            </div>
 		</md-whiteframe>
 	</md-content>
 	<md-dialog-actions layout="row">
-		<md-button ng-click="save()">
-			<md-icon class="material-icons">
-				save
-			</md-icon>
-		</md-button>
-		<span flex></span>
-		<md-button ng-click="ok()">
-			{{lang.ok}}
-		</md-button>
+		<md-button class="md-raised md-primary dialog-button" ng-click="save()">
+            {{lang.save}}
+            <md-icon class="material-icons">
+                save
+            </md-icon>
+        </md-button>
+        <span flex></span>
+        <md-button class="md-raised md-primary dialog-button" ng-click="ok()">
+            {{lang.ok}}
+        </md-button>
 	</md-dialog-actions>
 </section>
