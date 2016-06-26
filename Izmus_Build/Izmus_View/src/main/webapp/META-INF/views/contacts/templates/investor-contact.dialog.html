@@ -30,7 +30,7 @@
                     <md-icon
                     ng-if="(investorContact.contactAvatar == null || investorContact.contactAvatar =='')"
                     class="material-icons">
-                        contact_phone
+                    contact_phone
                     </md-icon>
                     <img
                     ng-if="(investorContact.contactAvatar != null && investorContact.contactAvatar !='')" class="contact-avatar-icon" ng-src="{{investorContact.contactAvatar}}"/>
@@ -60,8 +60,7 @@
                 ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '0px', 'margin-right': '0px'} : {'margin-right': '0px', 'margin-left': '0px'}">
                     <md-icon
                     ng-if="(investorContact.companyAvatar == null || investorContact.companyAvatar =='')"
-                    class="material-icons">
-                        contact_phone
+                    class="material-icons contact-avatar-icon" md-svg-src="/views/contacts/images/investor.svg">
                     </md-icon>
                     <img
                     ng-if="(investorContact.companyAvatar != null && investorContact.companyAvatar !='')" class="contact-avatar-icon" ng-src="{{investorContact.companyAvatar}}"/>

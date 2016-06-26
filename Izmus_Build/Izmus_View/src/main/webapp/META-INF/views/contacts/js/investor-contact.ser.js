@@ -109,6 +109,7 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 				    }
 				    else {
 				    	$scope.investorContact = investorContact;
+				    	$scope.investorContact.focusAreas = [];
 				    	$scope.progressMode = '';
 				    }
 					/*----------------------------------------------------------------------------------------------------*/
