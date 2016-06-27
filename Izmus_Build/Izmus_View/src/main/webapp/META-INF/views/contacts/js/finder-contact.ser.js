@@ -19,10 +19,25 @@ angular.module('contactsApp').factory('viewFinderContactDialog',
 							email: lang.email,
 							position: lang.position
 					};
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.finderCompanyAttributes = {
+							companyName: lang.companyName,
+					}
 					 /*----------------------------------------------------------------------------------------------------*/
 					$scope.changeContactAvatar = function(ev){
 						avatarDialog(ev, function(croppedImage){
 							$scope.finderContact.contactAvatar = croppedImage;
+							if (reloadAfterAvatar){
+								reloadAfterAvatar($scope.finderContact);
+							}
+						}, function(){
+							reloadAfterAvatar($scope.finderContact);
+						});
+					}
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.changeCompanyAvatar = function(ev){
+						avatarDialog(ev, function(croppedImage){
+							$scope.finderContact.companyAvatar = croppedImage;
 							if (reloadAfterAvatar){
 								reloadAfterAvatar($scope.finderContact);
 							}

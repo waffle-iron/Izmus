@@ -160,6 +160,9 @@ layout="column">
 						<span hide-sm hide-xs class="md-headline">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
 						<span hide-gt-sm class="md-subheader">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
 						<span flex></span>
+						<md-icon
+                        ng-if="(contact.companyAvatar == null || contact.companyAvatar =='')"
+                        class="material-icons contact-avatar-icon" md-svg-src="/views/contacts/images/general.svg"></md-icon>
 						<img
 						ng-if="(contact.companyAvatar != null && contact.companyAvatar !='')" class="contact-avatar-icon" ng-src="{{contact.companyAvatar}}"/>
 					</div>

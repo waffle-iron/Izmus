@@ -84,7 +84,7 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 							reloadAfterAvatar($scope.investorContact);
 						});
 					}
-					 /*----------------------------------------------------------------------------------------------------*/
+					/*----------------------------------------------------------------------------------------------------*/
 					$scope.changeCompanyAvatar = function(ev){
 						avatarDialog(ev, function(croppedImage){
 							$scope.investorContact.companyAvatar = croppedImage;

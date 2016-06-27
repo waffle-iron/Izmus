@@ -50,6 +50,31 @@
                     <textarea ng-model="finderContact[attr]" md-select-on-focus></textarea>
                 </md-input-container>
             </div>
+            <section layout="row" layout-padding layout-align="space-between center">
+                <p class="md-title">
+                    {{lang.company}}
+                </p>
+                <md-button
+                aria-label="contact-avatar-button"
+                ng-click="changeCompanyAvatar($event)"
+                ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '0px', 'margin-right': '0px'} : {'margin-right': '0px', 'margin-left': '0px'}">
+                    <md-icon
+                    ng-if="(finderContact.companyAvatar == null || finderContact.companyAvatar =='')"
+                    class="material-icons contact-avatar-icon" md-svg-src="/views/contacts/images/finder.svg">
+                    </md-icon>
+                    <img
+                    ng-if="(finderContact.companyAvatar != null && finderContact.companyAvatar !='')" class="contact-avatar-icon" ng-src="{{finderContact.companyAvatar}}"/>
+                </md-button>
+            </section>
+            <div layout="row" flex="none" layout-padding layout-wrap layout-align="center center">
+                <md-input-container
+                ng-repeat="(attr, value) in finderCompanyAttributes"
+                ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''"
+                class="startup-info-input">
+                    <label>{{value}}</label>
+                    <textarea ng-model="finderContact[attr]" md-select-on-focus></textarea>
+                </md-input-container>
+            </div>
 		</md-whiteframe>
 	</md-content>
 	<md-dialog-actions layout="row">

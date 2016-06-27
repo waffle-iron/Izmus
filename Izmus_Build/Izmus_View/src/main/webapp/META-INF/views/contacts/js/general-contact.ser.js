@@ -19,15 +19,30 @@ angular.module('contactsApp').factory('viewGeneralContactDialog',
 							email: lang.email,
 							position: lang.position
 					};
-					 /*----------------------------------------------------------------------------------------------------*/
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.generalCompanyAttributes = {
+							companyName: lang.companyName,
+					}
+					/*----------------------------------------------------------------------------------------------------*/
 					$scope.changeContactAvatar = function(ev){
 						avatarDialog(ev, function(croppedImage){
-							$scope.investorContact.contactAvatar = croppedImage;
+							$scope.generalContact.contactAvatar = croppedImage;
 							if (reloadAfterAvatar){
-								reloadAfterAvatar($scope.investorContact);
+								reloadAfterAvatar($scope.generalContact);
 							}
 						}, function(){
-							reloadAfterAvatar($scope.investorContact);
+							reloadAfterAvatar($scope.generalContact);
+						});
+					}
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.changeCompanyAvatar = function(ev){
+						avatarDialog(ev, function(croppedImage){
+							$scope.generalContact.companyAvatar = croppedImage;
+							if (reloadAfterAvatar){
+								reloadAfterAvatar($scope.generalContact);
+							}
+						}, function(){
+							reloadAfterAvatar($scope.generalContact);
 						});
 					}
 				    /*----------------------------------------------------------------------------------------------------*/
