@@ -30,7 +30,7 @@
                     <md-icon
                     ng-if="(investorContact.contactAvatar == null || investorContact.contactAvatar =='')"
                     class="material-icons">
-                    contact_phone
+                        contact_phone
                     </md-icon>
                     <img
                     ng-if="(investorContact.contactAvatar != null && investorContact.contactAvatar !='')" class="contact-avatar-icon" ng-src="{{investorContact.contactAvatar}}"/>
@@ -60,8 +60,7 @@
                 ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '0px', 'margin-right': '0px'} : {'margin-right': '0px', 'margin-left': '0px'}">
                     <md-icon
                     ng-if="(investorContact.companyAvatar == null || investorContact.companyAvatar =='')"
-                    class="material-icons contact-avatar-icon" md-svg-src="/views/contacts/images/investor.svg">
-                    </md-icon>
+                    class="material-icons contact-avatar-icon" md-svg-src="/views/contacts/images/investor.svg"></md-icon>
                     <img
                     ng-if="(investorContact.companyAvatar != null && investorContact.companyAvatar !='')" class="contact-avatar-icon" ng-src="{{investorContact.companyAvatar}}"/>
                 </md-button>
@@ -79,15 +78,23 @@
             ng-checked="isFocusAreaChecked()"
             md-indeterminate="isFocusAreaIndeterminate()"
             ng-click="focusAreaToggleAll()">
-                 <p class="md-title">
+                <p class="md-title">
                     {{lang.focusAreas}}
-                 </p>
+                </p>
             </md-checkbox>
             <section layout="row" layout-padding layout-wrap>
                 <md-checkbox ng-repeat="item in focusAreas" ng-checked="focusAreaExists(item, investorContact.focusAreas)" ng-click="focusAreaToggle(item, investorContact.focusAreas)">
                     {{ item }}
                 </md-checkbox>
             </section>
+            <md-content class="md-padding" layout="column">
+                <md-chips
+                ng-model="additionalFocusAreas"
+                placeholder="{{lang.additionalFocusAreas}}"
+                md-on-remove="removeAdditionalFocusArea($chip)"
+                md-transform-chip="newFocusAreaChip($chip)"
+                md-separator-keys="customKeys"></md-chips>
+            </md-content>
         </md-whiteframe>
     </md-content>
     <md-dialog-actions layout="row">

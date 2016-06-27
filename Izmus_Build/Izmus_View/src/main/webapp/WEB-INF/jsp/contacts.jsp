@@ -46,6 +46,7 @@
 			save: ' <spring:message code="navBar.menu.assessorsMenu.contacts.save" />',
 			company: ' <spring:message code="navBar.menu.assessorsMenu.contacts.company" />',
 			companyName: ' <spring:message code="navBar.menu.assessorsMenu.contacts.companyName" />',
-			focusAreas: ' <spring:message code="navBar.menu.assessorsMenu.contacts.focusAreas" />'
+			focusAreas: ' <spring:message code="navBar.menu.assessorsMenu.contacts.focusAreas" />',
+			additionalFocusAreas: ' <spring:message code="navBar.menu.assessorsMenu.contacts.additionalFocusAreas" />'
 	};
 </script>

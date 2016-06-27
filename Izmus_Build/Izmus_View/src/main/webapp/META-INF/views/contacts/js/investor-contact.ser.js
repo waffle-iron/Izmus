@@ -1,15 +1,56 @@
 /*----------------------------------------------------------------------------------------------------*/
 angular.module('contactsApp').factory('viewInvestorContactDialog',
-		[ '$mdMedia', '$mdDialog', 'loadInvestorContact', 'avatarDialog', function($mdMedia, $mdDialog, loadInvestorContact, avatarDialog) {
+		[ '$mdMedia', '$mdDialog', 'loadInvestorContact', 'avatarDialog','$mdConstant', 
+		  function($mdMedia, $mdDialog, loadInvestorContact, avatarDialog, $mdConstant) {
 			return function(ev, investorContact, saveFunction, reloadAfterAvatar, reloaded) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
 			    /*----------------------------------------------------------------------------------------------------*/
 				var investorContactCtrl = function($scope) {
+					
 				    $scope.globalAttr = globalAttr;
 				    $scope.lang = lang;
 				    $scope.progressMode = 'indeterminate';
 				    $scope.$mdMedia = $mdMedia;
+				    $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, $mdConstant.KEY_CODE.SPACE];
+				    $scope.additionalFocusAreas = [];
+				    /*----------------------------------------------------------------------------------------------------*/
+				    $scope.contains = function (a, obj) {
+				        for (var i = 0; i < a.length; i++) {
+				            if (a[i] === obj) {
+				                return true;
+				            }
+				        }
+				        return false;
+				    };
+				    /*----------------------------------------------------------------------------------------------------*/
+				    $scope.removeAdditionalFocusArea = function(removedChip){
+				    	for (var i = 0; i < $scope.investorContact.focusAreas.length; i++){
+				    		var focusArea = $scope.investorContact.focusAreas[i];
+				    		if (focusArea == removedChip){
+				    			$scope.investorContact.focusAreas.splice(i, 1);
+				    			break;
+				    		}
+				    	}
+				    	for (var i = 0; i < $scope.focusAreas.length; i++){
+				    		var focusArea = $scope.focusAreas[i];
+				    		if (focusArea == removedChip){
+				    			$scope.focusAreas.splice(i, 1);
+				    			break;
+				    		}
+				    	}
+				    }
+				    /*----------------------------------------------------------------------------------------------------*/
+				    $scope.newFocusAreaChip = function(newChip){
+				    	if (!$scope.contains($scope.focusAreas, newChip)){
+				    		$scope.focusAreas.push(newChip);
+				    		$scope.investorContact.focusAreas.push(newChip);
+				    	}
+				    	else {
+				    		return null;
+				    	}
+				    };
+				    /*----------------------------------------------------------------------------------------------------*/
 				    $scope.focusAreas = [
 				                         'IoT', 
 				                         'MedTech', 
@@ -100,6 +141,7 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 				    	loadInvestorContact(investorContact.contactId).then(function(data){
 				    		if(data){
 				    			$scope.investorContact = data;
+				    			$scope.checkFocusAreas($scope.investorContact.focusAreas);
 				    			$scope.progressMode = '';
 				    		}
 				    	}, function(){
@@ -111,6 +153,15 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 				    	$scope.investorContact = investorContact;
 				    	$scope.investorContact.focusAreas = [];
 				    	$scope.progressMode = '';
+				    }
+				    /*----------------------------------------------------------------------------------------------------*/
+				    $scope.checkFocusAreas = function(investorFocusAreas){
+				    	for (var i = 0; i < investorFocusAreas.length; i++){
+				    		var focusArea = investorFocusAreas[i];
+				    		if (!$scope.contains($scope.focusAreas, focusArea)){
+				    			$scope.focusAreas.push(focusArea);
+				    		}
+				    	}
 				    }
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.ok = function() {
