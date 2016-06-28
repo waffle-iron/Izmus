@@ -14,6 +14,15 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 				    $scope.$mdMedia = $mdMedia;
 				    $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, $mdConstant.KEY_CODE.SPACE];
 				    $scope.additionalFocusAreas = [];
+				    $scope.additionalInvestmentStages = [];
+				    /*----------------------------------------------------------------------------------------------------*/
+				    $scope.investmentStages = [
+				                             'Idea Stage', 
+				                             'Seed Stage', 
+				                             'A stage', 
+				                             'Post A Stage', 
+				                             'Pre IPO'
+				                         ];
 				    /*----------------------------------------------------------------------------------------------------*/
 				    $scope.contains = function (a, obj) {
 				        for (var i = 0; i < a.length; i++) {
@@ -24,27 +33,27 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 				        return false;
 				    };
 				    /*----------------------------------------------------------------------------------------------------*/
-				    $scope.removeAdditionalFocusArea = function(removedChip){
-				    	for (var i = 0; i < $scope.investorContact.focusAreas.length; i++){
-				    		var focusArea = $scope.investorContact.focusAreas[i];
-				    		if (focusArea == removedChip){
-				    			$scope.investorContact.focusAreas.splice(i, 1);
+				    $scope.removeAdditionalIndicator = function(removedChip, contactList, cachedList){
+				    	for (var i = 0; i < contactList.length; i++){
+				    		var indicator = contactList[i];
+				    		if (indicator == removedChip){
+				    			contactList.splice(i, 1);
 				    			break;
 				    		}
 				    	}
-				    	for (var i = 0; i < $scope.focusAreas.length; i++){
-				    		var focusArea = $scope.focusAreas[i];
-				    		if (focusArea == removedChip){
-				    			$scope.focusAreas.splice(i, 1);
+				    	for (var i = 0; i < cachedList.length; i++){
+				    		var indicator = cachedList[i];
+				    		if (indicator == removedChip){
+				    			cachedList.splice(i, 1);
 				    			break;
 				    		}
 				    	}
 				    }
 				    /*----------------------------------------------------------------------------------------------------*/
-				    $scope.newFocusAreaChip = function(newChip){
-				    	if (!$scope.contains($scope.focusAreas, newChip)){
-				    		$scope.focusAreas.push(newChip);
-				    		$scope.investorContact.focusAreas.push(newChip);
+				    $scope.newIndicatorChip = function(newChip, contactList, cachedList){
+				    	if (!$scope.contains(cachedList, newChip)){
+				    		cachedList.push(newChip);
+				    		contactList.push(newChip);
 				    	}
 				    	else {
 				    		return null;
@@ -65,7 +74,7 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 				                         'Infocomm'
 				                         ];
 				    /*----------------------------------------------------------------------------------------------------*/
-				    $scope.focusAreaToggle = function (item, list) {
+				    $scope.indicatorToggle = function (item, list) {
 				      var idx = list.indexOf(item);
 				      if (idx > -1) {
 				        list.splice(idx, 1);
@@ -75,24 +84,31 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 				      }
 				    };
 				    /*----------------------------------------------------------------------------------------------------*/
-				    $scope.focusAreaExists = function (item, list) {
+				    $scope.indicatorExists = function (item, list) {
 				      return list.indexOf(item) > -1;
 				    };
 				    /*----------------------------------------------------------------------------------------------------*/
-				    $scope.isFocusAreaIndeterminate = function() {
-				      return ($scope.investorContact.focusAreas.length !== 0 &&
-				          $scope.investorContact.focusAreas.length !== $scope.focusAreas.length);
+				    $scope.isIndicatorIndeterminate = function(contactList, cachedList) {
+				      return (contactList.length !== 0 &&
+				    		  contactList.length !== cachedList.length);
 				    };
 				    /*----------------------------------------------------------------------------------------------------*/
-				    $scope.isFocusAreaChecked = function() {
-				      return $scope.investorContact.focusAreas.length === $scope.focusAreas.length;
+				    $scope.isIndicatorChecked = function(contactList, cachedList) {
+				      return contactList.length === cachedList.length;
 				    };
 				    /*----------------------------------------------------------------------------------------------------*/
-				    $scope.focusAreaToggleAll = function() {
-				      if ($scope.investorContact.focusAreas.length === $scope.focusAreas.length) {
-				        $scope.investorContact.focusAreas = [];
-				      } else if ($scope.investorContact.focusAreas.length === 0 || $scope.investorContact.focusAreas.length > 0) {
-				        $scope.investorContact.focusAreas = $scope.focusAreas.slice(0);
+				    $scope.indicatorToggleAll = function(contactList, cachedList) {
+				      if (contactList.length === cachedList.length) {
+				    	  while(contactList.length > 0) {
+				    		  contactList.pop();
+				    	  }
+				      } else if (contactList.length === 0 || contactList.length > 0) {
+				    	  while(contactList.length > 0) {
+				    		  contactList.pop();
+				    	  }
+				    	  for (var i = 0; i < cachedList.length; i++) {
+				    		  contactList.push(cachedList[i]);
+				    	  }
 				      }
 				    };
 				    /*----------------------------------------------------------------------------------------------------*/

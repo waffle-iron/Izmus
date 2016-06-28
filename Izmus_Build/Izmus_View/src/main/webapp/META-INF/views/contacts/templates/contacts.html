@@ -1,8 +1,8 @@
 <style>
 	.contact-card {
 		margin: 5px;
-		width: 360px;
 		cursor: pointer;
+		min-width: 270px;
 	}
 	.contact-avatar-icon {
 		height: 38px;
@@ -24,10 +24,10 @@
 		margin-left: 10px;
 	}
 	.contacts-title {
-		background: #1f6086;
-		color: white;
 		padding-top: 0px;
-		padding-bottom: 0px;
+        padding-bottom: 0px;
+        border-bottom: solid;
+        border-color: #1f6086;
 	}
 </style>
 <izmus-main-window
@@ -52,7 +52,7 @@ layout="column">
 			<section class="contacts-title" layout-padding layout="column">
 				<span class="md-title">{{lang.startupContacts}}</span>
 			</section>
-			<section layout="row" layout-padding layout-wrap>
+			<section layout="row" layout-sm="column" layout-xs="column" layout-padding layout-wrap>
 				<md-whiteframe
 				ng-repeat="contact in contacts.startupContacts | filter: searchContact"
 				class="md-whiteframe-1dp contact-card"
@@ -67,8 +67,12 @@ layout="column">
 						</md-icon>
 						<img
 						ng-if="(contact.contactAvatar != null && contact.contactAvatar !='')" class="contact-avatar-icon" ng-src="{{contact.contactAvatar}}"/>
-						<span hide-sm hide-xs class="md-headline">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
-						<span hide-gt-sm class="md-subheader">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
+						<section layout="column">
+						    <section>
+						        <span>{{(contact.firstName ? contact.firstName : '') + " " + (contact.lastName ? contact.lastName : '')}}</span>
+                                <span class="md-subheader">{{(contact.mobilePhone ? contact.mobilePhone : (contact.officePhone ? contact.officePhone : ''))}}</span>
+                            </section>
+						</section>
 						<span flex></span>
 						<md-icon
 						ng-if="(contact.companyAvatar == null || contact.companyAvatar =='')"
@@ -82,7 +86,7 @@ layout="column">
 			<section class="contacts-title" layout-padding layout="column">
 				<span class="md-title">{{lang.investorContacts}}</span>
 			</section>
-			<section layout="row" layout-padding layout-wrap>
+			<section layout="row" layout-sm="column" layout-xs="column" layout-padding layout-wrap>
 				<md-whiteframe
 				ng-repeat="contact in contacts.investorContacts | filter: searchContact"
 				class="md-whiteframe-1dp contact-card"
@@ -97,9 +101,13 @@ layout="column">
 						</md-icon>
 						<img
 						ng-if="(contact.contactAvatar != null && contact.contactAvatar !='')" class="contact-avatar-icon" ng-src="{{contact.contactAvatar}}"/>
-						<span hide-sm hide-xs class="md-headline">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
-						<span hide-gt-sm class="md-subheader">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
-						<span flex></span>
+						<section layout="column">
+                            <section>
+                               <span>{{(contact.firstName ? contact.firstName : '') + " " + (contact.lastName ? contact.lastName : '')}}</span>
+                               <span class="md-subheader">{{(contact.mobilePhone ? contact.mobilePhone : (contact.officePhone ? contact.officePhone : ''))}}</span>
+                            </section>
+                        </section>
+                        <span flex></span>
 						<md-icon
 						ng-if="(contact.companyAvatar == null || contact.companyAvatar =='')"
 						class="material-icons contact-avatar-icon" md-svg-src="/views/contacts/images/investor.svg"></md-icon>
@@ -112,7 +120,7 @@ layout="column">
 			<section class="contacts-title" layout-padding layout="column">
 				<span class="md-title">{{lang.finderContacts}}</span>
 			</section>
-			<section layout="row" layout-padding layout-wrap>
+			<section layout="row" layout-sm="column" layout-xs="column" layout-padding layout-wrap>
 				<md-whiteframe
 				ng-repeat="contact in contacts.finderContacts | filter: searchContact"
 				class="md-whiteframe-1dp contact-card"
@@ -127,9 +135,13 @@ layout="column">
 						</md-icon>
 						<img
 						ng-if="(contact.contactAvatar != null && contact.contactAvatar !='')" class="contact-avatar-icon" ng-src="{{contact.contactAvatar}}"/>
-						<span hide-sm hide-xs class="md-headline">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
-						<span hide-gt-sm class="md-subheader">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
-						<span flex></span>
+						<section layout="column">
+                            <section>
+                                <span>{{(contact.firstName ? contact.firstName : '') + " " + (contact.lastName ? contact.lastName : '')}}</span>
+                                <span class="md-subheader">{{(contact.mobilePhone ? contact.mobilePhone : (contact.officePhone ? contact.officePhone : ''))}}</span>
+                            </section>
+                        </section>
+                        <span flex></span>
 						<md-icon
 						ng-if="(contact.companyAvatar == null || contact.companyAvatar =='')"
 						class="material-icons contact-avatar-icon" md-svg-src="/views/contacts/images/finder.svg"></md-icon>
@@ -142,7 +154,7 @@ layout="column">
 			<section class="contacts-title" layout-padding layout="column">
 				<span class="md-title">{{lang.generalContacts}}</span>
 			</section>
-			<section layout="row" layout-padding layout-wrap>
+			<section layout="row" layout-sm="column" layout-xs="column" layout-padding layout-wrap>
 				<md-whiteframe
 				ng-repeat="contact in contacts.generalContacts | filter: searchContact"
 				class="md-whiteframe-1dp contact-card"
@@ -157,9 +169,13 @@ layout="column">
 						</md-icon>
 						<img
 						ng-if="(contact.contactAvatar != null && contact.contactAvatar !='')" class="contact-avatar-icon" ng-src="{{contact.contactAvatar}}"/>
-						<span hide-sm hide-xs class="md-headline">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
-						<span hide-gt-sm class="md-subheader">{{(contact.firstName == null ? '' : contact.firstName) + " " + (contact.lastName == null ? '' : contact.lastName)}}</span>
-						<span flex></span>
+						<section layout="column">
+                            <section>
+                                <span>{{(contact.firstName ? contact.firstName : '') + " " + (contact.lastName ? contact.lastName : '')}}</span>
+                                <span class="md-subheader">{{(contact.mobilePhone ? contact.mobilePhone : (contact.officePhone ? contact.officePhone : ''))}}</span>
+                            </section>
+                        </section>
+                        <span flex></span>
 						<md-icon
                         ng-if="(contact.companyAvatar == null || contact.companyAvatar =='')"
                         class="material-icons contact-avatar-icon" md-svg-src="/views/contacts/images/general.svg"></md-icon>

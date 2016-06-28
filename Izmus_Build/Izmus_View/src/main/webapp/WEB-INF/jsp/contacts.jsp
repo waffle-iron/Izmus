@@ -47,6 +47,8 @@
 			company: ' <spring:message code="navBar.menu.assessorsMenu.contacts.company" />',
 			companyName: ' <spring:message code="navBar.menu.assessorsMenu.contacts.companyName" />',
 			focusAreas: ' <spring:message code="navBar.menu.assessorsMenu.contacts.focusAreas" />',
-			additionalFocusAreas: ' <spring:message code="navBar.menu.assessorsMenu.contacts.additionalFocusAreas" />'
+			additionalFocusAreas: ' <spring:message code="navBar.menu.assessorsMenu.contacts.additionalFocusAreas" />',
+			additionalInvestmentStages: ' <spring:message code="navBar.menu.assessorsMenu.contacts.additionalInvestmentStages" />',
+			investmentStages: ' <spring:message code="navBar.menu.assessorsMenu.contacts.investmentStages" />'
 	};
 </script>

@@ -74,16 +74,19 @@
                     <textarea ng-model="investorContact[attr]" md-select-on-focus></textarea>
                 </md-input-container>
             </div>
+            
             <md-checkbox aria-label="Select All"
-            ng-checked="isFocusAreaChecked()"
-            md-indeterminate="isFocusAreaIndeterminate()"
-            ng-click="focusAreaToggleAll()">
+            ng-checked="isIndicatorChecked(investorContact.focusAreas, focusAreas)"
+            md-indeterminate="isIndicatorIndeterminate(investorContact.focusAreas, focusAreas)"
+            ng-click="indicatorToggleAll(investorContact.focusAreas, focusAreas)">
                 <p class="md-title">
                     {{lang.focusAreas}}
                 </p>
             </md-checkbox>
             <section layout="row" layout-padding layout-wrap>
-                <md-checkbox ng-repeat="item in focusAreas" ng-checked="focusAreaExists(item, investorContact.focusAreas)" ng-click="focusAreaToggle(item, investorContact.focusAreas)">
+                <md-checkbox ng-repeat="item in focusAreas" 
+                ng-checked="indicatorExists(item, investorContact.focusAreas)" 
+                ng-click="indicatorToggle(item, investorContact.focusAreas)">
                     {{ item }}
                 </md-checkbox>
             </section>
@@ -91,10 +94,35 @@
                 <md-chips
                 ng-model="additionalFocusAreas"
                 placeholder="{{lang.additionalFocusAreas}}"
-                md-on-remove="removeAdditionalFocusArea($chip)"
-                md-transform-chip="newFocusAreaChip($chip)"
+                md-on-remove="removeAdditionalIndicator($chip, investorContact.focusAreas, focusAreas)"
+                md-transform-chip="newIndicatorChip($chip, investorContact.focusAreas, focusAreas)"
                 md-separator-keys="customKeys"></md-chips>
             </md-content>
+            
+            <md-checkbox aria-label="Select All"
+            ng-checked="isIndicatorChecked(investorContact.investmentStage, investmentStages)"
+            md-indeterminate="isIndicatorIndeterminate(investorContact.investmentStage, investmentStages)"
+            ng-click="indicatorToggleAll(investorContact.investmentStage, investmentStages)">
+                <p class="md-title">
+                    {{lang.investmentStages}}
+                </p>
+            </md-checkbox>
+            <section layout="row" layout-padding layout-wrap>
+                <md-checkbox ng-repeat="item in investmentStages" 
+                ng-checked="indicatorExists(item, investorContact.investmentStage)" 
+                ng-click="indicatorToggle(item, investorContact.investmentStage)">
+                    {{ item }}
+                </md-checkbox>
+            </section>
+            <md-content class="md-padding" layout="column">
+                <md-chips
+                ng-model="additionalInvestmentStages"
+                placeholder="{{lang.additionalInvestmentStages}}"
+                md-on-remove="removeAdditionalIndicator($chip, investorContact.investmentStage, investmentStages)"
+                md-transform-chip="newIndicatorChip($chip, investorContact.investmentStage, investmentStages)"
+                md-separator-keys="customKeys"></md-chips>
+            </md-content>
+            
         </md-whiteframe>
     </md-content>
     <md-dialog-actions layout="row">
