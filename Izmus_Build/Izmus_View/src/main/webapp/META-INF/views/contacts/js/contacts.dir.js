@@ -84,7 +84,7 @@ angular.module('contactsApp').directive('contactsDashboard',
 							});
 						}, function(investorContactAvatarReload){
 							$scope.viewInvestorContact(ev, investorContactAvatarReload, true);
-						}, reload);
+						}, reload, $scope.contacts.finderContacts);
 					}
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.viewFinderContact = function(ev, finderContact, reload){

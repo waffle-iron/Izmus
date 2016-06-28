@@ -49,6 +49,7 @@
 			focusAreas: ' <spring:message code="navBar.menu.assessorsMenu.contacts.focusAreas" />',
 			additionalFocusAreas: ' <spring:message code="navBar.menu.assessorsMenu.contacts.additionalFocusAreas" />',
 			additionalInvestmentStages: ' <spring:message code="navBar.menu.assessorsMenu.contacts.additionalInvestmentStages" />',
-			investmentStages: ' <spring:message code="navBar.menu.assessorsMenu.contacts.investmentStages" />'
+			investmentStages: ' <spring:message code="navBar.menu.assessorsMenu.contacts.investmentStages" />',
+			assosiatedFinders: ' <spring:message code="navBar.menu.assessorsMenu.contacts.assosiatedFinders" />'
 	};
 </script>

@@ -9,6 +9,15 @@
     .dialog-button > md-icon {
         color: white !important;
     }
+    .investor-dialog-avatar-icon {
+        height: 24px !important;
+        width: 24px !important;
+        margin: 5px;
+        border-radius: 13px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(160,195,215);
+    }
 </style>
 <section class="progress" ng-if='progressMode != ""' flex layout="column" layout-align="center center">
     <div>
@@ -74,7 +83,7 @@
                     <textarea ng-model="investorContact[attr]" md-select-on-focus></textarea>
                 </md-input-container>
             </div>
-            
+
             <md-checkbox aria-label="Select All"
             ng-checked="isIndicatorChecked(investorContact.focusAreas, focusAreas)"
             md-indeterminate="isIndicatorIndeterminate(investorContact.focusAreas, focusAreas)"
@@ -84,8 +93,8 @@
                 </p>
             </md-checkbox>
             <section layout="row" layout-padding layout-wrap>
-                <md-checkbox ng-repeat="item in focusAreas" 
-                ng-checked="indicatorExists(item, investorContact.focusAreas)" 
+                <md-checkbox ng-repeat="item in focusAreas"
+                ng-checked="indicatorExists(item, investorContact.focusAreas)"
                 ng-click="indicatorToggle(item, investorContact.focusAreas)">
                     {{ item }}
                 </md-checkbox>
@@ -98,7 +107,7 @@
                 md-transform-chip="newIndicatorChip($chip, investorContact.focusAreas, focusAreas)"
                 md-separator-keys="customKeys"></md-chips>
             </md-content>
-            
+
             <md-checkbox aria-label="Select All"
             ng-checked="isIndicatorChecked(investorContact.investmentStage, investmentStages)"
             md-indeterminate="isIndicatorIndeterminate(investorContact.investmentStage, investmentStages)"
@@ -108,8 +117,8 @@
                 </p>
             </md-checkbox>
             <section layout="row" layout-padding layout-wrap>
-                <md-checkbox ng-repeat="item in investmentStages" 
-                ng-checked="indicatorExists(item, investorContact.investmentStage)" 
+                <md-checkbox ng-repeat="item in investmentStages"
+                ng-checked="indicatorExists(item, investorContact.investmentStage)"
                 ng-click="indicatorToggle(item, investorContact.investmentStage)">
                     {{ item }}
                 </md-checkbox>
@@ -122,7 +131,26 @@
                 md-transform-chip="newIndicatorChip($chip, investorContact.investmentStage, investmentStages)"
                 md-separator-keys="customKeys"></md-chips>
             </md-content>
-            
+
+            <md-input-container ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+                <label>{{lang.assosiatedFinders}}</label>
+                <md-select
+                multiple
+                ng-model="investorContact.assosiatedFinders"
+                aria-label="assosiatedFinders"
+                name="assosiatedFinders">
+                    <md-option ng-repeat="finder in allFinders | orderBy:'firstName'" value="{{finder.contactId}}">
+                        <div ng-if="(finder.contactAvatar)" layout="row" layout="start center" style="width: 200px;">
+                            <span style="margin-top: 10px;">{{(finder.firstName ? finder.firstName : '') + " " + (finder.lastName ? finder.lastName : '')}}</span>
+                            <img class="investor-dialog-avatar-icon" ng-src="{{finder.contactAvatar}}"/>
+                        </div>
+                        <div ng-if="(!finder.contactAvatar)" layout="row" layout="start center">
+                            <span style="margin-bottom: 5px;margin-top:5px">{{(finder.firstName ? finder.firstName : '') + " " + (finder.lastName ? finder.lastName : '')}}</span>
+                        </div>
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
         </md-whiteframe>
     </md-content>
     <md-dialog-actions layout="row">

@@ -2,7 +2,7 @@
 angular.module('contactsApp').factory('viewInvestorContactDialog',
 		[ '$mdMedia', '$mdDialog', 'loadInvestorContact', 'avatarDialog','$mdConstant', 
 		  function($mdMedia, $mdDialog, loadInvestorContact, avatarDialog, $mdConstant) {
-			return function(ev, investorContact, saveFunction, reloadAfterAvatar, reloaded) {
+			return function(ev, investorContact, saveFunction, reloadAfterAvatar, reloaded, allFinders) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
 			    /*----------------------------------------------------------------------------------------------------*/
@@ -12,9 +12,21 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 				    $scope.lang = lang;
 				    $scope.progressMode = 'indeterminate';
 				    $scope.$mdMedia = $mdMedia;
-				    $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, $mdConstant.KEY_CODE.SPACE];
+				    $scope.allFinders = allFinders;
+				    $scope.finderSearch = '';
+				    $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA];
 				    $scope.additionalFocusAreas = [];
 				    $scope.additionalInvestmentStages = [];
+				    /*----------------------------------------------------------------------------------------------------*/
+					$scope.searchFinder = function(contact){
+						if (!$scope.finderSearch 
+								|| (contact.firstName && contact.firstName.toLowerCase().indexOf($scope.finderSearch.toLowerCase()) != -1)
+								|| (contact.lastName && contact.lastName.toLowerCase().indexOf($scope.finderSearch.toLowerCase()) != -1)
+								|| (contact.companyName && contact.companyName.toLowerCase().indexOf($scope.finderSearch.toLowerCase()) != -1)){
+							return true;
+						}
+						return false;
+					};
 				    /*----------------------------------------------------------------------------------------------------*/
 				    $scope.investmentStages = [
 				                             'Idea Stage', 
