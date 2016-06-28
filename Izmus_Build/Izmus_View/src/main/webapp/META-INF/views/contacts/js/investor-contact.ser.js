@@ -157,7 +157,8 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 				    	loadInvestorContact(investorContact.contactId).then(function(data){
 				    		if(data){
 				    			$scope.investorContact = data;
-				    			$scope.checkFocusAreas($scope.investorContact.focusAreas);
+				    			$scope.checkIndicator($scope.investorContact.focusAreas, $scope.focusAreas);
+				    			$scope.checkIndicator($scope.investorContact.investmentStage, $scope.investmentStages);
 				    			$scope.progressMode = '';
 				    		}
 				    	}, function(){
@@ -168,14 +169,15 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 				    else {
 				    	$scope.investorContact = investorContact;
 				    	$scope.investorContact.focusAreas = [];
+				    	$scope.investorContact.investmentStage = [];
 				    	$scope.progressMode = '';
 				    }
 				    /*----------------------------------------------------------------------------------------------------*/
-				    $scope.checkFocusAreas = function(investorFocusAreas){
-				    	for (var i = 0; i < investorFocusAreas.length; i++){
-				    		var focusArea = investorFocusAreas[i];
-				    		if (!$scope.contains($scope.focusAreas, focusArea)){
-				    			$scope.focusAreas.push(focusArea);
+				    $scope.checkIndicator = function(contactList, cachedList){
+				    	for (var i = 0; i < contactList.length; i++){
+				    		var indicator = contactList[i];
+				    		if (!$scope.contains(cachedList, indicator)){
+				    			cachedList.push(indicator);
 				    		}
 				    	}
 				    }
