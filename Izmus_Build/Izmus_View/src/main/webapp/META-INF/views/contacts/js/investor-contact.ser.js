@@ -204,6 +204,10 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 						}
 						$mdDialog.cancel();
 					};
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.addNote = function(){
+						$scope.investorContact.notes.push({});
+					}
 				}
 			    /*----------------------------------------------------------------------------------------------------*/
 				$mdDialog.show({

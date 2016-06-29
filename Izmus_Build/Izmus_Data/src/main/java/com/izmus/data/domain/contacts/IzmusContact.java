@@ -3,6 +3,7 @@ package com.izmus.data.domain.contacts;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -12,6 +13,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -48,8 +53,9 @@ public abstract class IzmusContact implements Serializable, Comparable<IzmusCont
 	@ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
 	private Set<String> focusAreas;
 	@Column(name = "NOTES")
-	@ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
-	private Set<String> notes;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "izmusContact", fetch = FetchType.EAGER, orphanRemoval = true)
+	@Fetch(value = FetchMode.SELECT)
+	private Set<ContactNote> notes;
 	/*----------------------------------------------------------------------------------------------------*/
 	public boolean equals(Object obj) {
 		if ((obj != null) && ((obj instanceof IzmusContact))) {
@@ -190,16 +196,6 @@ public abstract class IzmusContact implements Serializable, Comparable<IzmusCont
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 
-	public Set<String> getNotes() {
-		return notes;
-	}
-	/*----------------------------------------------------------------------------------------------------*/
-
-	public void setNotes(Set<String> notes) {
-		this.notes = notes;
-	}
-	/*----------------------------------------------------------------------------------------------------*/
-
 	public String getHowWeMet() {
 		return howWeMet;
 	}
@@ -207,6 +203,14 @@ public abstract class IzmusContact implements Serializable, Comparable<IzmusCont
 
 	public void setHowWeMet(String howWeMet) {
 		this.howWeMet = howWeMet;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public Set<ContactNote> getNotes() {
+		return notes;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public void setNotes(Set<ContactNote> notes) {
+		this.notes = notes;
 	}
 	
 }

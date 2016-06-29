@@ -218,7 +218,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="companyAvatar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="otherPhone" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="focusAreas" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="notes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="contactnote" upperBound="-1"
+          eType="#//Contacts/ContactNote"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GeneralContact" eSuperTypes="#//Contacts/IzmusContact"/>
     <eClassifiers xsi:type="ecore:EClass" name="InvestorContact" eSuperTypes="#//Contacts/IzmusContact">
@@ -238,6 +239,10 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FinderContact" eSuperTypes="#//Contacts/IzmusContact">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="entityId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ContactNote">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="noteId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="note" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="Meetings">

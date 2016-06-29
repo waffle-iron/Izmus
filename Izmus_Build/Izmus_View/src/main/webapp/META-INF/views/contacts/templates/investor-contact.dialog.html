@@ -53,8 +53,7 @@
             <div layout="row" flex="none" layout-padding layout-wrap layout-align="center center">
                 <md-input-container
                 ng-repeat="(attr, value) in investorContactAttributes"
-                ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''"
-                class="startup-info-input">
+                ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
                     <label>{{value}}</label>
                     <textarea ng-model="investorContact[attr]" md-select-on-focus></textarea>
                 </md-input-container>
@@ -77,8 +76,7 @@
             <div layout="row" flex="none" layout-padding layout-wrap layout-align="center center">
                 <md-input-container
                 ng-repeat="(attr, value) in investorCompanyAttributes"
-                ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''"
-                class="startup-info-input">
+                ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
                     <label>{{value}}</label>
                     <textarea ng-model="investorContact[attr]" md-select-on-focus></textarea>
                 </md-input-container>
@@ -150,6 +148,24 @@
                     </md-option>
                 </md-select>
             </md-input-container>
+
+            <div layout="row" layout-padding layout-align="start center">
+                <md-button class="md-fab md-mini" ng-click="addNote()">
+                    <md-icon class="material-icons">
+                        add
+                    </md-icon>
+                </md-button>
+                <p class="md-title">
+                    {{lang.notes}}
+                </p>
+            </div>
+            <div layout="row" flex="none" layout-padding layout-wrap layout-align="center center">
+                <md-input-container
+                ng-repeat="contactNote in investorContact.notes"
+                ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+                    <textarea aria-label="note" ng-model="contactNote.note"></textarea>
+                </md-input-container>
+            </div>
 
         </md-whiteframe>
     </md-content>
