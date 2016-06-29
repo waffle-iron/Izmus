@@ -182,6 +182,7 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 				    	$scope.investorContact = investorContact;
 				    	$scope.investorContact.focusAreas = [];
 				    	$scope.investorContact.investmentStage = [];
+				    	$scope.investorContact.notes = [];
 				    	$scope.progressMode = '';
 				    }
 				    /*----------------------------------------------------------------------------------------------------*/
@@ -206,6 +207,9 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 					};
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.addNote = function(){
+						if (!$scope.investorContact.notes){
+							$scope.investorContact.notes = [];
+						}
 						$scope.investorContact.notes.push({});
 					}
 					/*----------------------------------------------------------------------------------------------------*/
