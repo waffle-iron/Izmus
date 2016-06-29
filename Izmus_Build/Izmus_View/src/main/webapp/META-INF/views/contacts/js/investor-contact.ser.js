@@ -208,6 +208,10 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 					$scope.addNote = function(){
 						$scope.investorContact.notes.push({});
 					}
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.deleteNote = function(index){
+						$scope.investorContact.notes.splice(index, 1);
+					}
 				}
 			    /*----------------------------------------------------------------------------------------------------*/
 				$mdDialog.show({

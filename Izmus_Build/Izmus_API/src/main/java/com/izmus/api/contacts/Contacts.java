@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.izmus.data.domain.contacts.ContactNote;
 import com.izmus.data.domain.contacts.FinderContact;
 import com.izmus.data.domain.contacts.GeneralContact;
 import com.izmus.data.domain.contacts.InvestorContact;
@@ -75,6 +76,7 @@ public class Contacts {
 		GeneralContact contact = null;
 		try {
 			contact = jacksonObjectMapper.readValue(generalContactJson, GeneralContact.class);
+			checkNotes(contact);
 			contact = generalContactRepository.save(contact);
 			LOGGER.info("Contact Saved Successfully To The Database");
 		} catch (Exception e) {
@@ -83,6 +85,14 @@ public class Contacts {
 			return "{\"result\": \"fail\"}";
 		}
 		return "{\"result\": \"success\", \"contactId\":" + contact.getContactId() + "}";
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private void checkNotes(IzmusContact contact) {
+		if (contact.getNotes().size() > 0){
+			for (ContactNote note : contact.getNotes()){
+				note.setIzmusContact(contact);
+			}
+		}
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/FinderContacts")
@@ -117,6 +127,7 @@ public class Contacts {
 		FinderContact contact = null;
 		try {
 			contact = jacksonObjectMapper.readValue(finderContactJson, FinderContact.class);
+			checkNotes(contact);
 			contact = finderContactRepository.save(contact);
 			LOGGER.info("Contact Saved Successfully To The Database");
 		} catch (Exception e) {
@@ -159,6 +170,7 @@ public class Contacts {
 		InvestorContact contact = null;
 		try {
 			contact = jacksonObjectMapper.readValue(investorContactJson, InvestorContact.class);
+			checkNotes(contact);
 			contact = investorContactRepository.save(contact);
 			LOGGER.info("Contact Saved Successfully To The Database");
 		} catch (Exception e) {
@@ -202,21 +214,5 @@ public class Contacts {
 		returnMap.put("finderContacts", getAllFinderContacts());
 		returnMap.put("investorContacts", getAllInvestorContacts());
 		return returnMap;
-	}
-	/*----------------------------------------------------------------------------------------------------*/
-	@RequestMapping(method = RequestMethod.POST)
-	@PreAuthorize("hasPermission('Contacts', '')")
-	public String saveGeneralContact(@RequestParam(value = "contact", required = true) String contactJson) {
-		GeneralContact contact = null;
-		try {
-			contact = jacksonObjectMapper.readValue(contactJson, GeneralContact.class);
-			contact = generalContactRepository.save(contact);
-			LOGGER.info("Contact Saved Successfully To The Database");
-		} catch (Exception e) {
-			LOGGER.error("Could Not Save Contact With Error: "
-					+ e.getMessage());
-			return "{\"result\": \"fail\"}";
-		}
-		return "{\"result\": \"success\", \"contactId\":" + contact.getContactId() + "}";
 	}
 }

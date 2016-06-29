@@ -159,12 +159,19 @@
                     {{lang.notes}}
                 </p>
             </div>
-            <div layout="row" flex="none" layout-padding layout-wrap layout-align="center center">
-                <md-input-container
-                ng-repeat="contactNote in investorContact.notes"
-                ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
-                    <textarea aria-label="note" ng-model="contactNote.note"></textarea>
-                </md-input-container>
+            <div layout="row" layout-wrap layout-align="start center">
+                <div layout="row" flex="none" layout-padding layout-align="center center"
+                ng-repeat="contactNote in investorContact.notes">
+                    <md-button class="md-fab md-mini" ng-click="deleteNote($index)">
+                        <md-icon class="material-icons">
+                            delete
+                        </md-icon>
+                    </md-button>
+                    <md-input-container
+                    ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+                        <textarea aria-label="note" ng-model="contactNote.note"></textarea>
+                    </md-input-container>
+                </div>
             </div>
 
         </md-whiteframe>
