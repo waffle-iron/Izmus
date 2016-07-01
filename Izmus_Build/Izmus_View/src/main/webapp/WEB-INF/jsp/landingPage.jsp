@@ -131,7 +131,29 @@
 			hebrew:' <spring:message code="navBar.menu.user.language.hebrew" />',
 			aboutBottom: ' <spring:message code="landingPage.about.bottomAbout" />',
 			news: ' <spring:message code="landingPage.news" />',
-			badContactInfo: ' <spring:message code="landingPage.badContactInfo" />'
+			badContactInfo: ' <spring:message code="landingPage.badContactInfo" />',
+			theTeam: ' <spring:message code="landingPage.theTeam" />',
+			liorNevo: ' <spring:message code="landingPage.liorNevo" />',
+			liorTitle: ' <spring:message code="landingPage.liorTitle" />',
+			joyPhua: " <spring:message code='landingPage.joyPhua' />",
+			joyTitle: ' <spring:message code="landingPage.joyTitle" />',
+			rabeaBader: ' <spring:message code="landingPage.rabeaBader" />',
+			rabeaTitle: ' <spring:message code="landingPage.rabeaTitle" />',
+			israeliStartupsHeader: ' <spring:message code="landingPage.about.israeliStartupsHeader" />',
+			israeliStartupsContentOne: ' <spring:message code="landingPage.about.israeliStartupsContentOne" />',
+			israeliStartupsContentTwo: ' <spring:message code="landingPage.about.israeliStartupsContentTwo" />',
+			israeliStartupsContentThree: ' <spring:message code="landingPage.about.israeliStartupsContentThree" />',
+			israeliStartupsContentFour: ' <spring:message code="landingPage.about.israeliStartupsContentFour" />',
+			investorBusinessHeader: ' <spring:message code="landingPage.about.investorBusinessHeader" />',
+			investorBusinessContentOne: ' <spring:message code="landingPage.about.investorBusinessContentOne" />',
+			investorBusinessContentTwo: ' <spring:message code="landingPage.about.investorBusinessContentTwo" />',
+			investorBusinessContentThree: ' <spring:message code="landingPage.about.investorBusinessContentThree" />',
+			establishedSectionHeader: ' <spring:message code="landingPage.about.establishedSectionHeader" />',
+			establishedSectionContent: ' <spring:message code="landingPage.about.establishedSectionContent" />',
+			resourcefulSectionHeader: ' <spring:message code="landingPage.about.resourcefulSectionHeader" />',
+			resourcefulSectionContent: ' <spring:message code="landingPage.about.resourcefulSectionContent" />',
+			strategicSectionHeader: ' <spring:message code="landingPage.about.strategicSectionHeader" />',
+			strategicSectionContent: ' <spring:message code="landingPage.about.strategicSectionContent" />'
 		};
 		<% if (request.getUserPrincipal()!= null && !request.getUserPrincipal().equals("")){
 			%>

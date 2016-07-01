@@ -88,7 +88,7 @@ public class Contacts {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	private void checkNotes(IzmusContact contact) {
-		if (contact.getNotes().size() > 0){
+		if (contact.getNotes() != null && contact.getNotes().size() > 0){
 			for (ContactNote note : contact.getNotes()){
 				note.setIzmusContact(contact);
 			}

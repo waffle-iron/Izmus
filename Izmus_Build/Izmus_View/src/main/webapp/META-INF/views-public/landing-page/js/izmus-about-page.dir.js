@@ -20,7 +20,12 @@ angular
 													2: {add: false, show: false},
 													3: {add: false, show: false},
 													4: {add: false, show: false},
-													5: {add: false, show: false}
+													5: {add: false, show: false},
+													6: {add: false, show: false},
+													7: {add: false, show: false},
+													8: {add: false, show: false},
+													9: {add: false, show: false},
+													10: {add: false, show: false}
 											};
 											$scope.counter = 2;
 //											$scope.backgroundSwitch = true;
@@ -41,14 +46,32 @@ angular
 											/*----------------------------------------------------------------------------------------------------*/
 											$interval(function(){
 												if ($scope.counter == 1){
+													$scope.section[10]['show'] = false;
+													$scope.section[9]['show'] = false;
+													$scope.section[8]['show'] = false;
+													$scope.section[7]['show'] = false;
+													$timeout(function(){
+														$scope.section[10]['add'] = false;
+														$scope.section[9]['add'] = false;
+														$scope.section[8]['add'] = false;
+														$scope.section[7]['add'] = false;
+													}, 2000);
+												}
+												else if ($scope.counter == 7){
+													$scope.section[6]['show'] = false;
 													$scope.section[5]['show'] = false;
+													$scope.section[4]['show'] = false;
+													$scope.section[3]['show'] = false;
 													$scope.section[2]['show'] = false;
 													$timeout(function(){
+														$scope.section[6]['add'] = false;
 														$scope.section[5]['add'] = false;
+														$scope.section[4]['add'] = false;
+														$scope.section[3]['add'] = false;
 														$scope.section[2]['add'] = false;
 													}, 2000);
 												}
-												else if ($scope.counter - 1 != 2){
+												else if ($scope.counter - 1 != 2 && $scope.counter - 1 != 7){
 													$scope.section[$scope.counter-1]['show'] = false;
 													$timeout(function(){
 														$scope.section[$scope.counter-1]['add'] = false;
@@ -61,10 +84,41 @@ angular
 														$scope.counter = 3;
 														$scope.section[$scope.counter]['show'] = true;
 														$scope.section[$scope.counter]['add'] = true;
-														$scope.counter = 4;
+														$timeout(function(){
+															$scope.counter = 4;
+															$scope.section[$scope.counter]['show'] = true;
+															$scope.section[$scope.counter]['add'] = true;
+															$timeout(function(){
+																$scope.counter = 5;
+																$scope.section[$scope.counter]['show'] = true;
+																$scope.section[$scope.counter]['add'] = true;
+																$timeout(function(){
+																	$scope.counter = 6;
+																	$scope.section[$scope.counter]['show'] = true;
+																	$scope.section[$scope.counter]['add'] = true;
+																	$scope.counter = 7;
+																}, 100);
+															}, 100);
+														}, 100);
+													}
+													else if ($scope.counter == 7){
+														$scope.counter = 8;
+														$scope.section[$scope.counter]['show'] = true;
+														$scope.section[$scope.counter]['add'] = true;
+														$timeout(function(){
+															$scope.counter = 9;
+															$scope.section[$scope.counter]['show'] = true;
+															$scope.section[$scope.counter]['add'] = true;
+															$timeout(function(){
+																$scope.counter = 10;
+																$scope.section[$scope.counter]['show'] = true;
+																$scope.section[$scope.counter]['add'] = true;
+																$scope.counter = 1;
+															}, 100);
+														}, 100);
 													}
 													else {
-														$scope.counter = (($scope.counter + 1) % 6) == 0 ? 1 : ($scope.counter + 1) % 6;
+														$scope.counter = (($scope.counter + 1) % 11) == 0 ? 1 : ($scope.counter + 1) % 11;
 													}
 												}, 2000);
 											},6000);
@@ -82,9 +136,12 @@ angular
 													if (section == 'one'){
 														return "url('/views-public/landing-page/images/about/mobile/about-background.jpg')";
 													}
-													else if (section == 'two'){
+													else if (section == 'three'){
 														return "url('/views-public/landing-page/images/about/mobile/about-background-2.jpg')";
-													}	
+													}
+													else if (section == 'four'){
+														return "url('/views-public/landing-page/images/the-team/mobile/the-team-background.jpg')";
+													}
 //												}
 //												else {
 //													if (section == 'two'){
@@ -101,8 +158,11 @@ angular
 													if (section == 'one'){
 														return "url('/views-public/landing-page/images/about/about-background.jpg')";
 													}
-													else if (section == 'two'){
+													else if (section == 'three'){
 														return "url('/views-public/landing-page/images/about/about-background-2.jpg')";
+													}
+													else if (section == 'four'){
+														return "url('/views-public/landing-page/images/the-team/the-team-background.jpg')";
 													}	
 //												}
 //												else {

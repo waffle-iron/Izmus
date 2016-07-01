@@ -1,0 +1,1 @@
+angular.module('importExportApp', ['izmusNavBarApp', 'izmusMainWindowApp', 'ngFileUpload']);

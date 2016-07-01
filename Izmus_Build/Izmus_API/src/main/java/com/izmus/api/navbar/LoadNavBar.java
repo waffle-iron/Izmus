@@ -106,6 +106,9 @@ public class LoadNavBar {
 		if (permissionEvaluator.hasPermission(authentication, "Admin Menu/Processes", null)){
 			adminMenu.getSubItems().add(getProcessesItem());
 		}
+		if (permissionEvaluator.hasPermission(authentication, "Admin Menu/Import Export", null)){
+			adminMenu.getSubItems().add(getImportExportItem());
+		}
 		return adminMenu;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
@@ -114,6 +117,15 @@ public class LoadNavBar {
 		rolesItem.setHref("/Processes");
 		rolesItem.setLabel(context.getMessage("navBar.menu.adminMenu.processes",null, LocaleContextHolder.getLocale()));
 		rolesItem.setIcon("/views/core/izmus-nav-bar/images/flow-diagram.svg");
+		rolesItem.setType("link");
+		return rolesItem;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private NavbarItem getImportExportItem() {
+		NavbarItem rolesItem = new NavbarItem();
+		rolesItem.setHref("/ImportExport");
+		rolesItem.setLabel(context.getMessage("navBar.menu.adminMenu.importExport",null, LocaleContextHolder.getLocale()));
+		rolesItem.setIcon("import_export");
 		rolesItem.setType("link");
 		return rolesItem;
 	}

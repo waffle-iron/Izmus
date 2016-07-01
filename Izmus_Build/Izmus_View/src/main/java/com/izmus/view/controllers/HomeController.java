@@ -41,6 +41,13 @@ public class HomeController {
 		return returnModel;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/ImportExport", method = RequestMethod.GET)
+	@PreAuthorize("hasPermission('Admin Menu/Import Export', '')")
+	public ModelAndView getImportInformation() {
+		ModelAndView returnModel = new ModelAndView("importExport");
+		return returnModel;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/FindersDashboard", method = RequestMethod.GET)
 	@PreAuthorize("hasPermission('Finders Dashboard', '')")
 	public ModelAndView getFindersDashboard() {
