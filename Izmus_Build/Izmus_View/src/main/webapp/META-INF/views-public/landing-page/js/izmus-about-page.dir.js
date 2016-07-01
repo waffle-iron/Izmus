@@ -121,7 +121,7 @@ angular
 														$scope.counter = (($scope.counter + 1) % 11) == 0 ? 1 : ($scope.counter + 1) % 11;
 													}
 												}, 2000);
-											},6000);
+											},7000);
 											/*----------------------------------------------------------------------------------------------------*/
 											$scope.showSection = function(sectionNumber){
 												return $scope.section[sectionNumber]['show'];

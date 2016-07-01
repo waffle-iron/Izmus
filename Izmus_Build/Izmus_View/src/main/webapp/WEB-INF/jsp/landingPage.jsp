@@ -139,6 +139,8 @@
 			joyTitle: ' <spring:message code="landingPage.joyTitle" />',
 			rabeaBader: ' <spring:message code="landingPage.rabeaBader" />',
 			rabeaTitle: ' <spring:message code="landingPage.rabeaTitle" />',
+			aikLimLow: ' <spring:message code="landingPage.aikLimLow" />',
+			aikTitle: ' <spring:message code="landingPage.aikTitle" />',
 			israeliStartupsHeader: ' <spring:message code="landingPage.about.israeliStartupsHeader" />',
 			israeliStartupsContentOne: ' <spring:message code="landingPage.about.israeliStartupsContentOne" />',
 			israeliStartupsContentTwo: ' <spring:message code="landingPage.about.israeliStartupsContentTwo" />',

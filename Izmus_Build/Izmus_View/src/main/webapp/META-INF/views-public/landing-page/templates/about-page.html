@@ -547,6 +547,27 @@
 					md-svg-src="/views-public/landing-page/images/about/linkedin-icon.svg"></md-icon>
 				</md-button>
 			</div>
+			<div class="about-section-four-text md-whiteframe-1dp" layout="column" layout-align="start center" layout-padding ani-view>
+				<img class="team-icon" ng-src="/views-public/landing-page/images/the-team/aik.jpg"/>
+				<div class="about-section-four-text-header" layout="row"
+				dir="{{globalAttr.direction}}"
+				ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
+					<p>
+						{{lang.aikLimLow}}
+					</p>
+				</div>
+				<div class="about-section-four-text-content" layout="row"
+				dir="{{globalAttr.direction}}"
+				ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
+					<p>
+						{{lang.aikTitle}}
+					</p>
+				</div>
+				<md-button aria-label="linkedin" class="md-icon-button team-linkedin-button" href='https://sg.linkedin.com/in/aik-lim-low-bb95b97'>
+					<md-icon
+					md-svg-src="/views-public/landing-page/images/about/linkedin-icon.svg"></md-icon>
+				</md-button>
+			</div>
 		</section>
 	</md-whiteframe>
 </section>
