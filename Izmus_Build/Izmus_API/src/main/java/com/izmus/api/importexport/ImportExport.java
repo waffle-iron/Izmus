@@ -38,12 +38,13 @@ public class ImportExport {
 			processStartupFile(file.getInputStream());
 		} catch (Exception e) {
 			LOGGER.error("Could Not Load Available Startups From File: " + file.getName());
+			return "{\"result\": \"fail\"}";
 		}
 		LOGGER.info("File Uploaded Successfully: " + file.getName());
 		return "{\"result\": \"success\"}";
 	}
 	/*----------------------------------------------------------------------------------------------------*/
-	private void processStartupFile(InputStream inputStream) {
+	private void processStartupFile(InputStream inputStream) throws Exception{
 		Reader reader = new InputStreamReader(inputStream);
 		try {
 			Iterable<CSVRecord> records = CSVFormat.RFC4180.parse(reader);
@@ -68,14 +69,11 @@ public class ImportExport {
 			    newStartup.setFundingStage(fundingStage);
 			    newStartup.setProductStage(productStage);
 			    newStartup.setNumberOfEmployees(numberOfEmployees);
-			    try {
-					availableStartupRepository.save(newStartup);
-				} catch (Exception e) {
-					LOGGER.error("Could Not Save New Startup From File With Exception: " + e.getMessage());
-				}
+			    availableStartupRepository.save(newStartup);
 			}
 		} catch (Exception e) {
 			LOGGER.error("Could Not Load Available Startups From File With Exception: " + e.getMessage());
+			throw e;
 		}
 	}
 	/*----------------------------------------------------------------------------------------------------*/

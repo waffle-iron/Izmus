@@ -35,7 +35,7 @@ public class MailSenderTest {
 	private static final String WEB_INF = "../Izmus_View/src/main/webapp/WEB-INF/";
 	private static final String EMAIL_IMAGES_DIR = WEB_INF + "email-images/";
 	private static final String SENT_EMAIL_DIR = WEB_INF + "sent-emails/";
-	private static final String FROM_EMAIL_ADDRESS = "lior@izmus.com";
+	private static final String FROM_EMAIL_ADDRESS = "info@izmus.com";
 	@Autowired
 	private JavaMailSenderImpl mailSender;
 	/*----------------------------------------------------------------------------------------------------*/
