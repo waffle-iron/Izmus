@@ -1,0 +1,54 @@
+<style>
+	.startup-card {
+		margin: 5px;
+		cursor: pointer;
+	}
+	.search-input {
+		margin-bottom: 0px;
+		margin-top: 25px;
+		margin-left: 10px;
+		margin-right: 10px;
+		padding-bottom: 0px;
+	}
+</style>
+<md-content flex layout='column'>
+	<section ng-if='sidenavCtrl.progressMode == ""' layout="row" layout-align="space-between center">
+		<md-input-container
+		layout-padding
+		class="search-input"
+		ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+			<label>{{lang.search}}</label>
+			<input ng-model="$parent.search">
+		</md-input-container>
+		<md-button class="md-fab md-mini" ng-click="goSearch()">
+			<md-icon class="material-icons">
+				skip_next
+			</md-icon>
+		</md-button>
+	</section>
+	<md-virtual-repeat-container
+	ng-if='sidenavCtrl.progressMode == ""'
+	layout="column"
+	layout-padding
+	flex
+	md-top-index="$parent.searchIndex"
+	id="vertical-container">
+		<md-whiteframe
+		md-virtual-repeat="startup in availableStartups"
+		md-on-demand
+		class="md-whiteframe-1dp startup-card"
+		flex="none"
+		layout-padding
+		ng-click="viewStartupContact($event, contact)"
+		layout="column">
+			<div layout="row" layout-align="start center">
+				<section layout="column">
+					<section>
+						<span>{{(startup.startupName ? startup.startupName : '')}}</span>
+						<span class="md-subheader">{{(startup.site ? startup.site : '')}}</span>
+					</section>
+				</section>
+			</div>
+		</md-whiteframe>
+	</md-virtual-repeat-container>
+</md-content>

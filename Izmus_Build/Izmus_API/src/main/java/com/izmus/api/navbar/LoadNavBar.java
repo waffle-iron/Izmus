@@ -182,7 +182,7 @@ public class LoadNavBar {
 		NavbarItem proposalItem = new NavbarItem();
 		proposalItem.setHref("/AvailableStartups");
 		proposalItem.setLabel(context.getMessage("navBar.menu.assessorsMenu.availableStartups",null, LocaleContextHolder.getLocale()));
-		proposalItem.setIcon("/views/contacts/images/contact.svg");
+		proposalItem.setIcon("/views/core/izmus-nav-bar/images/available-startups.svg");
 		proposalItem.setType("link");
 		return proposalItem;
 	}

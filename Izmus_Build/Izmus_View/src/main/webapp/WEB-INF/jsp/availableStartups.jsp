@@ -12,8 +12,11 @@
 	src="<c:url value="/views/available-startups/js/available-startups.dir.js" />"></script>
 <script
 	src="<c:url value="/views/available-startups/js/available-startups.ser.js" />"></script>
+<script
+	src="<c:url value="/views/available-startups/js/available-startups-list.dir.js" />"></script>
 <script>
 	var lang = {
-			
+			search:' <spring:message code="navBar.menu.startupAssessment.search" />',
+			availableStartups: ' <spring:message code="navBar.menu.assessorsMenu.availableStartups" />'
 	};
 </script>
