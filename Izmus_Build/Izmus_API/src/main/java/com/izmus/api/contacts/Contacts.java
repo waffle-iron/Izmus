@@ -51,14 +51,14 @@ public class Contacts {
 	private ObjectMapper jacksonObjectMapper;
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/GeneralContacts")
-	@PreAuthorize("hasPermission('Contacts', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Contacts', '')")
 	public List<GeneralContact> getAllGeneralContacts(){
 		List<GeneralContact> allGeneralContacts = generalContactRepository.findAll();
 		return allGeneralContacts;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/GeneralContacts/{contactId}")
-	@PreAuthorize("hasPermission('Contacts', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Contacts', '')")
 	public GeneralContact getGeneralContact(@PathVariable("contactId") Integer contactId){
 		GeneralContact returnGeneral = null;
 		try {
@@ -71,7 +71,7 @@ public class Contacts {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.POST, value = "/GeneralContacts")
-	@PreAuthorize("hasPermission('Contacts', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Contacts', '')")
 	public String saveGeneralContacts(@RequestParam(value = "generalContact", required = true) String generalContactJson){
 		GeneralContact contact = null;
 		try {
@@ -96,7 +96,7 @@ public class Contacts {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/FinderContacts")
-	@PreAuthorize("hasPermission('Contacts', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Contacts', '')")
 	public List<FinderContact> getAllFinderContacts(){
 		List<FinderContact> allFinderContacts = finderContactRepository.findAll();
 		for (FinderContact contact: allFinderContacts){
@@ -109,7 +109,7 @@ public class Contacts {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/FinderContacts/{contactId}")
-	@PreAuthorize("hasPermission('Contacts', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Contacts', '')")
 	public FinderContact getFinderContact(@PathVariable("contactId") Integer contactId){
 		FinderContact returnFinder = null;
 		try {
@@ -122,7 +122,7 @@ public class Contacts {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.POST, value = "/FinderContacts")
-	@PreAuthorize("hasPermission('Contacts', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Contacts', '')")
 	public String saveFinderContacts(@RequestParam(value = "finderContact", required = true) String finderContactJson){
 		FinderContact contact = null;
 		try {
@@ -139,7 +139,7 @@ public class Contacts {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/InvestorContacts")
-	@PreAuthorize("hasPermission('Contacts', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Contacts', '')")
 	public List<InvestorContact> getAllInvestorContacts(){
 		List<InvestorContact> allInvestorContacts = investorContactRepository.findAll();
 		for (InvestorContact contact: allInvestorContacts){
@@ -152,7 +152,7 @@ public class Contacts {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/InvestorContacts/{contactId}")
-	@PreAuthorize("hasPermission('Contacts', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Contacts', '')")
 	public InvestorContact getInvestorContact(@PathVariable("contactId") Integer contactId){
 		InvestorContact returnInvestor = null;
 		try {
@@ -165,7 +165,7 @@ public class Contacts {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.POST, value = "/InvestorContacts")
-	@PreAuthorize("hasPermission('Contacts', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Contacts', '')")
 	public String saveInvestorContacts(@RequestParam(value = "investorContact", required = true) String investorContactJson){
 		InvestorContact contact = null;
 		try {
@@ -182,7 +182,7 @@ public class Contacts {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/StartupContacts")
-	@PreAuthorize("hasPermission('Contacts', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Contacts', '')")
 	public List<StartupContact> getAllStartupContacts(){
 		List<StartupContact> allStartupContacts = startupContactRepository.findAll();
 		for (StartupContact contact : allStartupContacts){
@@ -193,7 +193,7 @@ public class Contacts {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/StartupContacts/{contactId}")
-	@PreAuthorize("hasPermission('Contacts', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Contacts', '')")
 	public StartupContact getStartupContact(@PathVariable("contactId") Integer contactId){
 		StartupContact returnContact = null;
 		try {
@@ -206,7 +206,7 @@ public class Contacts {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET)
-	@PreAuthorize("hasPermission('Contacts', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Contacts', '')")
 	public Map<String, List<? extends IzmusContact>> getAllIzmusContacts(){
 		HashMap<String, List<? extends IzmusContact>> returnMap = new HashMap<String, List<? extends IzmusContact>>();
 		returnMap.put("generalContacts", getAllGeneralContacts());

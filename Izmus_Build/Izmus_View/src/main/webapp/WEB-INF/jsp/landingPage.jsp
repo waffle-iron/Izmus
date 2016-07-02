@@ -155,7 +155,8 @@
 			resourcefulSectionHeader: ' <spring:message code="landingPage.about.resourcefulSectionHeader" />',
 			resourcefulSectionContent: ' <spring:message code="landingPage.about.resourcefulSectionContent" />',
 			strategicSectionHeader: ' <spring:message code="landingPage.about.strategicSectionHeader" />',
-			strategicSectionContent: ' <spring:message code="landingPage.about.strategicSectionContent" />'
+			strategicSectionContent: ' <spring:message code="landingPage.about.strategicSectionContent" />',
+			weAre: ' <spring:message code="landingPage.about.weAre" />'
 		};
 		<% if (request.getUserPrincipal()!= null && !request.getUserPrincipal().equals("")){
 			%>

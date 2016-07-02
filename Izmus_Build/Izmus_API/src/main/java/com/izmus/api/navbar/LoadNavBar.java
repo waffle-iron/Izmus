@@ -59,6 +59,9 @@ public class LoadNavBar {
 		if (permissionEvaluator.hasPermission(authentication, "Startup Assessment", null)){
 			assessorsMenu.getSubItems().add(getStartupAssessmnetItem());
 		}
+		if (permissionEvaluator.hasPermission(authentication, "Available Startups", null)){
+			assessorsMenu.getSubItems().add(getAvailableStartupsItem());
+		}
 		if (permissionEvaluator.hasPermission(authentication, "Meetings", null)){
 			assessorsMenu.getSubItems().add(getMeetingsItem());
 		}
@@ -170,6 +173,15 @@ public class LoadNavBar {
 		NavbarItem proposalItem = new NavbarItem();
 		proposalItem.setHref("/Contacts");
 		proposalItem.setLabel(context.getMessage("navBar.menu.assessorsMenu.contacts",null, LocaleContextHolder.getLocale()));
+		proposalItem.setIcon("/views/contacts/images/contact.svg");
+		proposalItem.setType("link");
+		return proposalItem;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private NavbarItem getAvailableStartupsItem() {
+		NavbarItem proposalItem = new NavbarItem();
+		proposalItem.setHref("/AvailableStartups");
+		proposalItem.setLabel(context.getMessage("navBar.menu.assessorsMenu.availableStartups",null, LocaleContextHolder.getLocale()));
 		proposalItem.setIcon("/views/contacts/images/contact.svg");
 		proposalItem.setType("link");
 		return proposalItem;

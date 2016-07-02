@@ -46,21 +46,21 @@ public class Meetings {
 	private IMeetingReportRepository meetingReportRepository;
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/GeneralMeetings")
-	@PreAuthorize("hasPermission('Meetings', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Meetings', '')")
 	public List<GeneralMeeting> getAllGeneralMeetings(){
 		List<GeneralMeeting> allGeneralMeetings = generalMeetingRepository.findAll();
 		return allGeneralMeetings;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/StartupMeetings")
-	@PreAuthorize("hasPermission('Meetings', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Meetings', '')")
 	public List<StartupMeeting> getAllStartupMeetings(){
 		List<StartupMeeting> allStartupMeetings = startupMeetingRepository.findAll();
 		return allStartupMeetings;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET)
-	@PreAuthorize("hasPermission('Meetings', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Meetings', '')")
 	public Map<String, List<? extends IzmusMeeting>> getAllIzmusMeetings(){
 		HashMap<String, List<? extends IzmusMeeting>> returnMap = new HashMap<String, List<? extends IzmusMeeting>>();
 		returnMap.put("generalMeetings", getAllGeneralMeetings());
@@ -69,7 +69,7 @@ public class Meetings {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/MeetingReport", method = RequestMethod.POST)
-	@PreAuthorize("hasPermission('Meetings', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Meetings', '')")
 	public String getMeetingReport(@RequestParam(value = "meeting", required = true) String meetingJson) {
 		GeneralMeeting meeting = null;
 		MeetingReport meetingReport = null;
@@ -93,7 +93,7 @@ public class Meetings {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.POST)
-	@PreAuthorize("hasPermission('Meetings', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Meetings', '')")
 	public String saveGeneralMeeting(@RequestParam(value = "meeting", required = true) String meetingJson) {
 		GeneralMeeting meeting = null;
 		try {

@@ -10,16 +10,16 @@
 	<md-content layout-padding dir="{{globalAttr.direction}}" layout="column">
 		<form name="contactTypeForm" layout="column">
 			<md-input-container class="user-type-input" ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
-				<label> Contact Type </label>
+				<label> {{lang.contactType}}</label>
 				<md-select ng-model="contactType" required name="contactType">
 					<md-option value="Izmus Finder">
-						Izmus Finder
+						{{lang.izmusFinder}}
 					</md-option>
 					<md-option value="Izmus Investor">
-						Izmus Investor
+						{{lang.izmusInvestor}}
 					</md-option>
 					<md-option value="General Contact">
-						General Contact
+						{{lang.generalContact}}
 					</md-option>
 				</md-select>
 				<div ng-messages="contactTypeForm.contactType.$error" multiple md-auto-hide="false">

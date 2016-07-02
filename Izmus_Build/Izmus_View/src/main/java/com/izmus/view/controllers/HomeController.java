@@ -49,7 +49,7 @@ public class HomeController {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/FindersDashboard", method = RequestMethod.GET)
-	@PreAuthorize("hasPermission('Finders Dashboard', '')")
+	@PreAuthorize("hasPermission('Finders Menu/Finders Dashboard', '')")
 	public ModelAndView getFindersDashboard() {
 		ModelAndView returnModel = new ModelAndView("findersDashboard");
 		return returnModel;
@@ -70,23 +70,30 @@ public class HomeController {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/StartupAssessment", method = RequestMethod.GET)
-	@PreAuthorize("hasPermission('Startup Assessment', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Startup Assessment', '')")
 	public ModelAndView getStartupAssessment() {
 		ModelAndView returnModel = new ModelAndView("startupAssessment");
 		return returnModel;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/Meetings", method = RequestMethod.GET)
-	@PreAuthorize("hasPermission('Meetings', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Meetings', '')")
 	public ModelAndView getMeetings() {
 		ModelAndView returnModel = new ModelAndView("meetings");
 		return returnModel;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/Contacts", method = RequestMethod.GET)
-	@PreAuthorize("hasPermission('Contacts', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Contacts', '')")
 	public ModelAndView getContacts() {
 		ModelAndView returnModel = new ModelAndView("contacts");
+		return returnModel;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/AvailableStartups", method = RequestMethod.GET)
+	@PreAuthorize("hasPermission('Assessors Menu/Available Startups', '')")
+	public ModelAndView getAvailableStartups() {
+		ModelAndView returnModel = new ModelAndView("availableStartups");
 		return returnModel;
 	}	
 }

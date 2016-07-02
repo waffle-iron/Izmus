@@ -7,9 +7,9 @@
         max-width: 400px;
     }
     .login-section-text-content {
-        text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-        font-size: x-large;
-        font-weight: 700;
+        text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+        font-size: 45;
+        font-weight: 900;
         color: white;
         text-align: center;
     }
@@ -40,7 +40,6 @@
 layout="row" layout-xs="column" layout-padding layout-align="space-around center"
 ng-style="{'background-image': getSectionBackgroundImage('login')}">
     <div class="login-section-text" layout="column" layout-align="center center">
-        <md-icon hide-sm hide-xs class="login-logo-words" aria-label="Logo" md-svg-src="/views-public/core/logo/izmus-logo.svg"></md-icon>
         <div class="login-section-text-content" layout="row"
             ng-class="(globalAttr.direction == 'rtl') ? 'font-rtl' : 'font'">
             <p hide-sm hide-xs>

@@ -1,0 +1,1 @@
+angular.module('availableStartupsApp', ['izmusNavBarApp', 'izmusMainWindowApp']);

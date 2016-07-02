@@ -51,6 +51,10 @@
 			additionalInvestmentStages: ' <spring:message code="navBar.menu.assessorsMenu.contacts.additionalInvestmentStages" />',
 			investmentStages: ' <spring:message code="navBar.menu.assessorsMenu.contacts.investmentStages" />',
 			assosiatedFinders: ' <spring:message code="navBar.menu.assessorsMenu.contacts.assosiatedFinders" />',
-			notes: ' <spring:message code="navBar.menu.assessorsMenu.contacts.notes" />'
+			notes: ' <spring:message code="navBar.menu.assessorsMenu.contacts.notes" />',
+			contactType: ' <spring:message code="navBar.menu.assessorsMenu.contacts.contactType" />',
+			izmusFinder: ' <spring:message code="navBar.menu.assessorsMenu.contacts.izmusFinder" />',
+			izmusInvestor: ' <spring:message code="navBar.menu.assessorsMenu.contacts.izmusInvestor" />',
+			generalContact: ' <spring:message code="navBar.menu.assessorsMenu.contacts.generalContact" />'
 	};
 </script>

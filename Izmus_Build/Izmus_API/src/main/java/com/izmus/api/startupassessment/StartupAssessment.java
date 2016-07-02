@@ -98,7 +98,7 @@ public class StartupAssessment {
 
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/StartupAssessmentData", method = RequestMethod.GET)
-	@PreAuthorize("hasPermission('Startup Assessment', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Startup Assessment', '')")
 	public List<Startup> getStartups() {
 		List<Startup> startups = new ArrayList<>();
 		try {
@@ -132,7 +132,7 @@ public class StartupAssessment {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/FinancialIndicatorTypes", method = RequestMethod.GET)
-	@PreAuthorize("hasPermission('Startup Assessment', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Startup Assessment', '')")
 	public List<FinancialIndicatorType> getIndicatorTypes() {
 		List<FinancialIndicatorType> indicatorTypes = new ArrayList<>();
 		try {
@@ -253,7 +253,7 @@ public class StartupAssessment {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/FinancialIndicators", method = RequestMethod.GET)
-	@PreAuthorize("hasPermission('Startup Assessment', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Startup Assessment', '')")
 	public List<FinancialIndicator> getIndicators(@RequestParam(value = "startupId", required = true) Integer startupId) {
 		List<FinancialIndicator> indicators = new ArrayList<>();
 		List<FinancialIndicatorType> indicatorTypes = new ArrayList<>();
@@ -315,7 +315,7 @@ public class StartupAssessment {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/FinancialIndicators", method = RequestMethod.POST)
-	@PreAuthorize("hasPermission('Startup Assessment', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Startup Assessment', '')")
 	public String saveIndicators(@RequestParam(value = "financialIndicators", required = true) String financialIndicatorsObject,
 			@RequestParam(value = "startupId", required = true) Integer startupId) {
 		try {
@@ -347,7 +347,7 @@ public class StartupAssessment {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/DefaultScoreCard", method = RequestMethod.GET)
-	@PreAuthorize("hasPermission('Startup Assessment', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Startup Assessment', '')")
 	public StartupScoreCard getDefaultScoreCard(@RequestParam(value = "startupId", required = true) Integer startupId) {
 		StartupScoreCard scoreCard = null;
 		try {
@@ -380,7 +380,7 @@ public class StartupAssessment {
 
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/ScoreCardReport", method = RequestMethod.POST)
-	@PreAuthorize("hasPermission('Startup Assessment', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Startup Assessment', '')")
 	public String getScoreCardReport(@RequestParam(value = "scoreCard", required = true) String scoreCardString,
 			@RequestParam(value = "startup", required = true) String startupString,
 			@RequestParam(value = "additionalDocuments", required = false) String[] additionalDocuments) {
@@ -408,7 +408,7 @@ public class StartupAssessment {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/MeetingSummaryReport", method = RequestMethod.POST)
-	@PreAuthorize("hasPermission('Startup Assessment', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Startup Assessment', '')")
 	public String getMeetingSummaryReport(@RequestParam(value = "startupId", required = true) Integer startupId,
 			@RequestParam(value = "startupMeeting", required = true) String startupMeetingJson) {
 		StartupMeeting startupMeeting = null;
@@ -447,7 +447,7 @@ public class StartupAssessment {
 
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/EmailScoreCardReport", method = RequestMethod.POST)
-	@PreAuthorize("hasPermission('Startup Assessment', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Startup Assessment', '')")
 	public void emailScoreCardReport(@RequestParam(value = "scoreCard", required = true) String scoreCardString,
 			@RequestParam(value = "startup", required = true) String startupString,
 			@RequestParam(value = "emails", required = true) ArrayList<String> emails,

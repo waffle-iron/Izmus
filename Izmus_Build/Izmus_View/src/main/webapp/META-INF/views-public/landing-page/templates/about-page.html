@@ -24,12 +24,15 @@
 		color: #1f6086;
 		text-align: center;
 	}
-	.about-section-three-header-text, .about-section-four-header-text {
+	.about-section-three-header-text, 
+	.about-section-four-header-text,
+	.about-section-two-header-text {
 		font-size: 3em;
 		font-weight: 500;
 		text-align: center;
 	}
-	.about-section-three-header-text {
+	.about-section-three-header-text,
+	.about-section-two-header-text {
 		color: white;
 	}
 	.about-section-four-header-text {
@@ -44,7 +47,7 @@
 		color: white;
 		text-align: center;
 	}
-	.about-section-three-text-header{
+	.about-section-three-text-header {
 		font-size: 25;
 		font-weight: 700;
 		color: white;
@@ -104,7 +107,7 @@
 		animation: bounceInLeft 2s;
 	}
 	.about-section-two-text-content.ng-hide-remove, .about-section-three-text.ng-hide-remove, .about-section-four-text.ng-hide-remove {
-		animation: fadeIn 4s;
+		animation: fadeIn 3s;
 	}
 	.contact-us-button {
 		color: white !important;
@@ -154,39 +157,35 @@
 		border-style: solid;
 		border-color: rgb(160,195,215);
 	}
-	.about-section-four-text-header{
+	.about-section-four-text-header {
 		font-size: 27;
 		font-weight: 700;
 		color: white;
 		text-align: center;
 	}
-	.about-section-four-text-header>p{
+	.about-section-four-text-header > p {
 		margin-bottom: 0px;
 		margin-top: 5px;
 	}
-	.about-section-four-text-content{
+	.about-section-four-text-content {
 		font-size: 1em;
 		font-weight: 300;
 		color: rgb(160,195,215);
 		text-align: center;
 	}
-	.about-section-four-text-content>p{
+	.about-section-four-text-content > p {
 		margin: 0px;
 	}
-	.team-linkedin-button{
+	.team-linkedin-button {
 		margin-top: 60px !important;
 	}
-	.israeli-startups{
+	.israeli-startups {
 		margin: 5px;
 		font-size: 15px;
 	}
-	.israeli-startups>p{
+	.israeli-startups > p {
 		margin: 0px !important;
 	}
-	.section-two-logo-words {
-        width: 140px !important;
-        height: 50px !important;
-    }
 </style>
 <section style="height: 8px;"></section>
 <section layout="column">
@@ -266,41 +265,6 @@
 					</p>
 				</div>
 			</div>
-			<!-- <div class="about-section-text" layout="column" layout-align="center center">
-				<div class="about-section-header-text section-one-anim" layout="row" dir="{{globalAttr.direction}}"
-				ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'" ng-show="showSection(10)" ng-if="addSection(10)">
-					<p>
-						{{lang.missionSectionHeader}}
-					</p>
-				</div>
-				<div class="about-section-text-content md-whiteframe-1dp background-blue" layout-padding layout="row" dir="{{globalAttr.direction}}"
-				ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'" ng-show="showSection(11)" ng-if="addSection(11)">
-					<p>
-						{{lang.missionSectionContentTwo}}
-					</p>
-				</div>
-				<div class="about-section-text-content md-whiteframe-1dp background-blue" layout-padding layout="row" dir="{{globalAttr.direction}}"
-				ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'" ng-show="showSection(12)" ng-if="addSection(12)">
-					<p>
-						{{lang.missionSectionContentOne}}
-					</p>
-				</div>
-				<div class="about-section-text-content md-whiteframe-1dp background-blue" layout-padding layout="row" dir="{{globalAttr.direction}}"
-				ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'" ng-show="showSection(13)" ng-if="addSection(13)">
-					<p>
-						{{lang.missionSectionContentThree}}
-					</p>
-				</div>
-			</div> -->
-			<!-- <section layout="row" layout-align="center center" class="section-one-anim divider">
-			<hr>
-			</section>
-			<section layout-padding layout="row" layout-align="center center" class="section-one-anim">
-			<md-button class="md-raised contact-us-button" ng-click="contactDialog($event)"
-			ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-rtl' : 'izmus-fonts'">
-			{{lang.contactUs}}
-			</md-button>
-			</section> -->
 		</section>
 	</md-whiteframe>
 </section>
@@ -310,8 +274,14 @@
 	flex="none"
 	class="about-section-two md-whiteframe-10dp"
 	layout="column">
-		<section layout="column" layout-padding>
-			<md-icon hide-sm hide-xs class="section-two-logo-words " aria-label="Logo" md-svg-src="/views-public/core/logo/izmus-logo.svg"></md-icon>
+		<section layout="column" layout-align="center center">
+			<div class="about-section-two-header-text" layout="row"
+			dir="{{globalAttr.direction}}"
+			ng-class="(globalAttr.direction == 'rtl') ? 'izmus-fonts-header-rtl' : 'izmus-fonts-header'">
+				<p>
+					{{lang.weAre}}
+				</p>
+			</div>
 		</section>
 		<section
 		layout="row"
