@@ -10,6 +10,18 @@
 		margin-right: 10px;
 		padding-bottom: 0px;
 	}
+	.startup-icon {
+		margin-top: 8px !important;
+		margin-bottom: 8px !important;
+	}
+	.startup-avatar-icon {
+		height: 38px;
+		width: 38px !important;
+		border-radius: 20px;
+		border-width: 1px;
+		border-style: solid;
+		border-color: rgb(160,195,215);
+	}
 </style>
 <md-content flex layout='column'>
 	<section ng-if='sidenavCtrl.progressMode == ""' layout="row" layout-align="space-between center">
@@ -42,6 +54,13 @@
 		ng-click="viewStartupContact($event, contact)"
 		layout="column">
 			<div layout="row" layout-align="start center">
+				<md-icon
+				ng-if="(startup.logo == null || statup.logo =='')"
+				ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+				class="material-icons startup-icon startup-avatar-icon" md-svg-src="/views/core/izmus-nav-bar/images/startup.svg"></md-icon>
+				<img
+				ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+				ng-if="(startup.logo != null && statup.logo !='')" class="startup-avatar-icon" ng-src="{{startup.logo}}"/>
 				<section layout="column">
 					<section>
 						<span>{{(startup.startupName ? startup.startupName : '')}}</span>
