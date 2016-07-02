@@ -76,6 +76,9 @@
     border-width: thin;
     border-radius: 0;
 }
+.mobile-button-disabled{
+	opacity : 0.3;
+}
 </style>
 <title>IZMUS</title>
 <div ng-cloak layout="column" flex class="background">
@@ -116,13 +119,13 @@
 	        	</language-menu>
 	        </div>
 	        <div hide-gt-sm>
-	        	<md-button ng-disable="(screenShowing == 'about')" class="md-icon-button toolbar-icons" ng-click="moveToPage('about')">
+	        	<md-button ng-class="(screenShowing == 'about') ? 'mobile-button-disabled' : ''" class="md-icon-button toolbar-icons" ng-click="moveToPage('about')">
 					<md-icon aria-label="Logo" md-svg-src="/views-public/landing-page/images/about128x128.svg"></md-icon>
 				</md-button>
 				<!-- <md-button ng-disable="(screenShowing == 'register')" ng-if="(globalAttr.user == null)"  class="md-icon-button toolbar-icons logo-button-icon" ng-click="moveToPage('register')">
 					<md-icon class="logo-icon" aria-label="Logo" md-svg-src="/views-public/landing-page/images/register128x128.svg"></md-icon>
 				</md-button> -->
-				<md-button ng-disable="(screenShowing == 'login')" ng-if="(globalAttr.user == null)" class="md-icon-button toolbar-icons" ng-click="moveToPage('login')">
+				<md-button ng-class="(screenShowing == 'login') ? 'mobile-button-disabled' : ''" ng-if="(globalAttr.user == null)" class="md-icon-button toolbar-icons" ng-click="moveToPage('login')">
 					<md-icon aria-label="Logo" md-svg-src="/views-public/landing-page/images/login128x128.svg"></md-icon>
 				</md-button>
 				<md-button ng-if="(globalAttr.user == null)" class="md-icon-button toolbar-icons" ng-click="contactDialog($event)">

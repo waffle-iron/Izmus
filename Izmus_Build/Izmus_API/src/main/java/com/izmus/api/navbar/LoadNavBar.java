@@ -56,16 +56,16 @@ public class LoadNavBar {
 		assessorsMenu.setIcon("/views/core/izmus-nav-bar/images/assessor.svg");
 		assessorsMenu.setType("toggle");
 		assessorsMenu.setSubItems(new ArrayList<NavbarItem>());
-		if (permissionEvaluator.hasPermission(authentication, "Startup Assessment", null)){
+		if (permissionEvaluator.hasPermission(authentication, "Assessors Menu/Startup Assessment", null)){
 			assessorsMenu.getSubItems().add(getStartupAssessmnetItem());
 		}
-		if (permissionEvaluator.hasPermission(authentication, "Available Startups", null)){
+		if (permissionEvaluator.hasPermission(authentication, "Assessors Menu/Available Startups", null)){
 			assessorsMenu.getSubItems().add(getAvailableStartupsItem());
 		}
-		if (permissionEvaluator.hasPermission(authentication, "Meetings", null)){
+		if (permissionEvaluator.hasPermission(authentication, "Assessors Menu/Meetings", null)){
 			assessorsMenu.getSubItems().add(getMeetingsItem());
 		}
-		if (permissionEvaluator.hasPermission(authentication, "Contacts", null)){
+		if (permissionEvaluator.hasPermission(authentication, "Assessors Menu/Contacts", null)){
 			assessorsMenu.getSubItems().add(getContactsItem());
 		}
 		return assessorsMenu;
@@ -78,7 +78,7 @@ public class LoadNavBar {
 		findersMenu.setIcon("/views/core/izmus-nav-bar/images/finders-menu.svg");
 		findersMenu.setType("toggle");
 		findersMenu.setSubItems(new ArrayList<NavbarItem>());
-		if (permissionEvaluator.hasPermission(authentication, "Finders Dashboard", null)){
+		if (permissionEvaluator.hasPermission(authentication, "Finders Menu/Finders Dashboard", null)){
 			findersMenu.getSubItems().add(getFindersDashboardItem());
 		}
 		return findersMenu;
