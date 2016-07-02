@@ -1,5 +1,5 @@
 angular.module('availableStartupsApp').directive('availableStartupsList', 
-		['loadAllAvailableStartups','$timeout',function(loadAllAvailableStartups,$timeout) {
+		['loadAllAvailableStartups',function(loadAllAvailableStartups) {
 	return {
 		restrict : 'E',
 		require: '^^availableStartups',
@@ -11,42 +11,7 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 			$scope.globalAttr = globalAttr;
 			$scope.lang = lang;
 			/*----------------------------------------------------------------------------------------------------*/
-			$scope.loadStartups = function(){
-				loadAllAvailableStartups().then(function(data){
-					$scope.setVirtualRepeat(data);
-					$scope.rawAvailableStartups = data;
-					$scope.sidenavCtrl.progressMode = '';
-				}, function(){
-					$scope.sidenavCtrl.progressMode = '';
-				});
-			}
-			/*----------------------------------------------------------------------------------------------------*/
-			$scope.$watch('search', function(){
-				$scope.goSearch();
-			});
-			/*----------------------------------------------------------------------------------------------------*/
-			$scope.goSearch = function(){
-				if ($scope.search) {
-					var found = false;
-					for (var i = $scope.searchIndex + 1; i < $scope.rawAvailableStartups.length; i++){
-						if ($scope.rawAvailableStartups[i].startupName.toLowerCase().indexOf($scope.search.toLowerCase()) > -1){
-							$scope.searchIndex = i + 1;
-							found = true;
-							break;
-						}
-					}
-					if (!found){
-						for (var i = 0; i < $scope.searchIndex + 1; i++){
-							if ($scope.rawAvailableStartups[i].startupName.toLowerCase().indexOf($scope.search.toLowerCase()) > -1){
-								$scope.searchIndex = i + 1;
-								break;
-							}
-						}
-					}
-				}
-			}
-			/*----------------------------------------------------------------------------------------------------*/
-			$scope.setVirtualRepeat = function(data){
+			$scope.setVirtualRepeat = function(){
 				// In this example, we set up our model using a class.
 		        // Using a plain object works too. All that matters
 		        // is that we implement getItemAtIndex and getLength.
@@ -56,9 +21,9 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 		           */
 		          this.loadedPages = {};
 		          /** @type {number} Total number of items. */
-		          this.numItems = 0;
+		          this.numItems = {itemNumber : 0};
 		          /** @const {number} Number of items to fetch per request. */
-		          this.PAGE_SIZE = 20;
+		          this.PAGE_SIZE = 50;
 		          this.fetchNumItems_();
 		        };
 		        // Required.
@@ -73,34 +38,35 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 		        };
 		        // Required.
 		        DynamicItems.prototype.getLength = function() {
-		          return this.numItems;
+		          return this.numItems.itemNumber;
 		        };
 		        DynamicItems.prototype.fetchPage_ = function(pageNumber) {
 		          // Set the page to null so we know it is already being fetched.
-		          this.loadedPages[pageNumber] = null;
-		          // For demo purposes, we simulate loading more items with a timed
-		          // promise. In real code, this function would likely contain an
-		          // $http request.
-		          $timeout(angular.noop, 300).then(angular.bind(this, function() {
-		            this.loadedPages[pageNumber] = [];
-		            var pageOffset = pageNumber * this.PAGE_SIZE;
-		            for (var i = pageOffset; i < pageOffset + this.PAGE_SIZE; i++) {
-		              this.loadedPages[pageNumber].push(data[i]);
-		            }
-		          }));
+		          var loadedPages = this.loadedPages;
+		          loadedPages[pageNumber] = null;
+		          loadAllAvailableStartups(pageNumber).then(function(data){
+		        	  	loadedPages[pageNumber] = data.content;
+		          }, function(){
+		        	  
+		          });
 		        };
 		        DynamicItems.prototype.fetchNumItems_ = function() {
-		          // For demo purposes, we simulate loading the item count with a timed
-		          // promise. In real code, this function would likely contain an
-		          // $http request.
-		          $timeout(angular.noop, 300).then(angular.bind(this, function() {
-		            this.numItems = data.length;
-		          }));
+		        	var loadedPages = this.loadedPages;
+		        	var numItems = this.numItems;
+		        	loadedPages[0] = null;
+		        	loadAllAvailableStartups(0).then(function(data){
+		        	  	loadedPages[0] = data.content;
+						numItems.itemNumber = data.totalElements;
+		        	}, function(){
+		        		
+		        	});
+		        	return numItems.itemNumber;
 		        };
 		        $scope.availableStartups = new DynamicItems();
 			}
 			/*----------------------------------------------------------------------------------------------------*/
-			$scope.loadStartups();
+			$scope.setVirtualRepeat();
+			/*----------------------------------------------------------------------------------------------------*/
 		}],
 		link : function(scope, elem, attr, parentCtrl) {
 			

@@ -37,20 +37,6 @@
 	}
 </style>
 <md-content flex layout='column'>
-	<section ng-if='sidenavCtrl.progressMode == ""' layout="row" layout-align="space-between center">
-		<md-input-container
-		layout-padding
-		class="search-input"
-		ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
-			<label>{{lang.search}}</label>
-			<input ng-model="$parent.search">
-		</md-input-container>
-		<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
-			<md-icon class="material-icons">
-				skip_next
-			</md-icon>
-		</md-button>
-	</section>
 	<md-virtual-repeat-container
 	ng-if='sidenavCtrl.progressMode == ""'
 	layout="column"
