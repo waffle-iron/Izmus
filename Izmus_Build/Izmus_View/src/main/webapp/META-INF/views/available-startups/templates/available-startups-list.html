@@ -15,12 +15,25 @@
 		margin-bottom: 8px !important;
 	}
 	.startup-avatar-icon {
-		height: 38px;
+		height: 38px !important;
 		width: 38px !important;
+		min-height: 38px !important;
+		min-width: 38px !important;
 		border-radius: 20px;
 		border-width: 1px;
 		border-style: solid;
 		border-color: rgb(160,195,215);
+	}
+	.startup-name-text {
+		font-size: x-small;
+		line-height: initial;
+	}
+	.startup-site{
+		font-size: x-small;
+	}
+	.next-search-button{
+		min-width: 40px;
+		min-height: 40px;
 	}
 </style>
 <md-content flex layout='column'>
@@ -32,7 +45,7 @@
 			<label>{{lang.search}}</label>
 			<input ng-model="$parent.search">
 		</md-input-container>
-		<md-button class="md-fab md-mini" ng-click="goSearch()">
+		<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
 			<md-icon class="material-icons">
 				skip_next
 			</md-icon>
@@ -63,8 +76,8 @@
 				ng-if="(startup.logo != null && statup.logo !='')" class="startup-avatar-icon" ng-src="{{startup.logo}}"/>
 				<section layout="column">
 					<section>
-						<span>{{(startup.startupName ? startup.startupName : '')}}</span>
-						<span class="md-subheader">{{(startup.site ? startup.site : '')}}</span>
+						<span class="startup-name-text">{{(startup.startupName ? startup.startupName : '')}}</span>
+						<span class="md-subheader startup-site">{{(startup.site ? startup.site : '')}}</span>
 					</section>
 				</section>
 			</div>

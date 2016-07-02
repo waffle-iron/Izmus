@@ -28,17 +28,17 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 			$scope.goSearch = function(){
 				if ($scope.search) {
 					var found = false;
-					for (var i = $scope.searchIndex + 5; i < $scope.rawAvailableStartups.length; i++){
+					for (var i = $scope.searchIndex + 1; i < $scope.rawAvailableStartups.length; i++){
 						if ($scope.rawAvailableStartups[i].startupName.toLowerCase().indexOf($scope.search.toLowerCase()) > -1){
-							$scope.searchIndex = i - 1;
+							$scope.searchIndex = i + 1;
 							found = true;
 							break;
 						}
 					}
 					if (!found){
-						for (var i = 0; i < $scope.searchIndex + 5; i++){
+						for (var i = 0; i < $scope.searchIndex + 1; i++){
 							if ($scope.rawAvailableStartups[i].startupName.toLowerCase().indexOf($scope.search.toLowerCase()) > -1){
-								$scope.searchIndex = i - 1;
+								$scope.searchIndex = i + 1;
 								break;
 							}
 						}
