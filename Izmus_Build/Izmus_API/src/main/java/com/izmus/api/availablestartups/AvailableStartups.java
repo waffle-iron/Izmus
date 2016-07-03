@@ -24,8 +24,15 @@ public class AvailableStartups {
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET)
 	@PreAuthorize("hasPermission('Assessors Menu/Available Startups', '')")
-	public Page<AvailableStartup> getAllIzmusContacts(@RequestParam(value = "pageNumber", required = true) String pageNumber){
-		Page<AvailableStartup> returnPage = availableStartupRepository.findAll(new PageRequest(1, 50));
+	public Page<AvailableStartup> getAllIzmusContacts(@RequestParam(value = "pageNumber", required = true) Integer pageNumber,
+			@RequestParam(value = "search", required = false) String search){
+		Page<AvailableStartup> returnPage;
+		if (search == null){
+			returnPage = availableStartupRepository.findAllByOrderByStartupNameAsc(new PageRequest(pageNumber, 50));
+		}
+		else {
+			returnPage = availableStartupRepository.findByStartupNameIgnoreCaseContainingOrderByStartupNameAsc(search, new PageRequest(pageNumber, 50));
+		}
 		return returnPage;
 	}
 }

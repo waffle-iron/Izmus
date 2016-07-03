@@ -11,6 +11,12 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 			$scope.globalAttr = globalAttr;
 			$scope.lang = lang;
 			/*----------------------------------------------------------------------------------------------------*/
+			$scope.goSearch = function(){
+				$scope.sidenavCtrl.progressMode = 'indeterminate';
+				$scope.goSearchText = $scope.search;
+				$scope.setVirtualRepeat();
+			}
+			/*----------------------------------------------------------------------------------------------------*/
 			$scope.setVirtualRepeat = function(){
 				// In this example, we set up our model using a class.
 		        // Using a plain object works too. All that matters
@@ -44,7 +50,7 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 		          // Set the page to null so we know it is already being fetched.
 		          var loadedPages = this.loadedPages;
 		          loadedPages[pageNumber] = null;
-		          loadAllAvailableStartups(pageNumber).then(function(data){
+		          loadAllAvailableStartups(pageNumber, $scope.goSearchText).then(function(data){
 		        	  	loadedPages[pageNumber] = data.content;
 		          }, function(){
 		        	  
@@ -54,9 +60,10 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 		        	var loadedPages = this.loadedPages;
 		        	var numItems = this.numItems;
 		        	loadedPages[0] = null;
-		        	loadAllAvailableStartups(0).then(function(data){
+		        	loadAllAvailableStartups(0, $scope.goSearchText).then(function(data){
 		        	  	loadedPages[0] = data.content;
 						numItems.itemNumber = data.totalElements;
+						$scope.sidenavCtrl.progressMode = '';
 		        	}, function(){
 		        		
 		        	});

@@ -32,7 +32,7 @@ public class MailSenderService {
 	private static final String EMAIL_IMAGES_DIR = "email-images";
 	private static final String SENT_EMAIL_DIR = "sent-emails";
 	private static final String INJECT_DIVEDER = "!";
-	private static final String FROM_EMAIL_ADDRESS = "lior@izmus.com";
+	private static final String FROM_EMAIL_ADDRESS = "info@izmus.com";
 	@Autowired
 	private JavaMailSenderImpl mailSender;
 	@Autowired

@@ -28,15 +28,29 @@
 		font-size: x-small;
 		line-height: initial;
 	}
-	.startup-site{
+	.startup-site {
 		font-size: x-small;
 	}
-	.next-search-button{
+	.next-search-button {
 		min-width: 40px;
 		min-height: 40px;
 	}
 </style>
 <md-content flex layout='column'>
+	<section ng-if='sidenavCtrl.progressMode == ""' layout="row" layout-align="space-between center">
+		<md-input-container
+		layout-padding
+		class="search-input"
+		ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+			<label>{{lang.search}}</label>
+			<input ng-model="$parent.search">
+		</md-input-container>
+		<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
+			<md-icon class="material-icons">
+				search
+			</md-icon>
+		</md-button>
+	</section>
 	<md-virtual-repeat-container
 	ng-if='sidenavCtrl.progressMode == ""'
 	layout="column"
