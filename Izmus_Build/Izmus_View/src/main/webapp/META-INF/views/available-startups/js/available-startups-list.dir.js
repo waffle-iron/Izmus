@@ -76,7 +76,10 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 			/*----------------------------------------------------------------------------------------------------*/
 		}],
 		link : function(scope, elem, attr, parentCtrl) {
-			
+			/*----------------------------------------------------------------------------------------------------*/
+			scope.selectStartup = function(startup){
+				parentCtrl.selectStartup(startup);
+			}
 		}
 	}
 } ]);

@@ -12,11 +12,14 @@ angular.module('availableStartupsApp').directive('availableStartups',
 							progressMode: 'indeterminate',
 							/*----------------------------------------------------------------------------------------------------*/
 							toggleSidenav: function(){
-								$mdSidenav(
-								'mainWidowSidenav')
-								.toggle();
+								$mdSidenav('mainWidowSidenav').toggle();
 							},
 					};
+					/*----------------------------------------------------------------------------------------------------*/
+					this.selectStartup = function(startup){
+						$scope.selectedStartup = startup;
+						$mdSidenav('mainWidowSidenav').toggle();
+					}
 				} ],
 				link : function(scope, elem, attr) {
 					

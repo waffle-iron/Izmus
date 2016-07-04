@@ -5,9 +5,11 @@ sidenav-ctrl='sidenavCtrl'
 main-window-title="{{lang.availableStartups}}">
 	<sidenav-content flex layout="column">
 		<available-startups-list layout="column" flex ng-init="sidenavCtrl.toggleSidenav()"
-			sidenav-ctrl='sidenavCtrl'>
-		</available-startups-list>
+		sidenav-ctrl='sidenavCtrl'></available-startups-list>
 	</sidenav-content>
 	<main-content flex layout="column">
+		<startup-details layout="column" flex
+			selected-startup="selectedStartup">
+		</startup-details>
 	</main-content>
 </izmus-main-window>
