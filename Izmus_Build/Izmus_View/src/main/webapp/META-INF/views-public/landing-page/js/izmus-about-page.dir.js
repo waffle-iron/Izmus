@@ -210,9 +210,13 @@ angular.module('izmusLandingPageApp').directive('aniView',['$document','$window'
 
                 // Use the specified window or the current window if no argument
                 w = w || window;
-
+                var scrollTop = w[0].scrollTop;
+                var scrollLeft = w[0].scrollLeft;
                 // This works for all browsers except IE versions 8 and before
-                if (w[0].scrollTop != null && w[0].scrollLeft != null) {
+                if (scrollTop != null && scrollLeft != null) {
+                	if (scrollLeft == 0 && scrollTop == 0){
+                    	return null;
+                    }
                     return {
                         x: w[0].scrollLeft,
                         y: w[0].scrollTop
@@ -252,6 +256,7 @@ angular.module('izmusLandingPageApp').directive('aniView',['$document','$window'
             scope.elementIsOnViewport = function (scope, element, $window){
               var position = scope.getPosition(element);
               var offset = scope.getScrollOffsets(scope.parent);
+              if (offset == null) return true;
               var viewport = scope.getViewPortSize($window);
               var coverage = {
                   x: parseInt(viewport.x + offset.x),
