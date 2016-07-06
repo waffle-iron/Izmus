@@ -50,6 +50,7 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 		          // Set the page to null so we know it is already being fetched.
 		          var loadedPages = this.loadedPages;
 		          loadedPages[pageNumber] = null;
+		          $scope.progressMode = 'indeterminate';
 		          loadAllAvailableStartups(pageNumber, $scope.goSearchText).then(function(data){
 		        	  	loadedPages[pageNumber] = data.content;
 		          }, function(){
