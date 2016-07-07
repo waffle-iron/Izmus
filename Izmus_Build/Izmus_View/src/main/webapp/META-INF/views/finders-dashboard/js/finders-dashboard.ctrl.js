@@ -1,1 +1,1 @@
-angular.module('findersDashboardApp', ['izmusNavBarApp']);
+angular.module('findersDashboardApp', ['izmusNavBarApp', 'izmusMainWindowApp']);

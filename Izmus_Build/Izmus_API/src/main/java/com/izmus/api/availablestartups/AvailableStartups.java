@@ -1,5 +1,9 @@
 package com.izmus.api.availablestartups;
 
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +29,37 @@ public class AvailableStartups {
 	@RequestMapping(method = RequestMethod.GET)
 	@PreAuthorize("hasPermission('Assessors Menu/Available Startups', '')")
 	public Page<AvailableStartup> getAllIzmusContacts(@RequestParam(value = "pageNumber", required = true) Integer pageNumber,
-			@RequestParam(value = "search", required = false) String search){
+			@RequestParam(value = "searchName", required = false) String searchName,
+			@RequestParam(value = "filterSector", required = false) String filterSector){
 		Page<AvailableStartup> returnPage;
-		if (search == null){
-			returnPage = availableStartupRepository.findAllByOrderByStartupNameAsc(new PageRequest(pageNumber, 50));
+		if (searchName == null){
+			if (filterSector == null){
+				returnPage = availableStartupRepository.findAllByOrderByStartupNameAsc(new PageRequest(pageNumber, 50));
+			}
+			else {
+				returnPage = availableStartupRepository.findBySectorIgnoreCaseContainingOrderByStartupNameAsc(filterSector, new PageRequest(pageNumber, 50));
+			}
 		}
 		else {
-			returnPage = availableStartupRepository.findByStartupNameIgnoreCaseContainingOrderByStartupNameAsc(search, new PageRequest(pageNumber, 50));
+			if (filterSector == null){
+				returnPage = availableStartupRepository.findByStartupNameIgnoreCaseContainingOrderByStartupNameAsc(searchName, new PageRequest(pageNumber, 50));
+			}
+			else {
+				returnPage = availableStartupRepository.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseContainingOrderByStartupNameAsc(searchName, filterSector, new PageRequest(pageNumber, 50));
+			}
+			
 		}
 		return returnPage;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(method = RequestMethod.GET, value="/Sectors")
+	@PreAuthorize("hasPermission('Assessors Menu/Available Startups', '')")
+	public Set<String> getAllSectors(){
+		TreeSet<String> returnSet = new TreeSet<>();
+		List<AvailableStartup> allStartups = availableStartupRepository.findAll();
+		for (AvailableStartup startup : allStartups){
+			if (!startup.getSector().isEmpty())	returnSet.add(startup.getSector());
+		}
+		return returnSet;
 	}
 }

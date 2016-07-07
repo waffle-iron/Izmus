@@ -1,19 +1,28 @@
-angular.module('availableStartupsApp').directive('availableStartupsList', 
-		['loadAllAvailableStartups',function(loadAllAvailableStartups) {
+angular.module('findersDashboardApp').directive('startupGridList', 
+		['loadAllAvailableStartups','loadAllSectors','$mdMedia',function(loadAllAvailableStartups,loadAllSectors, $mdMedia) {
 	return {
 		restrict : 'E',
-		require: '^^availableStartups',
-		templateUrl : '/views/available-startups/templates/available-startups-list.html',
-		scope: {
-			sidenavCtrl: '='
-		},
+		templateUrl : '/views/finders-dashboard/templates/startup-grid-list.html',
 		controller : ['$scope',function($scope) {
 			$scope.globalAttr = globalAttr;
 			$scope.lang = lang;
+			$scope.searchMinimized = false;
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.toggleSearchBar = function(){
+				$scope.searchMinimized = !$scope.searchMinimized;
+			}
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.isSearchMinimized = function(){
+				return $scope.searchMinimized;
+			}
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.isSmallDevice = function(){
+				return (!$mdMedia('gt-md'));
+			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.goSearch = function(){
-				$scope.sidenavCtrl.progressMode = 'indeterminate';
 				$scope.goSearchText = $scope.search;
+				$scope.goFilterSector = $scope.filterSector;
 				$scope.setVirtualRepeat();
 			}
 			/*----------------------------------------------------------------------------------------------------*/
@@ -50,7 +59,7 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 		          // Set the page to null so we know it is already being fetched.
 		          var loadedPages = this.loadedPages;
 		          loadedPages[pageNumber] = null;
-		          loadAllAvailableStartups(pageNumber, $scope.goSearchText).then(function(data){
+		          loadAllAvailableStartups(pageNumber, $scope.goSearchText, $scope.goFilterSector).then(function(data){
 		        	  	loadedPages[pageNumber] = data.content;
 		          }, function(){
 		        	  
@@ -60,10 +69,9 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 		        	var loadedPages = this.loadedPages;
 		        	var numItems = this.numItems;
 		        	loadedPages[0] = null;
-		        	loadAllAvailableStartups(0, $scope.goSearchText).then(function(data){
+		        	loadAllAvailableStartups(0, $scope.goSearchText, $scope.goFilterSector).then(function(data){
 		        	  	loadedPages[0] = data.content;
 						numItems.itemNumber = data.totalElements;
-						$scope.sidenavCtrl.progressMode = '';
 		        	}, function(){
 		        		
 		        	});
@@ -73,13 +81,9 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.setVirtualRepeat();
-			/*----------------------------------------------------------------------------------------------------*/
 		}],
-		link : function(scope, elem, attr, parentCtrl) {
-			/*----------------------------------------------------------------------------------------------------*/
-			scope.selectStartup = function(startup){
-				parentCtrl.selectStartup(startup);
-			}
+		link : function(scope, elem, attr) {
+			
 		}
 	}
 } ]);

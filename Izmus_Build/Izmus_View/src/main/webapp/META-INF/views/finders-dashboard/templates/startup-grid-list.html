@@ -1,0 +1,135 @@
+<style>
+	.startup-card {
+		margin: 5px;
+		min-height: 300px;
+	}
+	.search-input {
+		margin-bottom: 0px;
+		margin-top: 25px;
+		margin-left: 10px;
+		margin-right: 10px;
+		padding-bottom: 0px;
+	}
+	.startup-icon {
+		margin-top: 8px !important;
+		margin-bottom: 8px !important;
+	}
+	.startup-avatar-icon {
+		height: 38px !important;
+		width: 38px !important;
+		min-height: 38px !important;
+		min-width: 38px !important;
+		border-radius: 20px;
+		border-width: 1px;
+		border-style: solid;
+		border-color: rgb(160,195,215);
+	}
+	.small-startup-name-text {
+		font-size: medium;
+		line-height: initial;
+	}
+	.startup-site {
+		font-size: small;
+	}
+	.next-search-button {
+		min-width: 40px !important;
+		min-height: 40px;
+	}
+	.expand-icon.toggled {
+		transform: rotateZ(180deg) !important;
+		-webkit-transform: rotateZ(180deg) !important;
+	}
+	.expand-icon {
+		transition: transform .3s ease-in-out !important;
+		-webkit-transition: -webkit-transform .3s ease-in-out;
+	}
+	.search-bar {
+		max-height: 1300px;
+		overflow: hidden;
+		position: relative;
+		-webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+		-webkit-transition-property: max-height;
+		-moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+		-moz-transition-property: max-height;
+		transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+		transition-property: max-height;
+	}
+	.search-bar.ng-hide {
+		max-height: 0px;
+	}
+</style>
+<section flex layout="column" layout-padding>
+	<section layout="row" layout-align="start center">
+		<md-button ng-click="toggleSearchBar()" class="md-icon-button">
+			<md-icon
+			class="material-icons expand-icon"
+			ng-class="(isSearchMinimized()) ? '' : 'toggled'"
+			aria-label="expand">
+				expand_more
+			</md-icon>
+		</md-button>
+		<div ng-hide="isSearchMinimized()" layout="row" class="search-bar" layout-align="center center">
+			<div flex="100" layout="row" layout-sm="column" layout-xs="column" layout-align="stretch center">
+				<md-input-container
+				flex-gt-sm="100"
+				layout-padding
+				class="search-input"
+				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+					<label>{{lang.searchName}}</label>
+					<input ng-model="$parent.$parent.search">
+				</md-input-container>
+				<md-input-container
+				flex-gt-sm="100"
+				layout-padding
+				class="search-input"
+				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+					<label>{{lang.filterSector}}</label>
+					<input ng-model="$parent.$parent.filterSector">
+				</md-input-container>
+			</div>
+			<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
+				<md-icon class="material-icons">
+					search
+				</md-icon>
+			</md-button>
+		</div>
+	</section>
+	<md-virtual-repeat-container
+	layout="row"
+	layout-padding
+	flex>
+		<md-whiteframe
+		md-virtual-repeat="startup in availableStartups"
+		md-on-demand
+		class="md-whiteframe-1dp startup-card"
+		flex="none"
+		layout-padding
+		layout="column">
+			<section ng-if='!startup' flex layout="column" layout-align="center center">
+				<div>
+					<md-progress-circular class="md-hue-1" md-mode="indeterminate" md-diameter="50"></md-progress-circular>
+				</div>
+			</section>
+			<section ng-if='startup'>
+				<div layout="row" layout-align="start center">
+					<md-icon
+					ng-if="(startup.logo == null || statup.logo =='')"
+					ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+					class="material-icons startup-icon startup-avatar-icon" md-svg-src="/views/core/izmus-nav-bar/images/startup.svg"></md-icon>
+					<img
+					ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+					ng-if="(startup.logo != null && statup.logo !='')" class="startup-avatar-icon" ng-src="{{startup.logo}}"/>
+					<section layout="column">
+						<section>
+							<span ng-class="(isSmallDevice()) ? 'small-startup-name-text' : 'md-title'">{{(startup.startupName ? startup.startupName : '')}}</span>
+							<span class="md-subheader startup-site"><a ng-href="{{(startup.site ? startup.site : '')}}">{{(startup.site ? startup.site : '')}}</a></span>
+						</section>
+					</section>
+				</div>
+				<div>
+					{{startup.miscellaneous}}
+				</div>
+				<section>
+		</md-whiteframe>
+	</md-virtual-repeat-container>
+</section>

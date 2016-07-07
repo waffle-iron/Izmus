@@ -10,7 +10,17 @@ import com.izmus.data.domain.startups.AvailableStartup;
 @Repository
 public interface IAvailableStartupRepository extends JpaRepository<AvailableStartup, Integer> {
 	AvailableStartup findDistinctAvailableStartupByStartupName(String startupName);
+
 	AvailableStartup findDistinctAvailableStartupByStartupId(Integer startupId);
-	Page<AvailableStartup> findByStartupNameIgnoreCaseContainingOrderByStartupNameAsc(String startupName, Pageable pageable);
+
+	Page<AvailableStartup> findByStartupNameIgnoreCaseContainingOrderByStartupNameAsc(String startupName,
+			Pageable pageable);
+	
+	Page<AvailableStartup> findBySectorIgnoreCaseContainingOrderByStartupNameAsc(String sector,
+			Pageable pageable);
+
+	Page<AvailableStartup> findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseContainingOrderByStartupNameAsc(
+			String startupName, String sector, Pageable pageable);
+
 	Page<AvailableStartup> findAllByOrderByStartupNameAsc(Pageable pageable);
 }
