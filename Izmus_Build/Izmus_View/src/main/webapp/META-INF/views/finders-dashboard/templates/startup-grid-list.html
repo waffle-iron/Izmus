@@ -58,7 +58,12 @@
 		max-height: 0px;
 	}
 </style>
-<section flex layout="column" layout-padding>
+<section ng-if='progressMode != ""' flex layout="column" layout-align="center center">
+	<div>
+		<md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120"></md-progress-circular>
+	</div>
+</section>
+<section ng-if='progressMode == ""' flex layout="column" layout-padding>
 	<section layout="row" layout-align="start center">
 		<md-button ng-click="toggleSearchBar()" class="md-icon-button">
 			<md-icon
@@ -76,7 +81,7 @@
 				class="search-input"
 				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
 					<label>{{lang.searchName}}</label>
-					<input ng-model="$parent.$parent.search">
+					<input ng-model="$parent.search">
 				</md-input-container>
 				<md-input-container
 				flex-gt-sm="100"
@@ -84,7 +89,7 @@
 				class="search-input"
 				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
 					<label>{{lang.filterSector}}</label>
-					<input ng-model="$parent.$parent.filterSector">
+					<input ng-model="$parent.filterSector">
 				</md-input-container>
 			</div>
 			<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
@@ -110,8 +115,9 @@
 					<md-progress-circular class="md-hue-1" md-mode="indeterminate" md-diameter="50"></md-progress-circular>
 				</div>
 			</section>
-			<section ng-if='startup'>
-				<div layout="row" layout-align="start center">
+			<section ng-if='startup' flex="100">
+				<!--header-->
+				<div layout="row">
 					<md-icon
 					ng-if="(startup.logo == null || statup.logo =='')"
 					ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
@@ -119,17 +125,50 @@
 					<img
 					ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
 					ng-if="(startup.logo != null && statup.logo !='')" class="startup-avatar-icon" ng-src="{{startup.logo}}"/>
-					<section layout="column">
-						<section>
-							<span ng-class="(isSmallDevice()) ? 'small-startup-name-text' : 'md-title'">{{(startup.startupName ? startup.startupName : '')}}</span>
-							<span class="md-subheader startup-site"><a ng-href="{{(startup.site ? startup.site : '')}}">{{(startup.site ? startup.site : '')}}</a></span>
-						</section>
-					</section>
+					<div layout="row"
+					flex="100"
+					layout-align="space-between center"
+					layout-align-sm="center start"
+					layout-align-xs="center start"
+					layout-sm="column"
+					layout-xs="column">
+						<div layout="row" layout-align="center center">
+							<section layout="column">
+								<section>
+									<span ng-class="(isSmallDevice()) ? 'small-startup-name-text' : 'md-title'">{{(startup.startupName ? startup.startupName : '')}}</span>
+									<span class="md-subheader startup-site"><a ng-href="{{(startup.site ? startup.site : '')}}">{{(startup.site ? startup.site : '')}}</a></span>
+								</section>
+							</section>
+						</div>
+						<div>
+							<span class="md-subheader">{{(startup.sector ? lang.sector + ': ' + startup.sector : '')}}</span>
+						</div>
+					</div>
 				</div>
-				<div>
+				<!--header-->
+				<!--main-->
+				<div layout="column">
+					<div>
+						<span class="md-subheader">{{(startup.founded ? startup.founded : '')}}</span>
+					</div>
+					<div>
+						<span class="md-subheader">{{(startup.fundingStage ? startup.fundingStage : '')}}</span>
+					</div>
+					<div>
+						<span class="md-subheader">{{(startup.numberOfEmployees ? startup.numberOfEmployees : '')}}</span>
+					</div>
+					<div>
+						<span class="md-subheader">{{(startup.productStage ? startup.productStage : '')}}</span>
+					</div>
 					{{startup.miscellaneous}}
 				</div>
-				<section>
+				<!--main-->
+			</section>
+			<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
+				<md-icon class="material-icons">
+					search
+				</md-icon>
+			</md-button>
 		</md-whiteframe>
 	</md-virtual-repeat-container>
 </section>

@@ -7,6 +7,7 @@ angular.module('findersDashboardApp').directive('startupGridList',
 			$scope.globalAttr = globalAttr;
 			$scope.lang = lang;
 			$scope.searchMinimized = false;
+			$scope.progressMode = 'indeterminate';
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.toggleSearchBar = function(){
 				$scope.searchMinimized = !$scope.searchMinimized;
@@ -21,6 +22,7 @@ angular.module('findersDashboardApp').directive('startupGridList',
 			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.goSearch = function(){
+				$scope.progressMode = 'indeterminate';
 				$scope.goSearchText = $scope.search;
 				$scope.goFilterSector = $scope.filterSector;
 				$scope.setVirtualRepeat();
@@ -72,6 +74,7 @@ angular.module('findersDashboardApp').directive('startupGridList',
 		        	loadAllAvailableStartups(0, $scope.goSearchText, $scope.goFilterSector).then(function(data){
 		        	  	loadedPages[0] = data.content;
 						numItems.itemNumber = data.totalElements;
+						$scope.progressMode = '';
 		        	}, function(){
 		        		
 		        	});
