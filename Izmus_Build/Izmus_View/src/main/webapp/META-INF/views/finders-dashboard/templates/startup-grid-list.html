@@ -2,6 +2,7 @@
 	.startup-card {
 		margin: 5px;
 		min-height: 300px;
+		min-width: 350px;
 	}
 	.search-input {
 		margin-bottom: 0px;
@@ -103,72 +104,212 @@
 	layout="row"
 	layout-padding
 	flex>
-		<md-whiteframe
-		md-virtual-repeat="startup in availableStartups"
-		md-on-demand
-		class="md-whiteframe-1dp startup-card"
-		flex="none"
-		layout-padding
-		layout="column">
-			<section ng-if='!startup' flex layout="column" layout-align="center center">
-				<div>
-					<md-progress-circular class="md-hue-1" md-mode="indeterminate" md-diameter="50"></md-progress-circular>
-				</div>
-			</section>
-			<section ng-if='startup' flex="100">
-				<!--header-->
-				<div layout="row">
-					<md-icon
-					ng-if="(startup.logo == null || statup.logo =='')"
-					ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
-					class="material-icons startup-icon startup-avatar-icon" md-svg-src="/views/core/izmus-nav-bar/images/startup.svg"></md-icon>
-					<img
-					ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
-					ng-if="(startup.logo != null && statup.logo !='')" class="startup-avatar-icon" ng-src="{{startup.logo}}"/>
-					<div layout="row"
-					flex="100"
-					layout-align="space-between center"
-					layout-align-sm="center start"
-					layout-align-xs="center start"
-					layout-sm="column"
-					layout-xs="column">
-						<div layout="row" layout-align="center center">
-							<section layout="column">
-								<section>
-									<span ng-class="(isSmallDevice()) ? 'small-startup-name-text' : 'md-title'">{{(startup.startupName ? startup.startupName : '')}}</span>
-									<span class="md-subheader startup-site"><a ng-href="{{(startup.site ? startup.site : '')}}">{{(startup.site ? startup.site : '')}}</a></span>
+		<div
+		md-virtual-repeat="startupGroup in availableStartups"
+		md-on-demand 
+		layout="row"
+		layout-xs="column"
+		layout-sm="column">
+			<!--one-->
+			<md-whiteframe
+			class="md-whiteframe-1dp startup-card"
+			layout-padding
+			layout="column">
+				<section ng-if='!startupGroup[0]' flex layout="column" layout-align="center center">
+					<div>
+						<md-progress-circular class="md-hue-1" md-mode="indeterminate" md-diameter="50"></md-progress-circular>
+					</div>
+				</section>
+				<section ng-if='startupGroup[0]' flex="100">
+					<!--header-->
+					<div layout="row">
+						<md-icon
+						ng-if="(startupGroup[0].logo == null || statup.logo =='')"
+						ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+						class="material-icons startup-icon startup-avatar-icon" md-svg-src="/views/core/izmus-nav-bar/images/startup.svg"></md-icon>
+						<img
+						ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+						ng-if="(startupGroup[0].logo != null && statup.logo !='')" class="startup-avatar-icon" ng-src="{{startup.logo}}"/>
+						<div layout="row"
+						flex="100"
+						layout-align="space-between center"
+						layout-align-sm="center start"
+						layout-align-xs="center start"
+						layout-sm="column"
+						layout-xs="column">
+							<div layout="row" layout-align="center center">
+								<section layout="column">
+									<section>
+										<span ng-class="(isSmallDevice()) ? 'small-startup-name-text' : 'md-title'">{{(startupGroup[0].startupName ? startupGroup[0].startupName : '')}}</span>
+										<span class="md-subheader startup-site"><a ng-href="{{(startupGroup[0].site ? startupGroup[0].site : '')}}">{{(startupGroup[0].site ? startupGroup[0].site : '')}}</a></span>
+									</section>
 								</section>
-							</section>
+							</div>
+							<div>
+								<span class="md-subheader">{{(startupGroup[0].sector ? lang.sector + ': ' + startupGroup[0].sector : '')}}</span>
+							</div>
+						</div>
+					</div>
+					<!--header-->
+					<!--main-->
+					<div layout="column">
+						<div>
+							<span class="md-subheader">{{(startupGroup[0].founded ? startupGroup[0].founded : '')}}</span>
 						</div>
 						<div>
-							<span class="md-subheader">{{(startup.sector ? lang.sector + ': ' + startup.sector : '')}}</span>
+							<span class="md-subheader">{{(startupGroup[0].fundingStage ? startupGroup[0].fundingStage : '')}}</span>
+						</div>
+						<div>
+							<span class="md-subheader">{{(startupGroup[0].numberOfEmployees ? startupGroup[0].numberOfEmployees : '')}}</span>
+						</div>
+						<div>
+							<span class="md-subheader">{{(startupGroup[0].productStage ? startupGroup[0].productStage : '')}}</span>
+						</div>
+						{{startupGroup[0].miscellaneous}}
+					</div>
+					<!--main-->
+				</section>
+				<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
+					<md-icon class="material-icons">
+						search
+					</md-icon>
+				</md-button>
+			</md-whiteframe>
+			<!--one-->
+			<!--two-->
+			<md-whiteframe
+			class="md-whiteframe-1dp startup-card"
+			ng-if="(!startupGroup[1] && !startupGroup[0]) || (startupGroup[1] && startupGroup[0])"
+			layout-padding
+			layout="column">
+				<section ng-if='!startupGroup[1]' flex layout="column" layout-align="center center">
+					<div>
+						<md-progress-circular class="md-hue-1" md-mode="indeterminate" md-diameter="50"></md-progress-circular>
+					</div>
+				</section>
+				<section ng-if='startupGroup[1]' flex="100">
+					<!--header-->
+					<div layout="row">
+						<md-icon
+						ng-if="(startupGroup[1].logo == null || statup.logo =='')"
+						ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+						class="material-icons startup-icon startup-avatar-icon" md-svg-src="/views/core/izmus-nav-bar/images/startup.svg"></md-icon>
+						<img
+						ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+						ng-if="(startupGroup[1].logo != null && statup.logo !='')" class="startup-avatar-icon" ng-src="{{startup.logo}}"/>
+						<div layout="row"
+						flex="100"
+						layout-align="space-between center"
+						layout-align-sm="center start"
+						layout-align-xs="center start"
+						layout-sm="column"
+						layout-xs="column">
+							<div layout="row" layout-align="center center">
+								<section layout="column">
+									<section>
+										<span ng-class="(isSmallDevice()) ? 'small-startup-name-text' : 'md-title'">{{(startupGroup[1].startupName ? startupGroup[1].startupName : '')}}</span>
+										<span class="md-subheader startup-site"><a ng-href="{{(startupGroup[1].site ? startupGroup[1].site : '')}}">{{(startupGroup[1].site ? startupGroup[1].site : '')}}</a></span>
+									</section>
+								</section>
+							</div>
+							<div>
+								<span class="md-subheader">{{(startupGroup[1].sector ? lang.sector + ': ' + startupGroup[1].sector : '')}}</span>
+							</div>
 						</div>
 					</div>
-				</div>
-				<!--header-->
-				<!--main-->
-				<div layout="column">
-					<div>
-						<span class="md-subheader">{{(startup.founded ? startup.founded : '')}}</span>
+					<!--header-->
+					<!--main-->
+					<div layout="column">
+						<div>
+							<span class="md-subheader">{{(startupGroup[1].founded ? startupGroup[1].founded : '')}}</span>
+						</div>
+						<div>
+							<span class="md-subheader">{{(startupGroup[1].fundingStage ? startupGroup[1].fundingStage : '')}}</span>
+						</div>
+						<div>
+							<span class="md-subheader">{{(startupGroup[1].numberOfEmployees ? startupGroup[1].numberOfEmployees : '')}}</span>
+						</div>
+						<div>
+							<span class="md-subheader">{{(startupGroup[1].productStage ? startupGroup[1].productStage : '')}}</span>
+						</div>
+						{{startupGroup[1].miscellaneous}}
 					</div>
+					<!--main-->
+				</section>
+				<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
+					<md-icon class="material-icons">
+						search
+					</md-icon>
+				</md-button>
+			</md-whiteframe>
+			<!--two-->
+			<!--three-->
+			<md-whiteframe
+			class="md-whiteframe-1dp startup-card"
+			ng-if="(!startupGroup[2] && !startupGroup[0]) || (startupGroup[2] && startupGroup[0])"
+			layout-padding
+			layout="column">
+				<section ng-if='!startupGroup[2]' flex layout="column" layout-align="center center">
 					<div>
-						<span class="md-subheader">{{(startup.fundingStage ? startup.fundingStage : '')}}</span>
+						<md-progress-circular class="md-hue-1" md-mode="indeterminate" md-diameter="50"></md-progress-circular>
 					</div>
-					<div>
-						<span class="md-subheader">{{(startup.numberOfEmployees ? startup.numberOfEmployees : '')}}</span>
+				</section>
+				<section ng-if='startupGroup[2]' flex="100">
+					<!--header-->
+					<div layout="row">
+						<md-icon
+						ng-if="(startupGroup[2].logo == null || statup.logo =='')"
+						ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+						class="material-icons startup-icon startup-avatar-icon" md-svg-src="/views/core/izmus-nav-bar/images/startup.svg"></md-icon>
+						<img
+						ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+						ng-if="(startupGroup[2].logo != null && statup.logo !='')" class="startup-avatar-icon" ng-src="{{startup.logo}}"/>
+						<div layout="row"
+						flex="100"
+						layout-align="space-between center"
+						layout-align-sm="center start"
+						layout-align-xs="center start"
+						layout-sm="column"
+						layout-xs="column">
+							<div layout="row" layout-align="center center">
+								<section layout="column">
+									<section>
+										<span ng-class="(isSmallDevice()) ? 'small-startup-name-text' : 'md-title'">{{(startupGroup[2].startupName ? startupGroup[2].startupName : '')}}</span>
+										<span class="md-subheader startup-site"><a ng-href="{{(startupGroup[2].site ? startupGroup[2].site : '')}}">{{(startupGroup[2].site ? startupGroup[2].site : '')}}</a></span>
+									</section>
+								</section>
+							</div>
+							<div>
+								<span class="md-subheader">{{(startupGroup[2].sector ? lang.sector + ': ' + startupGroup[2].sector : '')}}</span>
+							</div>
+						</div>
 					</div>
-					<div>
-						<span class="md-subheader">{{(startup.productStage ? startup.productStage : '')}}</span>
+					<!--header-->
+					<!--main-->
+					<div layout="column">
+						<div>
+							<span class="md-subheader">{{(startupGroup[2].founded ? startupGroup[2].founded : '')}}</span>
+						</div>
+						<div>
+							<span class="md-subheader">{{(startupGroup[2].fundingStage ? startupGroup[2].fundingStage : '')}}</span>
+						</div>
+						<div>
+							<span class="md-subheader">{{(startupGroup[2].numberOfEmployees ? startupGroup[2].numberOfEmployees : '')}}</span>
+						</div>
+						<div>
+							<span class="md-subheader">{{(startupGroup[2].productStage ? startupGroup[2].productStage : '')}}</span>
+						</div>
+						{{startupGroup[2].miscellaneous}}
 					</div>
-					{{startup.miscellaneous}}
-				</div>
-				<!--main-->
-			</section>
-			<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
-				<md-icon class="material-icons">
-					search
-				</md-icon>
-			</md-button>
-		</md-whiteframe>
+					<!--main-->
+				</section>
+				<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
+					<md-icon class="material-icons">
+						search
+					</md-icon>
+				</md-button>
+			</md-whiteframe>
+			<!--three-->
+		</div>
 	</md-virtual-repeat-container>
 </section>

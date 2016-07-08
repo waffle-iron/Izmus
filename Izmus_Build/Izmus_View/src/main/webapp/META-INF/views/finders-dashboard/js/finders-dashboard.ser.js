@@ -1,6 +1,6 @@
 angular.module('findersDashboardApp').factory('loadAllAvailableStartups',
 		[ '$q', '$http', function($q, $http) {
-			return function(pageNumber, search, filterSector) {
+			return function(pageNumber, search, filterSector, pageSize) {
 				return $q(function(resolve, reject) {
 					$http({
 						method : 'GET',
@@ -8,7 +8,8 @@ angular.module('findersDashboardApp').factory('loadAllAvailableStartups',
 						params: {
 							pageNumber: pageNumber,
 							searchName: search,
-							filterSector: filterSector
+							filterSector: filterSector,
+							pageSize: pageSize
 							}
 					}).then(function successCallback(response) {
 						if (response.data) {

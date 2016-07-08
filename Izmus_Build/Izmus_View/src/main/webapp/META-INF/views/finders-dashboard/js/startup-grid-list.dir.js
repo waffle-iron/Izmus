@@ -8,6 +8,8 @@ angular.module('findersDashboardApp').directive('startupGridList',
 			$scope.lang = lang;
 			$scope.searchMinimized = false;
 			$scope.progressMode = 'indeterminate';
+			$scope.numberItemsPerRow = 3;
+			$scope.pageSize = 60;
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.toggleSearchBar = function(){
 				$scope.searchMinimized = !$scope.searchMinimized;
@@ -39,16 +41,14 @@ angular.module('findersDashboardApp').directive('startupGridList',
 		          this.loadedPages = {};
 		          /** @type {number} Total number of items. */
 		          this.numItems = {itemNumber : 0};
-		          /** @const {number} Number of items to fetch per request. */
-		          this.PAGE_SIZE = 50;
 		          this.fetchNumItems_();
 		        };
 		        // Required.
 		        DynamicItems.prototype.getItemAtIndex = function(index) {
-		          var pageNumber = Math.floor(index / this.PAGE_SIZE);
+		          var pageNumber = Math.floor(index / ($scope.pageSize / $scope.numberItemsPerRow));
 		          var page = this.loadedPages[pageNumber];
 		          if (page) {
-		            return page[index % this.PAGE_SIZE];
+		            return page[index % ($scope.pageSize / $scope.numberItemsPerRow)];
 		          } else if (page !== null) {
 		            this.fetchPage_(pageNumber);
 		          }
@@ -61,8 +61,8 @@ angular.module('findersDashboardApp').directive('startupGridList',
 		          // Set the page to null so we know it is already being fetched.
 		          var loadedPages = this.loadedPages;
 		          loadedPages[pageNumber] = null;
-		          loadAllAvailableStartups(pageNumber, $scope.goSearchText, $scope.goFilterSector).then(function(data){
-		        	  	loadedPages[pageNumber] = data.content;
+		          loadAllAvailableStartups(pageNumber, $scope.goSearchText, $scope.goFilterSector, $scope.pageSize).then(function(data){
+		        	  	loadedPages[pageNumber] = $scope.createPage(data.content);
 		          }, function(){
 		        	  
 		          });
@@ -71,15 +71,31 @@ angular.module('findersDashboardApp').directive('startupGridList',
 		        	var loadedPages = this.loadedPages;
 		        	var numItems = this.numItems;
 		        	loadedPages[0] = null;
-		        	loadAllAvailableStartups(0, $scope.goSearchText, $scope.goFilterSector).then(function(data){
-		        	  	loadedPages[0] = data.content;
-						numItems.itemNumber = data.totalElements;
+		        	loadAllAvailableStartups(0, $scope.goSearchText, $scope.goFilterSector, $scope.pageSize).then(function(data){
+		        	  	loadedPages[0] = $scope.createPage(data.content);
+						numItems.itemNumber = Math.ceil(data.totalElements / $scope.numberItemsPerRow);
 						$scope.progressMode = '';
 		        	}, function(){
 		        		
 		        	});
 		        	return numItems.itemNumber;
 		        };
+				/*----------------------------------------------------------------------------------------------------*/
+		        $scope.createPage = function(data){
+		        	var returnArray = [];
+		        	for(var i = 0; i < Math.ceil(data.length / $scope.numberItemsPerRow); i++){
+		        		var newRow = [];
+		        		newRow.push(data[i * $scope.numberItemsPerRow]);
+		        		if (data[i * $scope.numberItemsPerRow + 1]){
+		        			newRow.push(data[i * $scope.numberItemsPerRow + 1]);
+		        		}
+		        		if (data[i * $scope.numberItemsPerRow + 2]){
+		        			newRow.push(data[i * $scope.numberItemsPerRow + 2]);
+		        		}
+		        		returnArray.push(newRow);
+		        	}
+		        	return returnArray;
+		        }
 		        $scope.availableStartups = new DynamicItems();
 			}
 			/*----------------------------------------------------------------------------------------------------*/

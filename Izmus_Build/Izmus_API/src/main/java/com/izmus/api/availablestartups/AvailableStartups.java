@@ -30,22 +30,23 @@ public class AvailableStartups {
 	@PreAuthorize("hasPermission('Assessors Menu/Available Startups', '')")
 	public Page<AvailableStartup> getAllIzmusContacts(@RequestParam(value = "pageNumber", required = true) Integer pageNumber,
 			@RequestParam(value = "searchName", required = false) String searchName,
-			@RequestParam(value = "filterSector", required = false) String filterSector){
+			@RequestParam(value = "filterSector", required = false) String filterSector,
+			@RequestParam(value = "pageSize") Integer pageSize){
 		Page<AvailableStartup> returnPage;
 		if (searchName == null){
 			if (filterSector == null){
-				returnPage = availableStartupRepository.findAllByOrderByStartupNameAsc(new PageRequest(pageNumber, 50));
+				returnPage = availableStartupRepository.findAllByOrderByStartupNameAsc(new PageRequest(pageNumber, pageSize));
 			}
 			else {
-				returnPage = availableStartupRepository.findBySectorIgnoreCaseContainingOrderByStartupNameAsc(filterSector, new PageRequest(pageNumber, 50));
+				returnPage = availableStartupRepository.findBySectorIgnoreCaseContainingOrderByStartupNameAsc(filterSector, new PageRequest(pageNumber, pageSize));
 			}
 		}
 		else {
 			if (filterSector == null){
-				returnPage = availableStartupRepository.findByStartupNameIgnoreCaseContainingOrderByStartupNameAsc(searchName, new PageRequest(pageNumber, 50));
+				returnPage = availableStartupRepository.findByStartupNameIgnoreCaseContainingOrderByStartupNameAsc(searchName, new PageRequest(pageNumber, pageSize));
 			}
 			else {
-				returnPage = availableStartupRepository.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseContainingOrderByStartupNameAsc(searchName, filterSector, new PageRequest(pageNumber, 50));
+				returnPage = availableStartupRepository.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseContainingOrderByStartupNameAsc(searchName, filterSector, new PageRequest(pageNumber, pageSize));
 			}
 			
 		}
