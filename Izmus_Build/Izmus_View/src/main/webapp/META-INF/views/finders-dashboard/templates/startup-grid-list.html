@@ -59,6 +59,9 @@
 	.search-bar.ng-hide {
 		max-height: 0px;
 	}
+	.main-startup-text>div>span{
+		font-size: 11px;
+	}
 </style>
 <section ng-if='progressMode != ""' flex layout="column" layout-align="center center">
 	<div>
@@ -92,6 +95,22 @@
 				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
 					<label>{{lang.filterSector}}</label>
 					<input ng-model="$parent.filterSector">
+				</md-input-container>
+				<md-input-container
+				flex-gt-sm="100"
+				layout-padding
+				class="search-input"
+				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+					<label>{{lang.fundingStage}}</label>
+					<input ng-model="$parent.fundingStage">
+				</md-input-container>
+				<md-input-container
+				flex-gt-sm="100"
+				layout-padding
+				class="search-input"
+				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+					<label>{{lang.productStage}}</label>
+					<input ng-model="$parent.productStage">
 				</md-input-container>
 			</div>
 			<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
@@ -151,9 +170,18 @@
 					</div>
 					<!--header-->
 					<!--main-->
-					<div layout="column">
-						<div>
+					<div layout="column" class="main-startup-text">
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.sector + ': '}}</span>
 							<span class="md-subheader background-color">{{(startupGroup[0].sector ? startupGroup[0].sector : '')}}</span>
+						</div>
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.fundingStage + ': '}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[0].fundingStage ? startupGroup[0].fundingStage : '')}}</span>
+						</div>
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.productStage + ': '}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[0].productStage ? startupGroup[0].productStage : '')}}</span>
 						</div>
 					</div>
 					<!--main-->
@@ -205,9 +233,18 @@
 					</div>
 					<!--header-->
 					<!--main-->
-					<div layout="column">
-						<div>
+					<div layout="column" class="main-startup-text">
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.sector + ': '}}</span>
 							<span class="md-subheader background-color">{{(startupGroup[1].sector ? startupGroup[1].sector : '')}}</span>
+						</div>
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.fundingStage + ': '}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[1].fundingStage ? startupGroup[1].fundingStage : '')}}</span>
+						</div>
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.productStage + ': '}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[1].productStage ? startupGroup[1].productStage : '')}}</span>
 						</div>
 					</div>
 					<!--main-->
@@ -259,9 +296,18 @@
 					</div>
 					<!--header-->
 					<!--main-->
-					<div layout="column">
-						<div>
+					<div layout="column" class="main-startup-text">
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.sector + ': '}}</span>
 							<span class="md-subheader background-color">{{(startupGroup[2].sector ? startupGroup[2].sector : '')}}</span>
+						</div>
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.fundingStage + ': '}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[2].fundingStage ? startupGroup[2].fundingStage : '')}}</span>
+						</div>
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.productStage + ': '}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[2].productStage ? startupGroup[2].productStage : '')}}</span>
 						</div>
 					</div>
 					<!--main-->

@@ -23,4 +23,41 @@ public interface IAvailableStartupRepository extends JpaRepository<AvailableStar
 			String startupName, String sector, Pageable pageable);
 
 	Page<AvailableStartup> findAllByOrderByStartupNameAsc(Pageable pageable);
+	
+	Page<AvailableStartup> findByFundingStageIgnoreCaseContainingOrderByStartupNameAsc(String fundingStage,
+			Pageable pageable);
+	
+	Page<AvailableStartup> findByProductStageIgnoreCaseContainingOrderByStartupNameAsc(String productStage,
+			Pageable pageable);
+
+	Page<AvailableStartup> findByFundingStageIgnoreCaseContainingAndProductStageIgnoreCaseContainingOrderByStartupNameAsc(
+			String fundingStage, String productStage, Pageable pageable);
+
+	Page<AvailableStartup> findBySectorIgnoreCaseContainingAndProductStageIgnoreCaseContainingOrderByStartupNameAsc(
+			String sector, String productStage, Pageable pageable);
+
+	Page<AvailableStartup> findBySectorIgnoreCaseContainingAndFundingStageIgnoreCaseContainingOrderByStartupNameAsc(
+			String sector, String fundingStage, Pageable pageable);
+
+	Page<AvailableStartup> findBySectorIgnoreCaseContainingAndFundingStageIgnoreCaseContainingAndProductStageIgnoreCaseContainingOrderByStartupNameAsc(
+			String sector, String fundingStage, String productStage, Pageable pageable);
+
+	Page<AvailableStartup> findByStartupNameIgnoreCaseContainingAndProductStageIgnoreCaseContainingOrderByStartupNameAsc(
+			String startupName, String productStage, Pageable pageable);
+
+	Page<AvailableStartup> findByStartupNameIgnoreCaseContainingAndFundingStageIgnoreCaseContainingOrderByStartupNameAsc(
+			String startupName, String fundingStage, Pageable pageable);
+
+	Page<AvailableStartup> findByStartupNameIgnoreCaseContainingAndFundingStageIgnoreCaseContainingAndProductStageIgnoreCaseContainingOrderByStartupNameAsc(
+			String startupName, String fundingStage, String productStage, Pageable pageable);
+
+	Page<AvailableStartup> findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseContainingAndProductStageIgnoreCaseContainingOrderByStartupNameAsc(
+			String startupName, String sector, String productStage, Pageable pageable);
+
+	Page<AvailableStartup> findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseContainingAndFundingStageIgnoreCaseContainingOrderByStartupNameAsc(
+			String startupName, String sector, String fundingStage, Pageable pageable);
+
+	Page<AvailableStartup> findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseContainingAndFundingStageIgnoreCaseContainingAndProductStageIgnoreCaseContainingOrderByStartupNameAsc(
+			String startupName, String sector, String fundingStage, String productStage, Pageable pageable);
+	
 }

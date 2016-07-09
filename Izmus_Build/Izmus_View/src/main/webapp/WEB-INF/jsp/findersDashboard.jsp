@@ -22,6 +22,8 @@
 			filterSector:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.filterSector" />',
 			site:' <spring:message code="navBar.menu.startupAssessment.site" />',
 			sector:' <spring:message code="navBar.menu.startupAssessment.sector" />',
+			productStage:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.productStage" />',
+			fundingStage:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.fundingStage" />',
 			ok:' <spring:message code="navBar.menu.startupAssessment.ok" />'
 	};
 </script>

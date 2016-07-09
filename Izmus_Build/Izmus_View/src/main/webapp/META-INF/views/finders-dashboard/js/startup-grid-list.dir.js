@@ -28,6 +28,8 @@ angular.module('findersDashboardApp').directive('startupGridList',
 				$scope.progressMode = 'indeterminate';
 				$scope.goSearchText = $scope.search;
 				$scope.goFilterSector = $scope.filterSector;
+				$scope.goFundingStage = $scope.fundingStage;
+				$scope.goProductStage = $scope.productStage;
 				$scope.setVirtualRepeat();
 				$scope.toggleSearchBar();
 			}
@@ -63,7 +65,12 @@ angular.module('findersDashboardApp').directive('startupGridList',
 		          // Set the page to null so we know it is already being fetched.
 		          var loadedPages = this.loadedPages;
 		          loadedPages[pageNumber] = null;
-		          loadAllAvailableStartups(pageNumber, $scope.goSearchText, $scope.goFilterSector, $scope.pageSize).then(function(data){
+		          loadAllAvailableStartups(pageNumber, 
+		        		  $scope.goSearchText, 
+		        		  $scope.goFilterSector,
+		        		  $scope.goFundingStage,
+		        		  $scope.goProductStage,
+		        		  $scope.pageSize).then(function(data){
 		        	  	loadedPages[pageNumber] = $scope.createPage(data.content);
 		          }, function(){
 		        	  
@@ -73,7 +80,12 @@ angular.module('findersDashboardApp').directive('startupGridList',
 		        	var loadedPages = this.loadedPages;
 		        	var numItems = this.numItems;
 		        	loadedPages[0] = null;
-		        	loadAllAvailableStartups(0, $scope.goSearchText, $scope.goFilterSector, $scope.pageSize).then(function(data){
+		        	loadAllAvailableStartups(0, 
+		        			$scope.goSearchText, 
+		        			$scope.goFilterSector, 
+		        			$scope.goFundingStage,
+		        			$scope.goProductStage,
+		        			$scope.pageSize).then(function(data){
 		        	  	loadedPages[0] = $scope.createPage(data.content);
 						numItems.itemNumber = Math.ceil(data.totalElements / $scope.numberItemsPerRow);
 						$scope.progressMode = '';
