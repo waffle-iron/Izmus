@@ -10,6 +10,7 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 		controller : ['$scope',function($scope) {
 			$scope.globalAttr = globalAttr;
 			$scope.lang = lang;
+			$scope.pageSize = 50;
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.goSearch = function(){
 				$scope.sidenavCtrl.progressMode = 'indeterminate';
@@ -29,15 +30,14 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 		          /** @type {number} Total number of items. */
 		          this.numItems = {itemNumber : 0};
 		          /** @const {number} Number of items to fetch per request. */
-		          this.PAGE_SIZE = 50;
 		          this.fetchNumItems_();
 		        };
 		        // Required.
 		        DynamicItems.prototype.getItemAtIndex = function(index) {
-		          var pageNumber = Math.floor(index / this.PAGE_SIZE);
+		          var pageNumber = Math.floor(index / $scope.pageSize);
 		          var page = this.loadedPages[pageNumber];
 		          if (page) {
-		            return page[index % this.PAGE_SIZE];
+		            return page[index % $scope.pageSize];
 		          } else if (page !== null) {
 		            this.fetchPage_(pageNumber);
 		          }
@@ -50,7 +50,7 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 		          // Set the page to null so we know it is already being fetched.
 		          var loadedPages = this.loadedPages;
 		          loadedPages[pageNumber] = null;
-		          loadAllAvailableStartups(pageNumber, $scope.goSearchText).then(function(data){
+		          loadAllAvailableStartups(pageNumber, $scope.goSearchText, $scope.pageSize).then(function(data){
 		        	  	loadedPages[pageNumber] = data.content;
 		          }, function(){
 		        	  
@@ -60,7 +60,7 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 		        	var loadedPages = this.loadedPages;
 		        	var numItems = this.numItems;
 		        	loadedPages[0] = null;
-		        	loadAllAvailableStartups(0, $scope.goSearchText).then(function(data){
+		        	loadAllAvailableStartups(0, $scope.goSearchText, $scope.pageSize).then(function(data){
 		        	  	loadedPages[0] = data.content;
 						numItems.itemNumber = data.totalElements;
 						$scope.sidenavCtrl.progressMode = '';
