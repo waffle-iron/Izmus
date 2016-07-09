@@ -105,6 +105,15 @@ angular.module('findersDashboardApp').directive('startupGridList',
 			$scope.viewStartup = function(ev, startup){
 				startupPreviewDialog(ev, startup);
 			}
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.getSectorIconForStartup = function(startup){
+				switch(startup.sector){
+					case 'Social Media and Advertising':
+						return '/views/finders-dashboard/images/social-media.svg';	
+					default:
+						return '/views/core/izmus-nav-bar/images/startup.svg';	
+				}
+			}
 		}],
 		link : function(scope, elem, attr) {
 			
