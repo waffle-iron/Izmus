@@ -8,7 +8,7 @@ angular.module('findersDashboardApp').directive('startupGridList',
 			$scope.globalAttr = globalAttr;
 			$scope.lang = lang;
 			$scope.searchMinimized = false;
-			$scope.progressMode = 'indeterminate';
+			$scope.progressMode = '';
 			$scope.numberItemsPerRow = 3;
 			$scope.pageSize = 60;
 			/*----------------------------------------------------------------------------------------------------*/
@@ -29,6 +29,7 @@ angular.module('findersDashboardApp').directive('startupGridList',
 				$scope.goSearchText = $scope.search;
 				$scope.goFilterSector = $scope.filterSector;
 				$scope.setVirtualRepeat();
+				$scope.toggleSearchBar();
 			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.setVirtualRepeat = function(){
@@ -100,8 +101,6 @@ angular.module('findersDashboardApp').directive('startupGridList',
 	        	return returnArray;
 	        }
 			/*----------------------------------------------------------------------------------------------------*/
-			$scope.setVirtualRepeat();
-			/*----------------------------------------------------------------------------------------------------*/
 			$scope.viewStartup = function(ev, startup){
 				startupPreviewDialog(ev, startup);
 			}
@@ -109,7 +108,29 @@ angular.module('findersDashboardApp').directive('startupGridList',
 			$scope.getSectorIconForStartup = function(startup){
 				switch(startup.sector){
 					case 'Social Media and Advertising':
-						return '/views/finders-dashboard/images/social-media.svg';	
+						return '/views/finders-dashboard/images/social-media.svg';
+					case 'Industrial Technologies':
+						return '/views/finders-dashboard/images/industry.svg';
+					case 'Digital Health and Medical Technologies':
+						return '/views/finders-dashboard/images/hospital.svg';
+					case 'Mobile and Telecom Technologies':
+						return '/views/finders-dashboard/images/mobile.svg';
+					case 'Education and Knowledge Technologies':
+						return '/views/finders-dashboard/images/education.svg';
+					case 'Fintech and eCommerce':
+						return '/views/finders-dashboard/images/finance.svg';
+					case 'Security and Safety Technologies':
+						return '/views/finders-dashboard/images/security.svg';
+					case 'Enterprise Solutions':
+						return '/views/finders-dashboard/images/enterprise.svg';
+					case 'Cleantech':
+						return '/views/finders-dashboard/images/clean.svg';
+					case 'Agro and Food Technologies':
+						return '/views/finders-dashboard/images/food.svg';
+					case 'Software Applications':
+						return '/views/finders-dashboard/images/application.svg';
+					case 'Pharmaceuticals':
+						return '/views/finders-dashboard/images/pharma.svg';
 					default:
 						return '/views/core/izmus-nav-bar/images/startup.svg';	
 				}
