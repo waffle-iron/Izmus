@@ -1,0 +1,34 @@
+<style>
+	.progress {
+		min-height: 400px !important;
+		min-width: 300px !important;
+	}
+	.dialog-button {
+        color: white !important;
+    }
+    .dialog-button > md-icon {
+        color: white !important;
+    }
+</style>
+<section class="progress" ng-if='progressMode != ""' flex layout="column" layout-align="center center">
+	<div>
+		<md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120"></md-progress-circular>
+	</div>
+</section>
+<section ng-if='progressMode == ""' layout="column">
+	<md-content layout-padding dir="{{globalAttr.direction}}" layout="column">
+		<md-whiteframe
+		class="md-whiteframe-1dp"
+		layout-padding
+		flex="none"
+		layout="column">
+		test
+		</md-whiteframe>
+	</md-content>
+	<md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button class="md-raised md-primary dialog-button" ng-click="ok()">
+            {{lang.ok}}
+        </md-button>
+	</md-dialog-actions>
+</section>

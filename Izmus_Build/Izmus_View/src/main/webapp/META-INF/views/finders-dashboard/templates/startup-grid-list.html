@@ -1,8 +1,12 @@
 <style>
 	.startup-card {
 		margin: 5px;
-		min-height: 300px;
-		min-width: 350px;
+		min-height: 200px;
+		min-width: 300px;
+		background-color: rgba(96, 135, 30, 0.2);
+	}
+	.background-color{
+		background-color: rgba(96, 135, 30, 0.0);
 	}
 	.search-input {
 		margin-bottom: 0px;
@@ -106,7 +110,8 @@
 	flex>
 		<div
 		md-virtual-repeat="startupGroup in availableStartups"
-		md-on-demand 
+		md-on-demand
+		layout-align="space-around center"
 		layout="row"
 		layout-xs="column"
 		layout-sm="column">
@@ -117,7 +122,7 @@
 			layout="column">
 				<section ng-if='!startupGroup[0]' flex layout="column" layout-align="center center">
 					<div>
-						<md-progress-circular class="md-hue-1" md-mode="indeterminate" md-diameter="50"></md-progress-circular>
+						<md-progress-circular class="md-hue-1" md-mode="indeterminate" md-diameter="70"></md-progress-circular>
 					</div>
 				</section>
 				<section ng-if='startupGroup[0]' flex="100">
@@ -140,13 +145,10 @@
 							<div layout="row" layout-align="center center">
 								<section layout="column">
 									<section>
-										<span ng-class="(isSmallDevice()) ? 'small-startup-name-text' : 'md-title'">{{(startupGroup[0].startupName ? startupGroup[0].startupName : '')}}</span>
-										<span class="md-subheader startup-site"><a ng-href="{{(startupGroup[0].site ? startupGroup[0].site : '')}}">{{(startupGroup[0].site ? startupGroup[0].site : '')}}</a></span>
+										<span ng-class="(isSmallDevice()) ? 'small-startup-name-text background-color' : 'md-title background-color'">{{(startupGroup[0].startupName ? startupGroup[0].startupName : '')}}</span>
+										<span class="md-subheader startup-site background-color"><a ng-href="{{(startupGroup[0].site ? startupGroup[0].site : '')}}">{{(startupGroup[0].site ? startupGroup[0].site : '')}}</a></span>
 									</section>
 								</section>
-							</div>
-							<div>
-								<span class="md-subheader">{{(startupGroup[0].sector ? lang.sector + ': ' + startupGroup[0].sector : '')}}</span>
 							</div>
 						</div>
 					</div>
@@ -154,24 +156,14 @@
 					<!--main-->
 					<div layout="column">
 						<div>
-							<span class="md-subheader">{{(startupGroup[0].founded ? startupGroup[0].founded : '')}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[0].sector ? startupGroup[0].sector : '')}}</span>
 						</div>
-						<div>
-							<span class="md-subheader">{{(startupGroup[0].fundingStage ? startupGroup[0].fundingStage : '')}}</span>
-						</div>
-						<div>
-							<span class="md-subheader">{{(startupGroup[0].numberOfEmployees ? startupGroup[0].numberOfEmployees : '')}}</span>
-						</div>
-						<div>
-							<span class="md-subheader">{{(startupGroup[0].productStage ? startupGroup[0].productStage : '')}}</span>
-						</div>
-						{{startupGroup[0].miscellaneous}}
 					</div>
 					<!--main-->
 				</section>
-				<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
+				<md-button class="md-fab md-mini next-search-button" ng-click="viewStartup($event, startupGroup[0])">
 					<md-icon class="material-icons">
-						search
+						remove_red_eye
 					</md-icon>
 				</md-button>
 			</md-whiteframe>
@@ -184,7 +176,7 @@
 			layout="column">
 				<section ng-if='!startupGroup[1]' flex layout="column" layout-align="center center">
 					<div>
-						<md-progress-circular class="md-hue-1" md-mode="indeterminate" md-diameter="50"></md-progress-circular>
+						<md-progress-circular class="md-hue-1" md-mode="indeterminate" md-diameter="70"></md-progress-circular>
 					</div>
 				</section>
 				<section ng-if='startupGroup[1]' flex="100">
@@ -207,13 +199,10 @@
 							<div layout="row" layout-align="center center">
 								<section layout="column">
 									<section>
-										<span ng-class="(isSmallDevice()) ? 'small-startup-name-text' : 'md-title'">{{(startupGroup[1].startupName ? startupGroup[1].startupName : '')}}</span>
-										<span class="md-subheader startup-site"><a ng-href="{{(startupGroup[1].site ? startupGroup[1].site : '')}}">{{(startupGroup[1].site ? startupGroup[1].site : '')}}</a></span>
+										<span ng-class="(isSmallDevice()) ? 'small-startup-name-text background-color' : 'md-title background-color'">{{(startupGroup[1].startupName ? startupGroup[1].startupName : '')}}</span>
+										<span class="md-subheader startup-site background-color"><a ng-href="{{(startupGroup[1].site ? startupGroup[1].site : '')}}">{{(startupGroup[1].site ? startupGroup[1].site : '')}}</a></span>
 									</section>
 								</section>
-							</div>
-							<div>
-								<span class="md-subheader">{{(startupGroup[1].sector ? lang.sector + ': ' + startupGroup[1].sector : '')}}</span>
 							</div>
 						</div>
 					</div>
@@ -221,24 +210,14 @@
 					<!--main-->
 					<div layout="column">
 						<div>
-							<span class="md-subheader">{{(startupGroup[1].founded ? startupGroup[1].founded : '')}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[1].sector ? startupGroup[0].sector : '')}}</span>
 						</div>
-						<div>
-							<span class="md-subheader">{{(startupGroup[1].fundingStage ? startupGroup[1].fundingStage : '')}}</span>
-						</div>
-						<div>
-							<span class="md-subheader">{{(startupGroup[1].numberOfEmployees ? startupGroup[1].numberOfEmployees : '')}}</span>
-						</div>
-						<div>
-							<span class="md-subheader">{{(startupGroup[1].productStage ? startupGroup[1].productStage : '')}}</span>
-						</div>
-						{{startupGroup[1].miscellaneous}}
 					</div>
 					<!--main-->
 				</section>
-				<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
+				<md-button class="md-fab md-mini next-search-button" ng-click="viewStartup($event, startupGroup[1])">
 					<md-icon class="material-icons">
-						search
+						remove_red_eye
 					</md-icon>
 				</md-button>
 			</md-whiteframe>
@@ -251,7 +230,7 @@
 			layout="column">
 				<section ng-if='!startupGroup[2]' flex layout="column" layout-align="center center">
 					<div>
-						<md-progress-circular class="md-hue-1" md-mode="indeterminate" md-diameter="50"></md-progress-circular>
+						<md-progress-circular class="md-hue-1" md-mode="indeterminate" md-diameter="70"></md-progress-circular>
 					</div>
 				</section>
 				<section ng-if='startupGroup[2]' flex="100">
@@ -274,13 +253,10 @@
 							<div layout="row" layout-align="center center">
 								<section layout="column">
 									<section>
-										<span ng-class="(isSmallDevice()) ? 'small-startup-name-text' : 'md-title'">{{(startupGroup[2].startupName ? startupGroup[2].startupName : '')}}</span>
-										<span class="md-subheader startup-site"><a ng-href="{{(startupGroup[2].site ? startupGroup[2].site : '')}}">{{(startupGroup[2].site ? startupGroup[2].site : '')}}</a></span>
+										<span ng-class="(isSmallDevice()) ? 'small-startup-name-text background-color' : 'md-title background-color'">{{(startupGroup[2].startupName ? startupGroup[2].startupName : '')}}</span>
+										<span class="md-subheader startup-site background-color"><a ng-href="{{(startupGroup[2].site ? startupGroup[2].site : '')}}">{{(startupGroup[2].site ? startupGroup[2].site : '')}}</a></span>
 									</section>
 								</section>
-							</div>
-							<div>
-								<span class="md-subheader">{{(startupGroup[2].sector ? lang.sector + ': ' + startupGroup[2].sector : '')}}</span>
 							</div>
 						</div>
 					</div>
@@ -288,24 +264,14 @@
 					<!--main-->
 					<div layout="column">
 						<div>
-							<span class="md-subheader">{{(startupGroup[2].founded ? startupGroup[2].founded : '')}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[2].sector ? startupGroup[0].sector : '')}}</span>
 						</div>
-						<div>
-							<span class="md-subheader">{{(startupGroup[2].fundingStage ? startupGroup[2].fundingStage : '')}}</span>
-						</div>
-						<div>
-							<span class="md-subheader">{{(startupGroup[2].numberOfEmployees ? startupGroup[2].numberOfEmployees : '')}}</span>
-						</div>
-						<div>
-							<span class="md-subheader">{{(startupGroup[2].productStage ? startupGroup[2].productStage : '')}}</span>
-						</div>
-						{{startupGroup[2].miscellaneous}}
 					</div>
 					<!--main-->
 				</section>
-				<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
+				<md-button class="md-fab md-mini next-search-button" ng-click="viewStartup($event, startupGroup[2])">
 					<md-icon class="material-icons">
-						search
+						remove_red_eye
 					</md-icon>
 				</md-button>
 			</md-whiteframe>

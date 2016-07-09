@@ -14,11 +14,14 @@
 	src="<c:url value="/views/finders-dashboard/js/startup-grid-list.dir.js" />"></script>
 <script
 	src="<c:url value="/views/finders-dashboard/js/finders-dashboard.ser.js" />"></script>
+<script
+	src="<c:url value="/views/finders-dashboard/js/startup-preview.ser.js" />"></script>
 <script>
 	var lang = {
 			searchName:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.searchName" />',
 			filterSector:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.filterSector" />',
 			site:' <spring:message code="navBar.menu.startupAssessment.site" />',
-			sector:' <spring:message code="navBar.menu.startupAssessment.sector" />'
+			sector:' <spring:message code="navBar.menu.startupAssessment.sector" />',
+			ok:' <spring:message code="navBar.menu.startupAssessment.ok" />'
 	};
 </script>

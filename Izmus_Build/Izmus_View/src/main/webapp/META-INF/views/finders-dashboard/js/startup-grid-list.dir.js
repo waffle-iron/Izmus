@@ -1,5 +1,6 @@
 angular.module('findersDashboardApp').directive('startupGridList', 
-		['loadAllAvailableStartups','loadAllSectors','$mdMedia',function(loadAllAvailableStartups,loadAllSectors, $mdMedia) {
+		['loadAllAvailableStartups','loadAllSectors','$mdMedia', 'startupPreviewDialog',
+		 function(loadAllAvailableStartups,loadAllSectors, $mdMedia, startupPreviewDialog) {
 	return {
 		restrict : 'E',
 		templateUrl : '/views/finders-dashboard/templates/startup-grid-list.html',
@@ -80,26 +81,30 @@ angular.module('findersDashboardApp').directive('startupGridList',
 		        	});
 		        	return numItems.itemNumber;
 		        };
-				/*----------------------------------------------------------------------------------------------------*/
-		        $scope.createPage = function(data){
-		        	var returnArray = [];
-		        	for(var i = 0; i < Math.ceil(data.length / $scope.numberItemsPerRow); i++){
-		        		var newRow = [];
-		        		newRow.push(data[i * $scope.numberItemsPerRow]);
-		        		if (data[i * $scope.numberItemsPerRow + 1]){
-		        			newRow.push(data[i * $scope.numberItemsPerRow + 1]);
-		        		}
-		        		if (data[i * $scope.numberItemsPerRow + 2]){
-		        			newRow.push(data[i * $scope.numberItemsPerRow + 2]);
-		        		}
-		        		returnArray.push(newRow);
-		        	}
-		        	return returnArray;
-		        }
 		        $scope.availableStartups = new DynamicItems();
 			}
 			/*----------------------------------------------------------------------------------------------------*/
+	        $scope.createPage = function(data){
+	        	var returnArray = [];
+	        	for(var i = 0; i < Math.ceil(data.length / $scope.numberItemsPerRow); i++){
+	        		var newRow = [];
+	        		newRow.push(data[i * $scope.numberItemsPerRow]);
+	        		if (data[i * $scope.numberItemsPerRow + 1]){
+	        			newRow.push(data[i * $scope.numberItemsPerRow + 1]);
+	        		}
+	        		if (data[i * $scope.numberItemsPerRow + 2]){
+	        			newRow.push(data[i * $scope.numberItemsPerRow + 2]);
+	        		}
+	        		returnArray.push(newRow);
+	        	}
+	        	return returnArray;
+	        }
+			/*----------------------------------------------------------------------------------------------------*/
 			$scope.setVirtualRepeat();
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.viewStartup = function(ev, startup){
+				startupPreviewDialog(ev, startup);
+			}
 		}],
 		link : function(scope, elem, attr) {
 			
