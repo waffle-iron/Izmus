@@ -6,7 +6,7 @@
 		max-width: 300px;
 		background-color: rgba(29, 112, 162, 0.3);
 	}
-	.background-color{
+	.background-color {
 		background-color: rgba(29, 112, 162, 0.0);
 	}
 	.search-input {
@@ -15,6 +15,7 @@
 		margin-left: 10px;
 		margin-right: 10px;
 		padding-bottom: 0px;
+		height: 40px;
 	}
 	.startup-icon {
 		margin-top: 8px !important;
@@ -59,7 +60,25 @@
 	.search-bar.ng-hide {
 		max-height: 0px;
 	}
-	.main-startup-text>div>span{
+	.main-startup-text > div > span {
+		font-size: 11px;
+	}
+	.welcome.ng-hide-remove {
+		animation: fadeInLeft 2s;
+	}
+	.welcome.ng-hide-add {
+		animation: fadeOutRight 2s;
+	}
+	.welcome.ng-hide {
+		display: block !important;
+		visibility: hidden;
+	}
+	.welcome{
+		text-align: center;
+		background-color: rgba(29, 112, 162, 0.3);
+		margin-bottom: 5px;
+	}
+	.small-welcome-text, .small-filter-text{
 		font-size: 11px;
 	}
 </style>
@@ -69,7 +88,61 @@
 	</div>
 </section>
 <section ng-if='progressMode == ""' flex layout="column" layout-padding>
-	<section layout="row" layout-align="start center">
+	<md-content layout="column" layout-align="start center" flex ng-if="!availableStartups">
+		<div layout="column" flex="none" class="search-bar" layout-align="center center" layout-padding>
+			<span style="height: 150px;" ng-if="!isSmallDevice()"></span>
+			<md-whiteframe layout-align="center center" class="md-whiteframe-1dp welcome" layout-padding ng-hide="!showWelcomeDelay()">
+				<div layout="row">
+					<span ng-class="(isSmallDevice() ? 'small-welcome-text' : '')">{{lang.welcomeText}}</span>
+				</div>
+			</md-whiteframe>
+			<md-whiteframe layout-align="center center" class="md-whiteframe-1dp welcome" layout-padding ng-hide="!showFiltersDelay()">
+				<div layout="row">
+					<span ng-class="(isSmallDevice() ? 'small-filter-text' : '')">{{lang.filterText}}</span>
+				</div>
+			</md-whiteframe>
+			<div layout="row" layout-sm="column" layout-xs="column" layout-align="stretch center">
+				<md-input-container
+				flex-gt-sm="100"
+				layout-padding
+				class="search-input"
+				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+					<label>{{lang.searchName}}</label>
+					<input ng-model="$parent.search">
+				</md-input-container>
+				<md-input-container
+				flex-gt-sm="100"
+				layout-padding
+				class="search-input"
+				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+					<label>{{lang.filterSector}}</label>
+					<input ng-model="$parent.filterSector">
+				</md-input-container>
+				<md-input-container
+				flex-gt-sm="100"
+				layout-padding
+				class="search-input"
+				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+					<label>{{lang.fundingStage}}</label>
+					<input ng-model="$parent.fundingStage">
+				</md-input-container>
+				<md-input-container
+				flex-gt-sm="100"
+				layout-padding
+				class="search-input"
+				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+					<label>{{lang.productStage}}</label>
+					<input ng-model="$parent.productStage">
+				</md-input-container>
+			</div>
+			<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
+				<md-icon class="material-icons">
+					search
+				</md-icon>
+			</md-button>
+		</div>
+	</md-content>
+	<section layout="column" layout-align="start center" ng-if="availableStartups">
 		<md-button ng-click="toggleSearchBar()" class="md-icon-button">
 			<md-icon
 			class="material-icons expand-icon"
@@ -121,6 +194,7 @@
 		</div>
 	</section>
 	<md-virtual-repeat-container
+	ng-if="availableStartups"
 	layout="row"
 	layout-padding
 	flex>

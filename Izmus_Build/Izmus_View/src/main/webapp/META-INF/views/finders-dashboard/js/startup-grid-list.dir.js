@@ -1,6 +1,6 @@
 angular.module('findersDashboardApp').directive('startupGridList', 
-		['loadAllAvailableStartups','loadAllSectors','$mdMedia', 'startupPreviewDialog',
-		 function(loadAllAvailableStartups,loadAllSectors, $mdMedia, startupPreviewDialog) {
+		['loadAllAvailableStartups','loadAllSectors','$mdMedia', 'startupPreviewDialog', '$timeout',
+		 function(loadAllAvailableStartups,loadAllSectors, $mdMedia, startupPreviewDialog, $timeout) {
 	return {
 		restrict : 'E',
 		templateUrl : '/views/finders-dashboard/templates/startup-grid-list.html',
@@ -11,6 +11,24 @@ angular.module('findersDashboardApp').directive('startupGridList',
 			$scope.progressMode = '';
 			$scope.numberItemsPerRow = 3;
 			$scope.pageSize = 60;
+			$scope.showWelcome = false;
+			$scope.showFilter = false;
+			/*----------------------------------------------------------------------------------------------------*/
+			$timeout(function(){
+				$scope.showWelcome = true;
+			}, 600);
+			/*----------------------------------------------------------------------------------------------------*/
+			$timeout(function(){
+				$scope.showFilter = true;
+			}, 1100);
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.showWelcomeDelay = function(){
+				return $scope.showWelcome;
+			}
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.showFiltersDelay = function(){
+				return $scope.showFilter;
+			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.toggleSearchBar = function(){
 				$scope.searchMinimized = !$scope.searchMinimized;

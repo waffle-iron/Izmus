@@ -24,6 +24,8 @@
 			sector:' <spring:message code="navBar.menu.startupAssessment.sector" />',
 			productStage:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.productStage" />',
 			fundingStage:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.fundingStage" />',
+			welcomeText:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.welcomeText" />',
+			filterText:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.filterText" />',
 			ok:' <spring:message code="navBar.menu.startupAssessment.ok" />'
 	};
 </script>

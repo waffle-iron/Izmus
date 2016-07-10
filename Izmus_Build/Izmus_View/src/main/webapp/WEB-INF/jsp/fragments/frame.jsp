@@ -21,6 +21,9 @@
 <link
 	href="<c:url value="https://fonts.googleapis.com/icon?family=Material+Icons" />"
 	rel="stylesheet" />
+<link
+	href="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" />"
+	rel="stylesheet" />
 <!-- icon in the highest resolution we need it for -->
 <link rel="icon" sizes="192x192" href="/views-public/core/logo/logo192x192.png">
 <!-- reuse same icon for Safari -->
