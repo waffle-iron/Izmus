@@ -81,6 +81,9 @@
 	.small-welcome-text, .small-filter-text{
 		font-size: 11px;
 	}
+	.search-panel{
+		background-color: rgba(206, 216, 230, 0.5);
+	}
 </style>
 <section ng-if='progressMode != ""' flex layout="column" layout-align="center center">
 	<div>
@@ -89,7 +92,7 @@
 </section>
 <section ng-if='progressMode == ""' flex layout="column" layout-padding>
 	<md-content layout="column" layout-align="start center" flex ng-if="!availableStartups">
-		<div layout="column" flex="none" class="search-bar" layout-align="center center" layout-padding>
+		<div layout="column" flex="none" layout-align="center center" layout-padding>
 			<span style="height: 150px;" ng-if="!isSmallDevice()"></span>
 			<md-whiteframe layout-align="center center" class="md-whiteframe-1dp welcome" layout-padding ng-hide="!showWelcomeDelay()">
 				<div layout="row">
@@ -108,7 +111,7 @@
 				class="search-input"
 				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
 					<label>{{lang.searchName}}</label>
-					<input ng-model="$parent.search">
+					<input ng-model="$parent.$parent.search">
 				</md-input-container>
 				<md-input-container
 				flex-gt-sm="100"
@@ -116,7 +119,7 @@
 				class="search-input"
 				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
 					<label>{{lang.filterSector}}</label>
-					<input ng-model="$parent.filterSector">
+					<input ng-model="$parent.$parent.filterSector">
 				</md-input-container>
 				<md-input-container
 				flex-gt-sm="100"
@@ -124,7 +127,7 @@
 				class="search-input"
 				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
 					<label>{{lang.fundingStage}}</label>
-					<input ng-model="$parent.fundingStage">
+					<input ng-model="$parent.$parent.fundingStage">
 				</md-input-container>
 				<md-input-container
 				flex-gt-sm="100"
@@ -132,7 +135,7 @@
 				class="search-input"
 				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
 					<label>{{lang.productStage}}</label>
-					<input ng-model="$parent.productStage">
+					<input ng-model="$parent.$parent.productStage">
 				</md-input-container>
 			</div>
 			<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
@@ -142,7 +145,7 @@
 			</md-button>
 		</div>
 	</md-content>
-	<section layout="column" layout-align="start center" ng-if="availableStartups">
+	<section layout="column" layout-align="start center" ng-if="availableStartups" class="search-panel">
 		<md-button ng-click="toggleSearchBar()" class="md-icon-button">
 			<md-icon
 			class="material-icons expand-icon"
@@ -159,7 +162,7 @@
 				class="search-input"
 				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
 					<label>{{lang.searchName}}</label>
-					<input ng-model="$parent.search">
+					<input ng-model="$parent.$parent.search">
 				</md-input-container>
 				<md-input-container
 				flex-gt-sm="100"
@@ -167,7 +170,7 @@
 				class="search-input"
 				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
 					<label>{{lang.filterSector}}</label>
-					<input ng-model="$parent.filterSector">
+					<input ng-model="$parent.$parent.filterSector">
 				</md-input-container>
 				<md-input-container
 				flex-gt-sm="100"
@@ -175,7 +178,7 @@
 				class="search-input"
 				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
 					<label>{{lang.fundingStage}}</label>
-					<input ng-model="$parent.fundingStage">
+					<input ng-model="$parent.$parent.fundingStage">
 				</md-input-container>
 				<md-input-container
 				flex-gt-sm="100"
@@ -183,7 +186,7 @@
 				class="search-input"
 				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
 					<label>{{lang.productStage}}</label>
-					<input ng-model="$parent.productStage">
+					<input ng-model="$parent.$parent.productStage">
 				</md-input-container>
 			</div>
 			<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
@@ -194,6 +197,7 @@
 		</div>
 	</section>
 	<md-virtual-repeat-container
+	style="margin-top: 5px;"
 	ng-if="availableStartups"
 	layout="row"
 	layout-padding
