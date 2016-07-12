@@ -16,6 +16,10 @@
 	src="<c:url value="/views/finders-dashboard/js/finders-dashboard.ser.js" />"></script>
 <script
 	src="<c:url value="/views/finders-dashboard/js/startup-preview.ser.js" />"></script>
+<script
+	src="<c:url value="/views/finders-dashboard/js/startup-header.dir.js" />"></script>
+<script
+	src="<c:url value="/views/finders-dashboard/js/startup-details.dir.js" />"></script>
 <script>
 	var lang = {
 			searchName:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.searchName" />',

@@ -132,7 +132,7 @@ angular.module('findersDashboardApp').directive('startupGridList',
 	        }
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.viewStartup = function(ev, startup){
-				startupPreviewDialog(ev, startup);
+				startupPreviewDialog(ev, startup, $scope.getSectorIconForStartup(startup));
 			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.getSectorIconForStartup = function(startup){

@@ -1,13 +1,14 @@
 /*----------------------------------------------------------------------------------------------------*/
 angular.module('findersDashboardApp').factory('startupPreviewDialog',
 		[ '$mdMedia', '$mdDialog', function($mdMedia, $mdDialog) {
-			return function(ev, startup) {
+			return function(ev, startup, iconSrc) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
 			    /*----------------------------------------------------------------------------------------------------*/
 				var startupPreviewCtrl = function($scope) {
 				    $scope.globalAttr = globalAttr;
 				    $scope.lang = lang;
+				    $scope.iconSrc = iconSrc;
 				    $scope.startup = startup;
 				    $scope.progressMode = '';
 					/*----------------------------------------------------------------------------------------------------*/
