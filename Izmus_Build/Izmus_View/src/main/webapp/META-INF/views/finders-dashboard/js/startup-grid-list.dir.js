@@ -1,6 +1,6 @@
 angular.module('findersDashboardApp').directive('startupGridList', 
-		['loadAllAvailableStartups','loadAllSectors','$mdMedia', 'startupPreviewDialog', '$timeout',
-		 function(loadAllAvailableStartups,loadAllSectors, $mdMedia, startupPreviewDialog, $timeout) {
+		['loadAllAvailableStartups','loadAllSectors','loadAllFundingStages','loadAllProductStages','$mdMedia', 'startupPreviewDialog', '$timeout',
+		 function(loadAllAvailableStartups,loadAllSectors, loadAllFundingStages, loadAllProductStages, $mdMedia, startupPreviewDialog, $timeout) {
 	return {
 		restrict : 'E',
 		templateUrl : '/views/finders-dashboard/templates/startup-grid-list.html',
@@ -13,6 +13,24 @@ angular.module('findersDashboardApp').directive('startupGridList',
 			$scope.pageSize = 60;
 			$scope.showWelcome = false;
 			$scope.showFilter = false;
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.getAllSectors = function(){
+				return loadAllSectors().then(function(data){
+					$scope.sectors = data;
+				});
+			}
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.getAllFundingStages = function(){
+				return loadAllFundingStages().then(function(data){
+					$scope.fundingStages = data;
+				});
+			}
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.getAllProductStages = function(){
+				return loadAllProductStages().then(function(data){
+					$scope.productStages = data;
+				});
+			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$timeout(function(){
 				$scope.showWelcome = true;

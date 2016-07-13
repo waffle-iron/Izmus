@@ -73,16 +73,23 @@
 		display: block !important;
 		visibility: hidden;
 	}
-	.welcome{
+	.welcome {
 		text-align: center;
 		background-color: rgba(29, 112, 162, 0.3);
 		margin-bottom: 5px;
 	}
-	.small-welcome-text, .small-filter-text{
+	.small-welcome-text, .small-filter-text {
 		font-size: 11px;
 	}
-	.search-panel{
+	.search-panel {
 		background-color: rgba(206, 216, 230, 0.5);
+	}
+	md-select{
+		padding: 5px;
+		margin-bottom: 0px;
+	}
+	md-select > md-select-value > span{
+		margin-bottom: 15px;
 	}
 </style>
 <section ng-if='progressMode != ""' flex layout="column" layout-align="center center">
@@ -113,30 +120,21 @@
 					<label>{{lang.searchName}}</label>
 					<input ng-model="$parent.$parent.search">
 				</md-input-container>
-				<md-input-container
-				flex-gt-sm="100"
-				layout-padding
-				class="search-input"
-				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
-					<label>{{lang.filterSector}}</label>
-					<input ng-model="$parent.$parent.filterSector">
-				</md-input-container>
-				<md-input-container
-				flex-gt-sm="100"
-				layout-padding
-				class="search-input"
-				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
-					<label>{{lang.fundingStage}}</label>
-					<input ng-model="$parent.$parent.fundingStage">
-				</md-input-container>
-				<md-input-container
-				flex-gt-sm="100"
-				layout-padding
-				class="search-input"
-				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
-					<label>{{lang.productStage}}</label>
-					<input ng-model="$parent.$parent.productStage">
-				</md-input-container>
+				<md-select placeholder="{{lang.filterSector}}" ng-model="$parent.$parent.filterSector" md-on-open="getAllSectors()" style="min-width: 200px;">
+					<md-option ng-value="sector" ng-repeat="sector in sectors">
+						{{sector}}
+					</md-option>
+				</md-select>
+				<md-select placeholder="{{lang.fundingStage}}" ng-model="$parent.$parent.fundingStage" md-on-open="getAllFundingStages()" style="min-width: 200px;">
+					<md-option ng-value="fundingStage" ng-repeat="fundingStage in fundingStages">
+						{{fundingStage}}
+					</md-option>
+				</md-select>
+				<md-select placeholder="{{lang.productStage}}" ng-model="$parent.$parent.productStage" md-on-open="getAllProductStages()" style="min-width: 200px;">
+					<md-option ng-value="productStage" ng-repeat="productStage in productStages">
+						{{productStage}}
+					</md-option>
+				</md-select>
 			</div>
 			<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
 				<md-icon class="material-icons">
@@ -164,30 +162,21 @@
 					<label>{{lang.searchName}}</label>
 					<input ng-model="$parent.$parent.search">
 				</md-input-container>
-				<md-input-container
-				flex-gt-sm="100"
-				layout-padding
-				class="search-input"
-				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
-					<label>{{lang.filterSector}}</label>
-					<input ng-model="$parent.$parent.filterSector">
-				</md-input-container>
-				<md-input-container
-				flex-gt-sm="100"
-				layout-padding
-				class="search-input"
-				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
-					<label>{{lang.fundingStage}}</label>
-					<input ng-model="$parent.$parent.fundingStage">
-				</md-input-container>
-				<md-input-container
-				flex-gt-sm="100"
-				layout-padding
-				class="search-input"
-				ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
-					<label>{{lang.productStage}}</label>
-					<input ng-model="$parent.$parent.productStage">
-				</md-input-container>
+				<md-select placeholder="{{lang.filterSector}}" ng-model="$parent.$parent.filterSector" md-on-open="getAllSectors()" style="min-width: 200px;">
+					<md-option ng-value="sector" ng-repeat="sector in sectors">
+						{{sector}}
+					</md-option>
+				</md-select>
+				<md-select placeholder="{{lang.fundingStage}}" ng-model="$parent.$parent.fundingStage" md-on-open="getAllFundingStages()" style="min-width: 200px;">
+					<md-option ng-value="fundingStage" ng-repeat="fundingStage in fundingStages">
+						{{fundingStage}}
+					</md-option>
+				</md-select>
+				<md-select placeholder="{{lang.productStage}}" ng-model="$parent.$parent.productStage" md-on-open="getAllProductStages()" style="min-width: 200px;">
+					<md-option ng-value="productStage" ng-repeat="productStage in productStages">
+						{{productStage}}
+					</md-option>
+				</md-select>
 			</div>
 			<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
 				<md-icon class="material-icons">

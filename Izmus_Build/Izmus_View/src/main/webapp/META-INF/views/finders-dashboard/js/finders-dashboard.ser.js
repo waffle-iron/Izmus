@@ -50,3 +50,43 @@ angular.module('findersDashboardApp').factory('loadAllSectors',
 				})
 			}
 		} ]);
+/*----------------------------------------------------------------------------------------------------*/
+angular.module('findersDashboardApp').factory('loadAllFundingStages',
+		[ '$q', '$http', function($q, $http) {
+			return function(pageNumber, search) {
+				return $q(function(resolve, reject) {
+					$http({
+						method : 'GET',
+						url : '/api/AvailableStartups/FundingStages',
+					}).then(function successCallback(response) {
+						if (response.data) {
+							resolve(response.data);
+						} else {
+							reject();
+						}
+					}, function errorCallback(response) {
+						reject();
+					});
+				})
+			}
+		} ]);
+/*----------------------------------------------------------------------------------------------------*/
+angular.module('findersDashboardApp').factory('loadAllProductStages',
+		[ '$q', '$http', function($q, $http) {
+			return function(pageNumber, search) {
+				return $q(function(resolve, reject) {
+					$http({
+						method : 'GET',
+						url : '/api/AvailableStartups/ProductStages',
+					}).then(function successCallback(response) {
+						if (response.data) {
+							resolve(response.data);
+						} else {
+							reject();
+						}
+					}, function errorCallback(response) {
+						reject();
+					});
+				})
+			}
+		} ]);

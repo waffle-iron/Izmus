@@ -45,15 +45,15 @@ public class AvailableStartups {
 						returnPage = availableStartupRepository.findAllByOrderByStartupNameAsc(pageable);
 					} else {
 						returnPage = availableStartupRepository
-								.findByProductStageIgnoreCaseContainingOrderByStartupNameAsc(productStage, pageable);
+								.findByProductStageIgnoreCaseOrderByStartupNameAsc(productStage, pageable);
 					}
 				} else {
 					if (productStage == null) {
 						returnPage = availableStartupRepository
-								.findByFundingStageIgnoreCaseContainingOrderByStartupNameAsc(fundingStage, pageable);
+								.findByFundingStageIgnoreCaseOrderByStartupNameAsc(fundingStage, pageable);
 					} else {
 						returnPage = availableStartupRepository
-								.findByFundingStageIgnoreCaseContainingAndProductStageIgnoreCaseContainingOrderByStartupNameAsc(
+								.findByFundingStageIgnoreCaseAndProductStageIgnoreCaseOrderByStartupNameAsc(
 										fundingStage, productStage, pageable);
 					}
 				}
@@ -61,20 +61,20 @@ public class AvailableStartups {
 				if (fundingStage == null) {
 					if (productStage == null) {
 						returnPage = availableStartupRepository
-								.findBySectorIgnoreCaseContainingOrderByStartupNameAsc(filterSector, pageable);
+								.findBySectorIgnoreCaseOrderByStartupNameAsc(filterSector, pageable);
 					} else {
 						returnPage = availableStartupRepository
-								.findBySectorIgnoreCaseContainingAndProductStageIgnoreCaseContainingOrderByStartupNameAsc(
+								.findBySectorIgnoreCaseAndProductStageIgnoreCaseOrderByStartupNameAsc(
 										filterSector, productStage, pageable);
 					}
 				} else {
 					if (productStage == null) {
 						returnPage = availableStartupRepository
-								.findBySectorIgnoreCaseContainingAndFundingStageIgnoreCaseContainingOrderByStartupNameAsc(
+								.findBySectorIgnoreCaseAndFundingStageIgnoreCaseOrderByStartupNameAsc(
 										filterSector, fundingStage, pageable);
 					} else {
 						returnPage = availableStartupRepository
-								.findBySectorIgnoreCaseContainingAndFundingStageIgnoreCaseContainingAndProductStageIgnoreCaseContainingOrderByStartupNameAsc(
+								.findBySectorIgnoreCaseAndFundingStageIgnoreCaseAndProductStageIgnoreCaseOrderByStartupNameAsc(
 										filterSector, fundingStage, productStage, pageable);
 					}
 				}
@@ -87,17 +87,17 @@ public class AvailableStartups {
 								.findByStartupNameIgnoreCaseContainingOrderByStartupNameAsc(searchName, pageable);
 					} else {
 						returnPage = availableStartupRepository
-								.findByStartupNameIgnoreCaseContainingAndProductStageIgnoreCaseContainingOrderByStartupNameAsc(
+								.findByStartupNameIgnoreCaseContainingAndProductStageIgnoreCaseOrderByStartupNameAsc(
 										searchName, productStage, pageable);
 					}
 				} else {
 					if (productStage == null) {
 						returnPage = availableStartupRepository
-								.findByStartupNameIgnoreCaseContainingAndFundingStageIgnoreCaseContainingOrderByStartupNameAsc(
+								.findByStartupNameIgnoreCaseContainingAndFundingStageIgnoreCaseOrderByStartupNameAsc(
 										searchName, fundingStage, pageable);
 					} else {
 						returnPage = availableStartupRepository
-								.findByStartupNameIgnoreCaseContainingAndFundingStageIgnoreCaseContainingAndProductStageIgnoreCaseContainingOrderByStartupNameAsc(
+								.findByStartupNameIgnoreCaseContainingAndFundingStageIgnoreCaseAndProductStageIgnoreCaseOrderByStartupNameAsc(
 										searchName, fundingStage, productStage, pageable);
 					}
 				}
@@ -105,21 +105,21 @@ public class AvailableStartups {
 				if (fundingStage == null) {
 					if (productStage == null) {
 						returnPage = availableStartupRepository
-								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseContainingOrderByStartupNameAsc(
+								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseOrderByStartupNameAsc(
 										searchName, filterSector, pageable);
 					} else {
 						returnPage = availableStartupRepository
-								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseContainingAndProductStageIgnoreCaseContainingOrderByStartupNameAsc(
+								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseAndProductStageIgnoreCaseOrderByStartupNameAsc(
 										searchName, filterSector, productStage, pageable);
 					}
 				} else {
 					if (productStage == null) {
 						returnPage = availableStartupRepository
-								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseContainingAndFundingStageIgnoreCaseContainingOrderByStartupNameAsc(
+								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseAndFundingStageIgnoreCaseOrderByStartupNameAsc(
 										searchName, filterSector, fundingStage, pageable);
 					} else {
 						returnPage = availableStartupRepository
-								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseContainingAndFundingStageIgnoreCaseContainingAndProductStageIgnoreCaseContainingOrderByStartupNameAsc(
+								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseAndFundingStageIgnoreCaseAndProductStageIgnoreCaseOrderByStartupNameAsc(
 										searchName, filterSector, fundingStage, productStage, pageable);
 					}
 				}
@@ -138,6 +138,30 @@ public class AvailableStartups {
 		for (AvailableStartup startup : allStartups) {
 			if (!startup.getSector().isEmpty())
 				returnSet.add(startup.getSector());
+		}
+		return returnSet;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(method = RequestMethod.GET, value = "/ProductStages")
+	@PreAuthorize("hasPermission('Assessors Menu/Available Startups', '')")
+	public Set<String> getAllProductStages() {
+		TreeSet<String> returnSet = new TreeSet<>();
+		List<AvailableStartup> allStartups = availableStartupRepository.findAll();
+		for (AvailableStartup startup : allStartups) {
+			if (!startup.getProductStage().isEmpty())
+				returnSet.add(startup.getProductStage());
+		}
+		return returnSet;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(method = RequestMethod.GET, value = "/FundingStages")
+	@PreAuthorize("hasPermission('Assessors Menu/Available Startups', '')")
+	public Set<String> getAllFundingStages() {
+		TreeSet<String> returnSet = new TreeSet<>();
+		List<AvailableStartup> allStartups = availableStartupRepository.findAll();
+		for (AvailableStartup startup : allStartups) {
+			if (!startup.getFundingStage().isEmpty())
+				returnSet.add(startup.getFundingStage());
 		}
 		return returnSet;
 	}
