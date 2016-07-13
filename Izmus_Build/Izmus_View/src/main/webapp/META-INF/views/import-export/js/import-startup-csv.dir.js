@@ -14,7 +14,6 @@ angular.module('importExportApp').directive('importStartupCsv',
 								{
 									url : '/api/ImportExport/StartupCSV',
 									headers : {
-										'Content-Type' : "application/x-www-form-urlencoded; charset=UTF-8",
 										'Upgrade-Insecure-Requests' : "1",
 										'X-CSRF-TOKEN' : globalAttr.sessionToken
 									},

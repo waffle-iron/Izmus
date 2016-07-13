@@ -45,7 +45,7 @@ public class ImportExport {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	private void processStartupFile(InputStream inputStream) throws Exception{
-		Reader reader = new InputStreamReader(inputStream);
+		Reader reader = new InputStreamReader(inputStream, "UTF-8");
 		try {
 			Iterable<CSVRecord> records = CSVFormat.RFC4180.parse(reader);
 			for (CSVRecord record : records) {
