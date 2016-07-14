@@ -1,6 +1,7 @@
 /*----------------------------------------------------------------------------------------------------*/
 angular.module('contactsApp').factory('viewFinderContactDialog',
-		[ '$mdMedia', '$mdDialog', 'loadFinderContact', 'avatarDialog',function($mdMedia, $mdDialog, loadFinderContact, avatarDialog) {
+		[ '$mdMedia', '$mdDialog', 'loadFinderContact', 'avatarDialog', 'createNewUser',
+		  function($mdMedia, $mdDialog, loadFinderContact, avatarDialog, createNewUser) {
 			return function(ev, finderContact, saveFunction, reloadAfterAvatar, reloaded) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
@@ -64,6 +65,10 @@ angular.module('contactsApp').factory('viewFinderContactDialog',
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.ok = function() {
 						$mdDialog.cancel();
+					};
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.createContactUser = function() {
+						createNewUser(finderContact.contactId, "Izmus Finder");
 					};
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.save = function() {

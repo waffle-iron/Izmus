@@ -7,26 +7,16 @@
     <laneSet id="laneSet_NewUserProcessId">
       <lane id="SystemLaneId" name="System">
         <flowNodeRef>startevent1</flowNodeRef>
-        <flowNodeRef>exclusivegateway1</flowNodeRef>
         <flowNodeRef>CreateIzmusAssessorServiceId</flowNodeRef>
         <flowNodeRef>IzmusWelcomeServiceId</flowNodeRef>
-        <flowNodeRef>CreateIzmusFinderServiceId</flowNodeRef>
       </lane>
       <lane id="UserLaneId" name="User"></lane>
     </laneSet>
     <startEvent id="startevent1" name="Start"></startEvent>
-    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
-    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="exclusivegateway1"></sequenceFlow>
     <serviceTask id="CreateIzmusAssessorServiceId" name="Create Izmus Assessor" activiti:expression="#{CreateIzmusAssessor.execute(execution)}"></serviceTask>
-    <sequenceFlow id="flow2" name="Izmus Assessor" sourceRef="exclusivegateway1" targetRef="CreateIzmusAssessorServiceId">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${userType.equals("Izmus Assessor")}]]></conditionExpression>
-    </sequenceFlow>
-    <serviceTask id="CreateIzmusFinderServiceId" name="Create Izmus Finder" activiti:expression="#{CreateIzmusFinder.execute(execution)}"></serviceTask>
-    <sequenceFlow id="flow3" name="Izmus Finder" sourceRef="exclusivegateway1" targetRef="CreateIzmusFinderServiceId">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${userType.equals("Izmus Finder")}]]></conditionExpression>
-    </sequenceFlow>
     <serviceTask id="IzmusWelcomeServiceId" name="Izmus Welcome E-Mail" activiti:expression="#{IzmusWelcomeEmail.execute(execution)}"></serviceTask>
     <sequenceFlow id="flow4" sourceRef="CreateIzmusAssessorServiceId" targetRef="IzmusWelcomeServiceId"></sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="startevent1" targetRef="CreateIzmusAssessorServiceId"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration">
     <bpmndi:BPMNPlane bpmnElement="Collaboration" id="BPMNPlane_Collaboration">
@@ -42,40 +32,19 @@
       <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
         <omgdc:Bounds height="35.0" width="35.0" x="100.0" y="140.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
-        <omgdc:Bounds height="40.0" width="40.0" x="200.0" y="137.0"></omgdc:Bounds>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="CreateIzmusAssessorServiceId" id="BPMNShape_CreateIzmusAssessorServiceId">
         <omgdc:Bounds height="55.0" width="111.0" x="320.0" y="130.0"></omgdc:Bounds>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="CreateIzmusFinderServiceId" id="BPMNShape_CreateIzmusFinderServiceId">
-        <omgdc:Bounds height="55.0" width="111.0" x="320.0" y="40.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="IzmusWelcomeServiceId" id="BPMNShape_IzmusWelcomeServiceId">
         <omgdc:Bounds height="55.0" width="121.0" x="520.0" y="130.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
-        <omgdi:waypoint x="135.0" y="157.0"></omgdi:waypoint>
-        <omgdi:waypoint x="200.0" y="157.0"></omgdi:waypoint>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
-        <omgdi:waypoint x="240.0" y="157.0"></omgdi:waypoint>
-        <omgdi:waypoint x="320.0" y="157.0"></omgdi:waypoint>
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="10.0" width="68.0" x="240.0" y="157.0"></omgdc:Bounds>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
-        <omgdi:waypoint x="220.0" y="137.0"></omgdi:waypoint>
-        <omgdi:waypoint x="220.0" y="67.0"></omgdi:waypoint>
-        <omgdi:waypoint x="320.0" y="67.0"></omgdi:waypoint>
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="10.0" width="55.0" x="229.0" y="71.0"></omgdc:Bounds>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
         <omgdi:waypoint x="431.0" y="157.0"></omgdi:waypoint>
         <omgdi:waypoint x="520.0" y="157.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="135.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="320.0" y="157.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

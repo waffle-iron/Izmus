@@ -16,6 +16,8 @@ public class IzmusInvestor extends SystemEntity {
 	private String investorFirstName;
 	@Column(name = "INVESTOR_LAST_NAME")
 	private String investorLastName;
+	@Column(name = "CONTACT_ID")
+	private Integer contactId;
 	/*----------------------------------------------------------------------------------------------------*/
 	@Override
 	public String toString() {
@@ -39,4 +41,13 @@ public class IzmusInvestor extends SystemEntity {
 	public void setInvestorLastName(String investorLastName) {
 		this.investorLastName = investorLastName;
 	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public Integer getContactId() {
+		return contactId;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public void setContactId(Integer contactId) {
+		this.contactId = contactId;
+	}
+	
 }

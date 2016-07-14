@@ -125,3 +125,30 @@ angular.module('contactsApp').factory('loadStartupContact',
 				})
 			}
 		} ]);
+/*----------------------------------------------------------------------------------------------------*/
+
+angular.module('contactsApp').factory('createNewUser',
+		[ '$q', '$http', '$httpParamSerializer',function($q, $http, $httpParamSerializer) {
+			return function(contactId, userType) {
+				return $q(function(resolve, reject) {
+					$http({
+						method : 'POST',
+						url : '/api/Contacts/CreateNewUser',
+						headers: {
+					        'Content-Type': "application/x-www-form-urlencoded; charset=UTF-8",
+					        'Upgrade-Insecure-Requests': "1",
+					        'X-CSRF-TOKEN': globalAttr.sessionToken
+					    },
+					    data : $httpParamSerializer({
+					    	_csrf: globalAttr.sessionToken,
+					    	contactId: contactId,
+					    	userType: userType
+					    })
+					}).then(function successCallback(response) {
+						resolve(response.data);
+					}, function errorCallback(error) {
+						
+					});
+				})
+			}
+		} ]);

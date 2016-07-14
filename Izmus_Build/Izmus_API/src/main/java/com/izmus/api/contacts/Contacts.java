@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.activiti.engine.RuntimeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ import com.izmus.data.repository.IStartupContactRepository;
 public class Contacts {
 	/*----------------------------------------------------------------------------------------------------*/
 	private static final Logger LOGGER = LoggerFactory.getLogger(Contacts.class);
+	private static final String NEW_CONTACT_USER_PROCESS = "NewContactUserProcessId";
 	@Autowired
 	private IStartupContactRepository startupContactRepository;
 	@Autowired
@@ -49,6 +51,8 @@ public class Contacts {
 	private IIzmusInvestorRepository izmusInvestorRepository;
 	@Autowired
 	private ObjectMapper jacksonObjectMapper;
+	@Autowired
+	private RuntimeService runtimeService;
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/GeneralContacts")
 	@PreAuthorize("hasPermission('Assessors Menu/Contacts', '')")
@@ -214,5 +218,16 @@ public class Contacts {
 		returnMap.put("finderContacts", getAllFinderContacts());
 		returnMap.put("investorContacts", getAllInvestorContacts());
 		return returnMap;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/CreateNewUser", method = RequestMethod.POST)
+	@PreAuthorize("hasPermission('Assessors Menu/Contacts', '')")
+	public String createNewUser(@RequestParam(value = "contactId") Integer contactId,
+			@RequestParam(value = "userType") String userType) {
+		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("userType", userType);
+		variables.put("contactId", contactId);
+		runtimeService.startProcessInstanceByKey(NEW_CONTACT_USER_PROCESS, variables);
+		return "{\"result\": \"success\"}";
 	}
 }

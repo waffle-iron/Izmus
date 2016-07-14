@@ -95,6 +95,7 @@ public class MailSenderTest {
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
 		try {
 			mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+			mimeMessage.setRecipients(Message.RecipientType.BCC, FROM_EMAIL_ADDRESS);
 			mimeMessage.setSubject(subject);
 			MimeMultipart multipart = new MimeMultipart("related");
 			BodyPart messageBodyPart = new MimeBodyPart();

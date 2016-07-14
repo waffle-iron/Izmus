@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.izmus.com/NewContactUserProcess">
+  <collaboration id="Collaboration">
+    <participant id="NewContactUserPoolId" name="New Contact User" processRef="NewContactUserProcessId"></participant>
+  </collaboration>
+  <process id="NewContactUserProcessId" name="New Contact User Process" isExecutable="true">
+    <laneSet id="laneSet_NewContactUserProcessId">
+      <lane id="SystemLaneId" name="System">
+        <flowNodeRef>startevent1</flowNodeRef>
+        <flowNodeRef>exclusivegateway1</flowNodeRef>
+        <flowNodeRef>exclusivegateway1</flowNodeRef>
+        <flowNodeRef>CreateContactIzmusInvestorServiceId</flowNodeRef>
+        <flowNodeRef>CreateContactIzmusFinderServiceId</flowNodeRef>
+        <flowNodeRef>IzmusContactWelcomeEmailServiceId</flowNodeRef>
+      </lane>
+      <lane id="UserLaneId" name="User"></lane>
+    </laneSet>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="exclusivegateway1"></sequenceFlow>
+    <serviceTask id="CreateContactIzmusInvestorServiceId" name="Create Contact Izmus Investor" activiti:expression="#{CreateContactIzmusInvestor.execute(execution)}"></serviceTask>
+    <sequenceFlow id="flow2" name="Izmus Investor" sourceRef="exclusivegateway1" targetRef="CreateContactIzmusInvestorServiceId">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${userType.equals("Izmus Investor")}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="CreateContactIzmusFinderServiceId" name="Create Contact Izmus Finder" activiti:expression="#{CreateContactIzmusFinder.execute(execution)}"></serviceTask>
+    <sequenceFlow id="flow3" name="Izmus Finder" sourceRef="exclusivegateway1" targetRef="CreateContactIzmusFinderServiceId">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${userType.equals("Izmus Finder")}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="IzmusContactWelcomeEmailServiceId" name="Izmus Contact Welcome Email" activiti:expression="#{IzmusContactWelcomeEmail.execute(execution)}"></serviceTask>
+    <sequenceFlow id="flow4" sourceRef="CreateContactIzmusInvestorServiceId" targetRef="IzmusContactWelcomeEmailServiceId"></sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="CreateContactIzmusFinderServiceId" targetRef="IzmusContactWelcomeEmailServiceId"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration">
+    <bpmndi:BPMNPlane bpmnElement="Collaboration" id="BPMNPlane_Collaboration">
+      <bpmndi:BPMNShape bpmnElement="NewContactUserPoolId" id="BPMNShape_NewContactUserPoolId">
+        <omgdc:Bounds height="462.0" width="921.0" x="40.0" y="30.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="SystemLaneId" id="BPMNShape_SystemLaneId">
+        <omgdc:Bounds height="231.0" width="901.0" x="60.0" y="30.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="UserLaneId" id="BPMNShape_UserLaneId">
+        <omgdc:Bounds height="231.0" width="901.0" x="60.0" y="261.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="120.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="210.0" y="127.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="CreateContactIzmusInvestorServiceId" id="BPMNShape_CreateContactIzmusInvestorServiceId">
+        <omgdc:Bounds height="55.0" width="105.0" x="310.0" y="73.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="CreateContactIzmusFinderServiceId" id="BPMNShape_CreateContactIzmusFinderServiceId">
+        <omgdc:Bounds height="55.0" width="105.0" x="310.0" y="167.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="IzmusContactWelcomeEmailServiceId" id="BPMNShape_IzmusContactWelcomeEmailServiceId">
+        <omgdc:Bounds height="55.0" width="105.0" x="470.0" y="120.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="155.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="210.0" y="147.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="230.0" y="127.0"></omgdi:waypoint>
+        <omgdi:waypoint x="230.0" y="100.0"></omgdi:waypoint>
+        <omgdi:waypoint x="310.0" y="100.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="10.0" width="100.0" x="210.0" y="66.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="230.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="229.0" y="194.0"></omgdi:waypoint>
+        <omgdi:waypoint x="310.0" y="194.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="10.0" width="100.0" x="215.0" y="200.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="415.0" y="100.0"></omgdi:waypoint>
+        <omgdi:waypoint x="522.0" y="100.0"></omgdi:waypoint>
+        <omgdi:waypoint x="522.0" y="120.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="415.0" y="194.0"></omgdi:waypoint>
+        <omgdi:waypoint x="521.0" y="194.0"></omgdi:waypoint>
+        <omgdi:waypoint x="522.0" y="175.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

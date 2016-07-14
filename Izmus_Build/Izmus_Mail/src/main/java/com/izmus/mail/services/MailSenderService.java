@@ -43,6 +43,7 @@ public class MailSenderService {
 		try {
 			checkEmailDirectories();
 			mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+			mimeMessage.setRecipients(Message.RecipientType.BCC, FROM_EMAIL_ADDRESS);
 			mimeMessage.setSubject(subject);
 			mimeMessage.setFrom(new InternetAddress(FROM_EMAIL_ADDRESS));
 			MimeMultipart multipart = new MimeMultipart("related");
