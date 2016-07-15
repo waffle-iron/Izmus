@@ -119,23 +119,37 @@ angular.module('contactsApp').directive('contactsDashboard',
 						viewCreateContactUserDialog(ev, function(userName){
 							$scope.progressMode = 'indeterminate';
 							checkUserAndEmail(userName, contactEmail).then(function(data){
-								//TODO
-								createNewUser(contactId, userType, userName).then(function(data){
-									if (data.result == 'success'){
-										$scope.showMessage($scope.lang.createUserSuccess);
-										$scope.loadContacts();
-									}
-									else {
+								if (data.isEmailExists == true && data.isUserExists == true){
+									$scope.progressMode = '';
+									$scope.showMessage($scope.lang.userAndEmailExists);
+								}
+								else if (data.isEmailExists == true && data.isUserExists == false){
+									$scope.progressMode = '';
+									$scope.showMessage($scope.lang.emailExists);
+								}
+								else if (data.isEmailExists == false && data.isUserExists == true){
+									$scope.progressMode = '';
+									$scope.showMessage($scope.lang.userNameExists);
+								}
+								else {
+									createNewUser(contactId, userType, userName).then(function(data){
+										if (data.result == 'success'){
+											$scope.showMessage($scope.lang.createUserSuccess);
+											$scope.loadContacts();
+										}
+										else {
+											$scope.showMessage($scope.lang.createUserFail);
+											$scope.progressMode = '';
+										}
+									}, function(){
 										$scope.showMessage($scope.lang.createUserFail);
 										$scope.progressMode = '';
-									}
-								}, function(){
-									$scope.showMessage($scope.lang.createUserFail);
-									$scope.progressMode = '';
-								});
+									});
+								}
 							}, function(){
-								
-							})
+								$scope.showMessage($scope.lang.createUserFail);
+								$scope.progressMode = '';
+							});
 						})
 					}
 					/*----------------------------------------------------------------------------------------------------*/

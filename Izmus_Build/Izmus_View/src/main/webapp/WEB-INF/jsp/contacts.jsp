@@ -63,6 +63,8 @@
 			createUserFail:' <spring:message code="navBar.menu.assessorsMenu.contacts.createUserFail" />',
 			userNameExists: ' <spring:message code="landingPage.register.userNameExists" />',
 			userName: ' <spring:message code="landingPage.login.userName" />',
-			userNameRequired: ' <spring:message code="landingPage.register.userNameRequired" />'
+			userNameRequired: ' <spring:message code="landingPage.register.userNameRequired" />',
+			emailExists: ' <spring:message code="landingPage.register.emailExists" />',
+			userAndEmailExists: ' <spring:message code="landingPage.register.userAndEmailExists" />',
 	};
 </script>
