@@ -1,9 +1,12 @@
 package com.izmus.api.availablestartups;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.activiti.engine.RuntimeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +26,11 @@ import com.izmus.data.repository.IAvailableStartupRepository;
 public class AvailableStartups {
 	/*----------------------------------------------------------------------------------------------------*/
 	private static final Logger LOGGER = LoggerFactory.getLogger(AvailableStartups.class);
+	private static final String ANALYSIS_REQUEST_PROCESS = "AnalysisRequestProcessId";
 	@Autowired
 	private IAvailableStartupRepository availableStartupRepository;
-
+	@Autowired
+	private RuntimeService runtimeService;
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET)
 	@PreAuthorize("hasPermission('Assessors Menu/Available Startups', '')")
@@ -164,5 +169,15 @@ public class AvailableStartups {
 				returnSet.add(startup.getFundingStage());
 		}
 		return returnSet;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(method = RequestMethod.POST, value = "/AnalysisRequest")
+	@PreAuthorize("hasPermission('Assessors Menu/Available Startups', '')")
+	public String analysisRequest(@RequestParam(value = "startupId", required = true) Integer startupId) {
+		LOGGER.info("User Requested A New Startup Analysis");
+		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("startupId", startupId);
+		runtimeService.startProcessInstanceByKey(ANALYSIS_REQUEST_PROCESS, variables);
+		return "{\"result\": \"success\"}";
 	}
 }
