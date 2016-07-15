@@ -84,7 +84,7 @@
                 save
             </md-icon>
         </md-button>
-        <md-button ng-if="finderContact.contactId && !finderContact.entityId" class="md-raised md-primary dialog-button" ng-click="createContactUser()">
+        <md-button ng-disabled="checkCreateUserValidation()" class="md-raised md-primary dialog-button" ng-click="createContactUser()">
             {{lang.createUser}}
             <md-icon class="material-icons">
                 face

@@ -1,8 +1,8 @@
 /*----------------------------------------------------------------------------------------------------*/
 angular.module('contactsApp').factory('viewFinderContactDialog',
-		[ '$mdMedia', '$mdDialog', 'loadFinderContact', 'avatarDialog', 'createNewUser',
-		  function($mdMedia, $mdDialog, loadFinderContact, avatarDialog, createNewUser) {
-			return function(ev, finderContact, saveFunction, reloadAfterAvatar, reloaded) {
+		[ '$mdMedia', '$mdDialog', 'loadFinderContact', 'avatarDialog', 
+		  function($mdMedia, $mdDialog, loadFinderContact, avatarDialog) {
+			return function(ev, finderContact, saveFunction, reloadAfterAvatar, reloaded, createNewUser) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
 			    /*----------------------------------------------------------------------------------------------------*/
@@ -67,8 +67,20 @@ angular.module('contactsApp').factory('viewFinderContactDialog',
 						$mdDialog.cancel();
 					};
 					/*----------------------------------------------------------------------------------------------------*/
+					$scope.checkCreateUserValidation = function(){
+						if (finderContact.contactId && 
+								!finderContact.entityId &&
+								finderContact.firstName &&
+								finderContact.lastName &&
+								finderContact.email) return false;
+						return true;
+					}
+					/*----------------------------------------------------------------------------------------------------*/
 					$scope.createContactUser = function() {
-						createNewUser(finderContact.contactId, "Izmus Finder");
+						if (createNewUser){
+							createNewUser(finderContact.contactId, "Izmus Finder");
+						}
+						$mdDialog.cancel();
 					};
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.save = function() {

@@ -223,10 +223,12 @@ public class Contacts {
 	@RequestMapping(value = "/CreateNewUser", method = RequestMethod.POST)
 	@PreAuthorize("hasPermission('Assessors Menu/Contacts', '')")
 	public String createNewUser(@RequestParam(value = "contactId") Integer contactId,
-			@RequestParam(value = "userType") String userType) {
+			@RequestParam(value = "userType") String userType,
+			@RequestParam(value = "userName") String userName) {
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("userType", userType);
 		variables.put("contactId", contactId);
+		variables.put("userName", userName);
 		runtimeService.startProcessInstanceByKey(NEW_CONTACT_USER_PROCESS, variables);
 		return "{\"result\": \"success\"}";
 	}

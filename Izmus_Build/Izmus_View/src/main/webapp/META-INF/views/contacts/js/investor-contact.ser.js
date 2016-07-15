@@ -2,7 +2,7 @@
 angular.module('contactsApp').factory('viewInvestorContactDialog',
 		[ '$mdMedia', '$mdDialog', 'loadInvestorContact', 'avatarDialog','$mdConstant', 
 		  function($mdMedia, $mdDialog, loadInvestorContact, avatarDialog, $mdConstant) {
-			return function(ev, investorContact, saveFunction, reloadAfterAvatar, reloaded, allFinders) {
+			return function(ev, investorContact, saveFunction, reloadAfterAvatar, reloaded, allFinders, createNewUser) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
 			    /*----------------------------------------------------------------------------------------------------*/
@@ -17,6 +17,22 @@ angular.module('contactsApp').factory('viewInvestorContactDialog',
 				    $scope.customKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA];
 				    $scope.additionalFocusAreas = [];
 				    $scope.additionalInvestmentStages = [];
+				    /*----------------------------------------------------------------------------------------------------*/
+					$scope.checkCreateUserValidation = function(){
+						if (investorContact.contactId && 
+								!investorContact.entityId &&
+								investorContact.firstName &&
+								investorContact.lastName &&
+								investorContact.email) return false;
+						return true;
+					}
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.createContactUser = function() {
+						if (createNewUser){
+							createNewUser(investorContact.contactId, "Izmus Investor");
+						}
+						$mdDialog.cancel();
+					};
 				    /*----------------------------------------------------------------------------------------------------*/
 					$scope.searchFinder = function(contact){
 						if (!$scope.finderSearch 

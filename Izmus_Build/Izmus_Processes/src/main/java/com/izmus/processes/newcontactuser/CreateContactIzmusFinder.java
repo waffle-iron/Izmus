@@ -36,8 +36,8 @@ public class CreateContactIzmusFinder {
 	public void execute(Execution execution) {
 		try {
 			Integer contactId = (Integer) runtimeService.getVariable(execution.getId(), "contactId");
+			String userName = runtimeService.getVariable(execution.getId(), "userName").toString();
 			FinderContact contact = finderContactRepository.findDistinctFinderContactByContactId(contactId);
-			String userName = contact.getFirstName() + "." + contact.getLastName();
 			LOGGER.info("Creating Izmus Finder User For Contact User Name: " + userName);
 			String uuid = UUID.randomUUID().toString().split("-")[0];
 			User newUser = new User();
@@ -57,6 +57,7 @@ public class CreateContactIzmusFinder {
 			runtimeService.setVariable(execution.getId(), "userId", newUser.getUserId());
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
+			throw e;
 		}
 	}
 	/*----------------------------------------------------------------------------------------------------*/

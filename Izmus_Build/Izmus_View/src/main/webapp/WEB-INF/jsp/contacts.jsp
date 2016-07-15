@@ -18,6 +18,8 @@
 	src="<c:url value="/views/contacts/js/finder-contact.ser.js" />"></script>
 <script
 	src="<c:url value="/views/contacts/js/general-contact.ser.js" />"></script>
+<script
+	src="<c:url value="/views/contacts/js/contact-user.ser.js" />"></script>
 <script>
 	var lang = {
 			search:' <spring:message code="navBar.menu.startupAssessment.search" />',
@@ -55,6 +57,12 @@
 			contactType: ' <spring:message code="navBar.menu.assessorsMenu.contacts.contactType" />',
 			izmusFinder: ' <spring:message code="navBar.menu.assessorsMenu.contacts.izmusFinder" />',
 			izmusInvestor: ' <spring:message code="navBar.menu.assessorsMenu.contacts.izmusInvestor" />',
-			generalContact: ' <spring:message code="navBar.menu.assessorsMenu.contacts.generalContact" />'
+			generalContact: ' <spring:message code="navBar.menu.assessorsMenu.contacts.generalContact" />',
+			createUser: ' <spring:message code="navBar.menu.assessorsMenu.contacts.createUser" />',
+			createUserSuccess:' <spring:message code="navBar.menu.assessorsMenu.contacts.createUserSuccess" />',
+			createUserFail:' <spring:message code="navBar.menu.assessorsMenu.contacts.createUserFail" />',
+			userNameExists: ' <spring:message code="landingPage.register.userNameExists" />',
+			userName: ' <spring:message code="landingPage.login.userName" />',
+			userNameRequired: ' <spring:message code="landingPage.register.userNameRequired" />'
 	};
 </script>

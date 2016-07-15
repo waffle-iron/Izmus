@@ -129,7 +129,7 @@ angular.module('contactsApp').factory('loadStartupContact',
 
 angular.module('contactsApp').factory('createNewUser',
 		[ '$q', '$http', '$httpParamSerializer',function($q, $http, $httpParamSerializer) {
-			return function(contactId, userType) {
+			return function(contactId, userType, userName) {
 				return $q(function(resolve, reject) {
 					$http({
 						method : 'POST',
@@ -142,12 +142,34 @@ angular.module('contactsApp').factory('createNewUser',
 					    data : $httpParamSerializer({
 					    	_csrf: globalAttr.sessionToken,
 					    	contactId: contactId,
-					    	userType: userType
+					    	userType: userType,
+					    	userName: userName
 					    })
 					}).then(function successCallback(response) {
 						resolve(response.data);
 					}, function errorCallback(error) {
-						
+						reject();
+					});
+				})
+			}
+		} ]);
+/*----------------------------------------------------------------------------------------------------*/
+
+angular.module('contactsApp').factory('checkUserAndEmail',
+		[ '$q', '$http', function($q, $http) {
+			return function(userName, email) {
+				return $q(function(resolve, reject) {
+					$http({
+						method : 'GET',
+						url : '/api/Users/CheckUserAndEmail',
+					    params : {
+					    	userName: userName,
+					    	email: email
+					    }
+					}).then(function successCallback(response) {
+						resolve(response.data);
+					}, function errorCallback(error) {
+						reject();
 					});
 				})
 			}

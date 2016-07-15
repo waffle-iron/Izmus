@@ -1,0 +1,41 @@
+<style>
+	.dialog-button {
+		color: white !important;
+	}
+	.dialog-button > md-icon {
+		color: white !important;
+	}
+</style>
+<section layout="column">
+	<md-content layout-padding dir="{{globalAttr.direction}}" layout="column">
+		<md-whiteframe
+		class="md-whiteframe-1dp"
+		layout-padding
+		flex="none"
+		layout="column">
+			<form name="createUserForm" layout="column">
+				<md-input-container ng-class="(globalAttr.direction == 'rtl') ? 'input-rtl' : ''">
+					<label>{{lang.userName}}</label>
+					<input required name="userName" ng-model="userName">
+					<div ng-messages="createUserForm.userName.$error" multiple md-auto-hide="false">
+						<div ng-message="required">
+							{{lang.userNameRequired}}
+						</div>
+					</div>
+				</md-input-container>
+			</form>
+		</md-whiteframe>
+	</md-content>
+	<md-dialog-actions layout="row">
+		<md-button class="md-raised md-primary dialog-button" ng-click="save()">
+			{{lang.createUser}}
+			<md-icon class="material-icons">
+				face
+			</md-icon>
+		</md-button>
+		<span flex></span>
+		<md-button class="md-raised md-primary dialog-button" ng-click="ok()">
+			{{lang.cancel}}
+		</md-button>
+	</md-dialog-actions>
+</section>
