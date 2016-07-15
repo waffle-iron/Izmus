@@ -1,5 +1,38 @@
-<section>
-	<section layout-padding layout="column">
-		{{startup.miscellaneous}}
-	</section>
-</section>
+<style>
+.details-div{
+	max-width: 700px;
+}
+.small-text{
+	font-size: 11px;
+}
+</style>
+<div
+class="details-div"
+layout="row"
+layout-xs="column"
+layout-sm="column"
+layout-padding>
+	<div flex-gt-sm="50" layout="column" layout-padding>
+		<div layout="row" layout-align="space-between center">
+			<span class="md-subheader" ng-class="(isSmallDevice()) ? 'small-text' : ''">{{lang.founded + ': '}}</span>
+			<span class="md-subheader" ng-class="(isSmallDevice()) ? 'small-text' : ''">{{(startup.founded ? startup.founded : '')}}</span>
+		</div>
+		<div layout="row" layout-align="space-between center">
+			<span class="md-subheader" ng-class="(isSmallDevice()) ? 'small-text' : ''">{{lang.numberOfEmployees + ': '}}</span>
+			<span class="md-subheader" ng-class="(isSmallDevice()) ? 'small-text' : ''">{{(startup.numberOfEmployees ? startup.numberOfEmployees : '')}}</span>
+		</div>
+		<div layout="row" layout-align="space-between center">
+			<span class="md-subheader" ng-class="(isSmallDevice()) ? 'small-text' : ''">{{lang.fundingStage + ': '}}</span>
+			<span class="md-subheader" ng-class="(isSmallDevice()) ? 'small-text' : ''">{{(startup.fundingStage ? startup.fundingStage : '')}}</span>
+		</div>
+		<div layout="row" layout-align="space-between center">
+			<span class="md-subheader" ng-class="(isSmallDevice()) ? 'small-text' : ''">{{lang.productStage + ': '}}</span>
+			<span class="md-subheader" ng-class="(isSmallDevice()) ? 'small-text' : ''">{{(startup.productStage ? startup.productStage : '')}}</span>
+		</div>
+	</div>
+	<div flex-gt-sm="50" layout="column" layout-padding>
+		<span>
+			{{startup.miscellaneous}}
+		</span>
+	</div>
+</div>

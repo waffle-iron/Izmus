@@ -179,6 +179,8 @@ angular.module('findersDashboardApp').directive('startupGridList',
 						return '/views/finders-dashboard/images/application.svg';
 					case 'Pharmaceuticals':
 						return '/views/finders-dashboard/images/pharma.svg';
+					case 'Consumer Electronics':
+						return '/views/finders-dashboard/images/electronics.svg';
 					default:
 						return '/views/core/izmus-nav-bar/images/startup.svg';	
 				}

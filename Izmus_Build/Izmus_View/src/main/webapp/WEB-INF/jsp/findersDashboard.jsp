@@ -20,9 +20,12 @@
 	src="<c:url value="/views/finders-dashboard/js/startup-header.dir.js" />"></script>
 <script
 	src="<c:url value="/views/finders-dashboard/js/startup-details.dir.js" />"></script>
+<script
+	src="<c:url value="/views/finders-dashboard/js/add-to-cart-confirmation.ser.js" />"></script>
 <script>
 	var lang = {
 			searchName:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.searchName" />',
+			cancel:' <spring:message code="navBar.menu.startupAssessment.cancel" />',
 			filterSector:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.filterSector" />',
 			site:' <spring:message code="navBar.menu.startupAssessment.site" />',
 			sector:' <spring:message code="navBar.menu.startupAssessment.sector" />',
@@ -30,6 +33,9 @@
 			fundingStage:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.fundingStage" />',
 			welcomeText:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.welcomeText" />',
 			filterText:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.filterText" />',
-			ok:' <spring:message code="navBar.menu.startupAssessment.ok" />'
+			ok:' <spring:message code="navBar.menu.startupAssessment.ok" />',
+			founded:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.founded" />',
+			numberOfEmployees:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.numberOfEmployees" />',
+			thankYouForAdding: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.thankYouForAdding" />'
 	};
 </script>

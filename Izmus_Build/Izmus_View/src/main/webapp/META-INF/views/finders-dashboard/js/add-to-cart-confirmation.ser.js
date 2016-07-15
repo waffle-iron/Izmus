@@ -1,30 +1,28 @@
 /*----------------------------------------------------------------------------------------------------*/
-angular.module('findersDashboardApp').factory('startupPreviewDialog',
-		[ '$mdMedia', '$mdDialog','addToCartConfirmationDialog', function($mdMedia, $mdDialog, addToCartConfirmationDialog) {
+angular.module('findersDashboardApp').factory('addToCartConfirmationDialog',
+		[ '$mdMedia', '$mdDialog', function($mdMedia, $mdDialog) {
 			return function(ev, startup, iconSrc) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
 			    /*----------------------------------------------------------------------------------------------------*/
-				var startupPreviewCtrl = function($scope) {
+				var addToCartConfirmationCtrl = function($scope) {
 				    $scope.globalAttr = globalAttr;
 				    $scope.lang = lang;
 				    $scope.iconSrc = iconSrc;
 				    $scope.startup = startup;
-				    $scope.progressMode = '';
 					/*----------------------------------------------------------------------------------------------------*/
-					$scope.ok = function() {
+					$scope.cancel = function() {
 						$mdDialog.cancel();
 					};
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.addToCart = function() {
-						addToCartConfirmationDialog(ev, startup, iconSrc);
 						$mdDialog.cancel();
 					};
 				}
 			    /*----------------------------------------------------------------------------------------------------*/
 				$mdDialog.show({
-				    controller: startupPreviewCtrl,
-				    templateUrl: '/views/finders-dashboard/templates/startup-preview.dialog.html',
+				    controller: addToCartConfirmationCtrl,
+				    templateUrl: '/views/finders-dashboard/templates/add-to-cart-confirmation.dialog.html',
 				    parent: angular.element(document.body),
 				    targetEvent: ev,
 				    clickOutsideToClose: true,
