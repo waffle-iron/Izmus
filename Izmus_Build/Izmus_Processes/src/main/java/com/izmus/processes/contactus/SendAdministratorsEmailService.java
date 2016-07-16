@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.ServletContext;
 
@@ -13,7 +14,6 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
 import com.izmus.data.domain.users.Administrator;
@@ -65,7 +65,7 @@ public class SendAdministratorsEmailService {
 			emailString = injectStringsToHTML(emailString, contactName, contactEmail, contactSubject, contactMessage);
 			HashMap<String, String> imageMap = getWelcomeEmailImageMap();
 			mailService.sendHTMLMail(administratorEmails,
-					messageSource.getMessage(CONTACT_US_SUBJECT, null, LocaleContextHolder.getLocale()), emailString,
+					messageSource.getMessage(CONTACT_US_SUBJECT, null, Locale.ENGLISH), emailString,
 					imageMap);
 		} catch (Exception e) {
 			LOGGER.debug("Failed to send out email to: " + administratorEmails + "\r\n" + e.getMessage());
@@ -91,19 +91,19 @@ public class SendAdministratorsEmailService {
 	private String injectStringsToHTML(String emailString, String contactName, String contactEmail, String contactSubject, String contactMessage) {
 		ArrayList<String> stringList = new ArrayList<String>();
 /*0*/	stringList.add(messageSource.getMessage(CONTACT_US_SUBJECT, null,
-				LocaleContextHolder.getLocale()));
+				Locale.ENGLISH));
 /*1*/	stringList.add(messageSource.getMessage("emails.contactUs.weGotMail", null,
-				LocaleContextHolder.getLocale()));
+				Locale.ENGLISH));
 /*2*/	stringList.add(messageSource.getMessage("emails.contactUs.receivedNewMessage", null,
-				LocaleContextHolder.getLocale()));
+				Locale.ENGLISH));
 /*3*/	stringList.add(contactName);
 /*4*/	stringList.add(messageSource.getMessage("emails.contactUs.hisEmail", null,
-				LocaleContextHolder.getLocale()));
+				Locale.ENGLISH));
 /*5*/	stringList.add(contactEmail);
 /*6*/	stringList.add(messageSource.getMessage("emails.contactUs.hisMessage", null,
-				LocaleContextHolder.getLocale()));
+				Locale.ENGLISH));
 /*7*/	stringList.add(messageSource.getMessage("emails.contactUs.subject", null,
-				LocaleContextHolder.getLocale()));
+				Locale.ENGLISH));
 /*8*/	stringList.add(contactSubject);
 /*9*/	stringList.add(contactMessage);
 		return mailService.injectStringListToEmail(emailString, stringList);

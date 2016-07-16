@@ -3,7 +3,7 @@ package com.izmus.processes.analysisrequest;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.ServletContext;
 
@@ -13,14 +13,13 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import com.izmus.data.domain.users.Administrator;
+import com.izmus.data.domain.startups.AvailableStartup;
 import com.izmus.data.domain.users.User;
 import com.izmus.data.messages.MessageSource;
-import com.izmus.data.repository.IAdministratorRepository;
+import com.izmus.data.repository.IAvailableStartupRepository;
 import com.izmus.mail.services.MailSenderService;
 
 @Component("SendUserConfirmationEmailService")
@@ -35,18 +34,22 @@ public class SendUserConfirmationEmailService {
 	@Autowired
 	private RuntimeService runtimeService;
 	@Autowired
+	private IAvailableStartupRepository availableStartupRepository;
+	@Autowired
 	private ServletContext context;
 	/*----------------------------------------------------------------------------------------------------*/
 	public void execute(Execution execution) throws Exception{
 		try {
 			User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			Integer startupId = (Integer) runtimeService.getVariable(execution.getId(), "startupId");
+			AvailableStartup startup = availableStartupRepository.findDistinctAvailableStartupByStartupId(startupId);
 			LOGGER.info("Sending Confirmation of Analysis Email To User: " + user.getUserName());
 			InputStream inputStream = context.getResourceAsStream("/WEB-INF/emails/analysis-request/analysis-request-email-inline.html");
 			String emailString = IOUtils.toString(inputStream);
-			emailString = injectStringsToHTML(emailString, user);
+			emailString = injectStringsToHTML(emailString, user, startup);
 			HashMap<String, String> imageMap = getWelcomeEmailImageMap();
 			mailService.sendHTMLMail(user.getEntity().getEntityEmail(),
-					messageSource.getMessage(ANALYSIS_REQUEST, null, LocaleContextHolder.getLocale()), emailString,
+					messageSource.getMessage(ANALYSIS_REQUEST, null, Locale.ENGLISH), emailString,
 					imageMap);
 		} catch (Exception e) {
 			LOGGER.debug("Failed to send out email to confirm user analysis request\r\n" + e.getMessage());
@@ -55,18 +58,28 @@ public class SendUserConfirmationEmailService {
 	}
 
 	/*----------------------------------------------------------------------------------------------------*/
-	private String injectStringsToHTML(String emailString, User user) {
+	private String injectStringsToHTML(String emailString, User user, AvailableStartup startup) {
 		ArrayList<String> stringList = new ArrayList<String>();
 /*0*/	stringList.add(messageSource.getMessage(ANALYSIS_REQUEST, null,
-				LocaleContextHolder.getLocale()));
+		Locale.ENGLISH));
+/*1*/	stringList.add(messageSource.getMessage("emails.analysisRequest.thankYouForChoosing", null,
+		Locale.ENGLISH));
+/*2*/	stringList.add(startup.getStartupName());
+/*3*/	stringList.add(startup.getSite());
+/*4*/	stringList.add(startup.getSite());
+/*5*/	stringList.add(messageSource.getMessage("emails.analysisRequest.yourWishList", null,
+		Locale.ENGLISH));
+/*6*/	stringList.add("www.izmus.com");
+/*7*/	stringList.add(messageSource.getMessage("emails.analysisRequest.contactASAP", null,
+		Locale.ENGLISH));
 		return mailService.injectStringListToEmail(emailString, stringList);
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 
 	private HashMap<String, String> getWelcomeEmailImageMap() {
 		HashMap<String, String> imageMap = new HashMap<>();
-		imageMap.put("<logo>", "contact-us/izmus-logo.png");
-		imageMap.put("<side-picture>", "contact-us/side-picture.png");
+		imageMap.put("<logo>", "analysis-request/izmus-logo.png");
+		imageMap.put("<side-picture>", "analysis-request/side-picture.png");
 		return imageMap;
 	}
 }

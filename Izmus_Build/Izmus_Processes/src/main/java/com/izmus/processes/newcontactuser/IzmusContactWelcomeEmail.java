@@ -3,6 +3,7 @@ package com.izmus.processes.newcontactuser;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 import javax.servlet.ServletContext;
 
@@ -12,7 +13,6 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
 import com.izmus.data.domain.users.User;
@@ -49,7 +49,7 @@ public class IzmusContactWelcomeEmail {
 			emailString = injectStringsToHTML(emailString, user);
 			HashMap<String, String> imageMap = getWelcomeEmailImageMap();
 			mailService.sendHTMLMail(userEmail,
-					messageSource.getMessage(IZMUS_WELCOME_SUBJECT, null, LocaleContextHolder.getLocale()), emailString,
+					messageSource.getMessage(IZMUS_WELCOME_SUBJECT, null, Locale.ENGLISH), emailString,
 					imageMap);
 		} catch (Exception e) {
 			LOGGER.debug("Failed to send out email to: " + userEmail + "\r\n" + e.getMessage());
@@ -60,28 +60,28 @@ public class IzmusContactWelcomeEmail {
 	private String injectStringsToHTML(String emailString, User user) {
 		ArrayList<String> stringList = new ArrayList<String>();
 		stringList.add(messageSource.getMessage(IZMUS_WELCOME_SUBJECT, null,
-				LocaleContextHolder.getLocale()));
+				Locale.ENGLISH));
 		stringList.add(messageSource.getMessage("emails.izmusWelcomeEmail.welcomeMessage", null,
-				LocaleContextHolder.getLocale()));
+				Locale.ENGLISH));
 		stringList.add(messageSource.getMessage("emails.izmusWelcomeEmail.password", null,
-				LocaleContextHolder.getLocale()));
+				Locale.ENGLISH));
 		stringList.add(messageSource.getMessage("emails.izmusWelcomeEmail.address", null,
-				LocaleContextHolder.getLocale()));
+				Locale.ENGLISH));
 		stringList.add(messageSource.getMessage("emails.izmusWelcomeEmail.unsubscribeMessage", null,
-				LocaleContextHolder.getLocale()));
+				Locale.ENGLISH));
 		stringList.add(messageSource.getMessage("emails.izmusWelcomeEmail.unsubscribe", null,
-				LocaleContextHolder.getLocale()));
+				Locale.ENGLISH));
 		stringList.add(messageSource.getMessage("emails.izmusWelcomeEmail.dir", null,
-				LocaleContextHolder.getLocale()));
+				Locale.ENGLISH));
 		stringList.add(user.getPassword());
 		stringList.add(messageSource.getMessage("emails.izmusWelcomeEmail.izmusWelcomeSubject", null,
-				LocaleContextHolder.getLocale()));
+				Locale.ENGLISH));
 		stringList.add(messageSource.getMessage("emails.izmusWelcomeEmail.logInNow", null,
-				LocaleContextHolder.getLocale()));
+				Locale.ENGLISH));
 		stringList.add(messageSource.getMessage("emails.izmusWelcomeEmail.userNameIs", null,
-				LocaleContextHolder.getLocale()));
+				Locale.ENGLISH));
 		stringList.add(messageSource.getMessage("emails.izmusWelcomeEmail.tempPassIs", null,
-				LocaleContextHolder.getLocale()));
+				Locale.ENGLISH));
 		stringList.add(user.getUserName());
 		return mailService.injectStringListToEmail(emailString, stringList);
 	}
