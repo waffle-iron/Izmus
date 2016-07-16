@@ -59,7 +59,7 @@ public class SendAdminRequestEmailService {
 			String emailString = IOUtils.toString(inputStream);
 			emailString = injectStringsToHTML(emailString, user, startup);
 			HashMap<String, String> imageMap = getWelcomeEmailImageMap();
-			mailService.sendHTMLMail("nevo.lior@gmail.com",
+			mailService.sendHTMLMail(administratorEmails,
 					messageSource.getMessage(ADMIN_ANALYSIS_REQUEST, null, Locale.ENGLISH), emailString,
 					imageMap);
 		} catch (Exception e) {
