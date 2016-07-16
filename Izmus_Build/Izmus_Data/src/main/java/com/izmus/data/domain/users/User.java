@@ -35,6 +35,8 @@ public class User implements Serializable, Comparable<User> {
 	private String userName;
 	@Column(name = "PASSWORD")
 	private String password;
+	@Column(name = "LAST_VIEW")
+	private String lastView;
 	@Column(name = "ENABLED", nullable=false)
 	private Boolean enabled;
 	@Temporal(TemporalType.TIMESTAMP)
@@ -198,6 +200,16 @@ public class User implements Serializable, Comparable<User> {
 
 	public void setPasswordChangeDate(Date passwordChangeDate) {
 		this.passwordChangeDate = passwordChangeDate;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+
+	public String getLastView() {
+		return lastView;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+
+	public void setLastView(String lastView) {
+		this.lastView = lastView;
 	}
 	
 }

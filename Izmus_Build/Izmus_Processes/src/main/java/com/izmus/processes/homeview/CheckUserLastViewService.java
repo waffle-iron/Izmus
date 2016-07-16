@@ -1,8 +1,5 @@
 package com.izmus.processes.homeview;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.runtime.Execution;
 import org.slf4j.Logger;
@@ -11,13 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import com.izmus.data.configurations.ViewConfig;
 import com.izmus.data.domain.users.User;
 import com.izmus.data.repository.IUserRepository;
 
-@Component("CheckUserPasswordService")
-public class CheckUserPasswordService {
+@Component("CheckUserLastViewService")
+public class CheckUserLastViewService {
 	/*----------------------------------------------------------------------------------------------------*/
-	private static final Logger LOGGER = LoggerFactory.getLogger(CheckUserPasswordService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CheckUserLastViewService.class);
 	@Autowired
 	private RuntimeService runtimeService;
 	@Autowired
@@ -25,16 +23,15 @@ public class CheckUserPasswordService {
 	/*----------------------------------------------------------------------------------------------------*/
 	public void execute(Execution execution) {
 		try {
-			boolean changePassword = false;
+			boolean lastView = false;
 			User user = userRepository
 					.findDistinctUserByUserId(((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUserId());
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(new Date());
-			cal.add(Calendar.MONTH, -6);
-			if (user.getPasswordChangeDate() == null || user.getPasswordChangeDate().before(cal.getTime())){
-				changePassword = true;
+			if (user.getLastView() != null && !user.getLastView().isEmpty()){
+				lastView = true;
+				ViewConfig thisViewConfig = (ViewConfig) runtimeService.getVariable(execution.getId(), "viewConfig");
+				thisViewConfig.setView(user.getLastView());
 			}
-			runtimeService.setVariable(execution.getId(), "changePassword", changePassword);
+			runtimeService.setVariable(execution.getId(), "lastView", lastView);
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
 		}
