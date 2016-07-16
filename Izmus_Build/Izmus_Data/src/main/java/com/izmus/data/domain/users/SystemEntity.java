@@ -30,6 +30,8 @@ public abstract class SystemEntity implements Serializable, Comparable<SystemEnt
 	private String entityEmail;
 	@Column(name = "IS_ENTITY_MALE")
 	private Boolean isEntityMale;
+	@Column(name = "CONTACT_ID")
+	private Integer contactId;
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="USER_ID")
 	@Fetch(value = FetchMode.SELECT)
@@ -88,5 +90,12 @@ public abstract class SystemEntity implements Serializable, Comparable<SystemEnt
 	public void setIsEntityMale(Boolean isEntityMale) {
 		this.isEntityMale = isEntityMale;
 	}
-	
+	/*----------------------------------------------------------------------------------------------------*/
+	public Integer getContactId() {
+		return contactId;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	public void setContactId(Integer contactId) {
+		this.contactId = contactId;
+	}
 }

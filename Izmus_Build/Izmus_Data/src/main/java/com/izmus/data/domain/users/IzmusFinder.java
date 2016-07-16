@@ -18,8 +18,6 @@ public class IzmusFinder extends SystemEntity {
 	private String finderLastName;
 	@Column(name = "COMMISSION")
 	private Double commission;
-	@Column(name = "CONTACT_ID")
-	private Integer contactId;
 	/*----------------------------------------------------------------------------------------------------*/
 	@Override
 	public String toString() {
@@ -52,13 +50,5 @@ public class IzmusFinder extends SystemEntity {
 
 	public void setCommission(Double commission) {
 		this.commission = commission;
-	}
-	/*----------------------------------------------------------------------------------------------------*/
-	public Integer getContactId() {
-		return contactId;
-	}
-	/*----------------------------------------------------------------------------------------------------*/
-	public void setContactId(Integer contactId) {
-		this.contactId = contactId;
 	}
 }
