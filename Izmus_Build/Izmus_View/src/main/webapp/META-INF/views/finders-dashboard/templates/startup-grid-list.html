@@ -120,17 +120,17 @@
 					<label>{{lang.searchName}}</label>
 					<input ng-model="$parent.$parent.search">
 				</md-input-container>
-				<md-select placeholder="{{lang.filterSector}}" ng-model="$parent.$parent.filterSector" md-on-open="getAllSectors()" style="min-width: 200px;">
+				<md-select multiple placeholder="{{lang.filterSector}}" ng-model="$parent.$parent.filterSector" md-on-open="getAllSectors()" style="min-width: 200px;">
 					<md-option ng-value="sector" ng-repeat="sector in sectors">
 						{{sector}}
 					</md-option>
 				</md-select>
-				<md-select placeholder="{{lang.fundingStage}}" ng-model="$parent.$parent.fundingStage" md-on-open="getAllFundingStages()" style="min-width: 200px;">
+				<md-select multiple placeholder="{{lang.fundingStage}}" ng-model="$parent.$parent.fundingStage" md-on-open="getAllFundingStages()" style="min-width: 200px;">
 					<md-option ng-value="fundingStage" ng-repeat="fundingStage in fundingStages">
 						{{fundingStage}}
 					</md-option>
 				</md-select>
-				<md-select placeholder="{{lang.productStage}}" ng-model="$parent.$parent.productStage" md-on-open="getAllProductStages()" style="min-width: 200px;">
+				<md-select multiple placeholder="{{lang.productStage}}" ng-model="$parent.$parent.productStage" md-on-open="getAllProductStages()" style="min-width: 200px;">
 					<md-option ng-value="productStage" ng-repeat="productStage in productStages">
 						{{productStage}}
 					</md-option>
@@ -162,17 +162,17 @@
 					<label>{{lang.searchName}}</label>
 					<input ng-model="$parent.$parent.search">
 				</md-input-container>
-				<md-select placeholder="{{lang.filterSector}}" ng-model="$parent.$parent.filterSector" md-on-open="getAllSectors()" style="min-width: 200px;">
+				<md-select multiple placeholder="{{lang.filterSector}}" ng-model="$parent.$parent.filterSector" md-on-open="getAllSectors()" style="min-width: 200px;">
 					<md-option ng-value="sector" ng-repeat="sector in sectors">
 						{{sector}}
 					</md-option>
 				</md-select>
-				<md-select placeholder="{{lang.fundingStage}}" ng-model="$parent.$parent.fundingStage" md-on-open="getAllFundingStages()" style="min-width: 200px;">
+				<md-select multiple placeholder="{{lang.fundingStage}}" ng-model="$parent.$parent.fundingStage" md-on-open="getAllFundingStages()" style="min-width: 200px;">
 					<md-option ng-value="fundingStage" ng-repeat="fundingStage in fundingStages">
 						{{fundingStage}}
 					</md-option>
 				</md-select>
-				<md-select placeholder="{{lang.productStage}}" ng-model="$parent.$parent.productStage" md-on-open="getAllProductStages()" style="min-width: 200px;">
+				<md-select multiple placeholder="{{lang.productStage}}" ng-model="$parent.$parent.productStage" md-on-open="getAllProductStages()" style="min-width: 200px;">
 					<md-option ng-value="productStage" ng-repeat="productStage in productStages">
 						{{productStage}}
 					</md-option>

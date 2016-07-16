@@ -37,9 +37,9 @@ public class AvailableStartups {
 	public Page<AvailableStartup> getAllIzmusContacts(
 			@RequestParam(value = "pageNumber", required = true) Integer pageNumber,
 			@RequestParam(value = "searchName", required = false) String searchName,
-			@RequestParam(value = "filterSector", required = false) String filterSector,
-			@RequestParam(value = "fundingStage", required = false) String fundingStage,
-			@RequestParam(value = "productStage", required = false) String productStage,
+			@RequestParam(value = "filterSector", required = false) List<String> filterSector,
+			@RequestParam(value = "fundingStage", required = false) List<String> fundingStage,
+			@RequestParam(value = "productStage", required = false) List<String> productStage,
 			@RequestParam(value = "pageSize") Integer pageSize) {
 		PageRequest pageable = new PageRequest(pageNumber, pageSize);
 		Page<AvailableStartup> returnPage;
@@ -50,15 +50,15 @@ public class AvailableStartups {
 						returnPage = availableStartupRepository.findAllByOrderByStartupNameAsc(pageable);
 					} else {
 						returnPage = availableStartupRepository
-								.findByProductStageIgnoreCaseOrderByStartupNameAsc(productStage, pageable);
+								.findByProductStageIgnoreCaseInOrderByStartupNameAsc(productStage, pageable);
 					}
 				} else {
 					if (productStage == null) {
 						returnPage = availableStartupRepository
-								.findByFundingStageIgnoreCaseOrderByStartupNameAsc(fundingStage, pageable);
+								.findByFundingStageIgnoreCaseInOrderByStartupNameAsc(fundingStage, pageable);
 					} else {
 						returnPage = availableStartupRepository
-								.findByFundingStageIgnoreCaseAndProductStageIgnoreCaseOrderByStartupNameAsc(
+								.findByFundingStageIgnoreCaseInAndProductStageIgnoreCaseInOrderByStartupNameAsc(
 										fundingStage, productStage, pageable);
 					}
 				}
@@ -66,20 +66,20 @@ public class AvailableStartups {
 				if (fundingStage == null) {
 					if (productStage == null) {
 						returnPage = availableStartupRepository
-								.findBySectorIgnoreCaseOrderByStartupNameAsc(filterSector, pageable);
+								.findBySectorIgnoreCaseInOrderByStartupNameAsc(filterSector, pageable);
 					} else {
 						returnPage = availableStartupRepository
-								.findBySectorIgnoreCaseAndProductStageIgnoreCaseOrderByStartupNameAsc(
+								.findBySectorIgnoreCaseInAndProductStageIgnoreCaseInOrderByStartupNameAsc(
 										filterSector, productStage, pageable);
 					}
 				} else {
 					if (productStage == null) {
 						returnPage = availableStartupRepository
-								.findBySectorIgnoreCaseAndFundingStageIgnoreCaseOrderByStartupNameAsc(
+								.findBySectorIgnoreCaseInAndFundingStageIgnoreCaseInOrderByStartupNameAsc(
 										filterSector, fundingStage, pageable);
 					} else {
 						returnPage = availableStartupRepository
-								.findBySectorIgnoreCaseAndFundingStageIgnoreCaseAndProductStageIgnoreCaseOrderByStartupNameAsc(
+								.findBySectorIgnoreCaseInAndFundingStageIgnoreCaseInAndProductStageIgnoreCaseInOrderByStartupNameAsc(
 										filterSector, fundingStage, productStage, pageable);
 					}
 				}
@@ -92,17 +92,17 @@ public class AvailableStartups {
 								.findByStartupNameIgnoreCaseContainingOrderByStartupNameAsc(searchName, pageable);
 					} else {
 						returnPage = availableStartupRepository
-								.findByStartupNameIgnoreCaseContainingAndProductStageIgnoreCaseOrderByStartupNameAsc(
+								.findByStartupNameIgnoreCaseContainingAndProductStageIgnoreCaseInOrderByStartupNameAsc(
 										searchName, productStage, pageable);
 					}
 				} else {
 					if (productStage == null) {
 						returnPage = availableStartupRepository
-								.findByStartupNameIgnoreCaseContainingAndFundingStageIgnoreCaseOrderByStartupNameAsc(
+								.findByStartupNameIgnoreCaseContainingAndFundingStageIgnoreCaseInOrderByStartupNameAsc(
 										searchName, fundingStage, pageable);
 					} else {
 						returnPage = availableStartupRepository
-								.findByStartupNameIgnoreCaseContainingAndFundingStageIgnoreCaseAndProductStageIgnoreCaseOrderByStartupNameAsc(
+								.findByStartupNameIgnoreCaseContainingAndFundingStageIgnoreCaseInAndProductStageIgnoreCaseInOrderByStartupNameAsc(
 										searchName, fundingStage, productStage, pageable);
 					}
 				}
@@ -110,21 +110,21 @@ public class AvailableStartups {
 				if (fundingStage == null) {
 					if (productStage == null) {
 						returnPage = availableStartupRepository
-								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseOrderByStartupNameAsc(
+								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseInOrderByStartupNameAsc(
 										searchName, filterSector, pageable);
 					} else {
 						returnPage = availableStartupRepository
-								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseAndProductStageIgnoreCaseOrderByStartupNameAsc(
+								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseInAndProductStageIgnoreCaseInOrderByStartupNameAsc(
 										searchName, filterSector, productStage, pageable);
 					}
 				} else {
 					if (productStage == null) {
 						returnPage = availableStartupRepository
-								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseAndFundingStageIgnoreCaseOrderByStartupNameAsc(
+								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseInAndFundingStageIgnoreCaseInOrderByStartupNameAsc(
 										searchName, filterSector, fundingStage, pageable);
 					} else {
 						returnPage = availableStartupRepository
-								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseAndFundingStageIgnoreCaseAndProductStageIgnoreCaseOrderByStartupNameAsc(
+								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseInAndFundingStageIgnoreCaseInAndProductStageIgnoreCaseInOrderByStartupNameAsc(
 										searchName, filterSector, fundingStage, productStage, pageable);
 					}
 				}
