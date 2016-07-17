@@ -70,6 +70,14 @@ public class HomeController {
 		return returnModel;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/InvestorsDashboard", method = RequestMethod.GET)
+	@PreAuthorize("hasPermission('Investors Menu/Investors Dashboard', '')")
+	public ModelAndView getInvestorsDashboard() {
+		logLastViewForUser("investorsDashboard");
+		ModelAndView returnModel = new ModelAndView("investorsDashboard");
+		return returnModel;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/Users", method = RequestMethod.GET)
 	@PreAuthorize("hasPermission('Admin Menu/Users', '')")
 	public ModelAndView getUsers() {

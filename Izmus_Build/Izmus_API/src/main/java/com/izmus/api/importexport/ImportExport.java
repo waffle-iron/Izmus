@@ -32,7 +32,7 @@ public class ImportExport {
 	private IAvailableStartupRepository availableStartupRepository;
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/StartupCSV", method = RequestMethod.POST)
-	@PreAuthorize("hasPermission('Import Export', '')")
+	@PreAuthorize("hasPermission('Admin Menu/Import Export', '')")
 	public String uploadStartupCSV(@RequestParam("file") MultipartFile file) {
 		try {
 			processStartupFile(file.getInputStream());

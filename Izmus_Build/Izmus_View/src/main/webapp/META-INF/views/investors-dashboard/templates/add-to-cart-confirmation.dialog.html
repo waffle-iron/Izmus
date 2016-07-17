@@ -1,0 +1,46 @@
+<style>
+	.progress {
+		min-height: 400px !important;
+		min-width: 300px !important;
+	}
+	.dialog-button {
+        color: white !important;
+    }
+    .dialog-button > md-icon {
+        color: white !important;
+    }
+    .confirmation-section{
+    	max-width: 350px;
+    }
+</style>
+<section layout="column" class="confirmation-section">
+	<md-content layout-padding dir="{{globalAttr.direction}}" layout="column">
+		<md-whiteframe
+		class="md-whiteframe-1dp"
+		layout-padding
+		flex="none"
+		layout="column">
+			<startup-header
+				selected-startup="startup"
+				icon-src="{{iconSrc}}">
+			</startup-header>
+			<div>
+				<span>
+					{{lang.thankYouForAdding}}
+				</span>
+			</div>
+		</md-whiteframe>
+	</md-content>
+	<md-dialog-actions layout="row">
+		<md-button class="md-raised md-primary dialog-button" ng-click="cancel()">
+            {{lang.cancel}}
+        </md-button>
+        <span flex></span>
+        <md-button class="md-raised md-primary dialog-button" ng-click="addToCart()">
+            {{lang.ok}}
+            <md-icon class="material-icons">
+                add_shopping_cart
+            </md-icon>
+        </md-button>
+	</md-dialog-actions>
+</section>

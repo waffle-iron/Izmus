@@ -33,7 +33,7 @@ public class AvailableStartups {
 	private RuntimeService runtimeService;
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET)
-	@PreAuthorize("hasPermission('Assessors Menu/Available Startups', '')")
+	@PreAuthorize("hasPermission('View Available Startups', '')")
 	public Page<AvailableStartup> getAllIzmusContacts(
 			@RequestParam(value = "pageNumber", required = true) Integer pageNumber,
 			@RequestParam(value = "searchName", required = false) String searchName,
@@ -136,7 +136,7 @@ public class AvailableStartups {
 
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/Sectors")
-	@PreAuthorize("hasPermission('Assessors Menu/Available Startups', '')")
+	@PreAuthorize("hasPermission('View Available Startups', '')")
 	public Set<String> getAllSectors() {
 		TreeSet<String> returnSet = new TreeSet<>();
 		List<AvailableStartup> allStartups = availableStartupRepository.findAll();
@@ -148,7 +148,7 @@ public class AvailableStartups {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/ProductStages")
-	@PreAuthorize("hasPermission('Assessors Menu/Available Startups', '')")
+	@PreAuthorize("hasPermission('View Available Startups', '')")
 	public Set<String> getAllProductStages() {
 		TreeSet<String> returnSet = new TreeSet<>();
 		List<AvailableStartup> allStartups = availableStartupRepository.findAll();
@@ -160,7 +160,7 @@ public class AvailableStartups {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET, value = "/FundingStages")
-	@PreAuthorize("hasPermission('Assessors Menu/Available Startups', '')")
+	@PreAuthorize("hasPermission('View Available Startups', '')")
 	public Set<String> getAllFundingStages() {
 		TreeSet<String> returnSet = new TreeSet<>();
 		List<AvailableStartup> allStartups = availableStartupRepository.findAll();
@@ -172,7 +172,7 @@ public class AvailableStartups {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.POST, value = "/AnalysisRequest")
-	@PreAuthorize("hasPermission('Assessors Menu/Available Startups', '')")
+	@PreAuthorize("hasPermission('View Available Startups', '')")
 	public String analysisRequest(@RequestParam(value = "startupId", required = true) Integer startupId) {
 		LOGGER.info("User Requested A New Startup Analysis");
 		Map<String, Object> variables = new HashMap<String, Object>();

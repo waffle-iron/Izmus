@@ -51,6 +51,7 @@ public class CreateContactIzmusFinder {
 			newIzmusFinder.setEntityEmail(contact.getEmail().toLowerCase());
 			newUser.setPassword(uuid);
 			addBaseRoleToUser(newUser);
+			addPartnerRole(newUser);
 			newUser = userRepository.save(newUser);
 			contact.setEntityId(newUser.getEntity().getEntityId());
 			finderContactRepository.save(contact);
@@ -66,6 +67,15 @@ public class CreateContactIzmusFinder {
 		UserRole baseRole = userRoleRepository.findDistinctUserRoleByRoleName("ROLE_USER");
 		userRoles.add(baseRole);
 		baseRole.getUsers().add(newUser);
+		newUser.setUserRoles(userRoles);
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private void addPartnerRole(User newUser) {
+		Set<UserRole> userRoles = new HashSet<UserRole>();
+		UserRole partnerRole = userRoleRepository.findDistinctUserRoleByRoleName("ROLE_Partner");
+		if (partnerRole == null) return;
+		userRoles.add(partnerRole);
+		partnerRole.getUsers().add(newUser);
 		newUser.setUserRoles(userRoles);
 	}
 }

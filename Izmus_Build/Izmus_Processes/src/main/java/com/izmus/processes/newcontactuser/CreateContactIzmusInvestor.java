@@ -51,6 +51,7 @@ public class CreateContactIzmusInvestor {
 			newIzmusInvestor.setEntityEmail(contact.getEmail().toLowerCase());
 			newUser.setPassword(uuid);
 			addBaseRoleToUser(newUser);
+			addInvestorRole(newUser);
 			newUser = userRepository.save(newUser);
 			contact.setEntityId(newUser.getEntity().getEntityId());
 			investorContactRepository.save(contact);
@@ -66,6 +67,15 @@ public class CreateContactIzmusInvestor {
 		UserRole baseRole = userRoleRepository.findDistinctUserRoleByRoleName("ROLE_USER");
 		userRoles.add(baseRole);
 		baseRole.getUsers().add(newUser);
+		newUser.setUserRoles(userRoles);
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private void addInvestorRole(User newUser) {
+		Set<UserRole> userRoles = new HashSet<UserRole>();
+		UserRole investorRole = userRoleRepository.findDistinctUserRoleByRoleName("ROLE_Investor");
+		if(investorRole == null) return;
+		userRoles.add(investorRole);
+		investorRole.getUsers().add(newUser);
 		newUser.setUserRoles(userRoles);
 	}
 }

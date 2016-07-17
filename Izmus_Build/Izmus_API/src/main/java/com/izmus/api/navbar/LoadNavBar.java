@@ -40,6 +40,9 @@ public class LoadNavBar {
 			if (permissionEvaluator.hasPermission(authentication, "Finders Menu", null)){
 				navbar.add(getFindersMenu(authentication));
 			}
+			if (permissionEvaluator.hasPermission(authentication, "Investors Menu", null)){
+				navbar.add(getInvestorsMenu(authentication));
+			}
 			if (permissionEvaluator.hasPermission(authentication, "Admin Menu", null)){
 				navbar.add(getAdminMenu(authentication));
 			}
@@ -185,5 +188,27 @@ public class LoadNavBar {
 		proposalItem.setIcon("/views/core/izmus-nav-bar/images/available-startups.svg");
 		proposalItem.setType("link");
 		return proposalItem;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private NavbarItem getInvestorsMenu(Authentication authentication) {
+		NavbarItem findersMenu = new NavbarItem();
+		findersMenu.setHref("");
+		findersMenu.setLabel(context.getMessage("navBar.menu.investorsMenu",null, LocaleContextHolder.getLocale()));
+		findersMenu.setIcon("/views/core/izmus-nav-bar/images/investors-menu.svg");
+		findersMenu.setType("toggle");
+		findersMenu.setSubItems(new ArrayList<NavbarItem>());
+		if (permissionEvaluator.hasPermission(authentication, "Investors Menu/Investors Dashboard", null)){
+			findersMenu.getSubItems().add(getInvestorsDashboardItem());
+		}
+		return findersMenu;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private NavbarItem getInvestorsDashboardItem() {
+		NavbarItem findersDashboardItem = new NavbarItem();
+		findersDashboardItem.setHref("/InvestorsDashboard");
+		findersDashboardItem.setLabel(context.getMessage("navBar.menu.investorsMenu.investorsDashboard",null, LocaleContextHolder.getLocale()));
+		findersDashboardItem.setIcon("dashboard");
+		findersDashboardItem.setType("link");
+		return findersDashboardItem;
 	}
 }
