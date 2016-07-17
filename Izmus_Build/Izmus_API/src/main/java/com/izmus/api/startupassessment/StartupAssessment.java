@@ -541,7 +541,7 @@ public class StartupAssessment {
 
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/SaveStartupData", method = RequestMethod.POST)
-	@PreAuthorize("hasPermission('Startup Assessment+Edit', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Startup Assessment+Edit', '')")
 	public String saveStartupData(@RequestParam(value = "startupData") final String startupData) {
 		Startup startupObject = null;
 		try {
@@ -593,7 +593,7 @@ public class StartupAssessment {
 
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/AdditionalDocument", method = RequestMethod.POST)
-	@PreAuthorize("hasPermission('Startup Assessment+Edit', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Startup Assessment+Edit', '')")
 	public String uploadAdditionalDocument(@RequestParam("file") MultipartFile file,
 			@RequestParam("startupId") Integer startupId) {
 		StartupAdditionalDocument newDocument = null;
@@ -616,7 +616,7 @@ public class StartupAssessment {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/AdditionalDocument", method = RequestMethod.DELETE)
-	@PreAuthorize("hasPermission('Startup Assessment+Edit', '')")
+	@PreAuthorize("hasPermission('Assessors Menu/Startup Assessment+Edit', '')")
 	public String deleteAdditionalDocument(@RequestParam("documentId") Integer documentId, @RequestParam("startupId") Integer startupId) {
 		try {
 			Startup parentStartup = startupRepository.findDistinctStartupByStartupId(startupId);
