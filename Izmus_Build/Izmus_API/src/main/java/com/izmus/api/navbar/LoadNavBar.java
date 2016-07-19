@@ -43,6 +43,9 @@ public class LoadNavBar {
 			if (permissionEvaluator.hasPermission(authentication, "Investors Menu", null)){
 				navbar.add(getInvestorsMenu(authentication));
 			}
+			if (permissionEvaluator.hasPermission(authentication, "Cart Menu", null)){
+				navbar.add(getCartMenu(authentication));
+			}
 			if (permissionEvaluator.hasPermission(authentication, "Admin Menu", null)){
 				navbar.add(getAdminMenu(authentication));
 			}
@@ -72,6 +75,40 @@ public class LoadNavBar {
 			assessorsMenu.getSubItems().add(getContactsItem());
 		}
 		return assessorsMenu;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private NavbarItem getCartMenu(Authentication authentication) {
+		NavbarItem findersMenu = new NavbarItem();
+		findersMenu.setHref("");
+		findersMenu.setLabel(context.getMessage("navBar.menu.cartMenu",null, LocaleContextHolder.getLocale()));
+		findersMenu.setIcon("shopping_cart");
+		findersMenu.setType("toggle");
+		findersMenu.setSubItems(new ArrayList<NavbarItem>());
+		if (permissionEvaluator.hasPermission(authentication, "Cart Menu/Wish List", null)){
+			findersMenu.getSubItems().add(getWishListItem());
+		}
+		if (permissionEvaluator.hasPermission(authentication, "Cart Menu/My Requests", null)){
+			findersMenu.getSubItems().add(getCartItem());
+		}
+		return findersMenu;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private NavbarItem getCartItem() {
+		NavbarItem findersDashboardItem = new NavbarItem();
+		findersDashboardItem.setHref("/MyRequests");
+		findersDashboardItem.setLabel(context.getMessage("navBar.menu.cartMenu.myRequests",null, LocaleContextHolder.getLocale()));
+		findersDashboardItem.setIcon("/views/core/izmus-nav-bar/images/my-requests.svg");
+		findersDashboardItem.setType("link");
+		return findersDashboardItem;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	private NavbarItem getWishListItem() {
+		NavbarItem findersDashboardItem = new NavbarItem();
+		findersDashboardItem.setHref("/WishList");
+		findersDashboardItem.setLabel(context.getMessage("navBar.menu.cartMenu.wishList",null, LocaleContextHolder.getLocale()));
+		findersDashboardItem.setIcon("/views/core/izmus-nav-bar/images/wish-list.svg");
+		findersDashboardItem.setType("link");
+		return findersDashboardItem;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	private NavbarItem getFindersMenu(Authentication authentication) {

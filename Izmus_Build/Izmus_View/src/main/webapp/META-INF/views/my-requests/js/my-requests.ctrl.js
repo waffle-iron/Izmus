@@ -1,0 +1,1 @@
+angular.module('myRequestsApp', ['izmusNavBarApp', 'izmusMainWindowApp']);

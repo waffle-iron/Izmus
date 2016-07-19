@@ -47,6 +47,22 @@ public class HomeController {
 		return returnModel;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/WishList", method = RequestMethod.GET)
+	@PreAuthorize("hasPermission('Cart Menu/Wish List', '')")
+	public ModelAndView getWishList() {
+		logLastViewForUser("wishList");
+		ModelAndView returnModel = new ModelAndView("wishList");
+		return returnModel;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value = "/MyRequests", method = RequestMethod.GET)
+	@PreAuthorize("hasPermission('Cart Menu/My Requests', '')")
+	public ModelAndView getCart() {
+		logLastViewForUser("myRequests");
+		ModelAndView returnModel = new ModelAndView("myRequests");
+		return returnModel;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
 	private void logLastViewForUser(String view) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		user = userRepository.findDistinctUserByUserId(user.getUserId());
