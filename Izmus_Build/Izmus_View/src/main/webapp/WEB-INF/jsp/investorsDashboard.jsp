@@ -36,6 +36,7 @@
 			ok:' <spring:message code="navBar.menu.startupAssessment.ok" />',
 			founded:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.founded" />',
 			numberOfEmployees:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.numberOfEmployees" />',
-			thankYouForAdding: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.thankYouForAdding" />'
+			thankYouForAdding: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.thankYouForAdding" />',
+			addedToWishlist: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.addedToWishlist" />'
 	};
 </script>

@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------------------------------------*/
 angular.module('investorsDashboardApp').factory('startupPreviewDialog',
 		[ '$mdMedia', '$mdDialog','addToCartConfirmationDialog', function($mdMedia, $mdDialog, addToCartConfirmationDialog) {
-			return function(ev, startup, iconSrc) {
+			return function(ev, startup, iconSrc, addToWishlist) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
 			    /*----------------------------------------------------------------------------------------------------*/
@@ -18,6 +18,13 @@ angular.module('investorsDashboardApp').factory('startupPreviewDialog',
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.addToCart = function() {
 						addToCartConfirmationDialog(ev, startup, iconSrc);
+						$mdDialog.cancel();
+					};
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.addToWishlist = function() {
+						if (addToWishlist){
+							addToWishlist(startup);
+						}
 						$mdDialog.cancel();
 					};
 				}

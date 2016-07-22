@@ -1,6 +1,8 @@
 angular.module('investorsDashboardApp').directive('startupGridList', 
 		['loadAllAvailableStartups','loadAllSectors','loadAllFundingStages','loadAllProductStages','$mdMedia', 'startupPreviewDialog', '$timeout',
-		 function(loadAllAvailableStartups,loadAllSectors, loadAllFundingStages, loadAllProductStages, $mdMedia, startupPreviewDialog, $timeout) {
+		 '$mdToast','triggerWishlist',
+		 function(loadAllAvailableStartups,loadAllSectors, loadAllFundingStages, loadAllProductStages, $mdMedia, startupPreviewDialog, $timeout,
+				 $mdToast,triggerWishlist) {
 	return {
 		restrict : 'E',
 		templateUrl : '/views/investors-dashboard/templates/startup-grid-list.html',
@@ -150,7 +152,15 @@ angular.module('investorsDashboardApp').directive('startupGridList',
 	        }
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.viewStartup = function(ev, startup){
-				startupPreviewDialog(ev, startup, $scope.getSectorIconForStartup(startup));
+				startupPreviewDialog(ev, startup, $scope.getSectorIconForStartup(startup), $scope.addToWishlist);
+			}
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.addToWishlist = function(startup){
+				triggerWishlist(startup.startupId).then(function(data){
+					$scope.showMessage($scope.lang.addedToWishlist);
+				}, function(){
+					
+				});
 			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.getSectorIconForStartup = function(startup){
@@ -187,7 +197,19 @@ angular.module('investorsDashboardApp').directive('startupGridList',
 			}
 		}],
 		link : function(scope, elem, attr) {
-			
+			/*----------------------------------------------------------------------------------------------------*/
+			scope.showMessage = function(message){
+				$mdToast.show({
+				      controller: 'toastCtrl',
+				      templateUrl: '/views/core/toast/templates/toast.html',
+				      parent : angular.element(elem),
+				      hideDelay: 2600,
+				      position: 'top right',
+				      locals: {
+				    	  message: message
+				      }
+				    });
+			}
 		}
 	}
 } ]);
