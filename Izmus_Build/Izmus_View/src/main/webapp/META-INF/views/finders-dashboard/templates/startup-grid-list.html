@@ -27,6 +27,16 @@
 		min-height: 38px !important;
 		min-width: 38px !important;
 	}
+	.startup-avatar-icon-circle {
+		height: 38px !important;
+		width: 38px !important;
+		min-height: 38px !important;
+		min-width: 38px !important;
+		border-radius: 20px;
+		border-width: 1px;
+    	border-style: solid;
+    	border-color: rgb(160,195,215);
+	}
 	.small-startup-name-text {
 		font-size: medium;
 		line-height: initial;
@@ -217,7 +227,7 @@
 						class="material-icons startup-icon startup-avatar-icon" md-svg-src="{{getSectorIconForStartup(startupGroup[0])}}"></md-icon>
 						<img
 						ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
-						ng-if="(startupGroup[0].logo != null && statup.logo !='')" class="startup-avatar-icon" ng-src="{{startup.logo}}"/>
+						ng-if="(startupGroup[0].logo != null && statup.logo !='')" class="startup-avatar-icon-circle" ng-src="{{startupGroup[0].logo}}"/>
 						<div layout="row"
 						flex="100"
 						layout-align="space-between center"
@@ -280,7 +290,7 @@
 						class="material-icons startup-icon startup-avatar-icon" md-svg-src="{{getSectorIconForStartup(startupGroup[1])}}"></md-icon>
 						<img
 						ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
-						ng-if="(startupGroup[1].logo != null && statup.logo !='')" class="startup-avatar-icon" ng-src="{{startup.logo}}"/>
+						ng-if="(startupGroup[1].logo != null && statup.logo !='')" class="startup-avatar-icon-circle" ng-src="{{startupGroup[1].logo}}"/>
 						<div layout="row"
 						flex="100"
 						layout-align="space-between center"
@@ -343,7 +353,7 @@
 						class="material-icons startup-icon startup-avatar-icon" md-svg-src="{{getSectorIconForStartup(startupGroup[2])}}"></md-icon>
 						<img
 						ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
-						ng-if="(startupGroup[2].logo != null && statup.logo !='')" class="startup-avatar-icon" ng-src="{{startup.logo}}"/>
+						ng-if="(startupGroup[2].logo != null && statup.logo !='')" class="startup-avatar-icon-circle" ng-src="{{startupGroup[2].logo}}"/>
 						<div layout="row"
 						flex="100"
 						layout-align="space-between center"

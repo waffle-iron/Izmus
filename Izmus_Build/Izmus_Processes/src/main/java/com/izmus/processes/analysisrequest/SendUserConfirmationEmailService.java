@@ -16,10 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import com.izmus.data.domain.startups.AvailableStartup;
+import com.izmus.data.domain.startups.StartupAbstract;
 import com.izmus.data.domain.users.User;
 import com.izmus.data.messages.MessageSource;
-import com.izmus.data.repository.IAvailableStartupRepository;
+import com.izmus.data.repository.IStartupAbstractRepository;
 import com.izmus.mail.services.MailSenderService;
 
 @Component("SendUserConfirmationEmailService")
@@ -34,7 +34,7 @@ public class SendUserConfirmationEmailService {
 	@Autowired
 	private RuntimeService runtimeService;
 	@Autowired
-	private IAvailableStartupRepository availableStartupRepository;
+	private IStartupAbstractRepository startupAbstractRepository;
 	@Autowired
 	private ServletContext context;
 	/*----------------------------------------------------------------------------------------------------*/
@@ -42,7 +42,7 @@ public class SendUserConfirmationEmailService {
 		try {
 			User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			Integer startupId = (Integer) runtimeService.getVariable(execution.getId(), "startupId");
-			AvailableStartup startup = availableStartupRepository.findDistinctAvailableStartupByStartupId(startupId);
+			StartupAbstract startup = startupAbstractRepository.findDistinctStartupAbstractByStartupId(startupId);
 			LOGGER.info("Sending Confirmation of Analysis Email To User: " + user.getUserName());
 			InputStream inputStream = context.getResourceAsStream("/WEB-INF/emails/analysis-request/analysis-request-email-inline.html");
 			String emailString = IOUtils.toString(inputStream);
@@ -58,15 +58,15 @@ public class SendUserConfirmationEmailService {
 	}
 
 	/*----------------------------------------------------------------------------------------------------*/
-	private String injectStringsToHTML(String emailString, User user, AvailableStartup startup) {
+	private String injectStringsToHTML(String emailString, User user, StartupAbstract startup) {
 		ArrayList<String> stringList = new ArrayList<String>();
 /*0*/	stringList.add(messageSource.getMessage(ANALYSIS_REQUEST, null,
 		Locale.ENGLISH));
 /*1*/	stringList.add(messageSource.getMessage("emails.analysisRequest.thankYouForChoosing", null,
 		Locale.ENGLISH));
-/*2*/	stringList.add(startup.getStartupName());
-/*3*/	stringList.add(startup.getSite());
-/*4*/	stringList.add(startup.getSite());
+/*2*/	stringList.add(startup.getStartupName() == null ? "" : startup.getStartupName());
+/*3*/	stringList.add(startup.getSite() == null ? "" : startup.getSite());
+/*4*/	stringList.add(startup.getSite() == null ? "" : startup.getSite());
 /*5*/	stringList.add(messageSource.getMessage("emails.analysisRequest.yourWishList", null,
 		Locale.ENGLISH));
 /*6*/	stringList.add("www.izmus.com");

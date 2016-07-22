@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.izmus.data.domain.startups.AvailableStartup;
-import com.izmus.data.repository.IAvailableStartupRepository;
+import com.izmus.data.domain.startups.StartupAbstract;
+import com.izmus.data.repository.IStartupAbstractRepository;
 
 @RestController
 @RequestMapping("api/AvailableStartups")
@@ -28,13 +28,13 @@ public class AvailableStartups {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AvailableStartups.class);
 	private static final String ANALYSIS_REQUEST_PROCESS = "AnalysisRequestProcessId";
 	@Autowired
-	private IAvailableStartupRepository availableStartupRepository;
+	private IStartupAbstractRepository startupAbstractRepository;
 	@Autowired
 	private RuntimeService runtimeService;
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET)
 	@PreAuthorize("hasPermission('View Available Startups', '')")
-	public Page<AvailableStartup> getAllIzmusContacts(
+	public Page<StartupAbstract> getAllIzmusContacts(
 			@RequestParam(value = "pageNumber", required = true) Integer pageNumber,
 			@RequestParam(value = "searchName", required = false) String searchName,
 			@RequestParam(value = "filterSector", required = false) List<String> filterSector,
@@ -42,22 +42,22 @@ public class AvailableStartups {
 			@RequestParam(value = "productStage", required = false) List<String> productStage,
 			@RequestParam(value = "pageSize") Integer pageSize) {
 		PageRequest pageable = new PageRequest(pageNumber, pageSize);
-		Page<AvailableStartup> returnPage;
+		Page<StartupAbstract> returnPage;
 		if (searchName == null) {
 			if (filterSector == null) {
 				if (fundingStage == null) {
 					if (productStage == null) {
-						returnPage = availableStartupRepository.findAllByOrderByStartupNameAsc(pageable);
+						returnPage = startupAbstractRepository.findAllByOrderByStartupNameAsc(pageable);
 					} else {
-						returnPage = availableStartupRepository
+						returnPage = startupAbstractRepository
 								.findByProductStageIgnoreCaseInOrderByStartupNameAsc(productStage, pageable);
 					}
 				} else {
 					if (productStage == null) {
-						returnPage = availableStartupRepository
+						returnPage = startupAbstractRepository
 								.findByFundingStageIgnoreCaseInOrderByStartupNameAsc(fundingStage, pageable);
 					} else {
-						returnPage = availableStartupRepository
+						returnPage = startupAbstractRepository
 								.findByFundingStageIgnoreCaseInAndProductStageIgnoreCaseInOrderByStartupNameAsc(
 										fundingStage, productStage, pageable);
 					}
@@ -65,20 +65,20 @@ public class AvailableStartups {
 			} else {
 				if (fundingStage == null) {
 					if (productStage == null) {
-						returnPage = availableStartupRepository
+						returnPage = startupAbstractRepository
 								.findBySectorIgnoreCaseInOrderByStartupNameAsc(filterSector, pageable);
 					} else {
-						returnPage = availableStartupRepository
+						returnPage = startupAbstractRepository
 								.findBySectorIgnoreCaseInAndProductStageIgnoreCaseInOrderByStartupNameAsc(
 										filterSector, productStage, pageable);
 					}
 				} else {
 					if (productStage == null) {
-						returnPage = availableStartupRepository
+						returnPage = startupAbstractRepository
 								.findBySectorIgnoreCaseInAndFundingStageIgnoreCaseInOrderByStartupNameAsc(
 										filterSector, fundingStage, pageable);
 					} else {
-						returnPage = availableStartupRepository
+						returnPage = startupAbstractRepository
 								.findBySectorIgnoreCaseInAndFundingStageIgnoreCaseInAndProductStageIgnoreCaseInOrderByStartupNameAsc(
 										filterSector, fundingStage, productStage, pageable);
 					}
@@ -88,20 +88,20 @@ public class AvailableStartups {
 			if (filterSector == null) {
 				if (fundingStage == null) {
 					if (productStage == null) {
-						returnPage = availableStartupRepository
+						returnPage = startupAbstractRepository
 								.findByStartupNameIgnoreCaseContainingOrderByStartupNameAsc(searchName, pageable);
 					} else {
-						returnPage = availableStartupRepository
+						returnPage = startupAbstractRepository
 								.findByStartupNameIgnoreCaseContainingAndProductStageIgnoreCaseInOrderByStartupNameAsc(
 										searchName, productStage, pageable);
 					}
 				} else {
 					if (productStage == null) {
-						returnPage = availableStartupRepository
+						returnPage = startupAbstractRepository
 								.findByStartupNameIgnoreCaseContainingAndFundingStageIgnoreCaseInOrderByStartupNameAsc(
 										searchName, fundingStage, pageable);
 					} else {
-						returnPage = availableStartupRepository
+						returnPage = startupAbstractRepository
 								.findByStartupNameIgnoreCaseContainingAndFundingStageIgnoreCaseInAndProductStageIgnoreCaseInOrderByStartupNameAsc(
 										searchName, fundingStage, productStage, pageable);
 					}
@@ -109,21 +109,21 @@ public class AvailableStartups {
 			} else {
 				if (fundingStage == null) {
 					if (productStage == null) {
-						returnPage = availableStartupRepository
+						returnPage = startupAbstractRepository
 								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseInOrderByStartupNameAsc(
 										searchName, filterSector, pageable);
 					} else {
-						returnPage = availableStartupRepository
+						returnPage = startupAbstractRepository
 								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseInAndProductStageIgnoreCaseInOrderByStartupNameAsc(
 										searchName, filterSector, productStage, pageable);
 					}
 				} else {
 					if (productStage == null) {
-						returnPage = availableStartupRepository
+						returnPage = startupAbstractRepository
 								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseInAndFundingStageIgnoreCaseInOrderByStartupNameAsc(
 										searchName, filterSector, fundingStage, pageable);
 					} else {
-						returnPage = availableStartupRepository
+						returnPage = startupAbstractRepository
 								.findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseInAndFundingStageIgnoreCaseInAndProductStageIgnoreCaseInOrderByStartupNameAsc(
 										searchName, filterSector, fundingStage, productStage, pageable);
 					}
@@ -139,9 +139,9 @@ public class AvailableStartups {
 	@PreAuthorize("hasPermission('View Available Startups', '')")
 	public Set<String> getAllSectors() {
 		TreeSet<String> returnSet = new TreeSet<>();
-		List<AvailableStartup> allStartups = availableStartupRepository.findAll();
-		for (AvailableStartup startup : allStartups) {
-			if (!startup.getSector().isEmpty())
+		List<StartupAbstract> allStartups = startupAbstractRepository.findAll();
+		for (StartupAbstract startup : allStartups) {
+			if (startup.getSector() != null && !startup.getSector().isEmpty())
 				returnSet.add(startup.getSector());
 		}
 		return returnSet;
@@ -151,9 +151,9 @@ public class AvailableStartups {
 	@PreAuthorize("hasPermission('View Available Startups', '')")
 	public Set<String> getAllProductStages() {
 		TreeSet<String> returnSet = new TreeSet<>();
-		List<AvailableStartup> allStartups = availableStartupRepository.findAll();
-		for (AvailableStartup startup : allStartups) {
-			if (!startup.getProductStage().isEmpty())
+		List<StartupAbstract> allStartups = startupAbstractRepository.findAll();
+		for (StartupAbstract startup : allStartups) {
+			if (startup.getProductStage() != null && !startup.getProductStage().isEmpty())
 				returnSet.add(startup.getProductStage());
 		}
 		return returnSet;
@@ -163,12 +163,19 @@ public class AvailableStartups {
 	@PreAuthorize("hasPermission('View Available Startups', '')")
 	public Set<String> getAllFundingStages() {
 		TreeSet<String> returnSet = new TreeSet<>();
-		List<AvailableStartup> allStartups = availableStartupRepository.findAll();
-		for (AvailableStartup startup : allStartups) {
-			if (!startup.getFundingStage().isEmpty())
+		List<StartupAbstract> allStartups = startupAbstractRepository.findAll();
+		for (StartupAbstract startup : allStartups) {
+			if (startup.getFundingStage() != null && !startup.getFundingStage().isEmpty())
 				returnSet.add(startup.getFundingStage());
 		}
 		return returnSet;
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(method = RequestMethod.GET, value = "/AllStartups")
+	@PreAuthorize("hasPermission('View Available Startups', '')")
+	public List<StartupAbstract> getAllStartups() {
+		List<StartupAbstract> allStartups = startupAbstractRepository.findAll();
+		return allStartups;
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.POST, value = "/AnalysisRequest")
@@ -178,6 +185,13 @@ public class AvailableStartups {
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("startupId", startupId);
 		runtimeService.startProcessInstanceByKey(ANALYSIS_REQUEST_PROCESS, variables);
+		return "{\"result\": \"success\"}";
+	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(method = RequestMethod.POST, value = "/Wishlist")
+	@PreAuthorize("hasPermission('View Available Startups', '')")
+	public String wishlist(@RequestParam(value = "startupId", required = true) Integer startupId) {
+		LOGGER.info("User Moved Startup To Wishlist");
 		return "{\"result\": \"success\"}";
 	}
 }

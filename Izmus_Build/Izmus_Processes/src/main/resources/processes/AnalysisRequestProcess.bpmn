@@ -9,6 +9,7 @@
         <flowNodeRef>startevent1</flowNodeRef>
         <flowNodeRef>SendUserConfirmationEmailServiceId</flowNodeRef>
         <flowNodeRef>SendAdminRequestEmailServiceId</flowNodeRef>
+        <flowNodeRef>AddToMyRequestsServiceId</flowNodeRef>
       </lane>
       <lane id="UserLaneId" name="User"></lane>
     </laneSet>
@@ -17,6 +18,8 @@
     <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="SendUserConfirmationEmailServiceId"></sequenceFlow>
     <serviceTask id="SendAdminRequestEmailServiceId" name="Send Admin Request Email" activiti:expression="#{SendAdminRequestEmailService.execute(execution)}"></serviceTask>
     <sequenceFlow id="flow2" sourceRef="SendUserConfirmationEmailServiceId" targetRef="SendAdminRequestEmailServiceId"></sequenceFlow>
+    <serviceTask id="AddToMyRequestsServiceId" name="Add To My Requests" activiti:expression="#{AddToMyRequestsService.execute(execution)}"></serviceTask>
+    <sequenceFlow id="flow3" sourceRef="SendAdminRequestEmailServiceId" targetRef="AddToMyRequestsServiceId"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration">
     <bpmndi:BPMNPlane bpmnElement="Collaboration" id="BPMNPlane_Collaboration">
@@ -38,6 +41,9 @@
       <bpmndi:BPMNShape bpmnElement="SendAdminRequestEmailServiceId" id="BPMNShape_SendAdminRequestEmailServiceId">
         <omgdc:Bounds height="71.0" width="131.0" x="480.0" y="142.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="AddToMyRequestsServiceId" id="BPMNShape_AddToMyRequestsServiceId">
+        <omgdc:Bounds height="55.0" width="105.0" x="670.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
         <omgdi:waypoint x="175.0" y="177.0"></omgdi:waypoint>
         <omgdi:waypoint x="250.0" y="177.0"></omgdi:waypoint>
@@ -45,6 +51,10 @@
       <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
         <omgdi:waypoint x="401.0" y="177.0"></omgdi:waypoint>
         <omgdi:waypoint x="480.0" y="177.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="611.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="670.0" y="177.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

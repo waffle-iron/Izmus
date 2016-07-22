@@ -18,13 +18,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import com.izmus.data.domain.contacts.IzmusContact;
-import com.izmus.data.domain.startups.AvailableStartup;
+import com.izmus.data.domain.startups.StartupAbstract;
 import com.izmus.data.domain.users.Administrator;
 import com.izmus.data.domain.users.User;
 import com.izmus.data.messages.MessageSource;
 import com.izmus.data.repository.IAdministratorRepository;
-import com.izmus.data.repository.IAvailableStartupRepository;
 import com.izmus.data.repository.IIzmusContactRepository;
+import com.izmus.data.repository.IStartupAbstractRepository;
 import com.izmus.mail.services.MailSenderService;
 
 @Component("SendAdminRequestEmailService")
@@ -41,7 +41,7 @@ public class SendAdminRequestEmailService {
 	@Autowired
 	private ServletContext context;
 	@Autowired
-	private IAvailableStartupRepository availableStartupRepository;
+	private IStartupAbstractRepository startupAbstractRepository;
 	@Autowired
 	private IIzmusContactRepository izmusContactRepository;
 	@Autowired
@@ -52,7 +52,7 @@ public class SendAdminRequestEmailService {
 		try {
 			User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			Integer startupId = (Integer) runtimeService.getVariable(execution.getId(), "startupId");
-			AvailableStartup startup = availableStartupRepository.findDistinctAvailableStartupByStartupId(startupId);
+			StartupAbstract startup = startupAbstractRepository.findDistinctStartupAbstractByStartupId(startupId);
 			administratorEmails = getAllAdminMail();
 			LOGGER.info("Sending Request Email To Administrators: " + administratorEmails);
 			InputStream inputStream = context.getResourceAsStream("/WEB-INF/emails/analysis-request/admin-request-email-inline.html");
@@ -83,7 +83,7 @@ public class SendAdminRequestEmailService {
 	}
 
 	/*----------------------------------------------------------------------------------------------------*/
-	private String injectStringsToHTML(String emailString, User user, AvailableStartup startup) {
+	private String injectStringsToHTML(String emailString, User user, StartupAbstract startup) {
 		ArrayList<String> stringList = new ArrayList<String>();
 /*0*/	stringList.add(messageSource.getMessage(ADMIN_ANALYSIS_REQUEST, null,
 		Locale.ENGLISH));
@@ -96,12 +96,12 @@ public class SendAdminRequestEmailService {
 		else {
 /*2*/		stringList.add(user.getUserName());
 		}
-/*3*/	stringList.add(user.getEntity().getEntityEmail());
+/*3*/	stringList.add(user.getEntity().getEntityEmail() == null ? "" : user.getEntity().getEntityEmail());
 /*4*/	stringList.add(messageSource.getMessage("emails.analysisRequest.heWantAnalysisFor", null,
 		Locale.ENGLISH));
-/*5*/	stringList.add(startup.getStartupName());
-/*6*/	stringList.add(startup.getSite());
-/*7*/	stringList.add(startup.getSite());
+/*5*/	stringList.add(startup.getStartupName() == null ? "" : startup.getStartupName());
+/*6*/	stringList.add(startup.getSite() == null ? "" : startup.getSite());
+/*7*/	stringList.add(startup.getSite() == null ? "" : startup.getSite());
 /*8*/	stringList.add(messageSource.getMessage("emails.analysisRequest.letsContactThem", null,
 		Locale.ENGLISH));
 		return mailService.injectStringListToEmail(emailString, stringList);
