@@ -1,6 +1,7 @@
 /*----------------------------------------------------------------------------------------------------*/
 angular.module('findersDashboardApp').factory('startupPreviewDialog',
-		[ '$mdMedia', '$mdDialog','addToCartConfirmationDialog', function($mdMedia, $mdDialog, addToCartConfirmationDialog) {
+		[ '$mdMedia', '$mdDialog','addToCartConfirmationDialog','addToWishlistDialog',
+		  function($mdMedia, $mdDialog, addToCartConfirmationDialog, addToWishlistDialog) {
 			return function(ev, startup, iconSrc) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
@@ -18,6 +19,11 @@ angular.module('findersDashboardApp').factory('startupPreviewDialog',
 					/*----------------------------------------------------------------------------------------------------*/
 					$scope.addToCart = function() {
 						addToCartConfirmationDialog(ev, startup, iconSrc);
+						$mdDialog.cancel();
+					};
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.addToWishlist = function() {
+						addToWishlistDialog(ev, startup, iconSrc);
 						$mdDialog.cancel();
 					};
 				}
