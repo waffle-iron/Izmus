@@ -13,13 +13,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.izmus.data.domain.cart.WishList;
 import com.izmus.data.domain.startups.StartupAbstract;
+import com.izmus.data.domain.users.User;
 import com.izmus.data.repository.IStartupAbstractRepository;
+import com.izmus.data.repository.IWishlistRepository;
 
 @RestController
 @RequestMapping("api/AvailableStartups")
@@ -31,6 +35,8 @@ public class AvailableStartups {
 	private IStartupAbstractRepository startupAbstractRepository;
 	@Autowired
 	private RuntimeService runtimeService;
+	@Autowired
+	private IWishlistRepository wishlistRepository;
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(method = RequestMethod.GET)
 	@PreAuthorize("hasPermission('View Available Startups', '')")
@@ -192,6 +198,11 @@ public class AvailableStartups {
 	@PreAuthorize("hasPermission('View Available Startups', '')")
 	public String wishlist(@RequestParam(value = "startupId", required = true) Integer startupId) {
 		LOGGER.info("User Moved Startup To Wishlist");
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		WishList listItem = new WishList();
+		listItem.setStartupId(startupId);
+		listItem.setUserId(user.getUserId());
+		wishlistRepository.save(listItem);
 		return "{\"result\": \"success\"}";
 	}
 }

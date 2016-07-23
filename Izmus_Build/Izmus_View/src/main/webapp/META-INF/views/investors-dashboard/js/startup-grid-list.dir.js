@@ -157,9 +157,14 @@ angular.module('investorsDashboardApp').directive('startupGridList',
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.addToWishlist = function(startup){
 				triggerWishlist(startup.startupId).then(function(data){
-					$scope.showMessage($scope.lang.addedToWishlist);
+					if(data.result == 'success'){
+						$scope.showMessage($scope.lang.addedToWishlist);
+					}
+					else {
+						$scope.showMessage($scope.lang.notAdded);
+					}
 				}, function(){
-					
+					$scope.showMessage($scope.lang.notAdded);
 				});
 			}
 			/*----------------------------------------------------------------------------------------------------*/

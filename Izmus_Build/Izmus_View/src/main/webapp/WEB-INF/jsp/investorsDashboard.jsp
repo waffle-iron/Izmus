@@ -37,6 +37,7 @@
 			founded:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.founded" />',
 			numberOfEmployees:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.numberOfEmployees" />',
 			thankYouForAdding: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.thankYouForAdding" />',
-			addedToWishlist: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.addedToWishlist" />'
+			addedToWishlist: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.addedToWishlist" />',
+			notAdded: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.notAdded" />'
 	};
 </script>
