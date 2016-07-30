@@ -114,3 +114,43 @@ angular.module('investorsDashboardApp').factory('triggerWishlist',
 				})
 			}
 		} ]);
+/*----------------------------------------------------------------------------------------------------*/
+angular.module('investorsDashboardApp').factory('loadAllWishlist',
+		[ '$q', '$http', function($q, $http) {
+			return function(pageNumber, search) {
+				return $q(function(resolve, reject) {
+					$http({
+						method : 'GET',
+						url : '/api/Cart/Wishlist',
+					}).then(function successCallback(response) {
+						if (response.data) {
+							resolve(response.data);
+						} else {
+							reject();
+						}
+					}, function errorCallback(response) {
+						reject();
+					});
+				})
+			}
+		} ]);
+/*----------------------------------------------------------------------------------------------------*/
+angular.module('investorsDashboardApp').factory('loadAllMyRequests',
+		[ '$q', '$http', function($q, $http) {
+			return function(pageNumber, search) {
+				return $q(function(resolve, reject) {
+					$http({
+						method : 'GET',
+						url : '/api/Cart/MyRequests',
+					}).then(function successCallback(response) {
+						if (response.data) {
+							resolve(response.data);
+						} else {
+							reject();
+						}
+					}, function errorCallback(response) {
+						reject();
+					});
+				})
+			}
+		} ]);

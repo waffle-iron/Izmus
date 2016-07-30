@@ -88,7 +88,7 @@
 			</Realm>
 
 			<Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true">
-				<Cluster channelSendOptions="8" className="org.apache.catalina.ha.tcp.SimpleTcpCluster">
+				<!-- <Cluster channelSendOptions="8" className="org.apache.catalina.ha.tcp.SimpleTcpCluster">
 					<Manager className="org.apache.catalina.ha.session.DeltaManager" expireSessionsOnShutdown="false" notifyListenersOnReplication="true"/>
 					<Channel className="org.apache.catalina.tribes.group.GroupChannel">
 						<Membership address="228.0.0.4" className="org.apache.catalina.tribes.membership.McastService" dropTime="3000" frequency="500" port="45564"/>
@@ -103,7 +103,7 @@
 					<Valve className="org.apache.catalina.ha.session.JvmRouteBinderValve"/>
 					<Deployer className="org.apache.catalina.ha.deploy.FarmWarDeployer" deployDir="/tmp/war-deploy/" tempDir="/tmp/war-temp/" watchDir="/tmp/war-listen/" watchEnabled="false"/>
 					<ClusterListener className="org.apache.catalina.ha.session.ClusterSessionListener"/>
-				</Cluster>
+				</Cluster> -->
 				<!-- SingleSignOn valve, share authentication between web applications 
 					Documentation at: /docs/config/valve.html -->
 				<!-- <Valve className="org.apache.catalina.authenticator.SingleSignOn" 
@@ -112,12 +112,6 @@
 				<!-- Access log processes all example. Documentation at: /docs/config/valve.html 
 					Note: The pattern used is equivalent to using pattern="common" -->
 				<Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
-
-
-
-
-
-				
 			<Context docBase="Izmus_View" path="/" reloadable="false" source="org.eclipse.jst.jee.server:Izmus_View"/></Host>
 		</Engine>
 	</Service>

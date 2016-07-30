@@ -4,10 +4,10 @@
 		min-height: 200px;
 		min-width: 300px;
 		max-width: 300px;
-		background-color: rgba(29, 112, 162, 0.3);
+		background-color: rgba(255,255,255, 0.3);
 	}
 	.background-color {
-		background-color: rgba(29, 112, 162, 0.0);
+		background-color: rgba(255,255,255, 0.0);
 	}
 	.search-input {
 		margin-bottom: 0px;
@@ -263,17 +263,27 @@
 					</div>
 					<!--main-->
 				</section>
-				<md-button class="md-fab md-mini next-search-button" ng-click="viewStartup($event, startupGroup[0])">
-					<md-icon class="material-icons">
-						remove_red_eye
-					</md-icon>
-				</md-button>
+				<section layout="row" layout-align="space-between center">
+					<md-button class="md-fab md-mini next-search-button" ng-click="viewStartup($event, startupGroup[0])">
+						<md-icon class="material-icons">
+							remove_red_eye
+						</md-icon>
+					</md-button>
+					<md-button aria-label="myWishlist" ng-if="isStartupInWishlist(startupGroup[0])" ng-disabled="true" class="md-fab md-mini next-search-button">
+						<md-icon class="material-icons" md-svg-src="/views/core/izmus-nav-bar/images/wish-list.svg">
+						</md-icon>
+					</md-button>
+					<md-button aria-label="myRequest" ng-if="isStartupInMyRequests(startupGroup[0])" ng-disabled="true" class="md-fab md-mini next-search-button">
+						<md-icon class="material-icons" md-svg-src="/views/core/izmus-nav-bar/images/my-requests.svg">
+						</md-icon>
+					</md-button>
+				</section>
 			</md-whiteframe>
 			<!--one-->
 			<!--two-->
 			<md-whiteframe
 			class="md-whiteframe-1dp startup-card"
-			ng-if="(!startupGroup[1] && !startupGroup[0]) || (startupGroup[1] && startupGroup[0])"
+			ng-if="(startupGroup[1] && !isSmallerDevice())"
 			layout-padding
 			layout="column">
 				<section ng-if='!startupGroup[1]' flex layout="column" layout-align="center center">
@@ -326,17 +336,27 @@
 					</div>
 					<!--main-->
 				</section>
-				<md-button class="md-fab md-mini next-search-button" ng-click="viewStartup($event, startupGroup[1])">
-					<md-icon class="material-icons">
-						remove_red_eye
-					</md-icon>
-				</md-button>
+				<section layout="row" layout-align="space-between center">
+					<md-button class="md-fab md-mini next-search-button" ng-click="viewStartup($event, startupGroup[1])">
+						<md-icon class="material-icons">
+							remove_red_eye
+						</md-icon>
+					</md-button>
+					<md-button aria-label="myWishlist" ng-if="isStartupInWishlist(startupGroup[1])" ng-disabled="true" class="md-fab md-mini next-search-button">
+						<md-icon class="material-icons" md-svg-src="/views/core/izmus-nav-bar/images/wish-list.svg">
+						</md-icon>
+					</md-button>
+					<md-button aria-label="myRequest" ng-if="isStartupInMyRequests(startupGroup[1])" ng-disabled="true" class="md-fab md-mini next-search-button">
+						<md-icon class="material-icons" md-svg-src="/views/core/izmus-nav-bar/images/my-requests.svg">
+						</md-icon>
+					</md-button>
+				</section>
 			</md-whiteframe>
 			<!--two-->
 			<!--three-->
 			<md-whiteframe
 			class="md-whiteframe-1dp startup-card"
-			ng-if="(!startupGroup[2] && !startupGroup[0]) || (startupGroup[2] && startupGroup[0])"
+			ng-if="(startupGroup[2] && !isSmallerDevice())"
 			layout-padding
 			layout="column">
 				<section ng-if='!startupGroup[2]' flex layout="column" layout-align="center center">
@@ -389,11 +409,21 @@
 					</div>
 					<!--main-->
 				</section>
-				<md-button class="md-fab md-mini next-search-button" ng-click="viewStartup($event, startupGroup[2])">
-					<md-icon class="material-icons">
-						remove_red_eye
-					</md-icon>
-				</md-button>
+				<section layout="row" layout-align="space-between center">
+					<md-button class="md-fab md-mini next-search-button" ng-click="viewStartup($event, startupGroup[2])">
+						<md-icon class="material-icons">
+							remove_red_eye
+						</md-icon>
+					</md-button>
+					<md-button aria-label="myWishlist" ng-if="isStartupInWishlist(startupGroup[2])" ng-disabled="true" class="md-fab md-mini next-search-button">
+						<md-icon class="material-icons" md-svg-src="/views/core/izmus-nav-bar/images/wish-list.svg">
+						</md-icon>
+					</md-button>
+					<md-button aria-label="myRequest" ng-if="isStartupInMyRequests(startupGroup[2])" ng-disabled="true" class="md-fab md-mini next-search-button">
+						<md-icon class="material-icons" md-svg-src="/views/core/izmus-nav-bar/images/my-requests.svg">
+						</md-icon>
+					</md-button>
+				</section>
 			</md-whiteframe>
 			<!--three-->
 		</div>

@@ -1,8 +1,8 @@
 angular.module('findersDashboardApp').directive('startupGridList', 
 		['loadAllAvailableStartups','loadAllSectors','loadAllFundingStages','loadAllProductStages','$mdMedia', 'startupPreviewDialog', '$timeout',
-		 '$mdToast','triggerWishlist',
+		 '$mdToast','triggerWishlist', 'loadAllWishlist','loadAllMyRequests',
 		 function(loadAllAvailableStartups,loadAllSectors, loadAllFundingStages, loadAllProductStages, $mdMedia, startupPreviewDialog, $timeout,
-				 $mdToast, triggerWishlist) {
+				 $mdToast, triggerWishlist, loadAllWishlist, loadAllMyRequests) {
 	return {
 		restrict : 'E',
 		templateUrl : '/views/finders-dashboard/templates/startup-grid-list.html',
@@ -11,10 +11,54 @@ angular.module('findersDashboardApp').directive('startupGridList',
 			$scope.lang = lang;
 			$scope.searchMinimized = false;
 			$scope.progressMode = '';
-			$scope.numberItemsPerRow = 3;
 			$scope.pageSize = 60;
 			$scope.showWelcome = false;
 			$scope.showFilter = false;
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.isSmallerDevice = function(){
+				return (!$mdMedia('gt-sm'));
+			}
+			/*----------------------------------------------------------------------------------------------------*/
+			if ($scope.isSmallerDevice()){
+				$scope.numberItemsPerRow = 1;
+			}
+			else {
+				$scope.numberItemsPerRow = 3;
+			}
+			/*----------------------------------------------------------------------------------------------------*/
+			loadAllWishlist().then(function(data){
+				$scope.wishlist = data;
+			});
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.isStartupInWishlist = function(startup){
+				if ($scope.wishlist && startup){
+					for (var i = 0; i < $scope.wishlist.length; i++){
+						var item = $scope.wishlist[i];
+						if (item.startupId == startup.startupId){
+							return true;
+							break;
+						}
+					}
+					return false;
+				}
+			}
+			/*----------------------------------------------------------------------------------------------------*/
+			loadAllMyRequests().then(function(data){
+				$scope.myRequests = data;
+			});
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.isStartupInMyRequests = function(startup){
+				if ($scope.myRequests && startup){
+					for (var i = 0; i < $scope.myRequests.length; i++){
+						var item = $scope.myRequests[i];
+						if (item.startupId == startup.startupId){
+							return true;
+							break;
+						}
+					}
+					return false;
+				}
+			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.getAllSectors = function(){
 				return loadAllSectors().then(function(data){
