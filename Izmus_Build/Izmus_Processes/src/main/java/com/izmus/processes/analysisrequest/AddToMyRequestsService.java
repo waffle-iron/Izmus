@@ -9,12 +9,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import com.izmus.data.domain.cart.Cart;
+import com.izmus.data.domain.cart.WishList;
 import com.izmus.data.domain.startups.AvailableStartup;
 import com.izmus.data.domain.startups.Startup;
 import com.izmus.data.domain.startups.StartupAbstract;
 import com.izmus.data.domain.users.User;
 import com.izmus.data.repository.ICartRepository;
 import com.izmus.data.repository.IStartupAbstractRepository;
+import com.izmus.data.repository.IWishlistRepository;
 
 @Component("AddToMyRequestsService")
 public class AddToMyRequestsService {
@@ -25,12 +27,18 @@ public class AddToMyRequestsService {
 	@Autowired
 	private ICartRepository cartRepository;
 	@Autowired
+	private IWishlistRepository wishlistRepository;
+	@Autowired
 	private IStartupAbstractRepository startupAbstractRepository;
 	/*----------------------------------------------------------------------------------------------------*/
 	public void execute(Execution execution) throws Exception{
 		try {
 			User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			Integer startupId = (Integer) runtimeService.getVariable(execution.getId(), "startupId");
+			WishList wishlistItem = wishlistRepository.findDistinctWishListByStartupIdAndUserId(startupId, user.getUserId());
+			if (wishlistItem != null){
+				wishlistRepository.delete(wishlistItem);
+			}
 			StartupAbstract startup = startupAbstractRepository.findDistinctStartupAbstractByStartupId(startupId);
 			if (startup instanceof AvailableStartup){
 				startup = convertAvailableStartup((AvailableStartup) startup);
@@ -38,7 +46,7 @@ public class AddToMyRequestsService {
 			Cart cart = new Cart();
 			cart.setStartupId(startup.getStartupId());
 			cart.setUserId(user.getUserId());
-			cartRepository.save(cart);
+			cartRepository.saveAndFlush(cart);
 		} catch (Exception e) {
 			LOGGER.debug("Failed to send out email to Admins for analysis request\r\n" + e.getMessage());
 			throw(e);

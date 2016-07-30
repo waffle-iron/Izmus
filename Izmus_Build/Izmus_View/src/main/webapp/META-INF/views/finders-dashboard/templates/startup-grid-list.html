@@ -283,7 +283,7 @@
 			<!--two-->
 			<md-whiteframe
 			class="md-whiteframe-1dp startup-card"
-			ng-if="(startupGroup[1] && !isSmallerDevice())"
+			ng-if="((!startupGroup[0] || startupGroup[1]) && !isSmallerDevice())"
 			layout-padding
 			layout="column">
 				<section ng-if='!startupGroup[1]' flex layout="column" layout-align="center center">
@@ -356,7 +356,7 @@
 			<!--three-->
 			<md-whiteframe
 			class="md-whiteframe-1dp startup-card"
-			ng-if="(startupGroup[2] && !isSmallerDevice())"
+			ng-if="((!startupGroup[0] || startupGroup[2]) && !isSmallerDevice())"
 			layout-padding
 			layout="column">
 				<section ng-if='!startupGroup[2]' flex layout="column" layout-align="center center">

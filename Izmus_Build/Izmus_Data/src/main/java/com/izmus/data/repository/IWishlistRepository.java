@@ -11,4 +11,5 @@ import com.izmus.data.domain.cart.WishList;
 public interface IWishlistRepository extends JpaRepository<WishList, Integer> {
 	WishList findDistinctWishListByItemId(Integer itemId);
 	List<WishList> findWishListByUserId(Integer userId);
+	WishList findDistinctWishListByStartupIdAndUserId(Integer startupId, Integer userId);
 }

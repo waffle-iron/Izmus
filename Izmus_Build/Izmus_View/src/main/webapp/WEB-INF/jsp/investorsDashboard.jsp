@@ -38,6 +38,8 @@
 			numberOfEmployees:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.numberOfEmployees" />',
 			thankYouForAdding: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.thankYouForAdding" />',
 			addedToWishlist: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.addedToWishlist" />',
+			addedToMyRequests: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.addedToMyRequests" />',
+			notAddedRequests: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.notAddedRequests" />',
 			notAdded: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.notAdded" />'
 	};
 </script>

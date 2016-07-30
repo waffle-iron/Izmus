@@ -1,8 +1,8 @@
 angular.module('findersDashboardApp').directive('startupGridList', 
 		['loadAllAvailableStartups','loadAllSectors','loadAllFundingStages','loadAllProductStages','$mdMedia', 'startupPreviewDialog', '$timeout',
-		 '$mdToast','triggerWishlist', 'loadAllWishlist','loadAllMyRequests',
+		 '$mdToast','triggerWishlist', 'loadAllWishlist','loadAllMyRequests','triggerAnalysis',
 		 function(loadAllAvailableStartups,loadAllSectors, loadAllFundingStages, loadAllProductStages, $mdMedia, startupPreviewDialog, $timeout,
-				 $mdToast, triggerWishlist, loadAllWishlist, loadAllMyRequests) {
+				 $mdToast, triggerWishlist, loadAllWishlist, loadAllMyRequests, triggerAnalysis) {
 	return {
 		restrict : 'E',
 		templateUrl : '/views/finders-dashboard/templates/startup-grid-list.html',
@@ -26,9 +26,15 @@ angular.module('findersDashboardApp').directive('startupGridList',
 				$scope.numberItemsPerRow = 3;
 			}
 			/*----------------------------------------------------------------------------------------------------*/
-			loadAllWishlist().then(function(data){
-				$scope.wishlist = data;
-			});
+			$scope.loadLists = function(){
+				loadAllWishlist().then(function(data){
+					$scope.wishlist = data;
+				});
+				loadAllMyRequests().then(function(data){
+					$scope.myRequests = data;
+				});
+			}
+			$scope.loadLists();
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.isStartupInWishlist = function(startup){
 				if ($scope.wishlist && startup){
@@ -42,10 +48,6 @@ angular.module('findersDashboardApp').directive('startupGridList',
 					return false;
 				}
 			}
-			/*----------------------------------------------------------------------------------------------------*/
-			loadAllMyRequests().then(function(data){
-				$scope.myRequests = data;
-			});
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.isStartupInMyRequests = function(startup){
 				if ($scope.myRequests && startup){
@@ -196,19 +198,48 @@ angular.module('findersDashboardApp').directive('startupGridList',
 	        }
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.viewStartup = function(ev, startup){
-				startupPreviewDialog(ev, startup, $scope.getSectorIconForStartup(startup), $scope.addToWishlist);
+				startupPreviewDialog(ev, 
+						startup, 
+						$scope.getSectorIconForStartup(startup), 
+						$scope.addToWishlist, 
+						$scope.wishlist, 
+						$scope.myRequests,
+						$scope.addToMyRequests);
+			}
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.addToMyRequests = function(startup){
+				$scope.progressMode = 'indeterminate';
+				triggerAnalysis(startup.startupId).then(function(data){
+					if(data.result == 'success'){
+						$scope.showMessage($scope.lang.addedToWishlist);
+						$scope.loadLists();
+						$scope.progressMode = '';
+					}
+					else {
+						$scope.showMessage($scope.lang.notAddedRequests);
+						$scope.progressMode = '';
+					}
+				}, function(){
+					$scope.showMessage($scope.lang.notAddedRequests);
+					$scope.progressMode = '';
+				});
 			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.addToWishlist = function(startup){
+				$scope.progressMode = 'indeterminate';
 				triggerWishlist(startup.startupId).then(function(data){
 					if(data.result == 'success'){
 						$scope.showMessage($scope.lang.addedToWishlist);
+						$scope.loadLists();
+						$scope.progressMode = '';
 					}
 					else {
 						$scope.showMessage($scope.lang.notAdded);
+						$scope.progressMode = '';
 					}
 				}, function(){
 					$scope.showMessage($scope.lang.notAdded);
+					$scope.progressMode = '';
 				});
 			}
 			/*----------------------------------------------------------------------------------------------------*/
