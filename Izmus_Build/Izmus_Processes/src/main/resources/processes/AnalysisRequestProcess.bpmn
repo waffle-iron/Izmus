@@ -10,6 +10,8 @@
         <flowNodeRef>SendUserConfirmationEmailServiceId</flowNodeRef>
         <flowNodeRef>SendAdminRequestEmailServiceId</flowNodeRef>
         <flowNodeRef>AddToMyRequestsServiceId</flowNodeRef>
+        <flowNodeRef>DeleteFromWishlistServiceId</flowNodeRef>
+        <flowNodeRef>MoveToAssessorsDashboardServiceId</flowNodeRef>
       </lane>
       <lane id="UserLaneId" name="User"></lane>
     </laneSet>
@@ -19,7 +21,11 @@
     <serviceTask id="SendAdminRequestEmailServiceId" name="Send Admin Request Email" activiti:expression="#{SendAdminRequestEmailService.execute(execution)}"></serviceTask>
     <sequenceFlow id="flow2" sourceRef="SendUserConfirmationEmailServiceId" targetRef="SendAdminRequestEmailServiceId"></sequenceFlow>
     <serviceTask id="AddToMyRequestsServiceId" name="Add To My Requests" activiti:expression="#{AddToMyRequestsService.execute(execution)}"></serviceTask>
-    <sequenceFlow id="flow3" sourceRef="SendAdminRequestEmailServiceId" targetRef="AddToMyRequestsServiceId"></sequenceFlow>
+    <sequenceFlow id="flow3" sourceRef="SendAdminRequestEmailServiceId" targetRef="MoveToAssessorsDashboardServiceId"></sequenceFlow>
+    <serviceTask id="DeleteFromWishlistServiceId" name="Delete From Wishlist" activiti:expression="#{DeleteFromWishlistService.execute(execution)}"></serviceTask>
+    <sequenceFlow id="flow4" sourceRef="AddToMyRequestsServiceId" targetRef="DeleteFromWishlistServiceId"></sequenceFlow>
+    <serviceTask id="MoveToAssessorsDashboardServiceId" name="Move To Assessors Dashboard" activiti:expression="#{MoveToAssessorsDashboardService.execute(execution)}"></serviceTask>
+    <sequenceFlow id="flow5" sourceRef="MoveToAssessorsDashboardServiceId" targetRef="AddToMyRequestsServiceId"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration">
     <bpmndi:BPMNPlane bpmnElement="Collaboration" id="BPMNPlane_Collaboration">
@@ -33,28 +39,42 @@
         <omgdc:Bounds height="251.0" width="831.0" x="80.0" y="301.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
-        <omgdc:Bounds height="35.0" width="35.0" x="140.0" y="160.0"></omgdc:Bounds>
+        <omgdc:Bounds height="35.0" width="35.0" x="110.0" y="160.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="SendUserConfirmationEmailServiceId" id="BPMNShape_SendUserConfirmationEmailServiceId">
-        <omgdc:Bounds height="71.0" width="151.0" x="250.0" y="142.0"></omgdc:Bounds>
+        <omgdc:Bounds height="71.0" width="151.0" x="170.0" y="142.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="SendAdminRequestEmailServiceId" id="BPMNShape_SendAdminRequestEmailServiceId">
-        <omgdc:Bounds height="71.0" width="131.0" x="480.0" y="142.0"></omgdc:Bounds>
+        <omgdc:Bounds height="71.0" width="131.0" x="350.0" y="142.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="AddToMyRequestsServiceId" id="BPMNShape_AddToMyRequestsServiceId">
-        <omgdc:Bounds height="55.0" width="105.0" x="670.0" y="150.0"></omgdc:Bounds>
+        <omgdc:Bounds height="55.0" width="105.0" x="650.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="DeleteFromWishlistServiceId" id="BPMNShape_DeleteFromWishlistServiceId">
+        <omgdc:Bounds height="55.0" width="105.0" x="780.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="MoveToAssessorsDashboardServiceId" id="BPMNShape_MoveToAssessorsDashboardServiceId">
+        <omgdc:Bounds height="55.0" width="105.0" x="510.0" y="150.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
-        <omgdi:waypoint x="175.0" y="177.0"></omgdi:waypoint>
-        <omgdi:waypoint x="250.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="145.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="170.0" y="177.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
-        <omgdi:waypoint x="401.0" y="177.0"></omgdi:waypoint>
-        <omgdi:waypoint x="480.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="321.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="350.0" y="177.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
-        <omgdi:waypoint x="611.0" y="177.0"></omgdi:waypoint>
-        <omgdi:waypoint x="670.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="481.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="510.0" y="177.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="755.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="780.0" y="177.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="615.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="650.0" y="177.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

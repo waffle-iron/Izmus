@@ -8,27 +8,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import com.izmus.data.domain.cart.Cart;
+import com.izmus.data.domain.cart.WishList;
 import com.izmus.data.domain.users.User;
-import com.izmus.data.repository.ICartRepository;
+import com.izmus.data.repository.IWishlistRepository;
 
-@Component("AddToMyRequestsService")
-public class AddToMyRequestsService {
+@Component("DeleteFromWishlistService")
+public class DeleteFromWishlistService {
 	/*----------------------------------------------------------------------------------------------------*/
-	private static final Logger LOGGER = LoggerFactory.getLogger(AddToMyRequestsService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(DeleteFromWishlistService.class);
 	@Autowired
 	private RuntimeService runtimeService;
 	@Autowired
-	private ICartRepository cartRepository;
+	private IWishlistRepository wishlistRepository;
 	/*----------------------------------------------------------------------------------------------------*/
 	public void execute(Execution execution) throws Exception{
 		try {
 			User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			Integer startupId = (Integer) runtimeService.getVariable(execution.getId(), "startupId");
-			Cart cart = new Cart();
-			cart.setStartupId(startupId);
-			cart.setUserId(user.getUserId());
-			cartRepository.save(cart);
+			WishList wishlistItem = wishlistRepository.findDistinctWishListByStartupIdAndUserId(startupId, user.getUserId());
+			if (wishlistItem != null){
+				wishlistRepository.delete(wishlistItem);
+			}
 		} catch (Exception e) {
 			LOGGER.debug("Failed to send out email to Admins for analysis request\r\n" + e.getMessage());
 			throw(e);
