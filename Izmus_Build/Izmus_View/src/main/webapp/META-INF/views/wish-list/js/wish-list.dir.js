@@ -1,5 +1,5 @@
 angular.module('wishListApp').directive('wishListWindow', 
-		[function() {
+		['loadAllWishlist',function(loadAllWishlist) {
 	return {
 		restrict : 'E',
 		templateUrl : '/views/wish-list/templates/wish-list.html',

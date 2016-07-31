@@ -1,0 +1,257 @@
+<style>
+	.startup-card {
+		margin: 5px;
+		min-height: 200px;
+		min-width: 300px;
+		max-width: 300px;
+		background-color: rgba(255,255,255, 0.3);
+	}
+	.background-color {
+		background-color: rgba(255,255,255, 0.0);
+	}
+	.startup-icon {
+		margin-top: 8px !important;
+		margin-bottom: 8px !important;
+	}
+	.startup-avatar-icon {
+		height: 38px !important;
+		width: 38px !important;
+		min-height: 38px !important;
+		min-width: 38px !important;
+	}
+	.startup-avatar-icon-circle {
+		height: 38px !important;
+		width: 38px !important;
+		min-height: 38px !important;
+		min-width: 38px !important;
+		border-radius: 20px;
+		border-width: 1px;
+    	border-style: solid;
+    	border-color: rgb(160,195,215);
+	}
+	.small-startup-name-text {
+		font-size: medium;
+		line-height: initial;
+	}
+	.startup-site {
+		font-size: small;
+	}
+	.main-startup-text > div > span {
+		font-size: 11px;
+	}
+</style>
+<section ng-if='progressMode != ""' flex layout="column" layout-align="center center">
+	<div>
+		<md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120"></md-progress-circular>
+	</div>
+</section>
+<section ng-if='progressMode == ""' flex layout="column" layout-padding>
+	<md-virtual-repeat-container
+	style="margin-top: 5px;"
+	layout="row"
+	layout-padding
+	flex>
+		<div
+		md-virtual-repeat="startupGroup in availableStartups"
+		md-on-demand
+		layout-align="space-around center"
+		layout="row"
+		layout-xs="column"
+		layout-sm="column">
+			<!--one-->
+			<md-whiteframe
+			class="md-whiteframe-1dp startup-card"
+			layout-padding
+			layout="column">
+				<section ng-if='!startupGroup[0]' flex layout="column" layout-align="center center">
+					<div>
+						<md-progress-circular class="md-hue-1" md-mode="indeterminate" md-diameter="70"></md-progress-circular>
+					</div>
+				</section>
+				<section ng-if='startupGroup[0]' flex="100" layout-padding>
+					<!--header-->
+					<div layout="row">
+						<md-icon
+						ng-if="(startupGroup[0].logo == null || statup.logo =='')"
+						ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+						class="material-icons startup-icon startup-avatar-icon" md-svg-src="{{getSectorIconForStartup(startupGroup[0])}}"></md-icon>
+						<img
+						ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+						ng-if="(startupGroup[0].logo != null && statup.logo !='')" class="startup-avatar-icon-circle" ng-src="{{startupGroup[0].logo}}"/>
+						<div layout="row"
+						flex="100"
+						layout-align="space-between center"
+						layout-align-sm="center start"
+						layout-align-xs="center start"
+						layout-sm="column"
+						layout-xs="column">
+							<div layout="row" layout-align="center center">
+								<section layout="column">
+									<section>
+										<span ng-class="(isSmallDevice()) ? 'small-startup-name-text background-color' : 'md-title background-color'">{{(startupGroup[0].startupName ? startupGroup[0].startupName : '')}}</span>
+										<span class="md-subheader startup-site background-color"><a target="_blank" ng-href="{{(startupGroup[0].site ? startupGroup[0].site : '')}}">{{(startupGroup[0].site ? startupGroup[0].site : '')}}</a></span>
+									</section>
+								</section>
+							</div>
+						</div>
+					</div>
+					<!--header-->
+					<!--main-->
+					<div layout="column" class="main-startup-text">
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.sector + ': '}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[0].sector ? startupGroup[0].sector : '')}}</span>
+						</div>
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.fundingStage + ': '}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[0].fundingStage ? startupGroup[0].fundingStage : '')}}</span>
+						</div>
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.productStage + ': '}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[0].productStage ? startupGroup[0].productStage : '')}}</span>
+						</div>
+					</div>
+					<!--main-->
+				</section>
+				<section layout="row" layout-align="space-between center">
+					<md-button class="md-fab md-mini next-search-button" ng-click="viewStartup($event, startupGroup[0])">
+						<md-icon class="material-icons">
+							remove_red_eye
+						</md-icon>
+					</md-button>
+				</section>
+			</md-whiteframe>
+			<!--one-->
+			<!--two-->
+			<md-whiteframe
+			class="md-whiteframe-1dp startup-card"
+			ng-if="((!startupGroup[0] || startupGroup[1]) && !isSmallerDevice())"
+			layout-padding
+			layout="column">
+				<section ng-if='!startupGroup[1]' flex layout="column" layout-align="center center">
+					<div>
+						<md-progress-circular class="md-hue-1" md-mode="indeterminate" md-diameter="70"></md-progress-circular>
+					</div>
+				</section>
+				<section ng-if='startupGroup[1]' flex="100" layout-padding>
+					<!--header-->
+					<div layout="row">
+						<md-icon
+						ng-if="(startupGroup[1].logo == null || statup.logo =='')"
+						ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+						class="material-icons startup-icon startup-avatar-icon" md-svg-src="{{getSectorIconForStartup(startupGroup[1])}}"></md-icon>
+						<img
+						ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+						ng-if="(startupGroup[1].logo != null && statup.logo !='')" class="startup-avatar-icon-circle" ng-src="{{startupGroup[1].logo}}"/>
+						<div layout="row"
+						flex="100"
+						layout-align="space-between center"
+						layout-align-sm="center start"
+						layout-align-xs="center start"
+						layout-sm="column"
+						layout-xs="column">
+							<div layout="row" layout-align="center center">
+								<section layout="column">
+									<section>
+										<span ng-class="(isSmallDevice()) ? 'small-startup-name-text background-color' : 'md-title background-color'">{{(startupGroup[1].startupName ? startupGroup[1].startupName : '')}}</span>
+										<span class="md-subheader startup-site background-color"><a target="_blank" ng-href="{{(startupGroup[1].site ? startupGroup[1].site : '')}}">{{(startupGroup[1].site ? startupGroup[1].site : '')}}</a></span>
+									</section>
+								</section>
+							</div>
+						</div>
+					</div>
+					<!--header-->
+					<!--main-->
+					<div layout="column" class="main-startup-text">
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.sector + ': '}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[1].sector ? startupGroup[1].sector : '')}}</span>
+						</div>
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.fundingStage + ': '}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[1].fundingStage ? startupGroup[1].fundingStage : '')}}</span>
+						</div>
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.productStage + ': '}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[1].productStage ? startupGroup[1].productStage : '')}}</span>
+						</div>
+					</div>
+					<!--main-->
+				</section>
+				<section layout="row" layout-align="space-between center">
+					<md-button class="md-fab md-mini next-search-button" ng-click="viewStartup($event, startupGroup[1])">
+						<md-icon class="material-icons">
+							remove_red_eye
+						</md-icon>
+					</md-button>
+				</section>
+			</md-whiteframe>
+			<!--two-->
+			<!--three-->
+			<md-whiteframe
+			class="md-whiteframe-1dp startup-card"
+			ng-if="((!startupGroup[0] || startupGroup[2]) && !isSmallerDevice())"
+			layout-padding
+			layout="column">
+				<section ng-if='!startupGroup[2]' flex layout="column" layout-align="center center">
+					<div>
+						<md-progress-circular class="md-hue-1" md-mode="indeterminate" md-diameter="70"></md-progress-circular>
+					</div>
+				</section>
+				<section ng-if='startupGroup[2]' flex="100" layout-padding>
+					<!--header-->
+					<div layout="row">
+						<md-icon
+						ng-if="(startupGroup[2].logo == null || statup.logo =='')"
+						ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+						class="material-icons startup-icon startup-avatar-icon" md-svg-src="{{getSectorIconForStartup(startupGroup[2])}}"></md-icon>
+						<img
+						ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}"
+						ng-if="(startupGroup[2].logo != null && statup.logo !='')" class="startup-avatar-icon-circle" ng-src="{{startupGroup[2].logo}}"/>
+						<div layout="row"
+						flex="100"
+						layout-align="space-between center"
+						layout-align-sm="center start"
+						layout-align-xs="center start"
+						layout-sm="column"
+						layout-xs="column">
+							<div layout="row" layout-align="center center">
+								<section layout="column">
+									<section>
+										<span ng-class="(isSmallDevice()) ? 'small-startup-name-text background-color' : 'md-title background-color'">{{(startupGroup[2].startupName ? startupGroup[2].startupName : '')}}</span>
+										<span class="md-subheader startup-site background-color"><a target="_blank" ng-href="{{(startupGroup[2].site ? startupGroup[2].site : '')}}">{{(startupGroup[2].site ? startupGroup[2].site : '')}}</a></span>
+									</section>
+								</section>
+							</div>
+						</div>
+					</div>
+					<!--header-->
+					<!--main-->
+					<div layout="column" class="main-startup-text">
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.sector + ': '}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[2].sector ? startupGroup[2].sector : '')}}</span>
+						</div>
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.fundingStage + ': '}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[2].fundingStage ? startupGroup[2].fundingStage : '')}}</span>
+						</div>
+						<div layout="row" layout-align="space-between center">
+							<span class="md-subheader background-color">{{lang.productStage + ': '}}</span>
+							<span class="md-subheader background-color">{{(startupGroup[2].productStage ? startupGroup[2].productStage : '')}}</span>
+						</div>
+					</div>
+					<!--main-->
+				</section>
+				<section layout="row" layout-align="space-between center">
+					<md-button class="md-fab md-mini next-search-button" ng-click="viewStartup($event, startupGroup[2])">
+						<md-icon class="material-icons">
+							remove_red_eye
+						</md-icon>
+					</md-button>
+				</section>
+			</md-whiteframe>
+			<!--three-->
+		</div>
+	</md-virtual-repeat-container>
+</section>

@@ -69,7 +69,7 @@ public class SendUserConfirmationEmailService {
 /*4*/	stringList.add(startup.getSite() == null ? "" : startup.getSite());
 /*5*/	stringList.add(messageSource.getMessage("emails.analysisRequest.yourWishList", null,
 		Locale.ENGLISH));
-/*6*/	stringList.add("www.izmus.com");
+/*6*/	stringList.add("http://www.izmus.com/WishList");
 /*7*/	stringList.add(messageSource.getMessage("emails.analysisRequest.contactASAP", null,
 		Locale.ENGLISH));
 		return mailService.injectStringListToEmail(emailString, stringList);

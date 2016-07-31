@@ -211,7 +211,7 @@ angular.module('investorsDashboardApp').directive('startupGridList',
 				$scope.progressMode = 'indeterminate';
 				triggerAnalysis(startup.startupId).then(function(data){
 					if(data.result == 'success'){
-						$scope.showMessage($scope.lang.addedToWishlist);
+						$scope.showMessage($scope.lang.addedToMyRequests);
 						$scope.loadLists();
 						$scope.progressMode = '';
 					}
