@@ -5,7 +5,7 @@ angular.module('availableStartupsApp').factory('loadAllAvailableStartups',
 				return $q(function(resolve, reject) {
 					$http({
 						method : 'GET',
-						url : '/api/AvailableStartups',
+						url : '/api/StartupAssessment/PagedStartupBasicData',
 						params: {
 							pageNumber: pageNumber,
 							searchName: search,

@@ -24,6 +24,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +42,7 @@ import com.izmus.data.domain.startups.Measurement;
 import com.izmus.data.domain.startups.MeasurementQuestion;
 import com.izmus.data.domain.startups.ScoreCardReport;
 import com.izmus.data.domain.startups.Startup;
+import com.izmus.data.domain.startups.StartupAbstract;
 import com.izmus.data.domain.startups.StartupAdditionalDocument;
 import com.izmus.data.domain.startups.StartupContact;
 import com.izmus.data.domain.startups.StartupMeeting;
@@ -95,14 +98,43 @@ public class StartupAssessment {
 	private IStartupMeetingSummaryRepository startupMeetingSummaryRepository;
 	@Autowired
 	private MailSenderService mailService;
-
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(method = RequestMethod.GET, value = "/PagedStartupBasicData")
+	@PreAuthorize("hasPermission('Assessors Menu/Startup Assessment', '')")
+	public List<Object> getPagedWishlist(
+			@RequestParam(value = "pageNumber", required = true) Integer pageNumber,
+			@RequestParam(value = "pageSize") Integer pageSize) {
+		PageRequest pageable = new PageRequest(pageNumber, pageSize);
+		Page<? extends StartupAbstract> pageableList;
+		pageableList = startupRepository.findAll(pageable);
+		List<Object> returnList = new ArrayList<>();
+		List<StartupAbstract> startupList = new ArrayList<>();
+		for (StartupAbstract startup : pageableList.getContent()){
+			StartupAbstract newAbstraction = new StartupAbstract() {private static final long serialVersionUID = 1L;};
+			newAbstraction.setLogo(startup.getLogo());
+			newAbstraction.setSite(startup.getSite());
+			newAbstraction.setStartupName(startup.getStartupName());
+			newAbstraction.setStartupId(startup.getStartupId());
+			startupList.add(newAbstraction);
+		}
+		returnList.add(startupList);
+		returnList.add(pageableList.getNumberOfElements());
+		LOGGER.info("User Got Paged Startup List");
+		return returnList;
+	}
 	/*----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/StartupAssessmentData", method = RequestMethod.GET)
 	@PreAuthorize("hasPermission('Assessors Menu/Startup Assessment', '')")
-	public List<Startup> getStartups() {
+	public List<Startup> getStartups(@RequestParam(value = "startupId", required = false) Integer startupId) {
 		List<Startup> startups = new ArrayList<>();
 		try {
-			startups = startupRepository.findAll();
+			if (startupId != null && startupId != 0){
+				startups = new ArrayList<Startup>();
+				startups.add(startupRepository.findDistinctStartupByStartupId(startupId));
+			}
+			else{
+				startups = startupRepository.findAll();
+			}
 			for (Startup startup : startups) {
 				for (StartupScoreCard scoreCard : startup.getScoreCards()) {
 					for (Measurement measurement : scoreCard.getMeasurements()) {

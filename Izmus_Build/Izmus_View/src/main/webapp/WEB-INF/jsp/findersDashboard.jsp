@@ -25,6 +25,12 @@
 <script>
 	var lang = {
 			searchName:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.searchName" />',
+			search:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.search" />',
+			viewDetails: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.viewDetails" />',
+			itemInWishlist: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.itemInWishlist" />',
+			itemInMyRequests:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.itemInMyRequests" />',
+			addToMyRequests: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.addToMyRequests" />',
+			addToWishlist: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.addToWishlist" />',
 			cancel:' <spring:message code="navBar.menu.startupAssessment.cancel" />',
 			filterSector:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.filterSector" />',
 			site:' <spring:message code="navBar.menu.startupAssessment.site" />',

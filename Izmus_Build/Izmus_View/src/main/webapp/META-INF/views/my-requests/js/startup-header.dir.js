@@ -1,10 +1,11 @@
-angular.module('wishListApp').directive('startupDetails', 
+angular.module('myRequestsApp').directive('startupHeader', 
 		['$mdMedia', function($mdMedia) {
 	return {
 		restrict : 'E',
-		templateUrl : '/views/wish-list/templates/startup-details.html',
+		templateUrl : '/views/my-requests/templates/startup-header.html',
 		scope: {
-			startup: '=',
+			selectedStartup: '=',
+			iconSrc: '@'
 		},
 		controller : ['$scope',function($scope) {
 			$scope.globalAttr = globalAttr;

@@ -73,4 +73,25 @@ public class CartApi {
 		LOGGER.info("User Got Paged Wish List");
 		return returnList;
 	}
+	/*----------------------------------------------------------------------------------------------------*/
+	@RequestMapping(method = RequestMethod.GET, value = "/PagedMyRequests")
+	@PreAuthorize("hasPermission('Cart Menu/Wish List', '')")
+	public List<Object> getPagedMyRequests(
+			@RequestParam(value = "pageNumber", required = true) Integer pageNumber,
+			@RequestParam(value = "pageSize") Integer pageSize) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		PageRequest pageable = new PageRequest(pageNumber, pageSize);
+		Page<Cart> pageableList;
+		pageableList = cartRepository.findByUserId(user.getUserId(), pageable);
+		List<StartupAbstract> startupList = new ArrayList<>();
+		for (Cart listItem : pageableList.getContent()){
+			StartupAbstract startup = startupAbstractRepository.findDistinctStartupAbstractByStartupId(listItem.getStartupId());
+			startupList.add(startup);
+		}
+		List<Object> returnList = new ArrayList<>();
+		returnList.add(startupList);
+		returnList.add(pageableList.getNumberOfElements());
+		LOGGER.info("User Got Paged My Requests");
+		return returnList;
+	}
 }

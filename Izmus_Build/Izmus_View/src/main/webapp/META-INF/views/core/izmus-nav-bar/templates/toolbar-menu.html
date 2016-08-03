@@ -22,7 +22,7 @@
 	md-position-mode="{{(globalAttr.direction == 'rtl') ? '' : 'target-right target'}}">
 	<md-button class="md-icon-button toolbar-icons avatar-button"
 		ng-click="$mdOpenMenu($event)">
-		<md-tooltip md-direction="down" md-delay="1200">
+		<md-tooltip md-direction="{{globalAttr.direction == 'rtl' ? 'right' : 'left'}}" md-delay="1200">
           {{globalAttr.user.userName}}
     	</md-tooltip> 
 		<img class="nav-bar-user-avatar" ng-src="{{getUserAvatar()}}" />

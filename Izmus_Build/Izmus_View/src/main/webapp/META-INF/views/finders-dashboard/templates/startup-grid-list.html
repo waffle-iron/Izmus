@@ -101,6 +101,9 @@
 	md-select > md-select-value > span{
 		margin-bottom: 15px;
 	}
+	.redirect{
+		padding-top: 7px;
+	}
 </style>
 <section ng-if='progressMode != ""' flex layout="column" layout-align="center center">
 	<div>
@@ -147,6 +150,9 @@
 				</md-select>
 			</div>
 			<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
+				<md-tooltip md-direction="{{globalAttr.direction == 'rtl' ? 'right' : 'left'}}">
+          			{{lang.search}}
+        		</md-tooltip>
 				<md-icon class="material-icons">
 					search
 				</md-icon>
@@ -189,6 +195,9 @@
 				</md-select>
 			</div>
 			<md-button class="md-fab md-mini next-search-button" ng-click="goSearch()">
+				<md-tooltip md-direction="{{globalAttr.direction == 'rtl' ? 'right' : 'left'}}">
+          			{{lang.search}}
+        		</md-tooltip>
 				<md-icon class="material-icons">
 					search
 				</md-icon>
@@ -265,16 +274,33 @@
 				</section>
 				<section layout="row" layout-align="space-between center">
 					<md-button class="md-fab md-mini next-search-button" ng-click="viewStartup($event, startupGroup[0])">
+						<md-tooltip md-direction="{{globalAttr.direction == 'rtl' ? 'left' : 'right'}}">
+		          			{{lang.viewDetails}}
+		        		</md-tooltip>
 						<md-icon class="material-icons">
 							remove_red_eye
 						</md-icon>
 					</md-button>
-					<md-button aria-label="myWishlist" ng-if="isStartupInWishlist(startupGroup[0])" ng-disabled="true" class="md-fab md-mini next-search-button">
-						<md-icon class="material-icons" md-svg-src="/views/core/izmus-nav-bar/images/wish-list.svg">
+					<md-button 
+					aria-label="myWishlist" 
+					ng-if="isStartupInWishlist(startupGroup[0])" 
+					class="md-fab md-mini next-search-button"
+					ng-href="/WishList">
+						<md-tooltip md-direction="{{globalAttr.direction == 'rtl' ? 'right' : 'left'}}">
+		          			{{lang.itemInWishlist}}
+		        		</md-tooltip>
+						<md-icon class="material-icons redirect" md-svg-src="/views/core/izmus-nav-bar/images/wish-list.svg">
 						</md-icon>
 					</md-button>
-					<md-button aria-label="myRequest" ng-if="isStartupInMyRequests(startupGroup[0])" ng-disabled="true" class="md-fab md-mini next-search-button">
-						<md-icon class="material-icons" md-svg-src="/views/core/izmus-nav-bar/images/my-requests.svg">
+					<md-button 
+					aria-label="myRequest" 
+					ng-if="isStartupInMyRequests(startupGroup[0])" 
+					class="md-fab md-mini next-search-button"
+					ng-href="/MyRequests">
+						<md-tooltip md-direction="{{globalAttr.direction == 'rtl' ? 'right' : 'left'}}">
+		          			{{lang.itemInMyRequests}}
+		        		</md-tooltip>
+						<md-icon class="material-icons redirect" md-svg-src="/views/core/izmus-nav-bar/images/my-requests.svg">
 						</md-icon>
 					</md-button>
 				</section>
@@ -338,16 +364,33 @@
 				</section>
 				<section layout="row" layout-align="space-between center">
 					<md-button class="md-fab md-mini next-search-button" ng-click="viewStartup($event, startupGroup[1])">
+						<md-tooltip md-direction="{{globalAttr.direction == 'rtl' ? 'left' : 'right'}}">
+		          			{{lang.viewDetails}}
+		        		</md-tooltip>
 						<md-icon class="material-icons">
 							remove_red_eye
 						</md-icon>
 					</md-button>
-					<md-button aria-label="myWishlist" ng-if="isStartupInWishlist(startupGroup[1])" ng-disabled="true" class="md-fab md-mini next-search-button">
-						<md-icon class="material-icons" md-svg-src="/views/core/izmus-nav-bar/images/wish-list.svg">
+					<md-button 
+					aria-label="myWishlist" 
+					ng-if="isStartupInWishlist(startupGroup[1])" 
+					class="md-fab md-mini next-search-button"
+					ng-href="/WishList">
+						<md-tooltip md-direction="{{globalAttr.direction == 'rtl' ? 'right' : 'left'}}">
+		          			{{lang.itemInWishlist}}
+		        		</md-tooltip>
+						<md-icon class="material-icons redirect" md-svg-src="/views/core/izmus-nav-bar/images/wish-list.svg">
 						</md-icon>
 					</md-button>
-					<md-button aria-label="myRequest" ng-if="isStartupInMyRequests(startupGroup[1])" ng-disabled="true" class="md-fab md-mini next-search-button">
-						<md-icon class="material-icons" md-svg-src="/views/core/izmus-nav-bar/images/my-requests.svg">
+					<md-button 
+					aria-label="myRequest" 
+					ng-if="isStartupInMyRequests(startupGroup[1])" 
+					class="md-fab md-mini next-search-button"
+					ng-href="/MyRequests">
+						<md-tooltip md-direction="{{globalAttr.direction == 'rtl' ? 'right' : 'left'}}">
+		          			{{lang.itemInMyRequests}}
+		        		</md-tooltip>
+						<md-icon class="material-icons redirect" md-svg-src="/views/core/izmus-nav-bar/images/my-requests.svg">
 						</md-icon>
 					</md-button>
 				</section>
@@ -411,16 +454,33 @@
 				</section>
 				<section layout="row" layout-align="space-between center">
 					<md-button class="md-fab md-mini next-search-button" ng-click="viewStartup($event, startupGroup[2])">
+						<md-tooltip md-direction="{{globalAttr.direction == 'rtl' ? 'left' : 'right'}}">
+		          			{{lang.viewDetails}}
+		        		</md-tooltip>
 						<md-icon class="material-icons">
 							remove_red_eye
 						</md-icon>
 					</md-button>
-					<md-button aria-label="myWishlist" ng-if="isStartupInWishlist(startupGroup[2])" ng-disabled="true" class="md-fab md-mini next-search-button">
-						<md-icon class="material-icons" md-svg-src="/views/core/izmus-nav-bar/images/wish-list.svg">
+					<md-button 
+					aria-label="myWishlist" 
+					ng-if="isStartupInWishlist(startupGroup[2])" 
+					class="md-fab md-mini next-search-button"
+					ng-href="/WishList">
+						<md-tooltip md-direction="{{globalAttr.direction == 'rtl' ? 'right' : 'left'}}">
+		          			{{lang.itemInWishlist}}
+		        		</md-tooltip>
+						<md-icon class="material-icons redirect" md-svg-src="/views/core/izmus-nav-bar/images/wish-list.svg">
 						</md-icon>
 					</md-button>
-					<md-button aria-label="myRequest" ng-if="isStartupInMyRequests(startupGroup[2])" ng-disabled="true" class="md-fab md-mini next-search-button">
-						<md-icon class="material-icons" md-svg-src="/views/core/izmus-nav-bar/images/my-requests.svg">
+					<md-button 
+					aria-label="myRequest"
+					ng-if="isStartupInMyRequests(startupGroup[2])" 
+					class="md-fab md-mini next-search-button"
+					ng-href="/MyRequests">
+						<md-tooltip md-direction="{{globalAttr.direction == 'rtl' ? 'right' : 'left'}}">
+		          			{{lang.itemInMyRequests}}
+		        		</md-tooltip>
+						<md-icon class="material-icons redirect" md-svg-src="/views/core/izmus-nav-bar/images/my-requests.svg">
 						</md-icon>
 					</md-button>
 				</section>

@@ -1,10 +1,38 @@
 angular.module('startupAssessmentApp').factory('loadStartupData',
 		[ '$q', '$http', function($q, $http) {
-			return function() {
+			return function(startupId) {
 				return $q(function(resolve, reject) {
 					$http({
 						method : 'GET',
-						url : '/api/StartupAssessment/StartupAssessmentData'
+						url : '/api/StartupAssessment/StartupAssessmentData',
+						params: {
+							startupId: startupId,
+						}
+					}).then(function successCallback(response) {
+						if (response.data) {
+							resolve(response.data);
+						} else {
+							reject();
+						}
+					}, function errorCallback(response) {
+						reject();
+					});
+				})
+			}
+		} ]);
+/*----------------------------------------------------------------------------------------------------*/
+angular.module('startupAssessmentApp').factory('loadStartupBasicData',
+		[ '$q', '$http', function($q, $http) {
+			return function(pageNumber, search, pageSize) {
+				return $q(function(resolve, reject) {
+					$http({
+						method : 'GET',
+						url : '/api/StartupAssessment/PagedStartupBasicData',
+						params: {
+							pageNumber: pageNumber,
+							searchName: search,
+							pageSize: pageSize
+							}
 					}).then(function successCallback(response) {
 						if (response.data) {
 							resolve(response.data);

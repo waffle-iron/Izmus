@@ -12,8 +12,24 @@
 	src="<c:url value="/views/my-requests/js/my-requests.dir.js" />"></script>
 <script
 	src="<c:url value="/views/my-requests/js/my-requests.ser.js" />"></script>
+<script
+	src="<c:url value="/views/my-requests/js/startup-grid-list.dir.js" />"></script>
+<script
+	src="<c:url value="/views/my-requests/js/startup-preview.ser.js" />"></script>
+<script
+	src="<c:url value="/views/my-requests/js/startup-header.dir.js" />"></script>
+<script
+	src="<c:url value="/views/my-requests/js/startup-details.dir.js" />"></script>
 <script>
 	var lang = {
-			
+			viewDetails: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.viewDetails" />',
+			cancel:' <spring:message code="navBar.menu.startupAssessment.cancel" />',
+			site:' <spring:message code="navBar.menu.startupAssessment.site" />',
+			sector:' <spring:message code="navBar.menu.startupAssessment.sector" />',
+			productStage:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.productStage" />',
+			fundingStage:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.fundingStage" />',
+			ok:' <spring:message code="navBar.menu.startupAssessment.ok" />',
+			founded:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.founded" />',
+			numberOfEmployees:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.numberOfEmployees" />',
 	};
 </script>

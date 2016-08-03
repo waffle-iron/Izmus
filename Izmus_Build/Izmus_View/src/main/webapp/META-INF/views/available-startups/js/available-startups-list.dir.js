@@ -10,7 +10,7 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 		controller : ['$scope',function($scope) {
 			$scope.globalAttr = globalAttr;
 			$scope.lang = lang;
-			$scope.pageSize = 50;
+			$scope.pageSize = 10;
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.goSearch = function(){
 				$scope.sidenavCtrl.progressMode = 'indeterminate';
@@ -51,7 +51,7 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 		          var loadedPages = this.loadedPages;
 		          loadedPages[pageNumber] = null;
 		          loadAllAvailableStartups(pageNumber, $scope.goSearchText, $scope.pageSize).then(function(data){
-		        	  	loadedPages[pageNumber] = data.content;
+		        	  	loadedPages[pageNumber] = data[0];
 		          }, function(){
 		        	  
 		          });
@@ -61,8 +61,8 @@ angular.module('availableStartupsApp').directive('availableStartupsList',
 		        	var numItems = this.numItems;
 		        	loadedPages[0] = null;
 		        	loadAllAvailableStartups(0, $scope.goSearchText, $scope.pageSize).then(function(data){
-		        	  	loadedPages[0] = data.content;
-						numItems.itemNumber = data.totalElements;
+		        	  	loadedPages[0] = data[0];
+						numItems.itemNumber = data[1];
 						$scope.sidenavCtrl.progressMode = '';
 		        	}, function(){
 		        		

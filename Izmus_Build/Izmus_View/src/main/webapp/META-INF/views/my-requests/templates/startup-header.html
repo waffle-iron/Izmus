@@ -1,0 +1,73 @@
+<style>
+	.startup-card-head {
+		padding-left: 8px;
+		padding-right: 8px;
+		padding-top: 0px;
+		padding-bottom: 0px;
+	}
+	.small-page-section {
+		padding-left: 8px;
+		padding-right: 8px;
+		padding-top: 4px;
+		padding-bottom: 0px;
+	}
+	.user-subheader {
+		font-size: x-small;
+	}
+	.startup-detail-icon, .small-startup-detail-icon {
+		height: 38px;
+		width: 38px;
+	}
+	.startup-detail-icon-circle, .small-startup-detail-icon-circle {
+		height: 38px !important;
+		width: 38px !important;
+		min-height: 38px !important;
+		min-width: 38px !important;
+		border-radius: 20px;
+		border-width: 1px;
+		border-style: solid;
+		border-color: rgb(160,195,215);
+	}
+	.top-section {
+		padding-left: 8px !important;
+		padding-right: 8px !important;
+		padding-top: 0px !important;
+		padding-bottom: 0px !important;
+	}
+</style>
+<section flex ng-if="selectedStartup" layout="column" layout-padding ng-class="(isSmallDevice()) ? 'small-page-section' : ''">
+	<section flex="none" class="top-section">
+		<div class="startup-card-head" layout="row" layout-align="start center">
+			<md-button
+			hide-xs
+			hide-sm
+			hide-md
+			aria-label="logo-button"
+			ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}">
+				<md-icon
+				ng-if="(selectedStartup.logo == null || selectedStartup.logo =='')"
+				class="material-icons startup-detail-icon" md-svg-src="{{iconSrc}}"></md-icon>
+				<img
+				ng-if="(selectedStartup.logo != null && selectedStartup.logo !='')" class="startup-detail-icon-circle" ng-src="{{selectedStartup.logo}}"/>
+			</md-button>
+			<md-button
+			hide-gt-md
+			aria-label="logo-button"
+			ng-style="(globalAttr.direction == 'rtl') ? {'margin-left': '15px', 'margin-right': '0px'} : {'margin-right': '15px', 'margin-left': '0px'}">
+				<md-icon
+				ng-if="(selectedStartup.logo == null || selectedStartup.logo =='')"
+				class="material-icons small-startup-detail-icon" md-svg-src="{{iconSrc}}"></md-icon>
+				<img
+				ng-if="(selectedStartup.logo != null && selectedStartup.logo !='')" class="small-startup-detail-icon-circle" ng-src="{{selectedStartup.logo}}"/>
+			</md-button>
+			<div layout="column" layout-align="center start">
+				<span hide-xs hide-sm hide-md class="md-title">{{selectedStartup.startupName}}</span>
+				<span hide-gt-md class="md-subheader">{{selectedStartup.startupName}}</span>
+				<span class="md-subheader user-subheader">{{selectedStartup.sector == null ? '' : lang.sector + ': ' + selectedStartup.sector}}</span>
+				<span hide-xs hide-sm hide-md class="md-subheader user-subheader">{{selectedStartup.address == null ? '' : lang.address + ': ' + selectedStartup.address}}</span>
+				<span hide-xs hide-sm hide-md class="md-subheader user-subheader">{{selectedStartup.officePhone == null ? '' : lang.officePhone + ': ' + selectedStartup.officePhone}}</span>
+				<span class="md-subheader user-subheader"><a href="{{selectedStartup.site}}" target="blank_">{{selectedStartup.site == null ? '' : lang.site + ': ' + selectedStartup.site}}</a></span>
+			</div>
+		</div>
+	</section>
+</section>

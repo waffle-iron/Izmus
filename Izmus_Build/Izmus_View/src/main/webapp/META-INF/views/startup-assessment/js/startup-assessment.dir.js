@@ -8,9 +8,16 @@ angular.module('startupAssessmentApp').directive('izmusStartupAssessment', [
 			
 		},
 		controller : ['$scope',function($scope) {
+			$scope.detailsProgress = {
+					progressMode: ''
+			};
 			/*----------------------------------------------------------------------------------------------------*/
 			this.setSelectedStartup = function(selectedStartup){
-				$scope.selectedStartup = selectedStartup;
+				$scope.detailsProgress.progressMode = 'indeterminate';
+				loadStartupData(selectedStartup.startupId).then(function(data){
+					$scope.selectedStartup = data[0];
+					$scope.detailsProgress.progressMode = '';
+				})
 				$mdSidenav('mainWidowSidenav').toggle();
 			}
 			/*----------------------------------------------------------------------------------------------------*/
@@ -68,13 +75,6 @@ angular.module('startupAssessmentApp').directive('izmusStartupAssessment', [
 					    });
 					}
 			};
-			/*----------------------------------------------------------------------------------------------------*/
-			loadStartupData().then(function(result) {
-				$scope.sidenavCtrl.startupDataList = result;
-				$scope.sidenavCtrl.progressMode = '';
-			}, function(error) {
-				$scope.sidenavCtrl.progressMode = ''
-			});
 		}],
 		link : function(scope, elem, attr) {
 			/*----------------------------------------------------------------------------------------------------*/

@@ -2,7 +2,7 @@ angular.module('wishListApp').directive('startupHeader',
 		['$mdMedia', function($mdMedia) {
 	return {
 		restrict : 'E',
-		templateUrl : '/views/finders-dashboard/templates/startup-header.html',
+		templateUrl : '/views/wish-list/templates/startup-header.html',
 		scope: {
 			selectedStartup: '=',
 			iconSrc: '@'

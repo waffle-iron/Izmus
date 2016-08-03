@@ -104,12 +104,12 @@ md-tab-item>span{
 	font-size: small;
 }
 </style>
-<section ng-if='progressMode != ""' flex layout="column" layout-align="center center">
+<section ng-if='detailsProgress.progressMode != ""' flex layout="column" layout-align="center center">
 	<div>
-    	<md-progress-circular class="md-hue-1" md-mode="{{progressMode}}" md-diameter="120"></md-progress-circular>
+    	<md-progress-circular class="md-hue-1" md-mode="{{detailsProgress.progressMode}}" md-diameter="120"></md-progress-circular>
 	</div>
 </section>
-<section flex ng-if="selectedStartup && progressMode == ''" layout="column" layout-padding ng-class="(isSmallDevice()) ? 'small-page-section' : ''">
+<section flex ng-if="selectedStartup && detailsProgress.progressMode == ''" layout="column" layout-padding ng-class="(isSmallDevice()) ? 'small-page-section' : ''">
 	<section flex="none" class="top-section">
 		<div class="startup-card-head" layout="row" layout-align="start center">
 			<md-button

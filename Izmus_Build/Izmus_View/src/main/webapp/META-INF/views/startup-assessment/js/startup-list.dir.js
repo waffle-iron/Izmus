@@ -1,4 +1,6 @@
-angular.module('startupAssessmentApp').directive('izmusStartupList', [function() {
+angular.module('startupAssessmentApp').directive('izmusStartupList', [
+    'loadStartupBasicData', 
+    function(loadStartupBasicData) {
 	return {
 		restrict : 'E',
 		require: '^^izmusStartupAssessment',
@@ -9,61 +11,70 @@ angular.module('startupAssessmentApp').directive('izmusStartupList', [function()
 		controller : ['$scope',function($scope) {
 			$scope.globalAttr = globalAttr;
 			$scope.lang = lang;
+			$scope.pageSize = 10;
 			/*----------------------------------------------------------------------------------------------------*/
-			$scope.getMeasurementColor = function(startup){
-//				var score = $scope.getFinalScore(startup);
-//				if (score) {
-//					var returnColor = '';
-//					if (score < 50){
-//						 var customWarn = {
-//							        10:'#f7bebd',
-//							        9: '#f4a8a6',
-//							        8: '#f19290',
-//							        7: '#ee7b79',
-//							        6: '#eb6562',
-//							        5: '#e84f4c',
-//							        4: '#eb6562',
-//							        3: '#e84f4c',
-//							        2: '#E53935',
-//							        1: '#e2231e'
-//							    };
-//						 returnColor = customWarn[Math.ceil(score / 5)];
-//					}
-//					else {
-//						var customAccent = {
-//								1: '#b1d2c5',
-//						        2: '#a1c8ba',
-//						        3: '#90bfae',
-//						        4: '#80b6a2',
-//						        5: '#70ac96',
-//						        6: '#60a38a',
-//						        7: '#56947d',
-//						        8: '#00b361',
-//						        9: '#00cc6e',
-//						        10:'#00e67c'
-//						    };
-//					 returnColor = customAccent[Math.ceil((score - 50) / 5)];
-//					}
-//					return returnColor;
-//				}
-				return '#FFFFFF';
+			$scope.goSearch = function(){
+				$scope.sidenavCtrl.progressMode = 'indeterminate';
+				$scope.goSearchText = $scope.search;
+				$scope.setVirtualRepeat();
 			}
 			/*----------------------------------------------------------------------------------------------------*/
-			$scope.getFinalScore = function(startup){
-				var returnScore = '';
-				if (!startup.scoreCards) return returnScore;
-				for (var i = 0; i < startup.scoreCards.length; i++){
-					if (startup.scoreCards[i].finalScore){
-						if (returnScore != ''){
-							returnScore = (returnScore + (startup.scoreCards[i].finalScore)) / 2;
-						}
-						else {
-							returnScore = (startup.scoreCards[i].finalScore);
-						}
-					}
-				}
-				return returnScore == '' ? '-' : returnScore;
+			$scope.setVirtualRepeat = function(){
+				// In this example, we set up our model using a class.
+		        // Using a plain object works too. All that matters
+		        // is that we implement getItemAtIndex and getLength.
+		        var DynamicItems = function() {
+		          /**
+		           * @type {!Object<?Array>} Data pages, keyed by page number (0-index).
+		           */
+		          this.loadedPages = {};
+		          /** @type {number} Total number of items. */
+		          this.numItems = {itemNumber : 0};
+		          /** @const {number} Number of items to fetch per request. */
+		          this.fetchNumItems_();
+		        };
+		        // Required.
+		        DynamicItems.prototype.getItemAtIndex = function(index) {
+		          var pageNumber = Math.floor(index / $scope.pageSize);
+		          var page = this.loadedPages[pageNumber];
+		          if (page) {
+		            return page[index % $scope.pageSize];
+		          } else if (page !== null) {
+		            this.fetchPage_(pageNumber);
+		          }
+		        };
+		        // Required.
+		        DynamicItems.prototype.getLength = function() {
+		          return this.numItems.itemNumber;
+		        };
+		        DynamicItems.prototype.fetchPage_ = function(pageNumber) {
+		          // Set the page to null so we know it is already being fetched.
+		          var loadedPages = this.loadedPages;
+		          loadedPages[pageNumber] = null;
+		          loadStartupBasicData(pageNumber, $scope.goSearchText, $scope.pageSize).then(function(data){
+		        	  	loadedPages[pageNumber] = data[0];
+		          }, function(){
+		        	  
+		          });
+		        };
+		        DynamicItems.prototype.fetchNumItems_ = function() {
+		        	var loadedPages = this.loadedPages;
+		        	var numItems = this.numItems;
+		        	loadedPages[0] = null;
+		        	loadStartupBasicData(0, $scope.goSearchText, $scope.pageSize).then(function(data){
+		        	  	loadedPages[0] = data[0];
+						numItems.itemNumber = data[1];
+						$scope.sidenavCtrl.progressMode = '';
+		        	}, function(){
+		        		
+		        	});
+		        	return numItems.itemNumber;
+		        };
+		        $scope.availableStartups = new DynamicItems();
 			}
+			/*----------------------------------------------------------------------------------------------------*/
+			$scope.setVirtualRepeat();
+			/*----------------------------------------------------------------------------------------------------*/
 		}],
 		link : function(scope, elem, attr, parentCtrl) {
 			/*----------------------------------------------------------------------------------------------------*/

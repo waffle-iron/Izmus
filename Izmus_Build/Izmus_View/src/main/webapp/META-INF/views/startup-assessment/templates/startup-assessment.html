@@ -3,8 +3,8 @@
 	layout="column"
 	main-window-title='{{lang.startupAssessmentProcess}}'
 	sidenav-ctrl='sidenavCtrl'>
-	<sidenav-content>
-		<izmus-startup-list ng-init="sidenavCtrl.toggleSidenav()"
+	<sidenav-content flex layout="column">
+		<izmus-startup-list flex layout="column" ng-init="sidenavCtrl.toggleSidenav()"
 			sidenav-ctrl='sidenavCtrl'>
 		</izmus-startup-list>
 	</sidenav-content>
@@ -16,7 +16,8 @@
 			startup-general-financials='startupGeneralFinancials'
 			financial-indicators='financialIndicators'
 			financial-indicator-types='financialIndicatorTypes'
-			selected-startup='selectedStartup'>
+			selected-startup='selectedStartup'
+			details-progress='detailsProgress'>
 		</izmus-startup-detail>
 	</main-content>
 </izmus-main-window>

@@ -10,7 +10,8 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 			startupGeneralAttributes: '=',
 			startupGeneralFinancials: '=',
 			financialIndicators: '=',
-			financialIndicatorTypes: '='
+			financialIndicatorTypes: '=',
+			detailsProgress: '='
 		},
 		controller : ['$scope',function($scope) {
 			/*----------------------------------------------------------------------------------------------------*/
@@ -37,7 +38,7 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 			$scope.useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
 			$scope.globalAttr = globalAttr;
 			$scope.lang = lang;
-			$scope.progressMode = '';
+			$scope.detailsProgress.progressMode = '';
 			$scope.tabs = {
 					selectedTab: 0
 			}
@@ -56,10 +57,10 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.saveChanges = function(){
-				$scope.progressMode = 'indeterminate';
+				$scope.detailsProgress.progressMode = 'indeterminate';
 				saveStartupData($scope.selectedStartup).then(function(response){
 					$scope.isMainFabOpen = false;
-					$scope.progressMode = '';
+					$scope.detailsProgress.progressMode = '';
 					if (response.result != 'success'){
 						$scope.showMessage($scope.lang.saveFail);
 					}
@@ -71,7 +72,7 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 						}
 					}
 				}, function(error){
-					$scope.progressMode = '';
+					$scope.detailsProgress.progressMode = '';
 					$scope.showMessage($scope.lang.saveFail);
 				});
 			}
@@ -228,12 +229,12 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 				/*----------------------------------------------------------------------------------------------------*/
 				$scope.ok = function() {
 					if (type == 'pdf'){
-						scope.progressMode = 'indeterminate';
+						scope.detailsProgress.progressMode = 'indeterminate';
 						exportScoreCardReport($scope.selectedScoreCard, scope.selectedStartup, $scope.additionalDocuments).then(function(result){
 							scope.isMainFabOpen = false;
-							scope.progressMode = '';
+							scope.detailsProgress.progressMode = '';
 						}, function(error){
-							scope.progressMode = '';
+							scope.detailsProgress.progressMode = '';
 						});
 					}
 					else if (type == 'email'){
@@ -271,12 +272,12 @@ angular.module('startupAssessmentApp').directive('izmusStartupDetail', ['saveSta
 				};
 				/*----------------------------------------------------------------------------------------------------*/
 				$scope.ok = function() {
-					scope.progressMode = 'indeterminate';
+					scope.detailsProgress.progressMode = 'indeterminate';
 					emailScoreCardReport(selectedScoreCard, scope.selectedStartup, $scope.emails, additionalDocuments).then(function(result){
 						scope.isMainFabOpen = false;
-						scope.progressMode = '';
+						scope.detailsProgress.progressMode = '';
 					}, function(error){
-						scope.progressMode = '';
+						scope.detailsProgress.progressMode = '';
 					});
 					$mdDialog.cancel();
 				};

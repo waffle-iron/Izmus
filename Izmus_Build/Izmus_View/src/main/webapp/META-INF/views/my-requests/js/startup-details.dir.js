@@ -1,8 +1,8 @@
-angular.module('wishListApp').directive('startupDetails', 
+angular.module('myRequestsApp').directive('startupDetails', 
 		['$mdMedia', function($mdMedia) {
 	return {
 		restrict : 'E',
-		templateUrl : '/views/wish-list/templates/startup-details.html',
+		templateUrl : '/views/my-requests/templates/startup-details.html',
 		scope: {
 			startup: '=',
 		},
