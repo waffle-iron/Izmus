@@ -1,8 +1,8 @@
 angular.module('myRequestsApp').directive('startupGridList', 
 		[ '$mdMedia', 'startupPreviewDialog', 
-		 '$mdToast', 'loadAllMyRequests',
+		 '$mdToast', 'loadAllMyRequests', 'triggerCancelRequest',
 		 function($mdMedia, startupPreviewDialog,
-				 $mdToast, loadAllMyRequests) {
+				 $mdToast, loadAllMyRequests, triggerCancelRequest) {
 	return {
 		restrict : 'E',
 		templateUrl : '/views/my-requests/templates/startup-grid-list.html',
@@ -98,11 +98,29 @@ angular.module('myRequestsApp').directive('startupGridList',
 	        	}
 	        	return returnArray;
 	        }
+	        /*----------------------------------------------------------------------------------------------------*/
+			$scope.cancelRequest = function(startup){
+				$scope.progressMode = 'indeterminate';
+				triggerCancelRequest(startup.startupId).then(function(data){
+					if(data.result == 'success'){
+						$scope.showMessage($scope.lang.requestCancelled);
+						$scope.setVirtualRepeat();
+ 					}
+					else {
+						$scope.showMessage($scope.lang.anErrorOccurred);
+						$scope.progressMode = '';
+					}
+				}, function(){
+					$scope.showMessage($scope.lang.anErrorOccurred);
+					$scope.progressMode = '';
+				});
+			}
 			/*----------------------------------------------------------------------------------------------------*/
 			$scope.viewStartup = function(ev, startup){
 				startupPreviewDialog(ev, 
 						startup, 
-						$scope.getSectorIconForStartup(startup));
+						$scope.getSectorIconForStartup(startup),
+						$scope.cancelRequest);
 			}
 
 			/*----------------------------------------------------------------------------------------------------*/

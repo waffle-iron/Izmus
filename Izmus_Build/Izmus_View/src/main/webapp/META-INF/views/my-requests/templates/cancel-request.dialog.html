@@ -12,9 +12,6 @@
 	.confirmation-section {
 		max-width: 350px;
 	}
-	.success {
-		background-color: #60871E !important;
-	}
 	md-dialog-actions{
 		padding-left: 0px !important;
 	}
@@ -39,10 +36,13 @@
 			<md-button class="md-raised md-primary dialog-button" ng-click="cancel()">
 				{{lang.cancel}}
 			</md-button>
-			<md-button class="md-raised success dialog-button" ng-click="addToCart()">
-				{{lang.ok}}
+			<md-button class="md-raised md-warn dialog-button" ng-click="cancelRequest()">
+				<md-tooltip md-direction="top">
+					{{lang.cancelRequest}}
+				</md-tooltip>
+				{{lang.cancelRequest}}
 				<md-icon class="material-icons">
-					add_shopping_cart
+					cancel
 				</md-icon>
 			</md-button>
 		</md-dialog-actions>

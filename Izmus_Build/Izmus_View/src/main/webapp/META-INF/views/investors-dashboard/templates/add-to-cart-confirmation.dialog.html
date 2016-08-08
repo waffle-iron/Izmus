@@ -4,43 +4,47 @@
 		min-width: 300px !important;
 	}
 	.dialog-button {
-        color: white !important;
-    }
-    .dialog-button > md-icon {
-        color: white !important;
-    }
-    .confirmation-section{
-    	max-width: 350px;
-    }
+		color: white !important;
+	}
+	.dialog-button > md-icon {
+		color: white !important;
+	}
+	.confirmation-section {
+		max-width: 350px;
+	}
+	.success {
+		background-color: #60871E !important;
+	}
+	md-dialog-actions{
+		padding-left: 0px !important;
+	}
 </style>
-<section layout="column" class="confirmation-section">
-	<md-content layout-padding dir="{{globalAttr.direction}}" layout="column">
-		<md-whiteframe
-		class="md-whiteframe-1dp"
-		layout-padding
-		flex="none"
-		layout="column">
-			<startup-header
+<section layout="row" flex="none" layout-align="center center">
+	<section layout="column" class="confirmation-section">
+		<md-content layout-padding dir="{{globalAttr.direction}}" layout="column">
+			<md-whiteframe
+			class="md-whiteframe-1dp"
+			layout-padding
+			flex="none"
+			layout="column">
+				<startup-header
 				selected-startup="startup"
-				icon-src="{{iconSrc}}">
-			</startup-header>
-			<div>
-				<span>
-					{{lang.thankYouForAdding}}
-				</span>
-			</div>
-		</md-whiteframe>
-	</md-content>
-	<md-dialog-actions layout="row">
-		<md-button class="md-raised md-primary dialog-button" ng-click="cancel()">
-            {{lang.cancel}}
-        </md-button>
-        <span flex></span>
-        <md-button class="md-raised md-primary dialog-button" ng-click="addToCart()">
-            {{lang.ok}}
-            <md-icon class="material-icons">
-                add_shopping_cart
-            </md-icon>
-        </md-button>
-	</md-dialog-actions>
+				icon-src="{{iconSrc}}"></startup-header>
+				<div>
+					<span> {{lang.thankYouForAdding}} </span>
+				</div>
+			</md-whiteframe>
+		</md-content>
+		<md-dialog-actions layout="row" layout-align="space-around center">
+			<md-button class="md-raised md-primary dialog-button" ng-click="cancel()">
+				{{lang.cancel}}
+			</md-button>
+			<md-button class="md-raised success dialog-button" ng-click="addToCart()">
+				{{lang.ok}}
+				<md-icon class="material-icons">
+					add_shopping_cart
+				</md-icon>
+			</md-button>
+		</md-dialog-actions>
+	</section>
 </section>

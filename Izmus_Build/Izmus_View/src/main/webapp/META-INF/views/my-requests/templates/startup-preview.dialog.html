@@ -9,6 +9,9 @@
 	.dialog-button > md-icon {
 		color: white !important;
 	}
+	md-dialog-actions{
+		padding-left: 0px !important;
+	}
 </style>
 <section class="progress" ng-if='progressMode != ""' flex layout="column" layout-align="center center">
 	<div>
@@ -30,6 +33,12 @@
 		</md-whiteframe>
 	</md-content>
 	<md-dialog-actions layout="row">
+		<md-button aria-label="cancelRequest" class="md-raised md-primary dialog-button" ng-click="cancelRequest()">
+			<md-tooltip md-direction="top">
+				{{lang.cancelRequest}}
+			</md-tooltip>
+			<md-icon class="material-icons">cancel</md-icon>
+		</md-button>
 		<span flex></span>
 		<md-button class="md-raised md-primary dialog-button" ng-click="ok()">
 			{{lang.ok}}

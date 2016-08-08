@@ -1,6 +1,6 @@
 /*----------------------------------------------------------------------------------------------------*/
 angular.module('findersDashboardApp').factory('addToCartConfirmationDialog',
-		[ '$mdMedia', '$mdDialog','triggerAnalysis', function($mdMedia, $mdDialog) {
+		[ '$mdMedia', '$mdDialog', function($mdMedia, $mdDialog) {
 			return function(ev, startup, iconSrc, addToMyRequests) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;

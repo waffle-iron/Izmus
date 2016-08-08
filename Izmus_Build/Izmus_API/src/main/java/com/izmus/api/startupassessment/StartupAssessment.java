@@ -118,7 +118,7 @@ public class StartupAssessment {
 			startupList.add(newAbstraction);
 		}
 		returnList.add(startupList);
-		returnList.add(pageableList.getNumberOfElements());
+		returnList.add(pageableList.getTotalElements());
 		LOGGER.info("User Got Paged Startup List");
 		return returnList;
 	}

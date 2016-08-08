@@ -20,10 +20,15 @@
 	src="<c:url value="/views/my-requests/js/startup-header.dir.js" />"></script>
 <script
 	src="<c:url value="/views/my-requests/js/startup-details.dir.js" />"></script>
+<script
+	src="<c:url value="/views/my-requests/js/cancel-request.ser.js" />"></script>
 <script>
 	var lang = {
 			viewDetails: ' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.viewDetails" />',
 			cancel:' <spring:message code="navBar.menu.startupAssessment.cancel" />',
+			cancelRequest:' <spring:message code="navBar.menu.cartMenu.myRequests.cancelRequest" />',
+			requestCancelled:' <spring:message code="navBar.menu.cartMenu.myRequests.requestCancelled" />',
+			anErrorOccurred:' <spring:message code="navBar.menu.cartMenu.myRequests.anErrorOccurred" />',
 			site:' <spring:message code="navBar.menu.startupAssessment.site" />',
 			sector:' <spring:message code="navBar.menu.startupAssessment.sector" />',
 			productStage:' <spring:message code="navBar.menu.partnerMenu.partnerDashboard.productStage" />',

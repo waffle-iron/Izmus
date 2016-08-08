@@ -239,7 +239,7 @@ public class StartupReport {
 		    g2.setComposite(AlphaComposite.SrcAtop);
 		    g2.drawImage(logoImage, 0, 0, null);
 		    g2.setColor(new Color(160, 195, 215));
-		    g2.setStroke(new BasicStroke(6));
+		    g2.setStroke(new BasicStroke(4));
 		    g2.drawOval(0, 0, w-1, h-1);
 		    g2.dispose();
 		} catch (Exception e) {

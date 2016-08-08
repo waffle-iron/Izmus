@@ -1,8 +1,8 @@
 /*----------------------------------------------------------------------------------------------------*/
 angular.module('myRequestsApp').factory('startupPreviewDialog',
-		[ '$mdMedia', '$mdDialog',
-		  function($mdMedia, $mdDialog) {
-			return function(ev, startup, iconSrc) {
+		[ '$mdMedia', '$mdDialog','cancelRequestDialog',
+		  function($mdMedia, $mdDialog, cancelRequestDialog) {
+			return function(ev, startup, iconSrc, cancelRequest) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
 			    /*----------------------------------------------------------------------------------------------------*/
@@ -16,6 +16,11 @@ angular.module('myRequestsApp').factory('startupPreviewDialog',
 					$scope.ok = function() {
 						$mdDialog.cancel();
 					};
+					/*----------------------------------------------------------------------------------------------------*/
+					$scope.cancelRequest = function(){
+						cancelRequestDialog(ev, startup, iconSrc, cancelRequest);
+						$mdDialog.cancel();
+					}
 				}
 			    /*----------------------------------------------------------------------------------------------------*/
 				$mdDialog.show({

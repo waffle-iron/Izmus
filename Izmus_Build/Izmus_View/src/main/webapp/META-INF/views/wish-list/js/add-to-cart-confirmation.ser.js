@@ -1,6 +1,6 @@
 /*----------------------------------------------------------------------------------------------------*/
 angular.module('wishListApp').factory('addToCartConfirmationDialog',
-		[ '$mdMedia', '$mdDialog','triggerAnalysis', function($mdMedia, $mdDialog) {
+		[ '$mdMedia', '$mdDialog', function($mdMedia, $mdDialog) {
 			return function(ev, startup, iconSrc, addToMyRequests) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
@@ -25,7 +25,7 @@ angular.module('wishListApp').factory('addToCartConfirmationDialog',
 			    /*----------------------------------------------------------------------------------------------------*/
 				$mdDialog.show({
 				    controller: addToCartConfirmationCtrl,
-				    templateUrl: '/views/finders-dashboard/templates/add-to-cart-confirmation.dialog.html',
+				    templateUrl: '/views/wish-list/templates/add-to-cart-confirmation.dialog.html',
 				    parent: angular.element(document.body),
 				    targetEvent: ev,
 				    clickOutsideToClose: true,

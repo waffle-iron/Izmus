@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------------------------------------*/
-angular.module('investorsDashboardApp').factory('addToCartConfirmationDialog',
+angular.module('myRequestsApp').factory('cancelRequestDialog',
 		[ '$mdMedia', '$mdDialog', function($mdMedia, $mdDialog) {
-			return function(ev, startup, iconSrc, addToMyRequests) {
+			return function(ev, startup, iconSrc, cancelRequest) {
 				var customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 				var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && customFullscreen;
 			    /*----------------------------------------------------------------------------------------------------*/
@@ -15,9 +15,9 @@ angular.module('investorsDashboardApp').factory('addToCartConfirmationDialog',
 						$mdDialog.cancel();
 					};
 					/*----------------------------------------------------------------------------------------------------*/
-					$scope.addToCart = function() {
-						if (addToMyRequests){
-							addToMyRequests(startup);
+					$scope.cancelRequest = function() {
+						if (cancelRequest){
+							cancelRequest(startup);
 						}
 						$mdDialog.cancel();
 					};
@@ -25,7 +25,7 @@ angular.module('investorsDashboardApp').factory('addToCartConfirmationDialog',
 			    /*----------------------------------------------------------------------------------------------------*/
 				$mdDialog.show({
 				    controller: addToCartConfirmationCtrl,
-				    templateUrl: '/views/investors-dashboard/templates/add-to-cart-confirmation.dialog.html',
+				    templateUrl: '/views/my-requests/templates/cancel-request.dialog.html',
 				    parent: angular.element(document.body),
 				    targetEvent: ev,
 				    clickOutsideToClose: true,
@@ -34,13 +34,13 @@ angular.module('investorsDashboardApp').factory('addToCartConfirmationDialog',
 			}
 		} ]);
 /*----------------------------------------------------------------------------------------------------*/
-angular.module('investorsDashboardApp').factory('triggerAnalysis',
+angular.module('myRequestsApp').factory('triggerCancelRequest',
 		[ '$q', '$http', '$httpParamSerializer', function($q, $http, $httpParamSerializer) {
 			return function(startupId) {
 				return $q(function(resolve, reject) {
 					$http({
 						method : 'POST',
-						url : '/api/AvailableStartups/AnalysisRequest',
+						url : '/api/AvailableStartups/CancelRequest',
 						headers: {
 					        'Content-Type': "application/x-www-form-urlencoded; charset=UTF-8",
 					        'Upgrade-Insecure-Requests': "1",

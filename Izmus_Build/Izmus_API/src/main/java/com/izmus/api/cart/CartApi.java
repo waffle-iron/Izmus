@@ -69,7 +69,7 @@ public class CartApi {
 		}
 		List<Object> returnList = new ArrayList<>();
 		returnList.add(startupList);
-		returnList.add(pageableList.getNumberOfElements());
+		returnList.add(pageableList.getTotalElements());
 		LOGGER.info("User Got Paged Wish List");
 		return returnList;
 	}
@@ -90,7 +90,7 @@ public class CartApi {
 		}
 		List<Object> returnList = new ArrayList<>();
 		returnList.add(startupList);
-		returnList.add(pageableList.getNumberOfElements());
+		returnList.add(pageableList.getTotalElements());
 		LOGGER.info("User Got Paged My Requests");
 		return returnList;
 	}

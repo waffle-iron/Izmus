@@ -38,14 +38,14 @@ public class GlobalExceptionHandlerController {
 			user = null;
 		}
 		if (user == null){
-			LOGGER.error("An Uncought Exception Occured", t);
+			LOGGER.error("An Uncought Exception Occurred", t);
 			return new ModelAndView(LANDING_PAGE_VIEW);
 		}
 		if (t instanceof AccessDeniedException){
 			LOGGER.error("No Access To User");
 			return new ModelAndView(ACCESS_DENIED_VIEW);
 		}
-		LOGGER.error("An Uncought Exception Occured", t);
+		LOGGER.error("An Uncought Exception Occurred", t);
 		ModelAndView errorView = new ModelAndView(ERROR_VIEW);
 		String errorTrace = getErrorTrace(t);
 		errorView.addObject("errorMessage", errorTrace);
