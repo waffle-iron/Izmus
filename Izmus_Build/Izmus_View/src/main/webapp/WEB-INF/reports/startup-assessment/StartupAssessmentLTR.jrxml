@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-20T20:52:19 -->
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-08-09T15:23:58 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StartupAssessmentEnglish" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" whenResourceMissingType="Error" uuid="a619498a-562a-46e4-8840-1b8587b66bd2">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="startup" class="com.izmus.data.domain.startups.Startup"/>
@@ -44,8 +44,8 @@
 				<textFieldExpression><![CDATA[$P{startup}.getStartupName() + (($P{startup}.getSector() == null && $P{startup}.getAddress() == null && $P{startup}.getOfficePhone() == null) ? "" : "<br/>")
 + ($P{startup}.getSector() == null ? "" : ("<style size='8' forecolor='#888888'>" + $P{sector} + ": " + $P{startup}.getSector() + "</style>" + "<br/>"))
 + ($P{startup}.getAddress() == null ? "" : ("<style size='8' forecolor='#888888'>" + $P{address} + ": " + $P{startup}.getAddress() + "</style>" + "<br/>"))
-+ ($P{startup}.getOfficePhone() == null ? "" : ("<style size='8' forecolor='#888888'>" + $P{officePhone} + ": " + $P{startup}.getOfficePhone() + "</style>" + "<br/>"))
-+ ($P{startup}.getSite() == null ? "" : ("<style size='8' forecolor='#888888'>" + $P{site} + ": " + $P{startup}.getSite() + "</style>"))]]></textFieldExpression>
++ ($P{startup}.getSite() == null ? "" : ("<style size='8' forecolor='#888888'>" + $P{site} + ": " + $P{startup}.getSite() + "</style>" + "<br/>"))
++ ($P{startup}.getOfficePhone() == null ? "" : ("<style size='8' forecolor='#888888'>" + $P{officePhone} + ": " + $P{startup}.getOfficePhone() + "</style>"))]]></textFieldExpression>
 			</textField>
 			<image>
 				<reportElement positionType="Float" x="5" y="5" width="40" height="40" uuid="eb1a9052-b791-47e3-b970-3b95d8464313">
