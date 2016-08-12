@@ -25,6 +25,9 @@
 	href="<c:url value="/views-public/core/leaflet/css/leaflet.css" />"
 	rel="stylesheet" />
 <link
+	href="<c:url value="/views-public/core/angular-timeline/css/angular-timeline.css" />"
+	rel="stylesheet" />
+<link
 	href="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" />"
 	rel="stylesheet" />
 <!-- icon in the highest resolution we need it for -->
@@ -53,11 +56,19 @@
 	<!-- Angular Material Library -->
 	<script
 		src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.6/angular-material.min.js" />"></script>
+	<!-- Angular You Tube Library -->
+	<script
+		src="<c:url value="/views-public/core/angular-youtube/js/angular-youtube.min.js" />"></script>
+	<!-- Angular Timeline Library -->
+	<script
+		src="<c:url value="/views-public/core/angular-timeline/js/angular-timeline.js" />"></script>
 	<!-- Landing Page -->
 	<script
 		src="<c:url value="/views-public/landing-page/js/izmus-landing-page.dir.js" />"></script>
 	<script
 		src="<c:url value="/views-public/landing-page/js/izmus-login-page.dir.js" />"></script>
+	<script
+		src="<c:url value="/views-public/landing-page/js/izmus-news-page.dir.js" />"></script>
 	<script
 		src="<c:url value="/views-public/landing-page/js/izmus-registration-page.dir.js" />"></script>
 	<script
@@ -156,7 +167,8 @@
 			resourcefulSectionContent: ' <spring:message code="landingPage.about.resourcefulSectionContent" />',
 			strategicSectionHeader: ' <spring:message code="landingPage.about.strategicSectionHeader" />',
 			strategicSectionContent: ' <spring:message code="landingPage.about.strategicSectionContent" />',
-			weAre: ' <spring:message code="landingPage.about.weAre" />'
+			weAre: ' <spring:message code="landingPage.about.weAre" />',
+			rabeaOnCnbc: ' <spring:message code="landingPage.news.rabeaOnCnbc" />'
 		};
 		<% if (request.getUserPrincipal()!= null && !request.getUserPrincipal().equals("")){
 			%>

@@ -1,7 +1,7 @@
 var idle = 5 * 60;
 var timeout = 15 * 60;
 var heartbeat = 5 * 60;
-angular.module('izmusLandingPageApp', [ 'ngMaterial', 'ngAnimate', 'ngMessages', 'ngIdle' ]);
+angular.module('izmusLandingPageApp', [ 'ngMaterial', 'ngAnimate', 'ngMessages', 'ngIdle','angular-timeline' ]);
 /*----------------------------------------------------------------------------------------------------*/
 /**
  * Directive

@@ -1,0 +1,76 @@
+<style>
+timeline-badge{
+	background-color: #9BB2C8;
+}
+a{
+	max-height: 350px;
+}
+img{
+	max-height: 350px;
+}
+.news-whiteframe{
+	background-image: url('/views-public/landing-page/images/news-background.jpg');
+	background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+</style>
+<section style="height: 8px;"></section>
+<md-whiteframe class="news-whiteframe md-whiteframe-10dp" layout="column" layout-align="center stretch">
+	<timeline layout-padding>
+		<timeline-event>
+			<timeline-badge layout-align="center center" layout="row">
+				<md-icon aria-label="Logo" md-svg-src="/views-public/landing-page/images/news.svg"></md-icon>
+			</timeline-badge>
+			<timeline-panel flex layout="column" layout-align="center center">
+				<timeline-heading>
+					<h4>{{lang.rabeaOnCnbc}}</h4>
+				</timeline-heading>
+				<iframe
+					hide-xs
+					hide-sm
+					hide-md
+					src="http://player.cnbc.com/p/gZWlPC/cnbc_global?playertype=synd&byGuid=3000541158&size=570_360"
+					type="application/x-shockwave-flash"
+					width="570px"
+					height="360px"
+					frameborder="0"
+					allowFullScreen="true"
+					bgcolor="#131313"></iframe>
+				<iframe
+					hide-gt-md
+					hide-xs
+					src="http://player.cnbc.com/p/gZWlPC/cnbc_global?playertype=synd&byGuid=3000541158&size=320_180"
+					type="application/x-shockwave-flash"
+					width="320px"
+					height="180px"
+					frameborder="0"
+					allowFullScreen="true"
+					bgcolor="#131313"></iframe>
+				<iframe
+					hide-gt-xs
+					src="http://player.cnbc.com/p/gZWlPC/cnbc_global?playertype=synd&byGuid=3000541158&size=240_170"
+					type="application/x-shockwave-flash"
+					width="220px"
+					height="170px"
+					frameborder="0"
+					allowFullScreen="true"
+					bgcolor="#131313"></iframe>
+			</timeline-panel>
+		</timeline-event>
+		<timeline-event class="timeline-inverted">
+			<timeline-badge layout-align="center center" layout="row">
+				<md-icon aria-label="Logo" md-svg-src="/views-public/landing-page/images/news.svg"></md-icon>
+			</timeline-badge>
+			<timeline-panel flex layout="column" layout-align="center center">
+				<a 
+					href="https://www.digitalnewsasia.com/startups/izmus-aims-connect-ecosystems-israel-and-singapore" 
+					target="blank_"
+					layout="column" layout-align="center center" layout-padding>
+					<img ng-src="/views-public/landing-page/images/rabea-digital-news-asia.png"/>
+				</a>
+			</timeline-panel>
+		</timeline-event>
+	</timeline>
+</md-whiteframe>
+<section style="height: 8px;"></section>

@@ -91,7 +91,7 @@
 				<md-icon class="logo-words" aria-label="Logo" md-svg-src="/views-public/core/logo/izmus-logo.svg"></md-icon>
 			</md-button>
 	        <span flex></span>
-	        <div hide-sm hide-xs>
+	        <div hide-sm hide-xs layout="center center">
 	        	<md-button class="text-button" ng-disabled="(screenShowing == 'about')" aria-label="about" ng-click="moveToPage('about')"
 	        		ng-class="(globalAttr.direction == 'rtl') ? 'button-text-rtl' : 'button-text'">
 	          		{{lang.about}}
@@ -111,10 +111,10 @@
 	        		ng-class="(globalAttr.direction == 'rtl') ? 'button-text-rtl' : 'button-text'">
 	          		{{lang.loginTitle}}
 	        	</md-button>
-	        	<!-- <md-button class="text-button" ng-disabled="(screenShowing == 'news')" ng-click="moveToPage('news')"
+	        	<md-button class="text-button" ng-disabled="(screenShowing == 'news')" ng-click="moveToPage('news')"
 	        		ng-class="(globalAttr.direction == 'rtl') ? 'button-text-rtl' : 'button-text'">
 	          		{{lang.news}}
-	        	</md-button> -->
+	        	</md-button>
 	        	<language-menu>
 	        	</language-menu>
 	        </div>
@@ -131,9 +131,9 @@
 				<md-button ng-if="(globalAttr.user == null)" class="md-icon-button toolbar-icons" ng-click="contactDialog($event)">
                     <md-icon aria-label="Logo" md-svg-src="/views-public/landing-page/images/contact128x128.svg"></md-icon>
                 </md-button>
-                <!-- <md-button ng-disable="(screenShowing == 'news')" class="md-icon-button toolbar-icons" ng-click="moveToPage('news')">
+                <md-button ng-class="(screenShowing == 'news') ? 'mobile-button-disabled' : ''" class="md-icon-button toolbar-icons" ng-click="moveToPage('news')">
                     <md-icon aria-label="Logo" md-svg-src="/views-public/landing-page/images/news.svg"></md-icon>
-                </md-button> -->
+                </md-button>
                 <language-menu>
 	        	</language-menu>
 	        </div>
@@ -145,8 +145,10 @@
 			</izmus-about-page>
 			<izmus-login-page flex="none" ng-show="(screenShowing == 'login')" class="screen">
 			</izmus-login-page>
-			<izmus-registration-page flex="none" ng-show="(screenShowing == 'register')" class="screen">
-			</izmus-registration-page>
+			<!-- <izmus-registration-page flex="none" ng-show="(screenShowing == 'register')" class="screen">
+			</izmus-registration-page> -->
+			<izmus-news-page flex="none" ng-show="(screenShowing == 'news')" class="screen">
+			</izmus-news-page>
 		<section flex="30" class="flex-section"></section>
 	</md-content>
 </div>

@@ -45,10 +45,14 @@
 			<artifactId>junit</artifactId>
 			<groupId>junit</groupId>
 		</dependency>
-	  	<dependency>
-		    <groupId>javax</groupId>
-		    <artifactId>javaee-web-api</artifactId>
-		    <scope>provided</scope>
-	  	</dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.htmlunit</groupId>
+			<artifactId>htmlunit</artifactId>
+		</dependency>
 	</dependencies>
 </project>
