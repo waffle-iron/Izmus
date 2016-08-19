@@ -3,6 +3,7 @@ package com.izmus.api.importexport;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -78,15 +79,17 @@ public class ImportExport {
 	}
 	/*----------------------------------------------------------------------------------------------------*/
 	private boolean startupNameExists(String startupName) {
+		String[] split = startupName.split(" ");
+		startupName = split[0] + (split.length > 1 ? " " : "");
 		if (startupName.equals("name")){
 			return true;
 		}
-		Startup startup = startupRepository.findDistinctStartupByStartupName(startupName);
-		if (startup != null){
+		List<Startup> startups = startupRepository.findByStartupNameIgnoreCaseContaining(startupName);
+		if (startups != null && startups.size() > 0){
 			return true;
 		}
-		AvailableStartup availableStartup = availableStartupRepository.findDistinctAvailableStartupByStartupName(startupName);
-		if (availableStartup != null){
+		List<AvailableStartup> availableStartups = availableStartupRepository.findByStartupNameIgnoreCaseContaining(startupName);
+		if (availableStartups != null && availableStartups.size() > 0){
 			return true;
 		}
 		return false;

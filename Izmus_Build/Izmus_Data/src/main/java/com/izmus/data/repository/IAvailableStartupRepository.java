@@ -61,5 +61,7 @@ public interface IAvailableStartupRepository extends JpaRepository<AvailableStar
 
 	Page<AvailableStartup> findByStartupNameIgnoreCaseContainingAndSectorIgnoreCaseInAndFundingStageIgnoreCaseInAndProductStageIgnoreCaseInOrderByStartupNameAsc(
 			String startupName, List<String> sector, List<String> fundingStage, List<String> productStage, Pageable pageable);
+
+	List<AvailableStartup> findByStartupNameIgnoreCaseContaining(String startupName);
 	
 }

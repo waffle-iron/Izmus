@@ -18,7 +18,12 @@
 		<property name="asyncExecutorEnabled" value="true" />
 		<property name="asyncExecutorActivate" value="true" />
 		<property name="asyncExecutor" ref="asyncExecutor" />
-		<property name="deploymentResources" value="classpath*:/processes/*.bpmn"></property>
+		<property name="deploymentResources">
+			<list>
+				<value>classpath*:/processes/*.bpmn</value>
+				<value>classpath*:/processes/automated-tasks/*.bpmn</value>
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="asyncExecutor"

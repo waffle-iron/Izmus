@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.izmus.com/MatimopRobotProcess">
+  <collaboration id="Collaboration">
+    <participant id="MatimopRobotPoolId" name="Matimop Robot" processRef="MatimopRobotProcessId"></participant>
+  </collaboration>
+  <process id="MatimopRobotProcessId" name="Matimop Robot Process" isExecutable="true">
+    <laneSet id="laneSet_MatimopRobotProcessId">
+      <lane id="SystemLaneId" name="System">
+        <flowNodeRef>timerstartevent1</flowNodeRef>
+        <flowNodeRef>MatimopRobotServiceId</flowNodeRef>
+      </lane>
+      <lane id="UserLaneId" name="User"></lane>
+    </laneSet>
+    <startEvent id="timerstartevent1" name="Timer start">
+      <timerEventDefinition>
+        <timeCycle>0 0 12 1/1 * ? *</timeCycle>
+      </timerEventDefinition>
+    </startEvent>
+    <serviceTask id="MatimopRobotServiceId" name="Go Matimop Robot" activiti:expression="#{MatimopRobot.execute(execution)}"></serviceTask>
+    <sequenceFlow id="flow1" sourceRef="timerstartevent1" targetRef="MatimopRobotServiceId"></sequenceFlow>
+    <textAnnotation id="textannotation1">
+      <text>Executes the robot every night</text>
+    </textAnnotation>
+    <association id="association1" sourceRef="timerstartevent1" targetRef="textannotation1"></association>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration">
+    <bpmndi:BPMNPlane bpmnElement="Collaboration" id="BPMNPlane_Collaboration">
+      <bpmndi:BPMNShape bpmnElement="MatimopRobotPoolId" id="BPMNShape_MatimopRobotPoolId">
+        <omgdc:Bounds height="362.0" width="551.0" x="10.0" y="20.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="SystemLaneId" id="BPMNShape_SystemLaneId">
+        <omgdc:Bounds height="181.0" width="531.0" x="30.0" y="20.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="UserLaneId" id="BPMNShape_UserLaneId">
+        <omgdc:Bounds height="181.0" width="531.0" x="30.0" y="201.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="timerstartevent1" id="BPMNShape_timerstartevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="80.0" y="90.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="MatimopRobotServiceId" id="BPMNShape_MatimopRobotServiceId">
+        <omgdc:Bounds height="55.0" width="105.0" x="250.0" y="80.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="textannotation1" id="BPMNShape_textannotation1">
+        <omgdc:Bounds height="50.0" width="100.0" x="130.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="115.0" y="107.0"></omgdi:waypoint>
+        <omgdi:waypoint x="250.0" y="107.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="association1" id="BPMNEdge_association1">
+        <omgdi:waypoint x="97.0" y="125.0"></omgdi:waypoint>
+        <omgdi:waypoint x="180.0" y="140.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
